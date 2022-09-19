@@ -1,0 +1,51 @@
+name: the-erg-book-bot
+on:
+  push:
+  schedule:
+    - cron: '0 22 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: '0.4.10'
+      - name: Run script
+        run: |
+          svn export https://github.com/erg-lang/erg/trunk/doc/EN/syntax/
+          mdbook build --dest-dir docs/EN
+          python replace_links.py
+          sleep 1
+          rm -rf syntax
+
+          svn export https://github.com/erg-lang/erg/trunk/doc/JA/syntax/
+          mdbook build --dest-dir docs/JA
+          python replace_links.py
+          sleep 1
+          rmdir -rf syntax
+
+          svn export https://github.com/erg-lang/erg/trunk/doc/zh_CN/syntax/
+          mdbook build --dest-dir docs/zh_CN
+          python replace_links.py
+          sleep 1
+          rm -rf syntax
+
+          svn export https://github.com/erg-lang/erg/trunk/doc/zh_TW/syntax/
+          mdbook build --dest-dir docs/zh_TW
+          python replace_links.py
+          sleep 1
+          rm -rf syntax
+
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
