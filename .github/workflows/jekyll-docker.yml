@@ -30,7 +30,7 @@ jobs:
           mdbook build --dest-dir docs/JA
           python replace_links.py
           sleep 1
-          rmdir -rf syntax
+          rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/zh_CN/syntax/
           mdbook build --dest-dir docs/zh_CN
