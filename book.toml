@@ -1,9 +1,9 @@
 [book]
 authors = ["Shunsuke Shibayama"]
-language = "en"
-multilingual = false
+# language = "en"
+multilingual = true
 src = "syntax"
 title = "The Erg Book"
 
-[build]
-build-dir = "docs"
+# [build]
+# build-dir = "docs"
