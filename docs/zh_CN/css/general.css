@@ -12,7 +12,6 @@ html {
     color: var(--fg);
     background-color: var(--bg);
     text-size-adjust: none;
-    -webkit-text-size-adjust: none;
 }
 
 body {
@@ -24,16 +23,6 @@ body {
 code {
     font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
     font-size: 0.875em; /* please adjust the ace font size accordingly in editor.js */
-}
-
-/* make long words/inline code not x overflow */
-main {
-    overflow-wrap: break-word;
-}
-
-/* make wide tables scroll if they overflow */
-.table-wrapper {
-    overflow-x: auto;
 }
 
 /* Don't change font size in headers. */
@@ -90,7 +79,8 @@ h6:target::before {
 
 .content {
     overflow-y: auto;
-    padding: 0 5px 50px 5px;
+    padding: 0 15px;
+    padding-bottom: 50px;
 }
 .content main {
     margin-left: auto;
@@ -184,8 +174,4 @@ blockquote {
     color: var(--sidebar-fg);
     margin: 5px 0px;
     font-weight: bold;
-}
-
-.result-no-output {
-    font-style: italic;
 }
