@@ -229,9 +229,7 @@ x \
 + y \
 + z
 </code></pre>
-<p align='center'>
-    Previous | <a href='./01_literal.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="literal"><a class="header" href="#literal">Literal</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/01_literal.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/01_literal.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <h2 id="基本的なリテラル"><a class="header" href="#基本的なリテラル">基本的なリテラル</a></h2>
@@ -315,9 +313,7 @@ assert 0.0f32 == 0.0f64
 <pre><code class="language-python"># same as `assert (1*m) / (1*s) == 1*(m/s)`
 assert 1m / 1s == 1 (m/s)
 </code></pre>
-<p align='center'>
-    <a href='./00_basic.md'>Previous</a> | <a href='./02_name.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="変数"><a class="header" href="#変数">変数</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/02_name.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/02_name.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>変数は代数の一種です。Ergにおける代数―紛れがなければ単に変数と呼ばれることもあります―とは、オブジェクトを名前付けしてコード中の別の場所から利用できるようにする機能を指します。</p>
@@ -429,9 +425,7 @@ print! g # &lt;function g&gt;
 C = Class {i: Int}
 print! C # &lt;class C&gt;
 </code></pre>
-<p align='center'>
-    <a href='./01_literal.md'>Previous</a> | <a href='./03_declaration.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="declaration宣言"><a class="header" href="#declaration宣言">Declaration(宣言)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/03_declaration.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/03_declaration.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>宣言は、使用する変数の型を指定する構文です。
@@ -465,9 +459,7 @@ f: (Int, Int) -&gt; Int
 C = Class(U, Impl := T)
 C.f(a: Int, b: Int): Int = ... # TypeError: `.f` must be type of `(x: Int, y: Int) -&gt; Int`, not `(a: Int, b: Int) -&gt; Int`
 </code></pre>
-<p align='center'>
-    <a href='./02_name.md'>Previous</a> | <a href='./04_function.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="関数"><a class="header" href="#関数">関数</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>関数は「引数」を受け取ってそれを加工し、「戻り値」として返すブロックです。以下のように定義します。</p>
@@ -660,9 +652,7 @@ f(a, b) # TypeError: f() takes 1 positional argument but 2 were given
 f((a, b)) # OK
 </code></pre>
 <p>関数型<code>T -&gt; U</code>は実際のところ、<code>(T,) -&gt; U</code>の糖衣構文です。</p>
-<p align='center'>
-    <a href='./03_declaration.md'>Previous</a> | <a href='./05_builtin_funcs.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="組み込み関数"><a class="header" href="#組み込み関数">組み込み関数</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/05_builtin_funcs.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/05_builtin_funcs.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <h2 id="if"><a class="header" href="#if">if</a></h2>
@@ -695,9 +685,7 @@ print! result # 1 (or 0)
         if pat.match(s).is_some():
             break s
 </code></pre>
-<p align='center'>
-    <a href='./04_function.md'>Previous</a> | <a href='./06_operator.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="演算子"><a class="header" href="#演算子">演算子</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/06_operator.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/06_operator.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>演算子(オペレーター)は、演算を表す記号です。被演算子(オペランド)は演算子の(左)右にあるもので、Ergでは専らオブジェクトです。</p>
@@ -717,9 +705,7 @@ assert g(1, 2) == 2
 function = `-&gt;` # SyntaxError: cannot bind `-&gt;` operator, this is a special form
 # NG: function x, x + 1
 </code></pre>
-<p align='center'>
-    <a href='./05_builtin_funcs.md'>Previous</a> | <a href='./07_side_effect.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="副作用とプロシージャ"><a class="header" href="#副作用とプロシージャ">副作用とプロシージャ</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>これまで<code>print!</code>の<code>!</code>の意味を説明せずにいましたが、いよいよその意味が明かされます。この!は、ズバリこのオブジェクトが「副作用」のある「プロシージャ」であることを示しています。プロシージャは関数に「副作用」という効果を与えたものです。</p>
@@ -802,26 +788,20 @@ print! &quot;this will be printed immediately&quot;
 # this will be printed after execution
 </code></pre>
 <p>つまり、プログラムへのフィードバックがない、言い換えればいかなる外部オブジェクトもその情報を使うことが出来ないならば、情報の「漏洩」自体は許される場合があります。「伝搬」されなければよいのです。</p>
-<p align='center'>
-    <a href='./06_operator.md'>Previous</a> | <a href='./08_procedure.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="プロシージャ"><a class="header" href="#プロシージャ">プロシージャ</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/08_procedure.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/08_procedure.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>プロシージャは可変オブジェクトを取り扱う際に必要となりますが、可変オブジェクトを引数に持てばプロシージャであるとは限りません。</p>
 <pre><code class="language-python">peek_str s: Str! = log s
 </code></pre>
-<p align='center'>
-    <a href='./07_side_effect.md'>Previous</a> | <a href='./09_builtin_procs.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="組み込みプロシージャ"><a class="header" href="#組み込みプロシージャ">組み込みプロシージャ</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/09_builtin_procs.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/09_builtin_procs.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <h2 id="id"><a class="header" href="#id">id!</a></h2>
 <p>オブジェクトのユニークな識別番号を返します。
 純粋なErgの意味論の中では同一の構造を持つオブジェクトの間に差異を見出す事はできませんが、実際のところ、オブジェクトはメモリ上の位置が異なります。<code>id!</code>はこの位置を表す数値を返します。</p>
 <pre><code class="language-python"></code></pre>
-<p align='center'>
-    <a href='./08_procedure.md'>Previous</a> | <a href='./10_array.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="配列"><a class="header" href="#配列">配列</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/10_array.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/10_array.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>配列はもっとも基本的な <strong>コレクション(集約)</strong> です。
@@ -855,9 +835,7 @@ assert l[..].step(2) == [2, 4]
 <p>スライスで得られるオブジェクトは配列の(不変)参照です。</p>
 <pre><code class="language-python">print! Typeof l[1..2] # Ref [Int; 4]
 </code></pre>
-<p align='center'>
-    <a href='./09_builtin_procs.md'>Previous</a> | <a href='./11_tuple.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="タプル"><a class="header" href="#タプル">タプル</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/11_tuple.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/11_tuple.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>タプルは配列と似ていますが、違う型のオブジェクトを保持できます。
@@ -934,9 +912,7 @@ f(y=1, x=0)
 f(x=0)
 f(0)
 </code></pre>
-<p align='center'>
-    <a href='./10_array.md'>Previous</a> | <a href='./12_dict.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dict"><a class="header" href="#dict">Dict</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>Dictはキーと値のペアを持つコレクションです。</p>
@@ -979,9 +955,7 @@ invalid2 = {1: &quot;a&quot;, 2: 2}
 valid1: {Int or Str: Str} = {1: &quot;a&quot;, &quot;a&quot;: &quot;b&quot;}
 valid2: {Int: Int or Str} = {1: &quot;a&quot;, 2: 2}
 </code></pre>
-<p align='center'>
-    <a href='./11_tuple.md'>Previous</a> | <a href='./13_record.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="レコード"><a class="header" href="#レコード">レコード</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/13_record.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/13_record.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>レコードは、キーでアクセスするDictとコンパイル時にアクセスが検査されるタプルの性質を併せ持つコレクションです。
@@ -1132,9 +1106,7 @@ john = Person.new {name = &quot;John Smith&quot;; age = 20}
 john + 1
 # TypeError: + is not implemented for Person, Int
 </code></pre>
-<p align='center'>
-    <a href='./12_dict.md'>Previous</a> | <a href='./14_set.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="セットset"><a class="header" href="#セットset">セット(Set)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>セットは集合を表し、データ構造的には重複、順序のない配列です。</p>
@@ -1162,15 +1134,11 @@ assert i in {1, 2, 3}
 <pre><code class="language-python">mut_set = {1, 2, 3}.into {Int; !3}
 mut_set.insert!(4)
 </code></pre>
-<p align='center'>
-    <a href='./13_record.md'>Previous</a> | <a href='./15_type.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="型"><a class="header" href="#型">型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/15_type.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/15_type.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
 <p>型はErgにおいて非常に重要な機能ですので、<a href="./type/01_type_system.html">専用のセクション</a>を用意しています。そちらをご覧ください。</p>
-<p align='center'>
-    <a href='./14_set.md'>Previous</a> | <a href='./16_iterator.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ergの型システム"><a class="header" href="#ergの型システム">Ergの型システム</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/01_type_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/01_type_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>以下では、Ergの型システムを概略的に説明します。詳細については他の項で解説します。</p>
@@ -1330,9 +1298,7 @@ print! b # =&gt; 0
 <p>また、下の<code>A</code>, <code>B</code>は同じ型とはみなされません。しかし、型<code>O</code>は一致するとみなされます。</p>
 <pre><code class="language-python">... |R1; R2; O; A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
 </code></pre>
-<p align='center'>
-    Previous | <a href='./02_basic.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="型に関する基本的な文法"><a class="header" href="#型に関する基本的な文法">型に関する基本的な文法</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <h2 id="型指定"><a class="header" href="#型指定">型指定</a></h2>
@@ -1443,9 +1409,7 @@ Point2D = {x = Int; y = Int}
 Point3D = {...Point2D; z = Int}
 Point = {x = Int; y = Int; z = Int} # TypeWarning: duplicate aliases: Point3D and Point
 </code></pre>
-<p align='center'>
-    <a href='./01_type_system.md'>Previous</a> | <a href='./03_trait.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="トレイト"><a class="header" href="#トレイト">トレイト</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/03_trait.md&amp;commit_hash=14657486719a134f494e107774ac8f9d5a63f083"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/03_trait.md%26commit_hash%3D14657486719a134f494e107774ac8f9d5a63f083" alt="badge" /></a></p>
 <p>トレイトは、レコード型に型属性の要求を追加した記名型です。
@@ -1582,9 +1546,7 @@ print! P|&lt;: Mul(Int)|.Output # &lt;class 'P'&gt;
 <h2 id="appendix-rustのトレイトとの違い"><a class="header" href="#appendix-rustのトレイトとの違い">Appendix: Rustのトレイトとの違い</a></h2>
 <p>Ergのトレイトは<a href="https://www.ptidej.net/courses/ift6251/fall06/presentations/061122/061122.doc.pdf">Schärli et al.</a>の提唱したトレイトに忠実です。
 代数演算を行えるようにするためトレイトは実装を持てないようにして、必要ならばパッチをあてる設計にしています。</p>
-<p align='center'>
-    <a href='./02_basic.md'>Previous</a> | <a href='./04_class.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="class"><a class="header" href="#class">Class</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/04_class.md&amp;commit_hash=157f51ae0e8cf3ceb45632b537ebe3560a5500b7"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/04_class.md%26commit_hash%3D157f51ae0e8cf3ceb45632b537ebe3560a5500b7" alt="badge" /></a></p>
 <p>Ergにおけるクラスは、大まかには自身の要素(インスタンス)を生成できる型と言えます。
@@ -1805,9 +1767,7 @@ assert C.foo == foo
 assert not T &lt; C
 assert T.foo == Foo
 </code></pre>
-<p align='center'>
-    <a href='./03_trait.md'>Previous</a> | <a href='./05_inheritance.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="継承inheritance"><a class="header" href="#継承inheritance">継承(Inheritance)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/05_inheritance.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/05_inheritance.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>継承を使うと、既存のクラスに機能を加えたり特化したりした新しいクラスを定義できます。
@@ -1997,9 +1957,7 @@ structural_greet! john # Hello, my name is John.
 greet! alice # Hello, my name is Alice.
 greet! max # TypeError:
 </code></pre>
-<p align='center'>
-    <a href='./04_class.md'>Previous</a> | <a href='./06_nst_vs_sst.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="記名的部分型-vs-構造的部分型"><a class="header" href="#記名的部分型-vs-構造的部分型">記名的部分型 vs. 構造的部分型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/06_nst_vs_sst.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/06_nst_vs_sst.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <pre><code class="language-python">Months = 0..12
@@ -2036,9 +1994,7 @@ assert MonthsClass.new(2).name() == &quot;february&quot;
 <h2 id="結局nstとsstどちらを使えばいいのか"><a class="header" href="#結局nstとsstどちらを使えばいいのか">結局、NSTとSSTどちらを使えばいいのか?</a></h2>
 <p>どちらにすればよいか判断がつかないときはNSTを推奨します。
 SSTはどんなユースケースでも破綻しないコードを書く抽象化能力が要求されます。よい抽象化を実現できれば高い生産性を発揮できますが、間違った抽象化(<strong>見かけによる共通化</strong>)を行うと逆効果となってしまいます。NSTは抽象性をあえて抑え、このリスクを減らすことができます。あなたがライブラリの実装者でないならば、NSTのみでコーディングを行っても悪くはないでしょう。</p>
-<p align='center'>
-    <a href='./04_class.md'>Previous</a> | <a href='./06_inheritance.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="patch"><a class="header" href="#patch">Patch</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>Ergでは、既存の型・クラスに手を加えることはできません。
@@ -2212,9 +2168,7 @@ assert Point2D.new({x = 1; y = 2}).norm() == 5
 Point3D = Class {x = Int; y = Int; z = Int}
 assert Point3D.new({x = 1; y = 2; z = 3}).norm() == 14 # AssertionError:
 </code></pre>
-<p align='center'>
-    <a href='./06_nst_vs_sst.md'>Previous</a> | <a href='./08_value.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="値型value-types"><a class="header" href="#値型value-types">値型(Value types)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/08_value.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/08_value.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>値型はErg組み込み型のうちコンパイル時評価が可能な型で、具体的には以下のものです。</p>
@@ -3446,9 +3400,7 @@ log (1..3).iter() # &lt;RangeIterator object&gt;
 <p><code>Iterable</code>のような、トレイト(この場合は<code>Iterator</code>)を静的ディスパッチでありながら統一的に扱えるインターフェースを提供する型をコンパニオンクラスアダプターと呼びます。</p>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> このパターンには統一された名前がないようであるが、Rustでは<a href="https://gist.github.com/qnighy/be99c2ece6f3f4b1248608a04e104b38#:%7E:text=%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%80%82-,companion%20struct,-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%80%81%E3%81%9D%E3%81%AE">companion struct pattern</a>と呼ばれており、それになぞらえて命名した。<a href="16_iterator.html#f1">↩</a> </span></p>
-<p align='center'>
-    <a href='./15_type.md'>Previous</a> | <a href='./17_mutability.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mutability"><a class="header" href="#mutability">Mutability</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/17_mutability.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/17_mutability.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>すでに見たように、Ergの変数は全て不変です。しかし、Ergのオブジェクトには可変性という概念があります。
@@ -3519,9 +3471,7 @@ match! x:
 <p>変数と識別子の違いですが、Ergの文法論的な意味での変数をいうのならば、実質この二つは同じです。
 変数と識別子が等価でない言語は、C言語などがあげられます。C言語では、型や関数は変数に代入できません。int, mainは識別子ですが変数ではないのです(厳密には代入出来る場合もありますが、制約があります)。
 しかし、Ergでは「全てがオブジェクト」です。関数や型は勿論、演算子でさえ変数に代入可能です。</p>
-<p align='center'>
-    <a href='./16_iterator.md'>Previous</a> | <a href='./18_ownership.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="所有権システム"><a class="header" href="#所有権システム">所有権システム</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/18_ownership.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/18_ownership.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>ErgはPythonをホスト言語にした言語であるため、メモリ管理の方法はPythonの処理系に依存しています。
@@ -3601,9 +3551,7 @@ peek_str s
 <p>とはいえ、このような制約はそもそも参照のない言語では当たり前の仕様であり、そこまで不便となることはありません。</p>
 <h2 id="循環参照"><a class="header" href="#循環参照">循環参照</a></h2>
 <p>Ergでは意図せずメモリリークを起こせないように設計されており、メモリーチェッカーが循環参照を検知するとエラーを出します。ほとんどの場合、このエラーは弱参照<code>Weak</code>で解消できます。しかし、これでは巡回グラフなどの循環構造を持つオブジェクトを生成できないため、unsafe操作として循環参照を生成できるAPIを実装予定です。</p>
-<p align='center'>
-    <a href='./17_mutability.md'>Previous</a> | <a href='./19_visibility.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="可視性visibility"><a class="header" href="#可視性visibility">可視性(Visibility)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>Ergの変数には <strong>可視性</strong> という概念が存在します。
@@ -3744,9 +3692,7 @@ _ = foo.record.a.x # VisibilityError
 _ = foo.record.a.y # VisibilityError
 _ = foo.record.a.z # OK
 </code></pre>
-<p align='center'>
-    <a href='./18_ownership.md'>Previous</a> | <a href='./20_naming_rule.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="命名規則"><a class="header" href="#命名規則">命名規則</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/20_naming_rule.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/20_naming_rule.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>変数を定数式として使いたい場合は、必ず大文字で始めます。二文字以降は小文字でもよいです。</p>
@@ -3777,9 +3723,7 @@ match c:
 <pre><code class="language-python">'∂/∂t' y
 'test 1: pass x to y'()
 </code></pre>
-<p align='center'>
-    <a href='./19_visibility.md'>Previous</a> | <a href='./21_lambda.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="無名関数anonymous-function"><a class="header" href="#無名関数anonymous-function">無名関数(anonymous function)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/21_lambda.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/21_lambda.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>無名関数は、関数オブジェクトを名付けずその場で生成するための文法です。</p>
@@ -3845,9 +3789,7 @@ match res2:
 <pre><code class="language-python"># same as id|T| x: T = x
 id = |T| x: T -&gt; x
 </code></pre>
-<p align='center'>
-    <a href='./20_naming_rule.md'>Previous</a> | <a href='./22_subroutine.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subroutine-signatures"><a class="header" href="#subroutine-signatures">Subroutine signatures</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/22_subroutine.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/22_subroutine.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <h2 id="func"><a class="header" href="#func">Func</a></h2>
@@ -3884,9 +3826,7 @@ T!(N).some_method!: (self: Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
 `_+_`(x: Foo, y: Foo) = x.a + y.a
 `-_`(x: Foo) = Foo.new(-x.a)
 </code></pre>
-<p align='center'>
-    <a href='./21_lambda.md'>Previous</a> | <a href='./23_closure.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="クロージャ"><a class="header" href="#クロージャ">クロージャ</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/23_closure.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/23_closure.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>Ergのサブルーチンには、外部変数を捕捉する「クロージャ」という機能があります。</p>
@@ -3953,9 +3893,7 @@ sum = (1..10).fold(init: 0, f: (acc, i) -&gt; acc + i)
 assert sum == 45
 </code></pre>
 <p>不変オブジェクトによるプログラミングで自然と簡潔な記述となるように、Ergは設計されています。</p>
-<p align='center'>
-    <a href='./22_subroutine.md'>Previous</a> | <a href='./24_module.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="モジュール"><a class="header" href="#モジュール">モジュール</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>Ergでは、ファイル自体を1つのレコードとみなすことができます。これをモジュールと呼びます。</p>
@@ -3982,9 +3920,7 @@ assert foo.i == 1
     ├─ baz.er
     └─ qux.er
 </code></pre>
-<p align='center'>
-    <a href='./23_closure.md'>Previous</a> | <a href='./25_object_system.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="object対象体"><a class="header" href="#object対象体">Object(対象体)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/25_object_system.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/25_object_system.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>変数に代入できる全てのデータです。<code>Object</code>クラスの持つ属性は以下の通りです。</p>
@@ -4038,9 +3974,7 @@ Ergの関数(Function)は副作用を許さないので、Pythonのそれとは�
 <h2 id="entityエンティティ"><a class="header" href="#entityエンティティ">Entity(エンティティ)</a></h2>
 <p>サブルーチンおよび型ではないオブジェクトです。
 単相型エンティティ(<code>1</code>, <code>&quot;a&quot;</code>など)は値オブジェクト、多相型エンティティ(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)はコンテナオブジェクトとも呼ばれます。</p>
-<p align='center'>
-    <a href='./24_module.md'>Previous</a> | <a href='./26_pattern_matching.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="パターンマッチ論駁可能性"><a class="header" href="#パターンマッチ論駁可能性">パターンマッチ、論駁可能性</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <h2 id="ergで使用可能なパターン"><a class="header" href="#ergで使用可能なパターン">Ergで使用可能なパターン</a></h2>
@@ -4186,9 +4120,7 @@ match i
 <h4 id="セット"><a class="header" href="#セット">セット</a></h4>
 <p>セットのパターンはありません。なぜなら、セットは要素を一意に取り出す方法がないからです。
 イテレータで取り出すことはできますが、順番は保証されません。</p>
-<p align='center'>
-    <a href='./25_object_system.md'>Previous</a> | <a href='./27_comprehension.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comprehension内包表記"><a class="header" href="#comprehension内包表記">Comprehension(内包表記)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/27_comprehension.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/27_comprehension.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p><code>[expr | (name &lt;- iterable)+ (predicate)*]</code>で配列、
@@ -4234,9 +4166,7 @@ assert [(i, j) for i in range(1, 3) for j in range(3, 5)] == [(i, j) for j in ra
 # Nat2D = {(I, J): (Int, Int) | I &gt;= 0; J &gt;= 0}
 Nat2D = {(I, J): (Int, Int) | I &gt;= 0 and J &gt;= 0}
 </code></pre>
-<p align='center'>
-    <a href='./26_pattern_matching.md'>Previous</a> | <a href='./28_spread_syntax.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="spread-assignment-展開代入"><a class="header" href="#spread-assignment-展開代入">Spread assignment (展開代入)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/28_spread_syntax.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/28_spread_syntax.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>分解代入において、変数の前に<code>...</code>を置くと残りの要素を全てその変数に展開できます。これを展開代入と呼びます。</p>
@@ -4262,9 +4192,7 @@ assert y == (2, 3)
 {*} = record
 assert x == 1 and y == 2
 </code></pre>
-<p align='center'>
-    <a href='./27_comprehension.md'>Previous</a> | <a href='./29_decorator.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="デコレータ修飾子"><a class="header" href="#デコレータ修飾子">デコレータ(修飾子)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/29_decorator.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/29_decorator.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>デコレータは型や関数に特定の状態や振る舞いを追加したり明示するために使われます。
@@ -4347,9 +4275,7 @@ assert Y in U.attaches
 <p>変数の仕様が古く非推奨であることを示します。</p>
 <h2 id="test"><a class="header" href="#test">Test</a></h2>
 <p>テスト用サブルーチンであることを示します。テスト用サブルーチンは<code>erg test</code>コマンドで実行されます。</p>
-<p align='center'>
-    <a href='./28_spread_syntax.md'>Previous</a> | <a href='./30_error_handling.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="エラーハンドリングシステム"><a class="header" href="#エラーハンドリングシステム">エラーハンドリングシステム</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/30_error_handling.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/30_error_handling.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>主にResult型を使用します。
@@ -4430,9 +4356,7 @@ i = g(1)?
 <p>パニックは<code>panic</code>関数で行います。</p>
 <pre><code class="language-python">panic &quot;something went wrong!&quot;
 </code></pre>
-<p align='center'>
-    <a href='./29_decorator.md'>Previous</a> | <a href='./31_pipeline.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="パイプライン演算子"><a class="header" href="#パイプライン演算子">パイプライン演算子</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/31_pipeline.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/31_pipeline.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>パイプライン演算子は、次のように使います。</p>
@@ -4456,9 +4380,7 @@ __evens = 1..100 \
     .filter i -&gt; i % 2 == 0 \
     .collect Array
 </code></pre>
-<p align='center'>
-    <a href='./30_error_handling.md'>Previous</a> | <a href='./32_integration_with_Python.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="integration-with-python"><a class="header" href="#integration-with-python">Integration With Python</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="パッケージシステム"><a class="header" href="#パッケージシステム">パッケージシステム</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/33_package_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/33_package_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
@@ -4519,9 +4441,7 @@ bar.baz # AttributeError: module 'baz' is private
 <pre><code class="language-python"># qux.er
 baz = import &quot;baz&quot;
 </code></pre>
-<p align='center'>
-    <a href='./32_integration_with_Python.md'>Previous</a> | <a href='./34_generator.md'>Next</a>
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ジェネレータ"><a class="header" href="#ジェネレータ">ジェネレータ</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/34_generator.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/34_generator.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>ジェネレータは、ブロック中で<code>yield!</code>プロシージャを使う特殊なプロシージャです。</p>
@@ -4546,9 +4466,7 @@ assert g!() == 3
     yield! 3
 make_g: () =&gt; Generator!((), Int)
 </code></pre>
-<p align='center'>
-    <a href='./33_package_system.md'>Previous</a> | Next
-</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="索引"><a class="header" href="#索引">索引</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/indexes.md&amp;commit_hash=438bcb89ea692f219b30f3a3ba107888b23eae98"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/indexes.md%26commit_hash%3D438bcb89ea692f219b30f3a3ba107888b23eae98" alt="badge" /></a></p>
 <p>この索引にないAPIについては<a href="../API/index.html">こちら</a>を参照してください。
