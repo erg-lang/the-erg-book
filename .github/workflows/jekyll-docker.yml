@@ -20,27 +20,31 @@ jobs:
           mdbook-version: '0.4.10'
       - name: Run script
         run: |
-          svn export https://github.com/erg-lang/erg/trunk/doc/EN/syntax/
-          mdbook build --dest-dir docs/EN
-          python replace_links.py
-          sleep 1
-          rm -rf syntax
-
           svn export https://github.com/erg-lang/erg/trunk/doc/JA/syntax/
-          mdbook build --dest-dir docs/JA
+          mdbook build --dest-dir tmp
           python replace_links.py
+          mv tmp docs/JA
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/zh_CN/syntax/
-          mdbook build --dest-dir docs/zh_CN
+          mdbook build --dest-dir tmp
           python replace_links.py
+          mv tmp docs/zh_CN
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/zh_TW/syntax/
-          mdbook build --dest-dir docs/zh_TW
+          mdbook build --dest-dir tmp
           python replace_links.py
+          mv tmp docs/zh_TW
+          sleep 1
+          rm -rf syntax
+
+          svn export https://github.com/erg-lang/erg/trunk/doc/EN/syntax/
+          mdbook build --dest-dir tmp
+          python replace_links.py
+          mv tmp docs
           sleep 1
           rm -rf syntax
 
