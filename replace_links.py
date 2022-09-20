@@ -18,9 +18,9 @@ def replace_links(html):
     return html.replace('.md', '.html')
 
 def main():
-    pth = glob('docs/*.html')
-    typ_pth = glob('docs/type/*.html')
-    typ_adv_pth = glob('docs/type/advanced/*.html')
+    pth = glob('tmp/*.html')
+    typ_pth = glob('tmp/type/*.html')
+    typ_adv_pth = glob('tmp/type/advanced/*.html')
     paths = pth + typ_pth + typ_adv_pth
     for path in paths:
         print(path)
