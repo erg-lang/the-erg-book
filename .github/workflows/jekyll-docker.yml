@@ -20,6 +20,8 @@ jobs:
           mdbook-version: '0.4.10'
       - name: Run script
         run: |
+          rm -rf docs/*
+
           svn export https://github.com/erg-lang/erg/trunk/doc/JA/syntax/
           mdbook build --dest-dir tmp
           python replace_links.py
