@@ -44,7 +44,7 @@ jobs:
           svn export https://github.com/erg-lang/erg/trunk/doc/EN/syntax/
           mdbook build --dest-dir tmp
           python replace_links.py
-          mv tmp docs
+          mv tmp/* docs
           sleep 1
           rm -rf syntax
 
