@@ -143,7 +143,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="カインドkind"><a class="header" href="#カインドkind">カインド(Kind)</a></h1>
+                        <h1 id="カインド"><a class="header" href="#カインド">カインド</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/kind.md&amp;commit_hash=a9ea4eca75fe849e31f83570159f84b611892d7a"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/kind.md%26commit_hash%3Da9ea4eca75fe849e31f83570159f84b611892d7a" alt="badge" /></a></p>
 <p>Ergでは全てが型付けられている。型自体も例外ではない。「型の型」を表すのが <strong>カインド(種)</strong> である。例えば<code>1</code>が<code>Int</code>に属しているように、<code>Int</code>は<code>Type</code>に属している。<code>Type</code>は最もシンプルなカインドである <strong>原子カインド(Atomic kind)</strong> である。型理論的の記法では、<code>Type</code>は<code>*</code>に対応する。</p>
 <p>カインドという概念で実用上重要なのは1項以上のカインド(多項カインド)である。1項のカインドは、例えば<code>Option</code>などがそれに属する。1項カインドは<code>Type -&gt; Type</code>と表される<a href="#1"><sup id="f1">1</sup></a>。<code>Array</code>や<code>Option</code>などの <strong>コンテナ</strong> は特に型を引数に取る多項カインドのことなのである。
@@ -155,7 +155,7 @@ assert Option in Type -&gt; Type
 </code></pre>
 <p>なので、以下のようなコードはエラーになる。
 Ergではメソッドを定義できるのは原子カインドのみで、メソッドの第一引数以外の場所で<code>self</code>という名前を使えない。</p>
-<pre><code class="language-python"># K is an unary kind
+<pre><code class="language-python"># Kは単項の一種です
 K: Type -&gt; Type
 K T = Class ...
 K.
@@ -187,7 +187,7 @@ assert IntContainerOf in (Type -&gt; Type) -&gt; Type
 <p>多項カインドの束縛変数はK, L, ...などと表されるのが通例である(KはKindのK)。</p>
 <h2 id="セットカインド"><a class="header" href="#セットカインド">セットカインド</a></h2>
 <p>型理論において、レコードという概念がある。これはErgのレコードとほぼ同じものである<a href="#2"><sup id="f2">2</sup></a>。</p>
-<pre><code class="language-python"># This is a record, and it corresponds to what is called a record in type theory
+<pre><code class="language-python"># これは`レコード`であり、型理論でいうところの`レコード`に相当するものである
 {x = 1; y = 2}
 </code></pre>
 <p>レコードの値が全て型であるとき、それはレコード型といって型の一種であった。</p>
@@ -227,7 +227,7 @@ Fn2 T, U: Type = Patch T -&gt; U
 Fn2(T, U).
     f self = ...
 
-(Int -&gt; Int).f() # どれが選択される?
+(Int -&gt; Int).f() # どちらが選択されるだろうか?
 </code></pre>
 <p>上の例で、メソッド<code>f</code>はどのパッチが選ばれるのだろうか。
 素朴に考えて<code>Fn T</code>が選ばれるように思われるが、<code>Fn2 T, U</code>もあり得るし、<code>Option T</code>は<code>T</code>そのままを含むので任意の型が該当し、<code>Container K, T</code>も<code> `-&gt;`(Int, Int)</code>すなわち<code>Container(`-&gt;`, Int)</code>として<code>Int -&gt; Int</code>にマッチする。なので、上の4つのパッチすべてが選択肢としてありえる。</p>

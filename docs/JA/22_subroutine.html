@@ -143,23 +143,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="subroutine-signatures"><a class="header" href="#subroutine-signatures">Subroutine signatures</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/22_subroutine.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/22_subroutine.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<h2 id="func"><a class="header" href="#func">Func</a></h2>
+                        <h1 id="サブルーチンシグネチャ"><a class="header" href="#サブルーチンシグネチャ">サブルーチンシグネチャ</a></h1>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/22_subroutine.md&amp;commit_hash=ddcbe9859e56d63bb3dd001be216cd4343e1771e"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/22_subroutine.md%26commit_hash%3Dddcbe9859e56d63bb3dd001be216cd4343e1771e" alt="badge" /></a></p>
+<h2 id="関数"><a class="header" href="#関数">関数</a></h2>
 <pre><code class="language-python">some_func(x: T, y: U) -&gt; V
 some_func: (T, U) -&gt; V
 </code></pre>
-<h2 id="proc"><a class="header" href="#proc">Proc</a></h2>
+<h2 id="プロシージャ"><a class="header" href="#プロシージャ">プロシージャ</a></h2>
 <pre><code class="language-python">some_proc!(x: T, y: U) =&gt; V
 some_proc!: (T, U) =&gt; V
 </code></pre>
-<h2 id="func-method"><a class="header" href="#func-method">Func Method</a></h2>
+<h2 id="関数メソッド"><a class="header" href="#関数メソッド">関数メソッド</a></h2>
 <p>メソッド型は、外部からは<code>Self</code>で指定できません。</p>
 <pre><code class="language-python">.some_method(self, x: T, y: U) =&gt; ()
 # Self.(T, U) =&gt; ()はselfの所有権を奪う
 .some_method: (Ref Self, T, U) =&gt; ()
 </code></pre>
-<h2 id="proc-method-dependent"><a class="header" href="#proc-method-dependent">Proc Method (dependent)</a></h2>
+<h2 id="プロシージャメソッド依存"><a class="header" href="#プロシージャメソッド依存">プロシージャメソッド(依存)</a></h2>
 <p>以下で、型<code>T!</code>は<code>N: Nat</code>という型引数を取るとします。外部から指定する場合は型変数を使用します。</p>
 <pre><code class="language-python">T!: Nat -&gt; Type
 # ~&gt;は適用前後の型引数の状態を示す(このときselfは可変参照でなくてはならない)
@@ -168,11 +168,11 @@ T!(N).some_method!: (self: Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
 <p>注意として、<code>.some_method</code>の型は<code>|N, X: Nat| (self: Ref!(T! N ~&gt; N+X), {X}) =&gt; ()</code>となります。
 <code>ref!</code>がついていない、すなわち適用後所有権が奪われるメソッドでは、型引数の遷移(<code>~&gt;</code>)を使用できません。</p>
 <p>所有権が奪われる場合は以下のようになります。</p>
-<pre><code class="language-python"># Nを使わないなら_で省略可
+<pre><code class="language-python"># Nを使用しないならば_で省略できる
 # .some_method!: |N, X: Nat| (T!(N+X), {X}) =&gt; T!(N+X)
 .some_method!|N, X: Nat|(self: T!(N), X: Nat) =&gt; T!(N+X)
 </code></pre>
-<h2 id="operator"><a class="header" href="#operator">Operator</a></h2>
+<h2 id="演算子"><a class="header" href="#演算子">演算子</a></h2>
 <p>``で囲むことで通常の関数と同じように定義できます。
 <code>and</code>や<code>or</code>などの中置アルファベット演算子は囲むことで中置演算子として定義できます。</p>
 <pre><code class="language-python">and(x, y, z) = x and y and z

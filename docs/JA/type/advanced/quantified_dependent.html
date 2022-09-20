@@ -146,8 +146,8 @@
                         <h1 id="量化依存型"><a class="header" href="#量化依存型">量化依存型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/quantified_dependent.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/quantified_dependent.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>Ergには量化型、依存型が存在します。すると当然、その二つを組み合わせた型を作ることができます。それが量化依存型です。</p>
-<pre><code class="language-python">NonNullStr = |N: Nat| StrWithLen N | N != 0 # same as {S | N: Nat; S: StrWithLen N; N != 0}
-NonEmptyArray = |N: Nat| [_; N | N &gt; 0] # same as {A | N: Nat; A: Array(_, N); N &gt; 0}
+<pre><code class="language-python">NonNullStr = |N: Nat| StrWithLen N | N != 0 # N: Nat; S: StrWithLen N; N != 0}と同じ
+NonEmptyArray = |N: Nat| [_; N | N &gt; 0] # N: Nat; A: Array(_, N); N &gt; 0}と同じ
 </code></pre>
 <p>量化依存型の標準形は<code>K(A, ... | Pred)</code>です。<code>K</code>は型構築子、<code>A, B</code>は型引数、<code>Pred</code>は条件式です。</p>
 <p>左辺値としての量化依存型は、元の型と同じモジュール内でのみメソッドを定義出来ます。</p>

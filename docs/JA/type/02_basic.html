@@ -149,7 +149,7 @@
 <p>Ergでは以下のように<code>:</code>の後に変数の型を指定します。代入と同時に行うこともできます。</p>
 <pre><code class="language-python">i: Int # これから使う変数iはInt型であると宣言する
 i: Int = 1
-j = 1 # type specification can be omitted
+j = 1 # 型指定は省略できる
 </code></pre>
 <p>通常の式に対しても型指定することができます。</p>
 <pre><code class="language-python">i = 1: Int
@@ -186,7 +186,7 @@ Iterable T = Trait {
 }
 </code></pre>
 <p>また、クラス定義時に部分型指定を行うと、クラスが指定した型のサブタイプか静的に検査できます。</p>
-<pre><code class="language-python"># クラスCはShowのサブタイプ
+<pre><code class="language-python"># クラスCはShowの部分型
 C = Class Object, Impl=Show
 C.show self = ... # Showの要求属性
 </code></pre>
@@ -202,7 +202,7 @@ K(Int).
 <p>構造型を実装する際は、部分型指定を行うことを推奨します。
 構造的部分型付けの特性から、要求属性の実装をする際にタイポや型指定の間違いがあってもエラーが出ないためです。</p>
 <pre><code class="language-python">C = Class Object
-C.shoe self = ... # TypoのせいでShowが実装できていない(単なる固有のメソッドとみなされる)
+C.shoe self = ... # TypoのせいでShowが実装できない(単なる固有のメソッドとみなされる)
 </code></pre>
 <h2 id="属性定義"><a class="header" href="#属性定義">属性定義</a></h2>
 <p>トレイトやクラスには、モジュール内でのみ属性を定義できます。</p>
@@ -219,7 +219,7 @@ C.pub1 = ...
 C.pub2 = ...
 C::priv1 = ...
 C::priv2 = ...
-# is equivalent to
+# これは以下と同じ
 C = Class()
 C.
     pub1 = ...

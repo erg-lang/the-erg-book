@@ -264,7 +264,7 @@ Mul R = Trait {
 </code></pre>
 <p><code>.Output</code>という変数の名前が重複しています。これら複数のトレイトを同時に実装したい場合、以下のように指定します。</p>
 <pre><code class="language-python">P = Class {.x = Int; .y = Int}
-# P|Self &lt;: Add(P)|はP|&lt;: Add(P)|に省略可能
+# P|Self &lt;: Add(P)|はP|&lt;: Add(P)|に省略できる
 P|Self &lt;: Add(P)|.
     Output = P
     `_+_` self, other = P.new {.x = self.x + other.x; .y = self.y + other.y}

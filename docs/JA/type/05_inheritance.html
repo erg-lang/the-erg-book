@@ -143,7 +143,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="継承inheritance"><a class="header" href="#継承inheritance">継承(Inheritance)</a></h1>
+                        <h1 id="継承"><a class="header" href="#継承">継承</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/05_inheritance.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/05_inheritance.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>継承を使うと、既存のクラスに機能を加えたり特化したりした新しいクラスを定義できます。
 継承はトレイトにおける包摂に似ています。継承してできたクラスは、もとのクラスのサブタイプになります。</p>
@@ -286,11 +286,11 @@ Inherited!.
     add2_pub! ref! self =
         self.inc_pub!()
         self.inc_pub!()
-    # NG, `Child` cannot touch `self.pub` and `self::pri`
+    # NG, `Child`は`self.pub`と`self::pri`に触れられない
     add2_pub! ref! self =
         self.pub.update! p -&gt; p + 2
 </code></pre>
-<p>畢竟、Ergの継承ができることは新規属性の追加と基底クラスメソッドのオーバーライドのみといえるでしょう。</p>
+<p>畢竟(ひっきょう)、Ergの継承ができることは新規属性の追加と基底クラスメソッドのオーバーライドのみといえるでしょう。</p>
 <h2 id="継承の使い所"><a class="header" href="#継承の使い所">継承の使い所</a></h2>
 <p>継承は正しく使えば強力な機能である反面、クラス同士の依存関係が複雑になりやすいという欠点もあり、特に多重継承・多層継承を使用した場合はその傾向が顕著となります。依存関係の複雑化はコードのメンテナンス性を下げる恐れがあります。
 Ergが多重継承、多層継承を禁止したのはこの危険性を低減するためで、クラスパッチという機能を導入したのは、継承の「機能の追加」という側面を持ちながら依存関係の煩雑化を抑えるためです。</p>
@@ -300,14 +300,14 @@ Ergはサブタイプ判定の一部を型システムが自動で判定して�
 <pre><code class="language-python">ValidMailAddressStr = Inherit Str
 ValidMailAddressStr.
     init s: Str =
-        validate s # mail-address validation
+        validate s # メールアドレスの有効性
         Self.new s
 
 s1 = &quot;invalid mail address&quot;
 s2 = &quot;foo@gmail.com&quot;
 _ = ValidMailAddressStr.init s1 # panic: invalid mail address
 valid = ValidMailAddressStr.init s2
-valid: ValidMailAddressStr # assurance that it is in the correct email address format
+valid: ValidMailAddressStr # 正しいメールアドレス形式であることの確認
 </code></pre>
 <p>もう一つの指標は、「記名的な多相=多態を実現したい」場合です。
 例えば、以下に定義する<code>greet!</code>プロシージャは、<code>Named</code>型のオブジェクトならば何でも受け付けます。

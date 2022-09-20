@@ -147,24 +147,24 @@
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <h2 id="ergで使用可能なパターン"><a class="header" href="#ergで使用可能なパターン">Ergで使用可能なパターン</a></h2>
 <h3 id="変数パターン"><a class="header" href="#変数パターン">変数パターン</a></h3>
-<pre><code class="language-python"># basic assignment
+<pre><code class="language-python"># 基本的な代入
 i = 1
-# with type
+# 型つき
 i: Int = 1
-# with anonymous type
+# 無名型つき
 i: {1, 2, 3} = 2
 
 # function
 fn x = x + 1
 # equals
 fn x: Add(Int) = x + 1
-# (anonymous) function
+# (無名)関数
 fn = x -&gt; x + 1
 fn: Int -&gt; Int = x -&gt; x + 1
 
-# higher-order type
+# 上位型
 a: [Int; 4] = [0, 1, 2, 3]
-# or
+# もしくは
 a: Array Int, 4 = [0, 1, 2, 3]
 </code></pre>
 <h3 id="リテラルパターン"><a class="header" href="#リテラルパターン">リテラルパターン</a></h3>
@@ -172,13 +172,13 @@ a: Array Int, 4 = [0, 1, 2, 3]
 # `_: {1} = i`を省略したもの
 1 = i
 
-# simple pattern matching
+# 簡易的なパターンマッチ
 match x:
     1 -&gt; &quot;1&quot;
     2 -&gt; &quot;2&quot;
     _ -&gt; &quot;other&quot;
 
-# fibonacci function
+# フィボナッチ関数
 fib 0 = 0
 fib 1 = 1
 fib n: Nat = fib n-1 + fib n-2
@@ -235,10 +235,10 @@ length [_, ...rest] = 1 + length rest
 </code></pre>
 <h4 id="レコードパターン"><a class="header" href="#レコードパターン">レコードパターン</a></h4>
 <pre><code class="language-python">record = {i = 1; j = 2; k = 3}
-{j; ...} = record # i, k will be freed
+{j; ...} = record # i, kが解放される
 
 {sin; cos; tan; ...} = import &quot;math&quot;
-{*} = import &quot;math&quot; # import all
+{*} = import &quot;math&quot; # 全てインポートする
 
 person = {name = &quot;John Smith&quot;; age = 20}
 age = match person:

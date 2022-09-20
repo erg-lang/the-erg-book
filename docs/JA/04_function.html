@@ -144,7 +144,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="関数"><a class="header" href="#関数">関数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=00c05ab6686062ea6707a326c840d910a55e6dc4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D00c05ab6686062ea6707a326c840d910a55e6dc4" alt="badge" /></a></p>
 <p>関数は「引数」を受け取ってそれを加工し、「戻り値」として返すブロックです。以下のように定義します。</p>
 <pre><code class="language-python">add x, y = x + y
 # or
@@ -159,7 +159,7 @@ add(x, y) = x + y
 add(1, 2)
 </code></pre>
 <h2 id="コロン適用スタイル"><a class="header" href="#コロン適用スタイル">コロン適用スタイル</a></h2>
-<p>関数は<code>f x, y, ...</code>のように呼び出しますが、実引数が多く一行では長くなりすぎる場合は<code>:</code>(コロン)を使った適用も可能です。</p>
+<p>関数は<code>f x, y, ...</code>のように呼び出しますが、<strong>実引数</strong> が多く一行では長くなりすぎる場合は<code>:</code>(コロン)を使った適用も可能です。</p>
 <pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
@@ -181,7 +181,7 @@ f:
     x
     y
 </code></pre>
-<h2 id="キーワード引数keyword-arguments"><a class="header" href="#キーワード引数keyword-arguments">キーワード引数(Keyword Arguments)</a></h2>
+<h2 id="キーワード引数"><a class="header" href="#キーワード引数">キーワード引数</a></h2>
 <p>引数の数が多い関数を定義されていると、引数を渡す順番を間違える危険性があります。
 そのような場合はキーワード引数を使用して呼び出すと安全です。</p>
 <pre><code class="language-python">f x, y, z, w, v, u: Int = ...
@@ -199,7 +199,7 @@ f x: y
 f x:
     y
 </code></pre>
-<h2 id="デフォルト引数default-parameters"><a class="header" href="#デフォルト引数default-parameters">デフォルト引数(Default parameters)</a></h2>
+<h2 id="デフォルト引数"><a class="header" href="#デフォルト引数">デフォルト引数</a></h2>
 <p>ある引数が大抵の場合決まりきっており省略できるようにしたい場合、デフォルト引数を使うと良いでしょう。</p>
 <p>デフォルト引数は<code>:=</code>(or-assign operator)で指定します。<code>base</code>が指定されなかったら<code>math.E</code>を<code>base</code>に代入します。</p>
 <pre><code class="language-python">math_log x: Ratio, base := math.E = ...
@@ -307,7 +307,7 @@ Sin X = math.sin X # ConstantError: this function is not computable at compile t
 <pre><code class="language-python">Option T: Type = T or NoneType
 Option: Type -&gt; Type
 </code></pre>
-<h2 id="appendix-関数の比較"><a class="header" href="#appendix-関数の比較">Appendix: 関数の比較</a></h2>
+<h2 id="付録1-関数の比較"><a class="header" href="#付録1-関数の比較">付録1: 関数の比較</a></h2>
 <p>Ergでは、関数に<code>==</code>が定義されていません。それは関数の構造的な同値性判定アルゴリズムが一般には存在しないためです。</p>
 <pre><code class="language-python">f = x: Int -&gt; (x + 1)**2
 g = x: Int -&gt; x**2 + 2x + 1
@@ -316,18 +316,18 @@ assert f == g # TypeError: cannot compare functions
 </code></pre>
 <p><code>f</code>と<code>g</code>は常に同じ結果を返しますが、その判定を行うのは至難の業です。コンパイラに代数学を教え込む必要があります。
 そのため、Ergは関数の比較をまるごと諦めており、<code>(x -&gt; x) == (x -&gt; x)</code>もコンパイルエラーになります。これはPythonとは違った仕様なので注意する必要があります。</p>
-<pre><code class="language-python"># Python, weird example
+<pre><code class="language-python"># Pythonの奇妙な例
 f = lambda x: x
-assert f == f
-assert (lambda x: x) != (lambda x: x)
+assert f == f # True
+assert (lambda x: x) != (lambda x: x) # Passed
 </code></pre>
-<h2 id="appendix2-の補完"><a class="header" href="#appendix2-の補完">Appendix2: ()の補完</a></h2>
+<h2 id="付録2-の補完"><a class="header" href="#付録2-の補完">付録2: ()の補完</a></h2>
 <pre><code class="language-python">f x: Object = ...
-# will be completed to
+# これは以下のように補完される
 f(x: Object) = ...
 
 f a
-# will be completed to
+# これは以下のように補完される
 f(a)
 
 f a, b # TypeError: f() takes 1 positional argument but 2 were given

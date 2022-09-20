@@ -143,7 +143,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="dict"><a class="header" href="#dict">Dict</a></h1>
+                        <h1 id="辞書"><a class="header" href="#辞書">辞書</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>Dictはキーと値のペアを持つコレクションです。</p>
 <pre><code class="language-python">ids = {&quot;Alice&quot;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301}
@@ -170,7 +170,7 @@ mut_dict.insert! &quot;Alice&quot;, 145
 mut_dict.insert! &quot;Bob&quot;, 214
 assert mut_dict[&quot;Alice&quot;] == 145
 </code></pre>
-<h2 id="heterogeneous-dict"><a class="header" href="#heterogeneous-dict">Heterogeneous Dict</a></h2>
+<h2 id="非等質な辞書"><a class="header" href="#非等質な辞書">非等質な辞書</a></h2>
 <p>キー・値の型は単一でなくてもよく、そのような辞書を <strong>非等質な辞書(heterogenous dict)</strong> といいます。</p>
 <pre><code class="language-python">d: {Str: Int, Int: Str} = {&quot;a&quot;: 1, 1: &quot;a&quot;}
 assert d[&quot;a&quot;] == 1
@@ -181,7 +181,7 @@ assert d[1] == &quot;a&quot;
 <pre><code class="language-python">invalid1 = {1: &quot;a&quot;, &quot;a&quot;: &quot;b&quot;}
 invalid2 = {1: &quot;a&quot;, 2: 2}
 
-# Ergの型推論はOr型を推論しないので、型指定が必要
+# Ergの型推論はOr型を推論しないため、型指定が必要となる
 valid1: {Int or Str: Str} = {1: &quot;a&quot;, &quot;a&quot;: &quot;b&quot;}
 valid2: {Int: Int or Str} = {1: &quot;a&quot;, 2: 2}
 </code></pre>

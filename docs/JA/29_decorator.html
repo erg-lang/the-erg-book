@@ -207,7 +207,7 @@ AddForOdd = Patch(Odd, Impl := ClosedAdd)
 AddForOdd.AddO = Even
 </code></pre>
 <p>こうすると、他のモジュールからトレイトをインポートした際に、アタッチメントパッチが自動で適用されます。</p>
-<pre><code class="language-python"># 本来IntIsBinAdd, OddIsBinAddも同時にインポートする必要があるが、アタッチメントパッチなら省略可
+<pre><code class="language-python"># 本来IntIsBinAdd, OddIsBinAddも同時にインポートする必要があるが、アタッチメントパッチなら省略できる
 {BinAdd; ...} = import &quot;foo&quot;
 
 assert Int.AddO == Int

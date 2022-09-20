@@ -176,7 +176,7 @@ try!:
     e =&gt;
         print! e
 </code></pre>
-<p>翻って、こちらの例では<code>foo!</code>と<code>qux!</code>がエラーを出しうるとわかります。
+<p>反対に、こちらの例では<code>foo!</code>と<code>qux!</code>がエラーを出しうるとわかります。
 正確には<code>y</code>も<code>Result</code>型である可能性がありますが、中の値を使用するためにはいずれ対処しなくてはなりません。</p>
 <p><code>Result</code>型を使用するメリットはそれだけではありません。<code>Result</code>型はスレッドセーフでもあります。これは、エラー情報を並列実行中に(容易に)受け渡しできるということを意味します。</p>
 <h2 id="context"><a class="header" href="#context">Context</a></h2>

@@ -149,7 +149,7 @@
 h: |T: Type|((y: Int, x: Int) -&gt; T) -&gt; T
 </code></pre>
 <p>キーワード引数付き関数の部分型付け規則は以下の通り。</p>
-<pre><code class="language-python">((x: T, y: U) -&gt; V) &lt;: ((T, U) -&gt; V)  # x, y are arbitrary keyword parameters
+<pre><code class="language-python">((x: T, y: U) -&gt; V) &lt;: ((T, U) -&gt; V)  # x, yは任意のキーワードパラメータ
 ((y: U, x: T) -&gt; V) &lt;: ((x: T, y: U) -&gt; V)
 ((x: T, y: U) -&gt; V) &lt;: ((y: U, x: T) -&gt; V)
 </code></pre>

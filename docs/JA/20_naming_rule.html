@@ -156,13 +156,13 @@ match i:
 <pre><code class="language-python"># Callable == Func or Proc
 c: Callable = print!
 match c:
-    p! -&gt; log &quot;proc&quot; # 自明なので`: Proc`を省略可
+    p! -&gt; log &quot;proc&quot; # 自明なので`: Proc`を省略できる
     f -&gt; log &quot;func&quot;
 </code></pre>
 <p>属性を外部に公開したい場合は、初めに<code>.</code>をつけて定義します。<code>.</code>を初めにつけなかった場合は非公開になります。混乱を避けるため同一のスコープ内で共存はできません。</p>
 <pre><code class="language-python">o = {x = 1; .x = 2} # SyntaxError: private and public variables with the same name cannot coexist
 </code></pre>
-<h2 id="リテラル識別子literal-identifiers"><a class="header" href="#リテラル識別子literal-identifiers">リテラル識別子(Literal Identifiers)</a></h2>
+<h2 id="リテラル識別子"><a class="header" href="#リテラル識別子">リテラル識別子</a></h2>
 <p>以上の規則は、文字列をシングルクォート('')で囲むと回避できます。すなわち、プロシージャルオブジェクトも<code>!</code>をつけずに代入することができます。ただしこの場合、値が定数式でも定数とはみなされません。
 このようにシングルクォートで囲まれた文字列による識別子をリテラル識別子といいます。
 これは、Pythonなど他言語のAPI(FFI)を呼び出す際に使います。</p>

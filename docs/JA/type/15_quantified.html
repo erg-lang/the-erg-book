@@ -143,7 +143,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="型変数type-variable量化型"><a class="header" href="#型変数type-variable量化型">型変数(Type Variable)、量化型</a></h1>
+                        <h1 id="型変数量化型"><a class="header" href="#型変数量化型">型変数、量化型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/15_quantified.md&amp;commit_hash=14657486719a134f494e107774ac8f9d5a63f083"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/15_quantified.md%26commit_hash%3D14657486719a134f494e107774ac8f9d5a63f083" alt="badge" /></a></p>
 <p>型変数はサブルーチン引数の型指定などに使用する変数で、その型が任意である(単相化しない)ことを示します。
 まず、型変数を導入するモチベーションとして、入力をそのまま返す<code>id</code>関数について考えましょう。</p>
@@ -172,7 +172,7 @@ assert id(True) == True
 <p>これを関数の <strong>全称量化(全称化)</strong> と呼びます。細かい違いはありますが、他言語でジェネリクスと呼ばれる機能に相当します。そして全称量化された関数を <strong>多相関数</strong> と呼びます。
 多相関数の定義は、全ての型に対して同じ形の関数を定義するようなものです(Ergはオーバーロードを禁止しているので、下のコードは実際には書けません)。</p>
 <pre><code class="language-python">id|T: Type| x: T = x
-# pseudo code
+# 疑似コード
 # ==
 id x: Int = x
 id x: Str = x
@@ -276,7 +276,7 @@ L(M).
 <p>型引数ごとに多重定義することはできませんが、型引数を代入していない依存型(非原始カインド)と代入した依存型(原始カインド)は関係がないので同名のメソッドを定義できます。</p>
 <pre><code class="language-python">K(I: Int) = ...
 K.
-    # Kは真の型(原子カインド)ではないので、メソッドを定義できない
+    # Kは真の型(原始カインド)ではないので、メソッドを定義できない
     # これはメソッドではない(スタティックメソッドに近い)
     foo(x) = ...
 K(0).

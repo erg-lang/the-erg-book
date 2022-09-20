@@ -172,13 +172,13 @@ assert (Int; 3) == (Int, Int, Int)
 これを等質化といいます。</p>
 <pre><code class="language-python">(Int, Bool, Str) can be [T; 3] | T :&gt; Int, T :&gt; Bool, T :&gt; Str
 </code></pre>
-<pre><code class="language-python">t: (Int, Bool, Str) = (1, True, &quot;a&quot;) # non-homogenous
-a: [Int or Bool or Str; 3] = [1, True, &quot;a&quot;] # homogenous
-_a: [Show; 3] = [1, True, &quot;a&quot;] # homogenous
+<pre><code class="language-python">t: (Int, Bool, Str) = (1, True, &quot;a&quot;) # 非等質
+a: [Int or Bool or Str; 3] = [1, True, &quot;a&quot;] # 等質
+_a: [Show; 3] = [1, True, &quot;a&quot;] # 等質
 _a.iter().map(x -&gt; log x) # OK
 t.try_into([Show; 3])?.iter().map(x -&gt; log x) # OK
 </code></pre>
-<h2 id="ユニットunit"><a class="header" href="#ユニットunit">ユニット(Unit)</a></h2>
+<h2 id="ユニット"><a class="header" href="#ユニット">ユニット</a></h2>
 <p>要素が0個のタプルはユニットと言います。ユニットは値ですが、自身の型そのものも指します。</p>
 <pre><code class="language-python">unit = ()
 (): ()

@@ -162,7 +162,7 @@ john[&quot;name&quot;] # Error: john is not subscribable
 可視性の指定は、Java言語などでみられるpublic/privateの指定に相当します。詳しくは<a href="./15_visibility.html">可視性</a>を参照してください。</p>
 <pre><code class="language-python">a = {x = 1; .y = x + 1}
 a.x # AttributeError: x is private
-# Hint: declare as `.x`
+# Hint: declare as `.x`.
 assert a.y == 2
 </code></pre>
 <p>上の例はJavaScriptに習熟している人間からすると奇妙かもしれませんが、単に<code>x</code>と宣言すると外部からアクセスできず、<code>.</code>をつけると<code>.</code>でアクセスできるというわけです。</p>

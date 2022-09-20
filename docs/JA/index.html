@@ -160,25 +160,25 @@
 <pre><code class="language-python">print! &quot;Hello, World!&quot; # OK
 print! &quot;Hello,&quot;, &quot;World!&quot; # OK
 print!() # OK
-print! # OK, but this does not mean to call, simply to get `print!` as a callable object
+print! # OKだが呼び出しという意味ではなく、単に`print!`を呼び出し可能なオブジェクトとして取得するという意味となる
 
-print! f x # OK, interpreted as `print!(f(x))`
+print! f x # OK、これは`print!(f(x))`として解釈される
 print!(f(x, y)) # OK
 print! f(x, y) # OK
 print! f(x, g y) # OK
-print! f x, y # NG, can be taken to mean either `print!(f(x), y)` or `print!(f(x, y))`
-print!(f x, y) # NG, can be taken to mean either `print!(f(x), y)` or `print!(f(x, y))`
-print! f(x, g y, z) # NG, can be taken to mean either `print!(x, g(y), z)` or `print!(x, g(y, z))`
+print! f x, y # NG, `print!(f(x), y)`または`print!(f(x, y))`の二通りの解釈ができてしまう
+print!(f x, y) # NG, `print!(f(x), y)`または`print!(f(x, y))`の二通りの解釈ができてしまう
+print! f(x, g y, z) # NG, `print!(x, g(y), z)`または`print!(x, g(y, z))`の二通りの解釈ができてしまう
 </code></pre>
 <h2 id="スクリプト"><a class="header" href="#スクリプト">スクリプト</a></h2>
 <p>Ergのコードはスクリプトと呼ばれます。スクリプトはファイル形式(.er)で保存・実行できます。</p>
 <h2 id="コメント"><a class="header" href="#コメント">コメント</a></h2>
 <p><code>#</code>以降はコメントとして無視されます。コードの意図を説明したいときや一時的にコードを無効化したいときなどに使います。</p>
 <pre><code class="language-python"># コメント
-## `#`以降は改行されるまで無視されるので、`#`は何個あってもOK
+## `#`以降は改行されるまで無視されるため、`#`は何個でも使用できる
 #[
 複数行コメント
-対応する`]#`のところまでずっとコメントとして扱われます
+対応する#`[`から`]#`のところまでがコメントとして扱われる
 ]#
 </code></pre>
 <h2 id="式セパレータ"><a class="header" href="#式セパレータ">式、セパレータ</a></h2>
@@ -198,7 +198,7 @@ f(1, 2); 1 + 1
 assert i == 2
 </code></pre>
 <p>これはセミコロン(<code>;</code>)では実現できません。</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # SyntaxError: cannot use `;` in parentheses
+<pre><code class="language-python">i = (x = 1; x + 1) # SyntaxError:  cannot use `;` in parentheses
 </code></pre>
 <h2 id="インデント"><a class="header" href="#インデント">インデント</a></h2>
 <p>ErgはPythonと同じくインデントを使ってブロックを表します。ブロックの開始を示すトリガーとなる演算子(特殊形式)は、<code>=</code>, <code>-&gt;</code>, <code>=&gt;</code>, <code>do</code>, <code>do!</code>の5種類です(その他に、演算子ではありませんが<code>:</code>と<code>|</code>もインデントを生成します)。それぞれの意味は後述します。</p>
@@ -218,12 +218,12 @@ ans = match x:
     _ -&gt; &quot;unknown&quot;
 </code></pre>
 <p>また1行が長くなりすぎる場合、<code>\</code>を使って途中で改行させることができます。</p>
-<pre><code class="language-python"># this does not means `x + y + z` but means `x; +y; +z`
+<pre><code class="language-python"># これは`x + y + z`と解釈されず`x; +y; +z`と解釈される
 x
 + y
 + z
 
-# this means `x + y + z`
+# これは`x + y + z`と解釈される
 x \
 + y \
 + z

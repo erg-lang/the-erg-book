@@ -143,12 +143,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="algebraic-type-代数演算型"><a class="header" href="#algebraic-type-代数演算型">Algebraic type (代数演算型)</a></h1>
+                        <h1 id="代数演算型"><a class="header" href="#代数演算型">代数演算型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/13_algebraic.md&amp;commit_hash=c120700585fdb1d655255c8e2817bb13cc8d369e"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/13_algebraic.md%26commit_hash%3Dc120700585fdb1d655255c8e2817bb13cc8d369e" alt="badge" /></a></p>
 <p>代数演算型は、型を代数のようにみなして演算することで生成される型のことです。
 代数演算型が扱う演算は、Union, Intersection, Diff, Complementなどがあります。
 通常のクラスはUnionのみが行えて、他の演算は型エラーになります。</p>
-<h2 id="union"><a class="header" href="#union">Union</a></h2>
+<h2 id="合併型"><a class="header" href="#合併型">合併型</a></h2>
 <p>Union型では型について複数の可能性を与える事ができる。名前の通り、<code>or</code>演算子で生成されます。
 代表的なUnionは<code>Option</code>型です。<code>Option</code>型は<code>T or NoneType</code>のpatch typeで、主に失敗するかもしれない値を表現します。</p>
 <pre><code class="language-python">IntOrStr = Int or Str
@@ -157,12 +157,12 @@ assert dict.get(&quot;some key&quot;) in (Int or NoneType)
 # 暗黙に`T != NoneType`となる
 Option T = T or NoneType
 </code></pre>
-<h2 id="intersection"><a class="header" href="#intersection">Intersection</a></h2>
+<h2 id="交差型"><a class="header" href="#交差型">交差型</a></h2>
 <p>Intersection型は型同士を<code>and</code>演算で結合して得られます。</p>
 <pre><code class="language-python">Num = Add and Sub and Mul and Eq
 </code></pre>
 <p>先述したように通常のクラス同士では<code>and</code>演算で結合できません。インスタンスは唯一つのクラスに属するからです。</p>
-<h2 id="diff"><a class="header" href="#diff">Diff</a></h2>
+<h2 id="除外型"><a class="header" href="#除外型">除外型</a></h2>
 <p>Diff型は<code>not</code>演算で得られます。
 英文に近い表記としては<code>and not</code>とした方が良いですが、<code>and</code>, <code>or</code>と並べて収まりが良いので<code>not</code>だけで使うのが推奨されます。</p>
 <pre><code class="language-python">CompleteNum = Add and Sub and Mul and Div and Eq and Ord
@@ -171,13 +171,13 @@ Num = CompleteNum not Div not Ord
 True = Bool not {False}
 OneTwoThree = {1, 2, 3, 4, 5, 6} - {4, 5, 6, 7, 8, 9, 10}
 </code></pre>
-<h2 id="complement"><a class="header" href="#complement">Complement</a></h2>
-<p>Complementは<code>not</code>演算で得られますが、これは単項演算です。<code>not T</code>型は<code>{=} not T</code>の短縮記法です。
+<h2 id="否定型"><a class="header" href="#否定型">否定型</a></h2>
+<p>Complement型は<code>not</code>演算で得られますが、これは単項演算です。<code>not T</code>型は<code>{=} not T</code>の短縮記法です。
 <code>not T</code>型によるIntersectionはDiffと同等で、<code>not T</code>型によるDiffはIntersectionと同等です。
 しかしこのような書き方は推奨されません。</p>
-<pre><code class="language-python"># the simplest definition of the non-zero number type
+<pre><code class="language-python"># 最も単純な非ゼロ数型の定義
 NonZero = Not {0}
-# deprecated styles
+# 非推奨のスタイル
 {True} == Bool and not {False} # 1 == 2 + - 1
 Bool == {True} not not {False} # 2 == 1 - -1
 </code></pre>

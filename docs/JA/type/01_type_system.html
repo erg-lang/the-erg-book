@@ -266,7 +266,7 @@ if i: # TypeError: i: Int cannot cast to Bool, use Int.is_zero() instead.
 <pre><code class="language-python">Binary = Patch {0, 1}
 Binary.
     # selfにはインスタンスが格納される。この例では0か1のどちらか。
-    # selfを書き換えたい場合、型名、メソッド名に!を付けなければならない。
+    # selfを書き換えたい場合、型名、メソッド名に`!`を付けなければならない。
     is_zero(self) = match self:
         0 -&gt; True
         1 -&gt; False # _ -&gt; Falseとしてもよい

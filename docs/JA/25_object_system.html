@@ -143,7 +143,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="object対象体"><a class="header" href="#object対象体">Object(対象体)</a></h1>
+                        <h1 id="対象体"><a class="header" href="#対象体">対象体</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/25_object_system.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/25_object_system.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>変数に代入できる全てのデータです。<code>Object</code>クラスの持つ属性は以下の通りです。</p>
 <ul>
@@ -155,7 +155,7 @@
 <li><code>.clone</code>: オブジェクトのクローン(メモリ上に独立な実体を持つ)を生成して返します</li>
 <li><code>.copy</code>: オブジェクトのコピー(メモリ上で同じものをさす)を返します</li>
 </ul>
-<h2 id="recordレコード"><a class="header" href="#recordレコード">Record(レコード)</a></h2>
+<h2 id="レコード"><a class="header" href="#レコード">レコード</a></h2>
 <p>レコードリテラル(<code>{attr = value; ...}</code>)で生成されるオブジェクトです。
 このオブジェクトは<code>.clone</code>や<code>.__sizeof__</code>などの基本的なメソッドを持ちます。</p>
 <pre><code class="language-python">obj = {.x = 1}
@@ -164,36 +164,36 @@ assert obj.x == 1
 obj2 = {...x; .y = 2}
 assert obj2.x == 1 and obj2.y == 2
 </code></pre>
-<h2 id="attribute属性"><a class="header" href="#attribute属性">Attribute(属性)</a></h2>
+<h2 id="属性"><a class="header" href="#属性">属性</a></h2>
 <p>オブジェクトと関連付けられたオブジェクトです。特に自身(<code>self</code>)を暗黙の第一引数にとるサブルーチン属性はメソッド(method)と呼ばれます。</p>
-<pre><code class="language-python"># private_attrには`.`がないことに注意
+<pre><code class="language-python"># private_attrには`.`がないことに注意が必要になる
 record = {.public_attr = j; private_attr = 2; .method = self -&gt; self.i + 1}
 record.public_attr == 2
 record.private_attr # AttributeError: private_attr is private
 assert record.method() == 3
 </code></pre>
-<h2 id="element要素"><a class="header" href="#element要素">Element(要素)</a></h2>
+<h2 id="要素"><a class="header" href="#要素">要素</a></h2>
 <p>特定の型に属するオブジェクト(e.g. <code>1</code>は<code>Int</code>型の要素)です。全てのオブジェクトは、少なくとも<code>{=}</code>型の要素です。
 クラスの要素の場合特にインスタンス(Instance)と呼ぶこともあります。</p>
-<h2 id="subroutineサブルーチン"><a class="header" href="#subroutineサブルーチン">Subroutine(サブルーチン)</a></h2>
+<h2 id="サブルーチン"><a class="header" href="#サブルーチン">サブルーチン</a></h2>
 <p>関数またはプロシージャのインスタンスであるオブジェクトを示す(メソッドも含む)。サブルーチンを表すクラスは<code>Subroutine</code>です。
 より一般に<code>.__call__</code>を実装するオブジェクトは<code>Callable</code>(呼び出し可能オブジェクト)と呼ばれます。</p>
-<h2 id="callable呼び出し可能オブジェクト"><a class="header" href="#callable呼び出し可能オブジェクト">Callable(呼び出し可能オブジェクト)</a></h2>
+<h2 id="呼び出し可能オブジェクト"><a class="header" href="#呼び出し可能オブジェクト">呼び出し可能オブジェクト</a></h2>
 <p><code>.__call__</code>を実装するオブジェクトです。<code>Subroutine</code>のスーパークラスでもあります。</p>
-<h2 id="type型"><a class="header" href="#type型">Type(型)</a></h2>
+<h2 id="型"><a class="header" href="#型">型</a></h2>
 <p>要求属性を定義し、オブジェクトを共通化するオブジェクトです。
 大きく分けて多相型(Polymorphic Type)と単相型(Monomorphic Type)の2つがあります。典型的な単相型は<code>Int</code>, <code>Str</code>などで、多相型には<code>Option Int</code>, <code>[Int; 3]</code>などがあります。
 さらにオブジェクトの状態変更をするメソッドを定義した型は可変型(Mutable type)と呼ばれ、可変な属性に<code>!</code>をつける必要があります(e.g. 動的配列: <code>[T; !_]</code>)。</p>
-<h2 id="classクラス"><a class="header" href="#classクラス">Class(クラス)</a></h2>
+<h2 id="クラス"><a class="header" href="#クラス">クラス</a></h2>
 <p><code>.__new__</code>, <code>.__init__</code>メソッドなどを持つ型です。クラスベースのオブジェクト指向を実現します。</p>
-<h2 id="function関数写像"><a class="header" href="#function関数写像">Function(関数、写像)</a></h2>
+<h2 id="関数"><a class="header" href="#関数">関数</a></h2>
 <p>外部変数(静的変数除く)のread権限はありますが、外部変数のread/write権限がないサブルーチンです。つまり、外部に副作用を及ぼせません。
 Ergの関数(Function)は副作用を許さないので、Pythonのそれとは定義が異なります。</p>
-<h2 id="procedure手続き"><a class="header" href="#procedure手続き">Procedure(手続き)</a></h2>
+<h2 id="手続き"><a class="header" href="#手続き">手続き</a></h2>
 <p>外部変数のread権限および<code>self</code>、静的変数のread/write権限があり、全てのサブルーチンの使用が許可されています。外部に副作用を及ぼせます。</p>
-<h2 id="methodメソッド"><a class="header" href="#methodメソッド">Method(メソッド)</a></h2>
+<h2 id="メソッド"><a class="header" href="#メソッド">メソッド</a></h2>
 <p>第一引数に<code>self</code>を暗黙的にとるサブルーチンです。単なる関数/プロシージャとは別の型となっています。</p>
-<h2 id="entityエンティティ"><a class="header" href="#entityエンティティ">Entity(エンティティ)</a></h2>
+<h2 id="エンティティ"><a class="header" href="#エンティティ">エンティティ</a></h2>
 <p>サブルーチンおよび型ではないオブジェクトです。
 単相型エンティティ(<code>1</code>, <code>&quot;a&quot;</code>など)は値オブジェクト、多相型エンティティ(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)はコンテナオブジェクトとも呼ばれます。</p>
 
