@@ -158,7 +158,7 @@ john[&quot;name&quot;] # Error: john is not subscribable
 This is because access to the value is determined at compile-time, and because dictionaries and records are different things. In other words, <code>{&quot;name&quot;: &quot;John&quot;}</code> is a Dict and <code>{name = &quot;John&quot;}</code> is a record.
 So how should we use dictionaries and records?
 In general, we recommend using records. Records have the advantages of being checked at compile-time for the existence of elements and of being able to specify _<em>visibility</em>.
-Specifying visibility is equivalent to specifying public/private in Java and other languages. For details, see <a href="./15_visibility.html">visibility</a> for details.</p>
+Specifying visibility is equivalent to specifying public/private in Java and other languages. For details, see <a href="./19_visibility.html">visibility</a> for details.</p>
 <pre><code class="language-python">a = {x = 1; .y = x + 1}
 a.x # AttributeError: x is private
 # Hint: declare as `.x`.

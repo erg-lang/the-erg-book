@@ -275,11 +275,11 @@ assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
 <h3 id="a-href10_arrayhtml配列リテラルarray-literala"><a class="header" href="#a-href10_arrayhtml配列リテラルarray-literala"><a href="./10_array.html">配列リテラル(Array Literal)</a></a></h3>
 <pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], [1, &quot;1&quot;, True, [1]], ...
 </code></pre>
-<h3 id="a-href11_dicthtml辞書リテラルdict-literala"><a class="header" href="#a-href11_dicthtml辞書リテラルdict-literala"><a href="./11_dict.html">辞書リテラル(Dict Literal)</a></a></h3>
-<pre><code class="language-python">{:}, {&quot;one&quot;: 1}, {&quot;one&quot;: 1, &quot;two&quot;: 2}, {&quot;1&quot;: 1, &quot;2&quot;: 2}, {1: &quot;1&quot;, 2: True, &quot;three&quot;: [1]}, ...
-</code></pre>
-<h3 id="a-href12_tuplehtml組リテラルtuple-literala"><a class="header" href="#a-href12_tuplehtml組リテラルtuple-literala"><a href="./12_tuple.html">組リテラル(Tuple Literal)</a></a></h3>
+<h3 id="a-href11_tuplehtml組リテラルtuple-literala"><a class="header" href="#a-href11_tuplehtml組リテラルtuple-literala"><a href="./11_tuple.html">組リテラル(Tuple Literal)</a></a></h3>
 <pre><code class="language-python">(), (1, 2, 3), (1, &quot;hello&quot;, True), ...
+</code></pre>
+<h3 id="a-href12_dicthtml辞書リテラルdict-literala"><a class="header" href="#a-href12_dicthtml辞書リテラルdict-literala"><a href="./12_dict.html">辞書リテラル(Dict Literal)</a></a></h3>
+<pre><code class="language-python">{:}, {&quot;one&quot;: 1}, {&quot;one&quot;: 1, &quot;two&quot;: 2}, {&quot;1&quot;: 1, &quot;2&quot;: 2}, {1: &quot;1&quot;, 2: True, &quot;three&quot;: [1]}, ...
 </code></pre>
 <h3 id="a-href13_recordhtmlレコードリテラルrecord-literala"><a class="header" href="#a-href13_recordhtmlレコードリテラルrecord-literala"><a href="./13_record.html">レコードリテラル(Record Literal)</a></a></h3>
 <pre><code class="language-python">{=}, {one = 1}, {one = 1; two = 2}, {.name = &quot;John&quot;; .age = 12}, {.name = Str; .age = Nat}, ...
@@ -977,7 +977,7 @@ john[&quot;name&quot;] # Error: john is not subscribable
 これは、値へのアクセスをコンパイル時に決定するためと、辞書とレコードが別物であるためといった理由があります。つまり、<code>{&quot;name&quot;: &quot;John&quot;}</code>はDict,<code>{name = &quot;John&quot;}</code>はレコードです。
 では、辞書とレコードはどう使い分ければいいのでしょうか。
 一般的にはレコードの使用を推奨します。レコードには、コンパイル時に要素が存在するかチェックされる、 <strong>可視性(visibility)</strong> を指定できるなどのメリットがあります。
-可視性の指定は、Java言語などでみられるpublic/privateの指定に相当します。詳しくは<a href="./15_visibility.html">可視性</a>を参照してください。</p>
+可視性の指定は、Java言語などでみられるpublic/privateの指定に相当します。詳しくは<a href="./19_visibility.html">可視性</a>を参照してください。</p>
 <pre><code class="language-python">a = {x = 1; .y = x + 1}
 a.x # AttributeError: x is private
 # Hint: declare as `.x`.
@@ -1632,7 +1632,7 @@ C.
 これはコンパイル時関数であり、その名の通りコンパイル時に計算されます。
 オブジェクトからは、クラスメソッドの他にパッチメソッドも使用可能です。
 Ergではクラスメソッドを追加したりはできませんが、<a href="type/./07_patch.html">パッチ</a>で拡張可能です。</p>
-<p>既存のクラスを継承することも出来ます(<a href="type/./../27_decorator.html">Inheritable</a>クラスの場合)。
+<p>既存のクラスを継承することも出来ます(<a href="type/../29_decorator.html#inheritable">Inheritable</a>クラスの場合)。
 <code>Inherit</code>は継承を意味します。左辺の型を派生クラス、右辺の<code>Inherit</code>の引数型を基底クラスと言います。</p>
 <pre><code class="language-python">MyStr = Inherit Str
 # other: StrとしておけばMyStrでもOK
@@ -2304,7 +2304,7 @@ OpaqueAbc.new(&quot;A&quot;).is_uppercase() # TypeError
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>Refinement type(篩型、ふるいがた)は、述語式によって制約付けられた型です。列挙型や区間型は篩型の一種です。</p>
 <p>篩型の標準形は<code>{Elem: Type | (Pred)*}</code>です。これは、<code>Pred</code>を満たす<code>Elem</code>を要素とする型である、という意味です。
-篩型に使えるのは<a href="type/./advanced/const.html">Const型</a>のみです。</p>
+篩型に使えるのは[Const型]のみです。</p>
 <pre><code class="language-python">Nat = 0.._
 Odd = {N: Int | N % 2 == 1}
 Char = StrWithLen 1
@@ -3516,7 +3516,7 @@ log s2, s1 # !&quot;HELLO hello&quot;
 <p>不変オブジェクトは複数の場所から参照できることを利用して、可変オブジェクトを不変オブジェクトに変換します。
 これを凍結といいます。凍結は可変配列からイテレータを作るときなどで使われます。
 可変配列からは直接イテレータを作ることができないので、不変配列に変換します。
-配列を壊したくない場合は、<a href="./type/mut.html"><code>.freeze_map</code>メソッド</a>等を使います。</p>
+配列を壊したくない場合は、<a href="./type/18_mut.html"><code>.freeze_map</code>メソッド</a>等を使います。</p>
 <pre><code class="language-python"># イテレータが出す値の合計を計算する
 sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 

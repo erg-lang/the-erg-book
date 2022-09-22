@@ -182,7 +182,7 @@ log s2, s1 # !&quot;HELLO hello&quot;
 <p>不変オブジェクトは複数の場所から参照できることを利用して、可変オブジェクトを不変オブジェクトに変換します。
 これを凍結といいます。凍結は可変配列からイテレータを作るときなどで使われます。
 可変配列からは直接イテレータを作ることができないので、不変配列に変換します。
-配列を壊したくない場合は、<a href="./type/mut.html"><code>.freeze_map</code>メソッド</a>等を使います。</p>
+配列を壊したくない場合は、<a href="./type/18_mut.html"><code>.freeze_map</code>メソッド</a>等を使います。</p>
 <pre><code class="language-python"># イテレータが出す値の合計を計算する
 sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 

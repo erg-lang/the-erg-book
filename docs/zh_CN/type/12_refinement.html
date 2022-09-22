@@ -147,7 +147,7 @@
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>细化类型是受谓词表达式约束的类型。 枚举类型和区间类型是细化类型的语法糖。</p>
 <p>细化类型的标准形式是<code>{Elem: Type | (预)*}</code>。 这意味着该类型是其元素为满足 <code>Pred</code> 的 <code>Elem</code> 的类型。
-可用于筛选类型的类型仅为 <a href="./advanced/const.html">Const type</a>。</p>
+可用于筛选类型的类型仅为 [Const type]。</p>
 <pre><code class="language-python">Nat = 0.. _
 Odd = {N: Int | N % 2 == 1}
 Char = StrWithLen 1

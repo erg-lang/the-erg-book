@@ -150,7 +150,7 @@
 <p><strong>Warning</strong>：本文档不完整。 它未经校对(样式、正确链接、误译等)。 此外，Erg 的语法可能在版本 0.* 期间发生破坏性更改，并且文档可能没有相应更新。 请事先了解这一点。
 如果您在本文档中发现任何错误，请报告至 <a href="https://forms.gle/HtLYRfYzWCAaeTGb6">此处的表单</a> 或 <a href="https://github.com/mtshiba/TheErgBook/issues/new">GitHub repo</a>。 我们将不胜感激您的建议。</p>
 </blockquote>
-<p>本文档描述 Erg 的基本语法。 <a href="./API/index.html">标准 API</a> 和 <a href="./dev_guide/index.html">Erg 贡献者的内部文档</a> 位于另一个目录中。</p>
+<p>本文档描述 Erg 的基本语法。 <a href="../API/index.html">标准 API</a> 和 <a href="../dev_guide/index.html">Erg 贡献者的内部文档</a> 位于另一个目录中。</p>
 <h2 id="你好世界"><a class="header" href="#你好世界">你好，世界!</a></h2>
 <p>首先，让我们做&quot;Hello World&quot;。</p>
 <pre><code class="language-python">print!(&quot;Hello, World!&quot;)
@@ -288,11 +288,11 @@ assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
 <h3 id="a-href10_arrayhtml数组字面量a"><a class="header" href="#a-href10_arrayhtml数组字面量a"><a href="./10_array.html">数组字面量</a></a></h3>
 <pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], [1, &quot;1&quot;, True, [1]], ...
 </code></pre>
-<h3 id="a-href11_dicthtml字典字面量a"><a class="header" href="#a-href11_dicthtml字典字面量a"><a href="./11_dict.html">字典字面量</a></a></h3>
-<pre><code class="language-python">{:}, {&quot;one&quot;: 1}, {&quot;one&quot;: 1, &quot;two&quot;: 2}, {&quot;1&quot;: 1, &quot;2&quot;: 2}, {1: &quot;1&quot;, 2: True, &quot;three&quot;: [1]}, ...
-</code></pre>
-<h3 id="a-href12_tuplehtml元组字面量a"><a class="header" href="#a-href12_tuplehtml元组字面量a"><a href="./12_tuple.html">元组字面量</a></a></h3>
+<h3 id="a-href11_tuplehtml元组字面量a"><a class="header" href="#a-href11_tuplehtml元组字面量a"><a href="./11_tuple.html">元组字面量</a></a></h3>
 <pre><code class="language-python">(), (1, 2, 3), (1, &quot;hello&quot;, True), ...
+</code></pre>
+<h3 id="a-href12_dicthtml字典字面量a"><a class="header" href="#a-href12_dicthtml字典字面量a"><a href="./12_dict.html">字典字面量</a></a></h3>
+<pre><code class="language-python">{:}, {&quot;one&quot;: 1}, {&quot;one&quot;: 1, &quot;two&quot;: 2}, {&quot;1&quot;: 1, &quot;2&quot;: 2}, {1: &quot;1&quot;, 2: True, &quot;three&quot;: [1]}, ...
 </code></pre>
 <h3 id="a-href13_recordhtmlrecord-字面量a"><a class="header" href="#a-href13_recordhtmlrecord-字面量a"><a href="./13_record.html">Record 字面量</a></a></h3>
 <pre><code class="language-python">{=}, {one = 1}, {one = 1; two = 2}, {.name = &quot;John&quot;; .age = 12}, {.name = Str; .age = Nat}, ...
@@ -983,7 +983,7 @@ john[&quot;name&quot;] # 错误：john 不可订阅
 这是因为对值的访问是在编译时确定的，而且字典和记录是不同的东西。 换句话说，<code>{&quot;name&quot;: &quot;John&quot;}</code> 是一个字典，<code>{name = &quot;John&quot;}</code> 是一个记录。
 那么我们应该如何使用字典和记录呢?
 一般来说，我们建议使用记录。 记录具有在编译时检查元素是否存在以及能够指定 _<em>visibility</em> 的优点。
-指定可见性等同于在 Java 和其他语言中指定公共/私有。 有关详细信息，请参阅 <a href="./15_visibility.html">可见性</a> 了解详细信息。</p>
+指定可见性等同于在 Java 和其他语言中指定公共/私有。 有关详细信息，请参阅 <a href="./19_visibility.html">可见性</a> 了解详细信息。</p>
 <pre><code class="language-python">a = {x = 1; .y = x + 1}
 a.x # 属性错误：x 是私有的
 # 提示：声明为 `.x`。
@@ -1636,7 +1636,7 @@ C.i = 1 # 属性错误：`.i` 已在实例字段中定义
 但是，可以将最小类型定义为单一类型，在本例中为&quot;{1}&quot;。 可以通过<code>Typeof(obj)</code>获取对象所属的类型。 这是一个编译时函数。
 对象可以使用补丁方法以及类方法。
 Erg 不允许您添加类方法，但您可以使用 <a href="type/./07_patch.html">patch</a> 来扩展类。</p>
-<p>您还可以从现有类(<a href="type/./../27_decorator.html">Inheritable</a> 类)继承。
+<p>您还可以从现有类(<a href="type/../29_decorator.html#%E5%8F%AF%E7%BB%A7%E6%89%BF">Inheritable</a> 类)继承。
 您可以使用 <code>Inherit</code> 创建一个继承类。 左侧的类型称为派生类，右侧的&quot;继承&quot;的参数类型称为基类(继承类)。</p>
 <pre><code class="language-python">MyStr = Inherit Str
 # other: 如果你设置 ``other: Str''，你可以使用 MyStr。
@@ -2306,7 +2306,7 @@ OpaqueAbc.new(&quot;A&quot;).is_uppercase() # 类型错误
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>细化类型是受谓词表达式约束的类型。 枚举类型和区间类型是细化类型的语法糖。</p>
 <p>细化类型的标准形式是<code>{Elem: Type | (预)*}</code>。 这意味着该类型是其元素为满足 <code>Pred</code> 的 <code>Elem</code> 的类型。
-可用于筛选类型的类型仅为 <a href="type/./advanced/const.html">Const type</a>。</p>
+可用于筛选类型的类型仅为 [Const type]。</p>
 <pre><code class="language-python">Nat = 0.. _
 Odd = {N: Int | N % 2 == 1}
 Char = StrWithLen 1
@@ -3516,7 +3516,7 @@ log s2, s1 # !&quot;HELLO hello&quot;
 <p>我们利用了不可变对象可以从多个位置引用的事实，并将可变对象转换为不可变对象。
 这称为冻结。 例如，在从可变数组创建迭代器时会使用冻结。
 由于您不能直接从可变数组创建迭代器，请将其转换为不可变数组。
-如果您不想破坏数组，请使用 <a href="./type/mut.html"><code>.freeze_map</code> 方法</a>。</p>
+如果您不想破坏数组，请使用 <a href="./type/18_mut.html"><code>.freeze_map</code> 方法</a>。</p>
 <pre><code class="language-python"># 计算迭代器产生的值的总和
 sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 

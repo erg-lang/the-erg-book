@@ -146,7 +146,7 @@
                         <h1 id="refinement-type"><a class="header" href="#refinement-type">Refinement Type</a></h1>
 <p>Refinement type is a type constrained by a predicate expression. Enumeration types and interval types are syntax sugar of refinement types.</p>
 <p>The standard form of a refinement type is <code>{Elem: Type | (Pred)*}</code>. This means that the type is a type whose elements are <code>Elem</code> satisfying <code>Pred</code>.
-The type that can be used for the sifting type is <a href="./advanced/const.html">Const type</a> only.</p>
+The type that can be used for the sifting type is [Const type] only.</p>
 <pre><code class="language-python">Nat = 0.. _
 Odd = {N: Int | N % 2 == 1}
 Char = StrWithLen 1

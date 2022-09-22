@@ -159,7 +159,7 @@ john[&quot;name&quot;] # Error: john is not subscribable
 これは、値へのアクセスをコンパイル時に決定するためと、辞書とレコードが別物であるためといった理由があります。つまり、<code>{&quot;name&quot;: &quot;John&quot;}</code>はDict,<code>{name = &quot;John&quot;}</code>はレコードです。
 では、辞書とレコードはどう使い分ければいいのでしょうか。
 一般的にはレコードの使用を推奨します。レコードには、コンパイル時に要素が存在するかチェックされる、 <strong>可視性(visibility)</strong> を指定できるなどのメリットがあります。
-可視性の指定は、Java言語などでみられるpublic/privateの指定に相当します。詳しくは<a href="./15_visibility.html">可視性</a>を参照してください。</p>
+可視性の指定は、Java言語などでみられるpublic/privateの指定に相当します。詳しくは<a href="./19_visibility.html">可視性</a>を参照してください。</p>
 <pre><code class="language-python">a = {x = 1; .y = x + 1}
 a.x # AttributeError: x is private
 # Hint: declare as `.x`.

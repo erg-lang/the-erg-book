@@ -152,7 +152,7 @@ If you find any errors in this document, please report then to <a href="https://
 <p><a href="https://erg-lang.github.io/the-erg-book/zh_CN/">The Erg Book simplified Chinese edition</a></p>
 <p><a href="https://erg-lang.github.io/the-erg-book/zh_TW/">The Erg Book traditional Chinese edition</a></p>
 </blockquote>
-<p>This document describes the basic syntax of Erg. The <a href="./API/index.html">Standard API</a> and <a href="./dev_guide/index.html">internal documents for Erg contributors</a> are located in another directory.</p>
+<p>This document describes the basic syntax of Erg. The <a href="../API/index.html">Standard API</a> and <a href="../dev_guide/index.html">internal documents for Erg contributors</a> are located in another directory.</p>
 <h2 id="hello-world"><a class="header" href="#hello-world">Hello, World!</a></h2>
 <p>First, let's do &quot;Hello World&quot;.</p>
 <pre><code class="language-python">print!(&quot;Hello, World!&quot;)
@@ -289,11 +289,11 @@ The notation is the same as in Python.</p>
 <h3 id="a-href10_arrayhtmlarray-literala"><a class="header" href="#a-href10_arrayhtmlarray-literala"><a href="./10_array.html">Array Literal</a></a></h3>
 <pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], [1, &quot;1&quot;, True, [1]], ...
 </code></pre>
-<h3 id="a-href11_dicthtmldict-literala"><a class="header" href="#a-href11_dicthtmldict-literala"><a href="./11_dict.html">Dict Literal</a></a></h3>
-<pre><code class="language-python">{:}, {&quot;one&quot;: 1}, {&quot;one&quot;: 1, &quot;two&quot;: 2}, {&quot;1&quot;: 1, &quot;2&quot;: 2}, {1: &quot;1&quot;, 2: True, &quot;three&quot;: [1]}, ...
-</code></pre>
-<h3 id="a-href12_tuplehtmltuple-literala"><a class="header" href="#a-href12_tuplehtmltuple-literala"><a href="./12_tuple.html">Tuple Literal</a></a></h3>
+<h3 id="a-href11_tuplehtmltuple-literala"><a class="header" href="#a-href11_tuplehtmltuple-literala"><a href="./11_tuple.html">Tuple Literal</a></a></h3>
 <pre><code class="language-python">(), (1, 2, 3), (1, &quot;hello&quot;, True), ...
+</code></pre>
+<h3 id="a-href12_dicthtmldict-literala"><a class="header" href="#a-href12_dicthtmldict-literala"><a href="./12_dict.html">Dict Literal</a></a></h3>
+<pre><code class="language-python">{:}, {&quot;one&quot;: 1}, {&quot;one&quot;: 1, &quot;two&quot;: 2}, {&quot;1&quot;: 1, &quot;2&quot;: 2}, {1: &quot;1&quot;, 2: True, &quot;three&quot;: [1]}, ...
 </code></pre>
 <h3 id="a-href13_recordhtmlrecord-literala"><a class="header" href="#a-href13_recordhtmlrecord-literala"><a href="./13_record.html">Record Literal</a></a></h3>
 <pre><code class="language-python">{=}, {one = 1}, {one = 1; two = 2}, {.name = &quot;John&quot;; .age = 12}, {.name = Str; .age = Nat}, ...
@@ -975,7 +975,7 @@ john[&quot;name&quot;] # Error: john is not subscribable
 This is because access to the value is determined at compile-time, and because dictionaries and records are different things. In other words, <code>{&quot;name&quot;: &quot;John&quot;}</code> is a Dict and <code>{name = &quot;John&quot;}</code> is a record.
 So how should we use dictionaries and records?
 In general, we recommend using records. Records have the advantages of being checked at compile-time for the existence of elements and of being able to specify _<em>visibility</em>.
-Specifying visibility is equivalent to specifying public/private in Java and other languages. For details, see <a href="./15_visibility.html">visibility</a> for details.</p>
+Specifying visibility is equivalent to specifying public/private in Java and other languages. For details, see <a href="./19_visibility.html">visibility</a> for details.</p>
 <pre><code class="language-python">a = {x = 1; .y = x + 1}
 a.x # AttributeError: x is private
 # Hint: declare as `.x`.
@@ -1620,7 +1620,7 @@ In contrast, there are countless types of <code>1</code>. For example, <code>{1}
 However, the smallest type can be defined as a single type, in this case <code>{1}</code>. The type to which an object belongs can be obtained with <code>Typeof(obj)</code>. This is a compile-time function.
 Objects can use patch methods as well as class methods.
 Erg does not allow you to add class methods, but you can use <a href="type/./07_patch.html">patch</a> to extend a class.</p>
-<p>You can also inherit from existing classes (<a href="type/./../27_decorator.html">Inheritable</a> class).
+<p>You can also inherit from existing classes (<a href="type/../29_decorator.html#inheritable">Inheritable</a> class).
 You can create an inherited class by using <code>Inherit</code>. The type on the left-hand side is called the derived class, and the argument type of <code>Inherit</code> on the right-hand side is called the base class (inherited class).</p>
 <pre><code class="language-python">MyStr = Inherit Str
 # other: You can use MyStr if you set ``other: Str''.
@@ -2282,7 +2282,7 @@ OpaqueAbc.new(&quot;A&quot;).is_uppercase() # TypeError
 <div style="break-before: page; page-break-before: always;"></div><h1 id="refinement-type"><a class="header" href="#refinement-type">Refinement Type</a></h1>
 <p>Refinement type is a type constrained by a predicate expression. Enumeration types and interval types are syntax sugar of refinement types.</p>
 <p>The standard form of a refinement type is <code>{Elem: Type | (Pred)*}</code>. This means that the type is a type whose elements are <code>Elem</code> satisfying <code>Pred</code>.
-The type that can be used for the sifting type is <a href="type/./advanced/const.html">Const type</a> only.</p>
+The type that can be used for the sifting type is [Const type] only.</p>
 <pre><code class="language-python">Nat = 0.. _
 Odd = {N: Int | N % 2 == 1}
 Char = StrWithLen 1
@@ -3472,7 +3472,7 @@ log s2, s1 # !&quot;HELLO hello&quot;
 <p>We take advantage of the fact that immutable objects can be referenced from multiple places and convert mutable objects to immutable objects.
 This is called freezing. Freezing is used, for example, when creating an iterator from a mutable array.
 Since you can't create an iterator directly from a mutable array, convert it to an immutable array.
-If you don't want to destroy the array, use the <a href="./type/mut.html"><code>.freeze_map</code> method</a>.</p>
+If you don't want to destroy the array, use the <a href="./type/18_mut.html"><code>.freeze_map</code> method</a>.</p>
 <pre><code class="language-python"># Compute the sum of the values ​​produced by the iterator
 sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 

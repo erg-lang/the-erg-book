@@ -159,7 +159,7 @@ john[&quot;name&quot;] # 錯誤：john 不可訂閱
 這是因為對值的訪問是在編譯時確定的，而且字典和記錄是不同的東西。 換句話說，<code>{&quot;name&quot;: &quot;John&quot;}</code> 是一個字典，<code>{name = &quot;John&quot;}</code> 是一個記錄。
 那么我們應該如何使用字典和記錄呢?
 一般來說，我們建議使用記錄。 記錄具有在編譯時檢查元素是否存在以及能夠指定 _<em>visibility</em> 的優點。
-指定可見性等同于在 Java 和其他語言中指定公共/私有。 有關詳細信息，請參閱 <a href="./15_visibility.html">可見性</a> 了解詳細信息。</p>
+指定可見性等同于在 Java 和其他語言中指定公共/私有。 有關詳細信息，請參閱 <a href="./19_visibility.html">可見性</a> 了解詳細信息。</p>
 <pre><code class="language-python">a = {x = 1; .y = x + 1}
 a.x # 屬性錯誤：x 是私有的
 # 提示：聲明為 `.x`。
