@@ -4467,66 +4467,80 @@ make_g: () =&gt; Generator!
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="指數"><a class="header" href="#指數">指數</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/indexes.md&amp;commit_hash=438bcb89ea692f219b30f3a3ba107888b23eae98"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/indexes.md%26commit_hash%3D438bcb89ea692f219b30f3a3ba107888b23eae98" alt="badge" /></a></p>
-<p>有關不在此索引中的 API，請參閱 <a href="../API/index.html">此處</a>。
-有關術語，請參見 <a href="../dev_guide/terms.html">此處</a>。</p>
+<p>有關不在此索引中的 API，請參閱 <a href="../API/index.html">此處</a>。</p>
+<p>有關術語，請參見 <a href="../terms.html">此處</a>。</p>
 <h2 id="符號"><a class="header" href="#符號">符號</a></h2>
 <ul>
-<li>!
+<li>! → <a href="./07_side_effect.html">side effect</a>
 <ul>
-<li>!-type → <a href="./type/mut.html">可變性</a></li>
+<li>!-type → <a href="./type/18_mut.html">mutable type</a></li>
 </ul>
 </li>
-<li><a href="./00_basic.html">#</a></li>
-<li>$</li>
+<li>? → <a href="./30_error_handling.html">error handling</a></li>
+<li># → <a href="./00_basic.html">Str</a></li>
+<li>$ → <a href="./type/advanced/shared.html">shared</a></li>
 <li>%</li>
 <li>&amp;
 <ul>
 <li>&amp;&amp;</li>
 </ul>
 </li>
-<li>′ (single quote)</li>
-<li>()</li>
+<li><a href="./20_naming_rule.html">′ (single quote)</a></li>
+<li><a href="./01_literal.html">&quot; (double quote)</a></li>
+<li>() → <a href="./11_tuple.html">Tuple</a></li>
 <li>*
 <ul>
-<li><a href="./01_literal.html">*-less multiplication</a></li>
+<li>* → <a href="./01_literal.html">*-less multiplication</a></li>
 </ul>
 </li>
-<li>+ (前置)
+<li>+ (前置) → <a href="./06_operator.html">operator</a>
 <ul>
 <li>+_ → + (前置)</li>
 </ul>
 </li>
-<li>+ (中置)</li>
+<li>+ (中置) → <a href="./06_operator.html">operator</a></li>
+<li>+ (中置) → <a href="./type/03_trait.html">Trait</a></li>
 <li>,</li>
 <li>− (前置)
 <ul>
 <li>−_ → − (前置)</li>
 </ul>
 </li>
-<li>− (中置)
+<li>− (中置) → <a href="./06_operator.html">operator</a></li>
+<li>− (中置) → <a href="./type/03_trait.html">Trait</a>
 <ul>
-<li>−&gt;</li>
+<li>−&gt; → <a href="./21_lambda.html">anonymous function</a></li>
 </ul>
 </li>
-<li>. → [可見性]</li>
+<li>. → <a href="./19_visibility.html">Visibility</a>
+<ul>
+<li><a href="./28_spread_syntax.html">... assignment</a></li>
+<li><a href="./28_spread_syntax.html">... Extract assignment</a></li>
+<li><a href="./04_function.html">... function</a></li>
+</ul>
+</li>
 <li>/</li>
 <li>:
 <ul>
-<li>:: → [可見性]</li>
+<li>: → <a href="./04_function.html">Colon application style</a></li>
+<li>: → <a href="./03_declaration.md.html">Declaration</a></li>
+<li>: → <a href="./04_function.html">Keyword Arguments</a></li>
+<li>:: → <a href="./19_visibility.html">visibility</a></li>
+<li>:= → <a href="./04_function.html">default parameters</a></li>
 </ul>
 </li>
 <li>;</li>
 <li>&lt;
 <ul>
-<li>&lt;:</li>
+<li>&lt;: → <a href="./type/02_basic.html">Subtype specification</a></li>
 <li>&lt;&lt;</li>
 <li>&lt;=</li>
 </ul>
 </li>
-<li>=
+<li>= → <a href="./19_visibility.html">Variable</a>
 <ul>
 <li>==</li>
-<li>=&gt;</li>
+<li>=&gt; → <a href="./08_procedure.html">procedure</a></li>
 </ul>
 </li>
 <li>&gt;
@@ -4535,142 +4549,294 @@ make_g: () =&gt; Generator!
 <li>&gt;=</li>
 </ul>
 </li>
-<li>?</li>
-<li>@</li>
-<li>[]</li>
-<li></li>
+<li>@ → <a href="./29_decorator.html">decorator</a></li>
+<li>[] → <a href="./10_array.html">Array</a></li>
+<li>\ → <a href="./00_basic.html">Indention</a></li>
+<li>\ → <a href="./01_literal.html">Str</a></li>
 <li>^
 <ul>
 <li>^^</li>
 </ul>
 </li>
-<li>_
+<li>_ → <a href="./type/advanced/erasure.html">Type erasure</a>
 <ul>
 <li>_+_ → + (infix)</li>
-<li>_-_ → − (infix)
-*``</li>
+<li>_-_ → − (infix)</li>
 </ul>
 </li>
+<li><a href="./22_subroutine.html">`` (back quote)</a></li>
 <li>{}
 <ul>
-<li>{} type</li>
+<li><a href="./type/01_type_system.html">{} type</a></li>
 </ul>
 </li>
 <li>{:}</li>
-<li>{=}
+<li>{=} → <a href="./type/01_type_system.html">Type System</a>
 <ul>
-<li>{=} type</li>
+<li><a href="./13_record.html">{=} type</a></li>
 </ul>
 </li>
 <li>|
 <ul>
-<li>||</li>
+<li>|| → <a href="./type/advanced/">Type variable list</a></li>
 </ul>
 </li>
 <li>~</li>
 </ul>
-<h2 id="字母"><a class="header" href="#字母">字母</a></h2>
+<h2 id="アルファベット"><a class="header" href="#アルファベット">アルファベット</a></h2>
 <h3 id="a"><a class="header" href="#a">A</a></h3>
 <ul>
-<li>algebraic type</li>
-<li>And</li>
-<li>and</li>
-<li>assert</li>
-<li>attribute</li>
+<li>[Add]</li>
+<li><a href="type/02_basic.html">alias</a></li>
+<li><a href="./type/02_basic.html">Aliasing</a></li>
+<li><a href="./type/15_quantified.html">All symmetric types</a></li>
+<li><a href="./type/13_algebraic.html">algebraic type</a></li>
+<li>[And]</li>
+<li>[and]</li>
+<li><a href="./21_lambda.html">anonymous function</a></li>
+<li><a href="./21_lambda.html">Anonymous polycorrelation coefficient</a></li>
+<li>anonymous type → <a href="./type/01_type_system.html">Type System</a></li>
+<li><a href="./10_array.html">Array</a></li>
+<li>[assert]</li>
+<li><a href="./29_decorator.html">Attach</a></li>
+<li><a href="type/09_attributive.html">attribute</a></li>
+<li><a href="./type/02_basic.html">Attribute definitions</a></li>
+<li><a href="./type/09_attributive.html">Attribute Type</a></li>
 </ul>
 <h3 id="b"><a class="header" href="#b">B</a></h3>
 <ul>
-<li>Base</li>
-<li>Bool</li>
+<li><a href="./01_literal.html">Bool, Boolean</a></li>
+<li><a href="./01_literal.html">Boolean Object</a></li>
+<li><a href="./18_ownership.html">borrow</a></li>
 </ul>
 <h3 id="c"><a class="header" href="#c">C</a></h3>
 <ul>
-<li>Class</li>
+<li><a href="./type/17_type_casting.html">Cast</a></li>
+<li><a href="./00_basic.html">Comments</a></li>
+<li><a href="./01_literal.html">Complex Object</a></li>
+<li><a href="./04_function.html">Compile-time functions</a></li>
+<li><a href="./18_ownership.html">circular references</a></li>
+<li><a href="./type/04_class.html">Class</a></li>
+<li><a href="./type/04_class.html">Class Relationship</a></li>
+<li><a href="./type/16_subtyping.html">Class upcasting</a></li>
+<li><a href="./04_function.html">Colon application style</a></li>
+<li><a href="./23_closure.html">Closure</a></li>
+<li><a href="./01_literal.html">Compound Literals</a></li>
+<li><a href="./type/13_algebraic.html">Complement</a></li>
+<li><a href="./27_comprehension.html">Comprehension</a></li>
+<li><a href="./17_mutability.html">constant</a></li>
+<li><a href="./02_name.html">Constants</a></li>
+<li><a href="./30_error_handling.html">Context</a></li>
 </ul>
 <h3 id="d"><a class="header" href="#d">D</a></h3>
 <ul>
+<li><a href="./type/01_type_system.html">Data type</a></li>
+<li><a href="./03_declaration.html">Declaration</a></li>
+<li><a href="./29_decorator.html">decorator</a></li>
+<li><a href="./04_function.html">Default parameters</a></li>
+<li><a href="./02_name.html">Del</a></li>
+<li><a href="./type/14_dependent.html">Dependent Type</a></li>
+<li><a href="13_record.html">Deconstructing a record</a></li>
 <li>Deprecated</li>
+<li><a href="./12_dict.html">Dict</a></li>
+<li><a href="./type/13_algebraic.html">Diff</a></li>
+<li><a href="./type/04_class.html">Difference from Data Class</a></li>
+<li><a href="type/04_class.html">Difference from structural types</a></li>
 <li>distinct</li>
+<li><a href="./type/17_type_casting.html">Downcasting</a></li>
 </ul>
 <h3 id="e"><a class="header" href="#e">E</a></h3>
 <ul>
-<li>enum type</li>
-<li>Eq</li>
-<li>Erg</li>
+<li><a href="./13_record.html">Empty Record</a></li>
+<li><a href="./type/04_class.html">Enum Class</a></li>
+<li><a href="./type/11_enum.html">Enum type</a></li>
+<li><a href="./type/12_refinement.html">Enumerated, Interval and Refinement Types</a></li>
+<li><a href="./30_error_handling.html">error handling</a></li>
+<li><a href="./type/advanced/existential.html">Existential type</a></li>
+<li><a href="./01_literal.html">Exponential Literal</a></li>
+<li><a href="./28_spread_syntax.html">Extract assignment</a></li>
 </ul>
 <h3 id="f"><a class="header" href="#f">F</a></h3>
 <ul>
-<li>for</li>
+<li>False → <a href="./01_literal.html">Boolean Object</a></li>
+<li><a href="./01_literal.html">Float&amp;sbsp;Object</a></li>
+<li><a href="./05_builtin_funcs.html">for</a></li>
+<li><a href="./type/07_patch.html">For-All Patch</a></li>
+<li><a href="./18_ownership.html">freeze</a></li>
+<li><a href="./04_function.html">Function</a></li>
+<li><a href="./04_function.html">Function definition with multiple patterns</a></li>
 </ul>
 <h3 id="g"><a class="header" href="#g">G</a></h3>
+<ul>
+<li><a href="./type/advanced/GADTs.html">GADTs(Generalized Algebraic Data Types)</a></li>
+<li><a href="./34_generator.html">Generator</a></li>
+<li><a href="./type/07_patch.html">Glue Patch</a></li>
+</ul>
 <h3 id="h"><a class="header" href="#h">H</a></h3>
 <h3 id="i"><a class="header" href="#i">I</a></h3>
 <ul>
-<li>if</li>
-<li>import</li>
-<li>in</li>
-<li>Int</li>
+<li><a href="./09_builtin_procs.html">id</a></li>
+<li><a href="./05_builtin_funcs.html">if</a></li>
+<li><a href="./33_package_system.html">import</a></li>
+<li><a href="./29_decorator.html">impl</a></li>
+<li>[in]</li>
+<li><a href="./00_basic.html">Indention</a></li>
+<li><a href="./13_record.html">Instant Block</a></li>
+<li><a href="./type/04_class.html">Instance and class attributes</a></li>
+<li><a href="type/03_trait.html">Implementing and resolving duplicate traits in the API</a></li>
+<li><a href="./29_decorator.html">inheritable</a></li>
+<li><a href="./type/05_inheritance.html">inheritance</a></li>
+<li><a href="./type/05_inheritance.html">Inheritance of Enumerated Classes</a></li>
+<li><a href="./01_literal.html">Int</a></li>
+<li><a href="./32_integration_with_Python.html">Integration with Python</a></li>
+<li><a href="./type/10_interval.html">Interval Type</a></li>
+<li><a href="./type/13_algebraic.html">Intersection</a></li>
+<li><a href="./16_iterator.html">Iterator</a></li>
 </ul>
 <h3 id="j"><a class="header" href="#j">J</a></h3>
 <h3 id="k"><a class="header" href="#k">K</a></h3>
+<ul>
+<li><a href="./04_function.html">Keyword arguments</a></li>
+<li><a href="./type/advanced/kind.html">Kind</a></li>
+</ul>
 <h3 id="l"><a class="header" href="#l">L</a></h3>
 <ul>
-<li>let-polymorphism → [rank 1 polymorphism]</li>
-<li>log</li>
+<li>lambda → <a href="./21_lambda.html">anonymous function</a></li>
+<li>let-polymorphism → [rank 1 polymorphism]</li>
+<li><a href="./20_naming_rule.html">Literal Identifiers</a></li>
+<li>log → <a href="./07_side_effect.html">side effect</a></li>
 </ul>
 <h3 id="m"><a class="header" href="#m">M</a></h3>
 <ul>
-<li>match</li>
+<li>[match]</li>
+<li><a href="./type/advanced/marker_trait.html">Marker Trait</a></li>
+<li><a href="./07_side_effect.html">Method</a></li>
+<li>Modifier → <a href="./29_decorator.html">decorator</a></li>
+<li><a href="./24_module.html">module</a></li>
+<li><a href="type/05_inheritance.html">Multiple Inheritance</a></li>
+<li><a href="type/05_inheritance.html">Multi-layer (multi-level) Inheritance</a></li>
+<li><a href="./type/18_mut.html">Mutable Type</a></li>
+<li><a href="./type/advanced/mut_struct.html">Mutable Structure Type</a></li>
+<li><a href="./17_mutability.html">Mutability</a></li>
 </ul>
 <h3 id="n"><a class="header" href="#n">N</a></h3>
 <ul>
-<li>Nat</li>
-<li>Never</li>
-<li>None</li>
-<li>None</li>
-<li>Not</li>
-<li>not</li>
+<li><a href="./01_literal.html">Nat</a></li>
+<li>[Never]</li>
+<li><a href="./type/advanced/newtype.html">New type</a></li>
+<li><a href="./12_dict.html">Heterogeneous Dict</a></li>
+<li>None → [None Object]</li>
+<li>[None Object]</li>
+<li>Nominal Subtyping → <a href="./type/04_class.html">Class</a></li>
+<li>[Not]</li>
+<li>[not]</li>
 </ul>
 <h3 id="o"><a class="header" href="#o">O</a></h3>
 <ul>
-<li>Option</li>
-<li>Or</li>
-<li>or</li>
-<li>Ord</li>
+<li><a href="./25_object_system.html">Object</a></li>
+<li>[Option]</li>
+<li>[Or]</li>
+<li>[or]</li>
+<li>[Ord]</li>
+<li><a href="./18_ownership.html">ownership system</a></li>
+<li><a href="./type/advanced/overloading.html">Overloading</a></li>
+<li><a href="./type/05_inheritance.html">Overriding</a></li>
+<li><a href="./type/03_trait.html">Override in Trait</a></li>
 </ul>
 <h3 id="p"><a class="header" href="#p">P</a></h3>
 <ul>
-<li>panic</li>
-<li><a href="./../API/procs.html#print">print!</a></li>
-<li>Python</li>
+<li><a href="./30_error_handling.html">Panic</a></li>
+<li><a href="./type/07_patch.html">Patch</a></li>
+<li><a href="./26_pattern_matching.html">Pattern match</a></li>
+<li><a href="./type/advanced/phantom.html">Phantom class</a></li>
+<li><a href="./31_pipeline.html">pipeline operator</a></li>
+<li><a href="./type/19_bound.html">Predicate</a></li>
+<li>[print!]</li>
+<li><a href="./08_procedure.html">Procedures</a></li>
+<li><a href="./type/advanced/projection.html">Projection Type</a></li>
+<li>Python → <a href="./32_integration_with_Python.html">Integration with Python</a></li>
 </ul>
 <h3 id="q"><a class="header" href="#q">Q</a></h3>
+<ul>
+<li><a href="./type/15_quantified.html">Quantified Type</a></li>
+<li><a href="./type/advanced/quantified_dependent.html">Quantified Dependent Type</a></li>
+<li><a href="./type/15_quantified.html">Quantified Types and Dependent Types</a></li>
+</ul>
 <h3 id="r"><a class="header" href="#r">R</a></h3>
 <ul>
-<li>ref</li>
-<li>ref!</li>
-<li>Result</li>
+<li><a href="./01_literal.html">Range Object</a></li>
+<li>[ref]</li>
+<li>[ref!]</li>
+<li><a href="./13_record.html">Record</a></li>
+<li><a href="./type/09_attributive.mda12_refinement.html">Record Type Composite</a></li>
+<li><a href="./04_function.html">Recursive functions</a></li>
+<li><a href="./type/12_refinement.html">Refinement pattern</a></li>
+<li><a href="./type/12_refinement.html">Refinement Type</a></li>
+<li><a href="./18_ownership.html">replication</a></li>
+<li><a href="./type/05_inheritance.html">Replacing Traits</a></li>
+<li>Result → <a href="./30_error_handling.html">error handling</a></li>
+<li><a href="./type/05_inheritance.html">Rewriting Inherited Attributes</a></li>
 <li>rootobj</li>
 </ul>
 <h3 id="s"><a class="header" href="#s">S</a></h3>
 <ul>
+<li><a href="./00_basic.html">Script</a></li>
+<li><a href="./type/07_patch.html">Selecting Patches</a></li>
 <li>self</li>
-<li><a href="./type/special.html">Self</a></li>
+<li><a href="./type/advanced/special.html">Self</a></li>
+<li><a href="./type/advanced/shared.html">Shared Reference</a></li>
 <li><a href="./07_side_effect.html">side-effect</a></li>
-<li>Str</li>
+<li><a href="./type/12_refinement.html">Smart Cast</a></li>
+<li><a href="./28_spread_syntax.html">Spread assignment</a></li>
+<li><a href="./type/advanced/special.html">special type variables</a></li>
+<li><a href="30_error_handling.html">Stack trace</a></li>
+<li><a href="./type/01_type_system.html">Structure type</a></li>
+<li><a href="./type/07_patch.html">Structural Patch</a></li>
+<li><a href="./type/03_trait.html">Structural Trait</a></li>
+<li><a href="./type/01_type_system.html">Structural Subtyping</a></li>
+<li><a href="./type/16_subtyping.html">Structural types and class type relationships</a></li>
+<li><a href="./01_literal.html">Str</a></li>
+<li><a href="./type/16_subtyping.html">Subtyping</a></li>
+<li><a href="./type/16_subtyping.html">Subtyping of subroutines</a></li>
+<li><a href="./type/02_basic.html">Subtype specification</a></li>
+<li><a href="./type/15_quantified.html">Subtyping of Polymorphic Function Types</a></li>
+<li><a href="./22_subroutine.html">Subroutine Signatures</a></li>
 </ul>
 <h3 id="t"><a class="header" href="#t">T</a></h3>
 <ul>
-<li>Traits</li>
-<li>True</li>
-<li>Type</li>
-<li>type</li>
+<li><a href="./29_decorator.html">Test</a></li>
+<li><a href="./type/03_trait.html">Traits</a></li>
+<li><a href="./type/03_trait.html">Trait inclusion</a></li>
+<li>True → <a href="./01_literal.html">Boolean Object</a></li>
+<li><a href="./type/13_algebraic.html">True Algebraic type</a></li>
+<li>[Type]</li>
+<li><a href="./15_type.html">type</a></li>
+<li><a href="./type/15_quantified.html">Type arguments in method definitions</a></li>
+<li><a href="./type/19_bound.html">Type Bound</a></li>
+<li><a href="./type/01_type_system.html">Type Definitions</a></li>
+<li><a href="./type/advanced/erasure.html">Type erasure</a></li>
+<li><a href="./type/01_type_system.html">Type Inference System</a></li>
+<li><a href="./type/02_basic.html">Type specification</a></li>
+<li><a href="./type/01_type_system.html">Type System</a></li>
+<li><a href="./type/advanced/widening.html">Type Widening</a></li>
+<li><a href="./11_tuple.html">Tuple</a></li>
 </ul>
 <h3 id="u"><a class="header" href="#u">U</a></h3>
+<ul>
+<li><a href="type/13_algebraic.html">union</a></li>
+<li><a href="./11_tuple.html">Unit</a></li>
+<li><a href="type/17_type_casting.html">Upcasting</a></li>
+<li><a href="./type/05_inheritance.html">Usage of Inheritance</a></li>
+</ul>
 <h3 id="v"><a class="header" href="#v">V</a></h3>
+<ul>
+<li><a href="./type/08_value.html">Value Type</a></li>
+<li><a href="./02_name.html">Variable</a></li>
+<li><a href="./04_function.html">variable-length arguments</a></li>
+</ul>
 <h3 id="w"><a class="header" href="#w">W</a></h3>
 <ul>
-<li>while!</li>
+<li>[while]</li>
 </ul>
 <h3 id="x"><a class="header" href="#x">X</a></h3>
 <h3 id="y"><a class="header" href="#y">Y</a></h3>

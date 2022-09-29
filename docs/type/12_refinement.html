@@ -146,7 +146,7 @@
                         <h1 id="refinement-type"><a class="header" href="#refinement-type">Refinement Type</a></h1>
 <p>Refinement type is a type constrained by a predicate expression. Enumeration types and interval types are syntax sugar of refinement types.</p>
 <p>The standard form of a refinement type is <code>{Elem: Type | (Pred)*}</code>. This means that the type is a type whose elements are <code>Elem</code> satisfying <code>Pred</code>.
-The type that can be used for the sifting type is [Const type] only.</p>
+The type that can be used for the refinement type is <a href="./08_value.html">Value type</a> only.</p>
 <pre><code class="language-python">Nat = 0.. _
 Odd = {N: Int | N % 2 == 1}
 Char = StrWithLen 1
@@ -179,7 +179,7 @@ match i:
         log &quot;i: Nat&quot;
 </code></pre>
 <p>However, Erg cannot currently make sub-decisions such as <code>Even</code> because it was not <code>Odd</code>, etc.</p>
-<h2 id="enumerated-interval-and-sift-types"><a class="header" href="#enumerated-interval-and-sift-types">Enumerated, Interval and Sift Types</a></h2>
+<h2 id="enumerated-interval-and-refinement-types"><a class="header" href="#enumerated-interval-and-refinement-types">Enumerated, Interval and Refinement Types</a></h2>
 <p>The enumerative/interval types introduced before are syntax sugar of the refinement type.
 <code>{a, b, ...}</code> is <code>{I: Typeof(a) | I == a or I == b or ... }</code>, and <code>a..b</code> is desugarized to <code>{I: Typeof(a) | I &gt;= a and I &lt;= b}</code>.</p>
 <pre><code class="language-python">{1, 2} == {I: Int | I == 1 or I == 2}
@@ -192,6 +192,7 @@ match i:
 Array(T, N | N &gt;= 3)
     .m(&amp;self) = ...
 </code></pre>
+
 
                     </main>
 
