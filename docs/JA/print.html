@@ -2933,6 +2933,11 @@ assert fold(g, [1, 2, 3]) == 8
 </code></pre>
 <p>1番目は、デフォルト引数のある関数は、ない関数と同一視できる、という意味である。
 2番目は、任意のデフォルト引数は省略できる、という意味である。</p>
+<p>デフォルト引数の型は、引数を渡した場合と渡さなかった場合で変えることができる。
+具体的には、<code>if</code>関数の型などが良い例である。</p>
+<pre><code class="language-python">if: |T: Type, U: Type|(then: () -&gt; T, else: () -&gt; U := () -&gt; NoneType) -&gt; T or U
+</code></pre>
+<p><code>if</code>関数は、<code>else</code>引数が与えられなければ<code>T or NoneType</code>を返す。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="型消去"><a class="header" href="#型消去">型消去</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/erasure.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/erasure.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>型消去とは、型引数に<code>_</code>を指定し、その情報をあえて捨てることです。型消去は多相型を持つ言語の多くが併せて持つ機能ですが、Ergの文法に即して言えば型引数消去といった方が正確でしょう。</p>

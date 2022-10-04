@@ -165,6 +165,11 @@ assert fold(g, [1, 2, 3]) == 8
 </code></pre>
 <p>1番目は、デフォルト引数のある関数は、ない関数と同一視できる、という意味である。
 2番目は、任意のデフォルト引数は省略できる、という意味である。</p>
+<p>デフォルト引数の型は、引数を渡した場合と渡さなかった場合で変えることができる。
+具体的には、<code>if</code>関数の型などが良い例である。</p>
+<pre><code class="language-python">if: |T: Type, U: Type|(then: () -&gt; T, else: () -&gt; U := () -&gt; NoneType) -&gt; T or U
+</code></pre>
+<p><code>if</code>関数は、<code>else</code>引数が与えられなければ<code>T or NoneType</code>を返す。</p>
 
                     </main>
 
