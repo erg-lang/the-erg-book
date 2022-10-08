@@ -928,25 +928,28 @@ f(0)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="辞書"><a class="header" href="#辞書">辞書</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=a0c1380a6fa5236518ac4ff455edbd3af50b0560"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3Da0c1380a6fa5236518ac4ff455edbd3af50b0560" alt="badge" /></a></p>
 <p>Dictはキーと値のペアを持つコレクションです。</p>
-<pre><code class="language-python">ids = {&quot;Alice&quot; &gt;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301}
+<pre><code class="language-python">ids = {&quot;Alice&quot;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301}
 assert ids[&quot;Alice&quot;] == 145
 </code></pre>
-<p>キーはHashであるならば文字列でなくても構いません。</p>
+<p>キーはHashableであるならば文字列でなくても構いません。</p>
 <pre><code class="language-python"># rangeオブジェクトをキーにするのは非推奨(スライスと混同される)
 r = {1..3: &quot;1~3&quot;, 4..6: &quot;4~6&quot;, 7..9: &quot;7~9&quot;}
 assert r[1..3] == &quot;1~3&quot;
 l = {[]: &quot;empty&quot;, [1]: &quot;1&quot;}
 assert l[[]] == &quot;empty&quot;
+l = {0.0: &quot;a&quot;, 1.0: &quot;b&quot;} # TypeError: Float is not Hashable
 </code></pre>
 <p>Dictに順番は関係ありません。また、重複する要素を持つことも出来ません。この点でDictは<a href="./14_set.html">Set</a>と似ています。
 Dictは値付きのSetと言うこともできるでしょう。</p>
 <pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301} == {&quot;Alice&quot;: 145, &quot;Charlie&quot;: 301, &quot;Bob&quot;: 214}
 </code></pre>
 <p>DictリテラルからDictを生成する場合、キーの重複がないかチェックされます。
-重複がある場合コンパイルエラーとなります。</p>
+重複がある場合コンパイルエラーとなりますが、自明でない場合もあり、その場合は後に登録された方が残ります(左から順番に登録されます)。</p>
 <pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
+x = f(...) # x == 2
+{2x+2: 1, 2(x+1): 2} # {6: 2}
 </code></pre>
 <p>空のDictは<code>{:}</code>で生成します。<code>{}</code>は空の配列を表すことに注意してください。</p>
 <pre><code class="language-python">mut_dict = !{:}
@@ -968,6 +971,12 @@ invalid2 = {1: &quot;a&quot;, 2: 2}
 # Ergの型推論はOr型を推論しないため、型指定が必要となる
 valid1: {Int or Str: Str} = {1: &quot;a&quot;, &quot;a&quot;: &quot;b&quot;}
 valid2: {Int: Int or Str} = {1: &quot;a&quot;, 2: 2}
+</code></pre>
+<h2 id="型表示との併用"><a class="header" href="#型表示との併用">型表示との併用</a></h2>
+<p><code>{}</code>の中での<code>x: y</code>という形式は、辞書のキーと値のペアとして優先的に解釈されます。
+型表示として使いたい場合は、<code>()</code>で囲む必要があります。</p>
+<pre><code class="language-python">x = &quot;a&quot;
+{(x: Str): 1}
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="レコード"><a class="header" href="#レコード">レコード</a></h1>
@@ -1334,7 +1343,7 @@ print! b # =&gt; 0
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="型に関する基本的な文法"><a class="header" href="#型に関する基本的な文法">型に関する基本的な文法</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=a0c1380a6fa5236518ac4ff455edbd3af50b0560"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3Da0c1380a6fa5236518ac4ff455edbd3af50b0560" alt="badge" /></a></p>
 <h2 id="型指定"><a class="header" href="#型指定">型指定</a></h2>
 <p>Ergでは以下のように<code>:</code>の後に変数の型を指定します。代入と同時に行うこともできます。</p>
 <pre><code class="language-python">i: Int # これから使う変数iはInt型であると宣言する
@@ -1360,6 +1369,13 @@ f X: Int = X
 </code></pre>
 <p>ただし、型指定の箇所で<code>_</code>を指定するとそれは<code>Object</code>を意味することに注意して下さい。</p>
 <pre><code class="language-python">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
+</code></pre>
+<h2 id="型表示"><a class="header" href="#型表示">型表示</a></h2>
+<p>Ergでは変数だけでなく任意の式に対して明示的に型を表示することができます。この構文を型表示(type ascription)と呼びます。</p>
+<pre><code class="language-python">x = (1: Nat)
+f(&quot;a&quot;: Str)
+f(&quot;a&quot;): Int
+&quot;a&quot;: Nat # TypeError:
 </code></pre>
 <h2 id="部分型指定"><a class="header" href="#部分型指定">部分型指定</a></h2>
 <p>Ergでは<code>:</code>(型宣言演算子)による型と式の関係指定の他に、<code>&lt;:</code>(部分型宣言演算子)で型同士の関係を指定することもできます。

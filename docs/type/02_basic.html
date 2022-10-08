@@ -170,6 +170,13 @@ f X: Int = X
 <p>Note, however, <code>_</code> at a type specification implies <code>Object</code>.</p>
 <pre><code class="language-python">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
 </code></pre>
+<h2 id="type-ascription"><a class="header" href="#type-ascription">Type ascription</a></h2>
+<p>Erg can explicitly indicate the type of any expression as well as variables. This syntax is called type ascription.</p>
+<pre><code class="language-python">x = 1: Nat
+f(&quot;a&quot;: Str)
+f(&quot;a&quot;): Int
+&quot;a&quot;: Nat # TypeError:
+</code></pre>
 <h2 id="subtype-specification"><a class="header" href="#subtype-specification">Subtype specification</a></h2>
 <p>In addition to the <code>:</code> (type declaration operator), Erg also allows you to specify the relationship between types by using <code>&lt;:</code> (partial type declaration operator).
 The left side of <code>&lt;:</code> can only specify a class. Use <code>Subtypeof</code> or similar operators to compare structural types.</p>
