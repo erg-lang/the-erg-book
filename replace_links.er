@@ -1,0 +1,33 @@
+glob = pyimport "glob"
+re = pyimport "re"
+
+open_file!(path) =
+    with! open!(path, mode:="r" , encoding:="utf_8"), f =>
+        data = f.read!()
+        data
+
+save_file!(path, data) =
+    with! open!(path, mode:="w", encoding:="utf_8"), f =>
+        f.write! data
+    None
+
+PTN = "<p align='center'>\n.*\n</p>"
+remove_links html =
+    re.sub PTN, "", html
+
+replace_links html =
+    html.replace ".md", ".html"
+
+main!() =
+    pth = glob.glob! "tmp/*.html"
+    typ_pth = glob.glob! "tmp/type/*.html"
+    typ_adv_pth = glob.glob! "tmp/type/advanced/*.html"
+    paths = pth.concat(typ_pth).concat(typ_adv_pth)
+    for! paths, path =>
+        print! path
+        html = open_file! path
+        _html = replace_links html
+        save_file! path, _html
+
+if! __name__ == "__main__", do!:
+    main!()
