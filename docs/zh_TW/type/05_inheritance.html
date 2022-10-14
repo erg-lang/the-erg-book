@@ -145,8 +145,8 @@
                     <main>
                         <h1 id="繼承"><a class="header" href="#繼承">繼承</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/05_inheritance.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/05_inheritance.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>繼承允許您定義一個新類，為現有類添加功能或專業化。
-繼承類似于包含在特征中。 繼承的類成為原始類的子類型。</p>
+<p>繼承允許您定義一個新類，為現有類添加功能或專業化
+繼承類似于包含在特征中。 繼承的類成為原始類的子類型</p>
 <pre><code class="language-python">NewInt = Inherit Int
 NewInt.
     plus1 self = self + 1
@@ -154,8 +154,8 @@ NewInt.
 assert NewInt.new(1).plus1() == 2
 assert NewInt.new(1) + NewInt.new(1) == 2
 </code></pre>
-<p>如果你希望新定義的類是可繼承的，你必須給它一個 <code>Inheritable</code> 裝飾器。</p>
-<p>您可以指定一個可選參數 <code>additional</code> 以允許該類具有其他實例屬性，但前提是該類是一個值類。 但是，如果類是值類，則不能添加實例屬性。</p>
+<p>如果你希望新定義的類是可繼承的，你必須給它一個 <code>Inheritable</code> 裝飾器</p>
+<p>您可以指定一個可選參數 <code>additional</code> 以允許該類具有其他實例屬性，但前提是該類是一個值類。 但是，如果類是值類，則不能添加實例屬性</p>
 <pre><code class="language-python">@Inheritable
 Person = Class {name = Str}
 Student = Inherit Person, additional: {id = Int}
@@ -163,12 +163,12 @@ Student = Inherit Person, additional: {id = Int}
 john = Person.new {name = &quot;John&quot;}
 alice = Student.new {name = &quot;Alice&quot;, id = 123}
 
-MailAddress = Inherit Str, additional: {owner = Str} # 類型錯誤：實例變量不能添加到值類中
+MailAddress = Inherit Str, additional: {owner = Str} # 類型錯誤: 實例變量不能添加到值類中
 </code></pre>
-<p>Erg 的特殊設計不允許繼承&quot;Never&quot;類型。 Erg 的特殊設計不允許繼承 <code>Never</code> 類型，因為 <code>Never</code> 是一個永遠無法實例化的獨特類。</p>
+<p>Erg 的特殊設計不允許繼承&quot;Never&quot;類型。 Erg 的特殊設計不允許繼承 <code>Never</code> 類型，因為 <code>Never</code> 是一個永遠無法實例化的獨特類</p>
 <h2 id="枚舉類的繼承"><a class="header" href="#枚舉類的繼承">枚舉類的繼承</a></h2>
-<p><a href="./13_algebraic.html">Or 類型</a> 也可以被繼承。 在這種情況下，您可以通過指定可選參數 <code>Excluding</code> 來刪除任何選項(可以使用 <code>or</code> 進行多項選擇)。
-不能添加其他選項。 添加選項的類不是原始類的子類型。</p>
+<p><a href="./13_algebraic.html">Or 類型</a> 也可以被繼承。 在這種情況下，您可以通過指定可選參數 <code>Excluding</code> 來刪除任何選項(可以使用 <code>or</code> 進行多項選擇)
+不能添加其他選項。 添加選項的類不是原始類的子類型</p>
 <pre><code class="language-python">Number = Class Int or Float or Complex
 Number.abs(self): Float =
     match self:
@@ -179,7 +179,7 @@ Number.abs(self): Float =
 # c: 復雜不能出現在匹配選項中
 RealNumber = Inherit Number, Excluding: Complex
 </code></pre>
-<p>同樣，也可以指定<a href="./12_refinement.html">細化類型</a>。</p>
+<p>同樣，也可以指定<a href="./12_refinement.html">細化類型</a></p>
 <pre><code class="language-python">Months = Class 0..12
 MonthsNot31Days = Inherit Months, Excluding: {1, 3, 5, 7, 8, 10, 12}
 
@@ -187,16 +187,16 @@ StrMoreThan3 = Class StrWithLen N | N &gt;= 3
 StrMoreThan4 = Inherit StrMoreThan3, Excluding: StrWithLen N | N == 3
 </code></pre>
 <h2 id="覆蓋"><a class="header" href="#覆蓋">覆蓋</a></h2>
-<p>該類與補丁相同，可以將新方法添加到原始類型，但可以進一步&quot;覆蓋&quot;該類。
-這種覆蓋稱為覆蓋。要覆蓋，必須滿足三個條件。
-首先，覆蓋必須有一個 <code>Override</code> 裝飾器，因為默認情況下它會導致錯誤。
-另外，覆蓋不能改變方法的類型。它必須是原始類型的子類型。
-如果你重寫了一個被另一個方法引用的方法，你也必須重寫所有被引用的方法。</p>
-<p>為什么這個條件是必要的?這是因為重寫不僅會改變一種方法的行為，而且可能會影響另一種方法的行為。</p>
-<p>讓我們從第一個條件開始。此條件是為了防止&quot;意外覆蓋&quot;。
-換句話說，必須使用 <code>Override</code> 裝飾器來防止派生類中新定義的方法的名稱與基類的名稱沖突。</p>
-<p>接下來，考慮第二個條件。這是為了類型一致性。由于派生類是基類的子類型，因此它的行為也必須與基類的行為兼容。</p>
-<p>最后，考慮第三個條件。這種情況是 Erg 獨有的，在其他面向對象語言中并不常見，同樣是為了安全。讓我們看看如果不是這種情況會出現什么問題。</p>
+<p>該類與補丁相同，可以將新方法添加到原始類型，但可以進一步&quot;覆蓋&quot;該類
+這種覆蓋稱為覆蓋。要覆蓋，必須滿足三個條件
+首先，覆蓋必須有一個 <code>Override</code> 裝飾器，因為默認情況下它會導致錯誤
+另外，覆蓋不能改變方法的類型。它必須是原始類型的子類型
+如果你重寫了一個被另一個方法引用的方法，你也必須重寫所有被引用的方法</p>
+<p>為什么這個條件是必要的?這是因為重寫不僅會改變一種方法的行為，而且可能會影響另一種方法的行為</p>
+<p>讓我們從第一個條件開始。此條件是為了防止&quot;意外覆蓋&quot;
+換句話說，必須使用 <code>Override</code> 裝飾器來防止派生類中新定義的方法的名稱與基類的名稱沖突</p>
+<p>接下來，考慮第二個條件。這是為了類型一致性。由于派生類是基類的子類型，因此它的行為也必須與基類的行為兼容</p>
+<p>最后，考慮第三個條件。這種情況是 Erg 獨有的，在其他面向對象語言中并不常見，同樣是為了安全。讓我們看看如果不是這種情況會出現什么問題</p>
 <pre><code class="language-python"># 反面示例
 @Inheritable
 Base! = Class {x = Int!}
@@ -209,11 +209,11 @@ Base!
 Inherited! = Inherit Base!
 Inherited!
     @Override
-    g! ref! self = self.f!() # 無限遞歸警告：此代碼陷入無限循環 
-    # 覆蓋錯誤：方法 `.g` 被 `.f` 引用但未被覆蓋
+    g! ref! self = self.f!() # 無限遞歸警告: 此代碼陷入無限循環 
+    # 覆蓋錯誤: 方法 `.g` 被 `.f` 引用但未被覆蓋
 </code></pre>
-<p>在繼承類 <code>Inherited!</code> 中，<code>.g!</code> 方法被重寫以將處理轉移到 <code>.f!</code>。 但是，基類中的 <code>.f!</code> 方法會將其處理轉移到 <code>.g!</code>，從而導致無限循環。 <code>.f</code> 是 <code>Base!</code> 類中的一個沒有問題的方法，但它被覆蓋以一種意想不到的方式使用，并且被破壞了。</p>
-<p>Erg 已將此規則構建到規范中。</p>
+<p>在繼承類 <code>Inherited!</code> 中，<code>.g!</code> 方法被重寫以將處理轉移到 <code>.f!</code>。 但是，基類中的 <code>.f!</code> 方法會將其處理轉移到 <code>.g!</code>，從而導致無限循環。 <code>.f</code> 是 <code>Base!</code> 類中的一個沒有問題的方法，但它被覆蓋以一種意想不到的方式使用，并且被破壞了</p>
+<p>Erg 已將此規則構建到規范中</p>
 <pre><code class="language-python"># OK.
 @Inheritable
 Base! = Class {x = Int!}
@@ -232,31 +232,31 @@ Inherited!
     @Override
     g! ref! self = self.f!()
 </code></pre>
-<p>然而，這個規范并沒有完全解決覆蓋問題。 然而，這個規范并沒有完全解決覆蓋問題，因為編譯器無法檢測覆蓋是否解決了問題。
-創建派生類的程序員有責任糾正覆蓋的影響。 只要有可能，嘗試定義一個別名方法。</p>
+<p>然而，這個規范并沒有完全解決覆蓋問題。 然而，這個規范并沒有完全解決覆蓋問題，因為編譯器無法檢測覆蓋是否解決了問題
+創建派生類的程序員有責任糾正覆蓋的影響。 只要有可能，嘗試定義一個別名方法</p>
 <h3 id="替換特征或看起來像什么"><a class="header" href="#替換特征或看起來像什么">替換特征(或看起來像什么)</a></h3>
-<p>盡管無法在繼承時替換特征，但有一些示例似乎可以這樣做。</p>
-<p>例如，<code>Int</code>，<code>Real</code> 的子類型(實現了 <code>Add()</code>)，似乎重新實現了 <code>Add()</code>。</p>
+<p>盡管無法在繼承時替換特征，但有一些示例似乎可以這樣做</p>
+<p>例如，<code>Int</code>，<code>Real</code> 的子類型(實現了 <code>Add()</code>)，似乎重新實現了 <code>Add()</code></p>
 <pre><code class="language-python">Int = Class ... , Impl := Add() and ...
 </code></pre>
-<p>但實際上 <code>Real</code> 中的 <code>Add()</code> 代表 <code>Add(Real, Real)</code>，而在 <code>Int</code> 中它只是被 <code>Add(Int, Int)</code> 覆蓋。
-它們是兩個不同的特征(<code>Add</code> 是一個 <a href="./advanced/variance.html">covariate</a>，所以<code>Add(Real, Real) :&gt; Add(Int, Int)</code>)。</p>
+<p>但實際上 <code>Real</code> 中的 <code>Add()</code> 代表 <code>Add(Real, Real)</code>，而在 <code>Int</code> 中它只是被 <code>Add(Int, Int)</code> 覆蓋
+它們是兩個不同的特征(<code>Add</code> 是一個 <a href="./advanced/variance.html">covariate</a>，所以<code>Add(Real, Real) :&gt; Add(Int, Int)</code>)</p>
 <h2 id="多重繼承"><a class="header" href="#多重繼承">多重繼承</a></h2>
-<p>Erg 不允許普通類之間的交集、差異和互補。</p>
-<pre><code class="language-python">Int and Str # 類型錯誤：無法合并類
+<p>Erg 不允許普通類之間的交集、差異和互補</p>
+<pre><code class="language-python">Int and Str # 類型錯誤: 無法合并類
 </code></pre>
-<p>該規則防止從多個類繼承，即多重繼承。</p>
-<pre><code class="language-python">IntAndStr = Inherit Int and Str # 語法錯誤：不允許類的多重繼承
+<p>該規則防止從多個類繼承，即多重繼承</p>
+<pre><code class="language-python">IntAndStr = Inherit Int and Str # 語法錯誤: 不允許類的多重繼承
 </code></pre>
-<p>但是，可以使用多個繼承的 Python 類。</p>
+<p>但是，可以使用多個繼承的 Python 類</p>
 <h2 id="多層多級繼承"><a class="header" href="#多層多級繼承">多層(多級)繼承</a></h2>
-<p>Erg 繼承也禁止多層繼承。 也就是說，您不能定義從另一個類繼承的類。
-從&quot;Object&quot;繼承的可繼承類可能會異常繼承。</p>
-<p>同樣在這種情況下，可以使用 Python 的多層繼承類。</p>
+<p>Erg 繼承也禁止多層繼承。 也就是說，您不能定義從另一個類繼承的類
+從&quot;Object&quot;繼承的可繼承類可能會異常繼承</p>
+<p>同樣在這種情況下，可以使用 Python 的多層繼承類</p>
 <h2 id="重寫繼承的屬性"><a class="header" href="#重寫繼承的屬性">重寫繼承的屬性</a></h2>
-<p>Erg 不允許重寫從基類繼承的屬性。 這有兩個含義。</p>
-<p>第一個是對繼承的源類屬性的更新操作。 例如，它不能重新分配，也不能通過 <code>.update!</code> 方法更新。</p>
-<p>覆蓋與重寫不同，因為它是一種用更專業的方法覆蓋的操作。 覆蓋也必須替換為兼容的類型。</p>
+<p>Erg 不允許重寫從基類繼承的屬性。 這有兩個含義</p>
+<p>第一個是對繼承的源類屬性的更新操作。 例如，它不能重新分配，也不能通過 <code>.update!</code> 方法更新</p>
+<p>覆蓋與重寫不同，因為它是一種用更專業的方法覆蓋的操作。 覆蓋也必須替換為兼容的類型</p>
 <pre><code class="language-python">@Inheritable
 Base! = Class {.pub = !Int; pri = !Int}
 Base!
@@ -266,13 +266,13 @@ Base!
 Inherited! = Inherit Base!
 Inherited!
     var.update! v -&gt; v + 1
-    # 類型錯誤：不能更新基類變量
+    # 類型錯誤: 不能更新基類變量
     @Override
     inc_pub! ref! self = self.pub + 1
-    # 覆蓋錯誤：`.inc_pub!` 必須是 `Self! 的子類型！ () =&gt; ()`
+    # 覆蓋錯誤: `.inc_pub!` 必須是 `Self! 的子類型！ () =&gt; ()`
 </code></pre>
-<p>第二個是對繼承源的(變量)實例屬性的更新操作。 這也是被禁止的。 基類的實例屬性只能從基類提供的方法中更新。
-無論屬性的可見性如何，都無法直接更新。 但是，它們可以被讀取。</p>
+<p>第二個是對繼承源的(變量)實例屬性的更新操作。 這也是被禁止的。 基類的實例屬性只能從基類提供的方法中更新
+無論屬性的可見性如何，都無法直接更新。 但是，它們可以被讀取</p>
 <pre><code class="language-python">@Inheritable
 Base! = Class {.pub = !Int; pri = !Int}
 Base!
@@ -285,17 +285,17 @@ Inherited!
     add2_pub! ref! self =
         self.inc_pub!()
         self.inc_pub!()
-    # NG, `Child` 不能觸摸 `self.pub` 和 `self::pri`。
+    # NG, `Child` 不能觸摸 `self.pub` 和 `self::pri`
     add2_pub! ref! self =
         self.pub.update! p -&gt; p + 2
 </code></pre>
-<p>畢竟 Erg 繼承只能添加新的屬性和覆蓋基類的方法。</p>
+<p>畢竟 Erg 繼承只能添加新的屬性和覆蓋基類的方法</p>
 <h2 id="使用繼承"><a class="header" href="#使用繼承">使用繼承</a></h2>
-<p>雖然繼承在正確使用時是一項強大的功能，但它也有一個缺點，即它往往會使類依賴關系復雜化，尤其是在使用多層或多層繼承時。復雜的依賴關系會降低代碼的可維護性。
-Erg 禁止多重和多層繼承的原因是為了降低這種風險，并且引入了類補丁功能以降低依賴關系的復雜性，同時保留繼承的&quot;添加功能&quot;方面。</p>
-<p>那么，反過來說，應該在哪里使用繼承呢?一個指標是何時需要&quot;基類的語義子類型&quot;。
-Erg 允許類型系統自動進行部分子類型確定(例如，Nat，其中 Int 大于或等于 0)。
-但是，例如，僅依靠 Erg 的類型系統很難創建&quot;表示有效電子郵件地址的字符串類型&quot;。您可能應該對普通字符串執行驗證。然后，我們想為已通過驗證的字符串對象添加某種&quot;保證&quot;。這相當于向下轉換為繼承的類。將 <code>Str object</code> 向下轉換為 <code>ValidMailAddressStr</code> 與驗證字符串是否采用正確的電子郵件地址格式是一一對應的。</p>
+<p>雖然繼承在正確使用時是一項強大的功能，但它也有一個缺點，即它往往會使類依賴關系復雜化，尤其是在使用多層或多層繼承時。復雜的依賴關系會降低代碼的可維護性
+Erg 禁止多重和多層繼承的原因是為了降低這種風險，并且引入了類補丁功能以降低依賴關系的復雜性，同時保留繼承的&quot;添加功能&quot;方面</p>
+<p>那么，反過來說，應該在哪里使用繼承呢?一個指標是何時需要&quot;基類的語義子類型&quot;
+Erg 允許類型系統自動進行部分子類型確定(例如，Nat，其中 Int 大于或等于 0)
+但是，例如，僅依靠 Erg 的類型系統很難創建&quot;表示有效電子郵件地址的字符串類型&quot;。您可能應該對普通字符串執行驗證。然后，我們想為已通過驗證的字符串對象添加某種&quot;保證&quot;。這相當于向下轉換為繼承的類。將 <code>Str object</code> 向下轉換為 <code>ValidMailAddressStr</code> 與驗證字符串是否采用正確的電子郵件地址格式是一一對應的</p>
 <pre><code class="language-python">ValidMailAddressStr = Inherit Str
 ValidMailAddressStr.
     init s: Str =
@@ -304,15 +304,15 @@ ValidMailAddressStr.
 
 s1 = &quot;invalid mail address&quot;
 s2 = &quot;foo@gmail.com&quot;
-_ = ValidMailAddressStr.init s1 # 恐慌：無效的郵件地址
+_ = ValidMailAddressStr.init s1 # 恐慌: 無效的郵件地址
 valid = ValidMailAddressStr.init s2
 valid: ValidMailAddressStr # 確保電子郵件地址格式正確
 </code></pre>
-<p>另一個指標是您何時想要實現名義多態性。
-例如，下面定義的 <code>greet!</code> 過程將接受任何類型為 <code>Named</code> 的對象。
-但顯然應用 <code>Dog</code> 類型的對象是錯誤的。 所以我們將使用 <code>Person</code> 類作為參數類型。
-這樣，只有 <code>Person</code> 對象、從它們繼承的類和 <code>Student</code> 對象將被接受為參數。
-這是比較保守的，避免不必要地承擔過多的責任。</p>
+<p>另一個指標是您何時想要實現名義多態性
+例如，下面定義的 <code>greet!</code> 過程將接受任何類型為 <code>Named</code> 的對象
+但顯然應用 <code>Dog</code> 類型的對象是錯誤的。 所以我們將使用 <code>Person</code> 類作為參數類型
+這樣，只有 <code>Person</code> 對象、從它們繼承的類和 <code>Student</code> 對象將被接受為參數
+這是比較保守的，避免不必要地承擔過多的責任</p>
 <pre><code class="language-python">Named = {name = Str; ...}
 Dog = Class {name = Str; breed = Str}
 Person = Class {name = Str}
@@ -329,7 +329,7 @@ alice = Student.new {name = &quot;Alice&quot;, id = 123}
 structural_greet! max # 你好，我是馬克斯
 structural_greet! john # 你好，我是約翰
 greet! alice # 你好，我是愛麗絲
-greet! max # 類型錯誤：
+greet! max # 類型錯誤: 
 </code></pre>
 
 

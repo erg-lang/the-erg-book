@@ -168,7 +168,7 @@ a: [Int; 4] = [0, 1, 2, 3]
 a: Array Int, 4 = [0, 1, 2, 3]
 </code></pre>
 <h3 id="文字字面量"><a class="header" href="#文字字面量">文字字面量</a></h3>
-<pre><code class="language-python"># 如果在编译时无法确定 `i` 为 1，则引发 TypeError。
+<pre><code class="language-python"># 如果在编译时无法确定 `i` 为 1，则引发 TypeError
 # 省略 `_: {1} = i`
 1 = i
 
@@ -203,7 +203,7 @@ Array(T, N: {N | N &gt;= 3})
 Array(T, N | N &gt;= 3)
 
 f M, N | M &gt;= 0, N &gt;= 1 = ...
-f(1, 0) # 类型错误：N(第二个参数)必须为 1 或更多
+f(1, 0) # 类型错误: N(第二个参数)必须为 1 或更多
 </code></pre>
 <h3 id="丢弃通配符模式"><a class="header" href="#丢弃通配符模式">丢弃(通配符)模式</a></h3>
 <pre><code class="language-python">_ = 1
@@ -212,7 +212,7 @@ zero_ = 0
 right(_, r) = r
 </code></pre>
 <h3 id="可变长度模式"><a class="header" href="#可变长度模式">可变长度模式</a></h3>
-<p>它与稍后描述的元组/数组/记录模式结合使用。</p>
+<p>它与稍后描述的元组/数组/记录模式结合使用</p>
 <pre><code class="language-python">[i,...j] = [1, 2, 3, 4]
 assert j == [2, 3, 4]
 first|T|(fst: T, ...rest: T) = fst
@@ -275,7 +275,7 @@ List T.
 </code></pre>
 <h3 id="range-模式"><a class="header" href="#range-模式">Range 模式</a></h3>
 <ul>
-<li>实际上，它只是一个区间类型。</li>
+<li>实际上，它只是一个区间类型</li>
 </ul>
 <pre><code class="language-python"># 0 &lt; i &lt; 1
 i: 0&lt;..&lt;1 = 0.5
@@ -286,12 +286,12 @@ match i
     i: 1..5 -&gt; ...
 </code></pre>
 <h3 id="不是模式的东西不能被模式化的东西"><a class="header" href="#不是模式的东西不能被模式化的东西">不是模式的东西，不能被模式化的东西</a></h3>
-<p>模式是可以唯一指定的东西。 在这方面，模式匹配不同于普通的条件分支。</p>
-<p>条件规格不是唯一的。 例如，要检查数字 <code>n</code> 是否为偶数，正统是 <code>n % 2 == 0</code>，但也可以写成 <code>(n / 2).round() == n / 2</code>。
-非唯一形式无论是正常工作还是等效于另一个条件都不是微不足道的。</p>
+<p>模式是可以唯一指定的东西。 在这方面，模式匹配不同于普通的条件分支</p>
+<p>条件规格不是唯一的。 例如，要检查数字 <code>n</code> 是否为偶数，正统是 <code>n % 2 == 0</code>，但也可以写成 <code>(n / 2).round() == n / 2</code>
+非唯一形式无论是正常工作还是等效于另一个条件都不是微不足道的</p>
 <h4 id="set"><a class="header" href="#set">Set</a></h4>
-<p>没有固定的模式。 因为集合没有办法唯一地检索元素。
-您可以通过迭代器检索它们，但不能保证顺序。</p>
+<p>没有固定的模式。 因为集合没有办法唯一地检索元素
+您可以通过迭代器检索它们，但不能保证顺序</p>
 
                     </main>
 

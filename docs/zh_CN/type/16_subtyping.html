@@ -145,7 +145,7 @@
                     <main>
                         <h1 id="子类型"><a class="header" href="#子类型">子类型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/16_subtyping.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/16_subtyping.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>在 Erg 中，可以使用比较运算符 <code>&lt;</code>、<code>&gt;</code> 确定类包含。</p>
+<p>在 Erg 中，可以使用比较运算符 <code>&lt;</code>、<code>&gt;</code> 确定类包含</p>
 <pre><code class="language-python">Nat &lt; Int
 Int &lt; Object
 1... _ &lt; Nat
@@ -153,15 +153,15 @@ Int &lt; Object
 {=} &gt; {x = Int}
 {I: Int | I &gt;= 1} &lt; {I: Int | I &gt;= 0}
 </code></pre>
-<p>请注意，这与 <code>&lt;:</code> 运算符的含义不同。 它声明左侧的类是右侧类型的子类型，并且仅在编译时才有意义。</p>
+<p>请注意，这与 <code>&lt;:</code> 运算符的含义不同。 它声明左侧的类是右侧类型的子类型，并且仅在编译时才有意义</p>
 <pre><code class="language-python">C &lt;: T # T: 结构类型
 f|D &lt;: E| ...
 
 assert F &lt; G
 </code></pre>
-<p>您还可以为多态子类型规范指定 <code>Self &lt;: Add</code>，例如 <code>Self(R, O) &lt;: Add(R, O)</code>。</p>
+<p>您还可以为多态子类型规范指定 <code>Self &lt;: Add</code>，例如 <code>Self(R, O) &lt;: Add(R, O)</code></p>
 <h2 id="结构类型和类类型关系"><a class="header" href="#结构类型和类类型关系">结构类型和类类型关系</a></h2>
-<p>结构类型是结构类型的类型，如果它们具有相同的结构，则被认为是相同的对象。</p>
+<p>结构类型是结构类型的类型，如果它们具有相同的结构，则被认为是相同的对象</p>
 <pre><code class="language-python">T = Structural {i = Int}
 U = Structural {i = Int}
 
@@ -174,15 +174,15 @@ assert t in U
 <pre><code class="language-python">C = Class {i = Int}
 D = Class {i = Int}
 
-assert C == D # 类型错误：无法比较类
+assert C == D # 类型错误: 无法比较类
 c = C.new {i = 1}
 assert c in C
 assert not c in D
 </code></pre>
 <h2 id="子程序的子类型化"><a class="header" href="#子程序的子类型化">子程序的子类型化</a></h2>
-<p>子例程的参数和返回值只采用一个类。
-换句话说，您不能直接将结构类型或特征指定为函数的类型。
-必须使用部分类型规范将其指定为&quot;作为该类型子类型的单个类&quot;。</p>
+<p>子例程的参数和返回值只采用一个类
+换句话说，您不能直接将结构类型或特征指定为函数的类型
+必须使用部分类型规范将其指定为&quot;作为该类型子类型的单个类&quot;</p>
 <pre><code class="language-python"># OK
 f1 x, y: Int = x + y
 # NG
@@ -191,7 +191,7 @@ f2 x, y: Add = x + y
 # A 是一些具体的类
 f3&lt;A &lt;: Add&gt; x, y: A = x + y
 </code></pre>
-<p>子程序中的类型推断也遵循此规则。 当子例程中的变量具有未指定的类型时，编译器首先检查它是否是其中一个类的实例，如果不是，则在特征范围内查找匹配项。 如果仍然找不到，则会发生编译错误。 此错误可以通过使用结构类型来解决，但由于推断匿名类型可能会给程序员带来意想不到的后果，因此它被设计为由程序员使用 <code>Structural</code> 显式指定。</p>
+<p>子程序中的类型推断也遵循此规则。 当子例程中的变量具有未指定的类型时，编译器首先检查它是否是其中一个类的实例，如果不是，则在特征范围内查找匹配项。 如果仍然找不到，则会发生编译错误。 此错误可以通过使用结构类型来解决，但由于推断匿名类型可能会给程序员带来意想不到的后果，因此它被设计为由程序员使用 <code>Structural</code> 显式指定</p>
 <h2 id="类向上转换"><a class="header" href="#类向上转换">类向上转换</a></h2>
 <pre><code class="language-python">i: Int
 i as (Int or Str)

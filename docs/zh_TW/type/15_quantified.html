@@ -145,32 +145,32 @@
                     <main>
                         <h1 id="類型變量量化類型"><a class="header" href="#類型變量量化類型">類型變量，量化類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/15_quantified.md&amp;commit_hash=14657486719a134f494e107774ac8f9d5a63f083"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/15_quantified.md%26commit_hash%3D14657486719a134f494e107774ac8f9d5a63f083" alt="badge" /></a></p>
-<p>類型變量是用于例如指定子程序參數類型的變量，它的類型是任意的(不是單態的)。
-首先，作為引入類型變量的動機，考慮 <code>id</code> 函數，它按原樣返回輸入。</p>
+<p>類型變量是用于例如指定子程序參數類型的變量，它的類型是任意的(不是單態的)
+首先，作為引入類型變量的動機，考慮 <code>id</code> 函數，它按原樣返回輸入</p>
 <pre><code class="language-python">id x: Int = x
 </code></pre>
-<p>返回輸入的&quot;id&quot;函數是為&quot;Int&quot;類型定義的，但這個函數顯然可以為任何類型定義。
-讓我們使用 <code>Object</code> 來表示最大的類。</p>
+<p>返回輸入的&quot;id&quot;函數是為&quot;Int&quot;類型定義的，但這個函數顯然可以為任何類型定義
+讓我們使用 <code>Object</code> 來表示最大的類</p>
 <pre><code class="language-python">id x: Object = x
 
 i = id 1
 s = id &quot;foo&quot;
 b = id True
 </code></pre>
-<p>當然，它現在接受任意類型，但有一個問題：返回類型被擴展為 <code>Object</code>。 返回類型擴展為 <code>Object</code>。
-如果輸入是&quot;Int&quot;類型，我想查看返回類型&quot;Int&quot;，如果輸入是&quot;Str&quot;類型，我想查看&quot;Str&quot;。</p>
+<p>當然，它現在接受任意類型，但有一個問題: 返回類型被擴展為 <code>Object</code>。 返回類型擴展為 <code>Object</code>
+如果輸入是&quot;Int&quot;類型，我想查看返回類型&quot;Int&quot;，如果輸入是&quot;Str&quot;類型，我想查看&quot;Str&quot;</p>
 <pre><code class="language-python">print! id 1 # &lt;Object object&gt;
-id(1) + 1 # 類型錯誤：無法添加 `Object` 和 `Int
+id(1) + 1 # 類型錯誤: 無法添加 `Object` 和 `Int
 </code></pre>
-<p>要確保輸入的類型與返回值的類型相同，請使用 <strong>type 變量</strong>。
-類型變量在<code>||</code>(類型變量列表)中聲明。</p>
+<p>要確保輸入的類型與返回值的類型相同，請使用 <strong>type 變量</strong>
+類型變量在<code>||</code>(類型變量列表)中聲明</p>
 <pre><code class="language-python">id|T: Type| x: T = x
 assert id(1) == 1
 assert id(&quot;foo&quot;) == &quot;foo&quot;
 assert id(True) == True
 </code></pre>
-<p>這稱為函數的 <strong>universal quantification(泛化)</strong>。 有細微的差別，但它對應于其他語言中稱為泛型的函數。 泛化函數稱為__多態函數__。
-定義一個多態函數就像為所有類型定義一個相同形式的函數(Erg 禁止重載，所以下面的代碼真的不能寫)。</p>
+<p>這稱為函數的 <strong>universal quantification(泛化)</strong>。 有細微的差別，但它對應于其他語言中稱為泛型的函數。 泛化函數稱為__多態函數__
+定義一個多態函數就像為所有類型定義一個相同形式的函數(Erg 禁止重載，所以下面的代碼真的不能寫)</p>
 <pre><code class="language-python">id|T: Type| x: T = x
 # 偽代碼
 id x: Int = x
@@ -180,18 +180,18 @@ id x: Ratio = x
 id x: NoneType = x
 ...
 </code></pre>
-<p>此外，類型變量&quot;T&quot;可以推斷為&quot;Type&quot;類型，因為它在類型規范中使用。 所以 <code>|T: Type|</code> 可以簡單地縮寫為 <code>|T|</code>。
-你也可以省略<code>|T, N| 腳; N]</code> 如果可以推斷它不是類型對象(<code>T: Type, N: Nat</code>)。</p>
-<p>如果類型對于任意類型來說太大，您也可以提供約束。
-約束也有優勢，例如，子類型規范允許使用某些方法。</p>
+<p>此外，類型變量&quot;T&quot;可以推斷為&quot;Type&quot;類型，因為它在類型規范中使用。 所以 <code>|T: Type|</code> 可以簡單地縮寫為 <code>|T|</code>
+你也可以省略<code>|T, N| 腳; N]</code> 如果可以推斷它不是類型對象(<code>T: Type, N: Nat</code>)</p>
+<p>如果類型對于任意類型來說太大，您也可以提供約束
+約束也有優勢，例如，子類型規范允許使用某些方法</p>
 <pre><code class="language-python"># T &lt;: Add
 # =&gt; T 是 Add 的子類
 # =&gt; 可以做加法
 add|T &lt;: Add| l: T, r: T = l + r
 </code></pre>
-<p>在本例中，<code>T</code> 必須是<code>Add</code> 類型的子類，并且要分配的<code>l</code> 和<code>r</code> 的實際類型必須相同。
-在這種情況下，&quot;T&quot;由&quot;Int&quot;、&quot;Ratio&quot;等滿足。因此，例如，&quot;Int&quot;和&quot;Str&quot;的添加沒有定義，因此被拒絕。</p>
-<p>您也可以像這樣鍵入它。</p>
+<p>在本例中，<code>T</code> 必須是<code>Add</code> 類型的子類，并且要分配的<code>l</code> 和<code>r</code> 的實際類型必須相同
+在這種情況下，&quot;T&quot;由&quot;Int&quot;、&quot;Ratio&quot;等滿足。因此，例如，&quot;Int&quot;和&quot;Str&quot;的添加沒有定義，因此被拒絕</p>
+<p>您也可以像這樣鍵入它</p>
 <pre><code class="language-python">f|
     Y, Z: Type
     X &lt;: Add Y, O1
@@ -200,16 +200,16 @@ add|T &lt;: Add| l: T, r: T = l + r
 | x: X, y: Y, z: Z =
     x + y + z + x
 </code></pre>
-<p>如果注釋列表很長，您可能需要預先聲明它。</p>
+<p>如果注釋列表很長，您可能需要預先聲明它</p>
 <pre><code class="language-python">f: |Y, Z: Type, X &lt;: Add(Y, O1), O1 &lt;: Add(Z, O2), O2 &lt;: Add(X, O3)| (X, Y, Z) -&gt; O3
 f|X, Y, Z| x: X, y: Y, z: Z =
     x + y + z + x
 </code></pre>
-<p>與許多具有泛型的語言不同，所有聲明的類型變量都必須在臨時參數列表(<code>x: X, y: Y, z: Z</code> 部分)或其他類型變量的參數中使用。
-這是 Erg 語言設計的一個要求，即所有類型變量都可以從真實參數中推斷出來。
-因此，無法推斷的信息，例如返回類型，是從真實參數傳遞的； Erg 允許從實參傳遞類型。</p>
+<p>與許多具有泛型的語言不同，所有聲明的類型變量都必須在臨時參數列表(<code>x: X, y: Y, z: Z</code> 部分)或其他類型變量的參數中使用
+這是 Erg 語言設計的一個要求，即所有類型變量都可以從真實參數中推斷出來
+因此，無法推斷的信息，例如返回類型，是從真實參數傳遞的； Erg 允許從實參傳遞類型</p>
 <pre><code class="language-python">Iterator T = Trait {
-    # 從參數傳遞返回類型。
+    # 從參數傳遞返回類型
     # .collect: |K: Type -&gt; Type| Self(T). ({K}) -&gt; K(T)
     .collect(self, K: Type -&gt; Type): K(T) = ...
     ...
@@ -231,8 +231,8 @@ f 1
 <p>您也可以在使用時明確單相如下</p>
 <pre><code class="language-python">f: Int -&gt; Int = id|Int|
 </code></pre>
-<p>在這種情況下，指定的類型優先于實際參數的類型(匹配失敗將導致類型錯誤，即實際參數的類型錯誤)。
-即如果傳遞的實際對象可以轉換為指定的類型，則進行轉換； 否則會導致編譯錯誤。</p>
+<p>在這種情況下，指定的類型優先于實際參數的類型(匹配失敗將導致類型錯誤，即實際參數的類型錯誤)
+即如果傳遞的實際對象可以轉換為指定的類型，則進行轉換； 否則會導致編譯錯誤</p>
 <pre><code class="language-python">assert id(1) == 1
 assert id|Int|(1) in Int
 assert id|Ratio|(1) in Ratio
@@ -240,29 +240,29 @@ assert id|Ratio|(1) in Ratio
 assert id|T: Int|(1) == 1
 id|Int|(&quot;str&quot;) # 類型錯誤: id|Int| is type `Int -&gt; Int`但得到了 Str
 </code></pre>
-<p>當此語法與理解相沖突時，您需要將其括在 <code>()</code> 中。</p>
+<p>當此語法與理解相沖突時，您需要將其括在 <code>()</code> 中</p>
 <pre><code class="language-python"># {id|Int| x | x &lt;- 1..10} 將被解釋為 {id | ...}
 {(id|Int| x) | x &lt;- 1..10}
 </code></pre>
-<p>不能使用與已存在的類型相同的名稱來聲明類型變量。 這是因為所有類型變量都是常量。</p>
+<p>不能使用與已存在的類型相同的名稱來聲明類型變量。 這是因為所有類型變量都是常量</p>
 <pre><code class="language-python">I: Type
 # ↓ 無效類型變量，已經存在
 f|I: Type| ... = ...
 </code></pre>
 <h2 id="在方法定義中輸入參數"><a class="header" href="#在方法定義中輸入參數">在方法定義中輸入參數</a></h2>
-<p>默認情況下，左側的類型參數被視為綁定變量。</p>
+<p>默認情況下，左側的類型參數被視為綁定變量</p>
 <pre><code class="language-python">K(T: Type, N: Nat) = ...
 K(T, N).
     foo(x) = ...
 </code></pre>
-<p>使用另一個類型變量名稱將導致警告。</p>
+<p>使用另一個類型變量名稱將導致警告</p>
 <pre><code class="language-python">K(T: Type, N: Nat) = ...
-K(U, M). # 警告：K 的類型變量名是 'T' 和 'N'
+K(U, M). # 警告: K 的類型變量名是 'T' 和 'N'
     foo(x) = ...
 </code></pre>
 <p>自定義以來，所有命名空間中的常量都是相同的，因此它們當然不能用于類型變量名稱</p>
 <pre><code class="language-python">N = 1
-K(N: Nat) = ... # 名稱錯誤：N 已定義
+K(N: Nat) = ... # 名稱錯誤: N 已定義
 
 L(M: Nat) = ...
 # 僅當 M == N == 1 時才定義
@@ -272,7 +272,7 @@ L(N).
 L(M).
     .bar(self, x) = ...
 </code></pre>
-<p>每個類型參數不能有多個定義，但可以定義具有相同名稱的方法，因為未分配類型參數的依賴類型(非原始類型)和分配的依賴類型(原始類型)之間沒有關系 )。</p>
+<p>每個類型參數不能有多個定義，但可以定義具有相同名稱的方法，因為未分配類型參數的依賴類型(非原始類型)和分配的依賴類型(原始類型)之間沒有關系 )</p>
 <pre><code class="language-python">K(I: Int) = ...
 K.
     # K 不是真正的類型(atomic Kind)，所以我們不能定義方法
@@ -285,21 +285,21 @@ K(0).
 <p>上一節中定義的 <code>id</code> 函數是一個可以是任何類型的函數。 那么 <code>id</code> 函數本身的類型是什么?</p>
 <pre><code class="language-python">print! classof(id) # |T: Type| T -&gt; T
 </code></pre>
-<p>我們得到一個類型<code>|T: Type| T -&gt; T</code>。 這稱為一個 <strong>封閉的全稱量化類型/全稱類型</strong>，即<code>['a. ...]'</code> 在 ML 和 <code>forall t. ...</code> 在 Haskell 中。 為什么使用形容詞&quot;關閉&quot;將在下面討論。</p>
-<p>封閉的全稱量化類型有一個限制：只有子程序類型可以被通用量化，即只有子程序類型可以放在左子句中。 但這已經足夠了，因為子程序是 Erg 中最基本的控制結構，所以當我們說&quot;我要處理任意 X&quot;時，即我想要一個可以處理任意 X 的子程序。所以，量化類型具有相同的含義 作為多態函數類型。 從現在開始，這種類型基本上被稱為多態函數類型。</p>
-<p>與匿名函數一樣，多態類型具有任意類型變量名稱，但它們都具有相同的值。</p>
+<p>我們得到一個類型<code>|T: Type| T -&gt; T</code>。 這稱為一個 <strong>封閉的全稱量化類型/全稱類型</strong>，即<code>['a. ...]'</code> 在 ML 和 <code>forall t. ...</code> 在 Haskell 中。 為什么使用形容詞&quot;關閉&quot;將在下面討論</p>
+<p>封閉的全稱量化類型有一個限制: 只有子程序類型可以被通用量化，即只有子程序類型可以放在左子句中。 但這已經足夠了，因為子程序是 Erg 中最基本的控制結構，所以當我們說&quot;我要處理任意 X&quot;時，即我想要一個可以處理任意 X 的子程序。所以，量化類型具有相同的含義 作為多態函數類型。 從現在開始，這種類型基本上被稱為多態函數類型</p>
+<p>與匿名函數一樣，多態類型具有任意類型變量名稱，但它們都具有相同的值</p>
 <pre><code class="language-python">assert (|T: Type| T -&gt; T) == (|U: Type| U -&gt; U)
 </code></pre>
-<p>當存在 alpha 等價時，等式得到滿足，就像在 lambda 演算中一樣。 由于對類型的操作有一些限制，所以總是可以確定等價的(如果我們不考慮 stoppage 屬性)。</p>
+<p>當存在 alpha 等價時，等式得到滿足，就像在 lambda 演算中一樣。 由于對類型的操作有一些限制，所以總是可以確定等價的(如果我們不考慮 stoppage 屬性)</p>
 <h2 id="多態函數類型的子類型化"><a class="header" href="#多態函數類型的子類型化">多態函數類型的子類型化</a></h2>
-<p>多態函數類型可以是任何函數類型。 這意味著與任何函數類型都存在子類型關系。 讓我們詳細看看這種關系。</p>
-<p>類型變量在左側定義并在右側使用的類型，例如 <code>OpenFn T: Type = T -&gt; T</code>，稱為 <strong>open 通用類型</strong>。
-相反，在右側定義和使用類型變量的類型，例如 <code>ClosedFn = |T: Type| T -&gt; T</code>，被稱為 <strong>封閉的通用類型</strong>。</p>
-<p>開放通用類型是所有同構&quot;真&quot;類型的超類型。 相反，封閉的通用類型是所有同構真類型的子類型。</p>
+<p>多態函數類型可以是任何函數類型。 這意味著與任何函數類型都存在子類型關系。 讓我們詳細看看這種關系</p>
+<p>類型變量在左側定義并在右側使用的類型，例如 <code>OpenFn T: Type = T -&gt; T</code>，稱為 <strong>open 通用類型</strong>
+相反，在右側定義和使用類型變量的類型，例如 <code>ClosedFn = |T: Type| T -&gt; T</code>，被稱為 <strong>封閉的通用類型</strong></p>
+<p>開放通用類型是所有同構&quot;真&quot;類型的超類型。 相反，封閉的通用類型是所有同構真類型的子類型</p>
 <pre><code class="language-python">(|T: Type| T -&gt; T) &lt; (Int -&gt; Int) &lt; (T -&gt; T)
 </code></pre>
-<p>您可能還記得封閉的較小/開放的較大。
-但為什么會這樣呢? 為了更好地理解，讓我們考慮每個實例。</p>
+<p>您可能還記得封閉的較小/開放的較大
+但為什么會這樣呢? 為了更好地理解，讓我們考慮每個實例</p>
 <pre><code class="language-python"># id: |T: Type| T -&gt; T
 id|T|(x: T): T = x
 
@@ -321,17 +321,17 @@ id_int_fn(f3: Int -&gt; Int): (Int -&gt; Int) = f
 # id_int_fn(id) == id|Int|
 # id_int_fn(iid) == iid
 </code></pre>
-<p>由于 <code>id</code> 是 <code>|T: Type| 類型T -&gt; T</code>，可以賦值給<code>Int-&gt; Int</code>類型的參數<code>f3</code>，我們可以考慮<code>(|T| T -&gt; T) &lt; (Int -&gt; Int)</code>。
-反之，<code>Int -&gt; Int</code>類型的<code>iid</code>不能賦值給<code>(|T| T -&gt; T)</code>類型的參數<code>f2</code>，但可以賦值給<code>(|T| T -&gt; T)</code>的參數<code>f1</code>輸入 <code>T -&gt; T</code>，所以 <code>(Int -&gt; Int) &lt; (T -&gt; T)</code>。
-因此，確實是<code>(|T| T -&gt; T) &lt; (Int -&gt; Int) &lt; (T -&gt; T)</code>。</p>
+<p>由于 <code>id</code> 是 <code>|T: Type| 類型T -&gt; T</code>，可以賦值給<code>Int-&gt; Int</code>類型的參數<code>f3</code>，我們可以考慮<code>(|T| T -&gt; T) &lt; (Int -&gt; Int)</code>
+反之，<code>Int -&gt; Int</code>類型的<code>iid</code>不能賦值給<code>(|T| T -&gt; T)</code>類型的參數<code>f2</code>，但可以賦值給<code>(|T| T -&gt; T)</code>的參數<code>f1</code>輸入 <code>T -&gt; T</code>，所以 <code>(Int -&gt; Int) &lt; (T -&gt; T)</code>
+因此，確實是<code>(|T| T -&gt; T) &lt; (Int -&gt; Int) &lt; (T -&gt; T)</code></p>
 <h2 id="量化類型和依賴類型"><a class="header" href="#量化類型和依賴類型">量化類型和依賴類型</a></h2>
 <p>依賴類型和量化類型(多態函數類型)之間有什么關系，它們之間有什么區別?
-我們可以說依賴類型是一種接受參數的類型，而量化類型是一種賦予參數任意性的類型。</p>
-<p>重要的一點是封閉的多態類型本身沒有類型參數。例如，多態函數類型<code>|T| T -&gt; T</code> 是一個接受多態函數 <strong>only</strong> 的類型，它的定義是封閉的。您不能使用其類型參數<code>T</code>來定義方法等。</p>
-<p>在 Erg 中，類型本身也是一個值，因此帶參數的類型(例如函數類型)可能是依賴類型。換句話說，多態函數類型既是量化類型又是依賴類型。</p>
+我們可以說依賴類型是一種接受參數的類型，而量化類型是一種賦予參數任意性的類型</p>
+<p>重要的一點是封閉的多態類型本身沒有類型參數。例如，多態函數類型<code>|T| T -&gt; T</code> 是一個接受多態函數 <strong>only</strong> 的類型，它的定義是封閉的。您不能使用其類型參數<code>T</code>來定義方法等</p>
+<p>在 Erg 中，類型本身也是一個值，因此帶參數的類型(例如函數類型)可能是依賴類型。換句話說，多態函數類型既是量化類型又是依賴類型</p>
 <pre><code class="language-python">PolyFn = Patch(|T| T -&gt; T)
 PolyFn.
-    type self = T # 名稱錯誤：找不到&quot;T&quot;
+    type self = T # 名稱錯誤: 找不到&quot;T&quot;
 DepFn T = Patch(T -&gt; T)
 DepFn.
     type self =

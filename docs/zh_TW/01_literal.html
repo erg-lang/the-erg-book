@@ -157,29 +157,29 @@
 assert 0.5 == .5
 </code></pre>
 <blockquote>
-<p><strong>注意</strong>：這個函數 <code>assert</code> 用于表明 <code>1.0</code> 和 <code>1.</code> 相等。
-后續文檔可能會使用 <code>assert</code> 來表示結果是相等的。</p>
+<p><strong>注意</strong>: 這個函數 <code>assert</code> 用于表明 <code>1.0</code> 和 <code>1.</code> 相等
+后續文檔可能會使用 <code>assert</code> 來表示結果是相等的</p>
 </blockquote>
 <h3 id="字符串字面量"><a class="header" href="#字符串字面量">字符串字面量</a></h3>
-<p>可以使用任何 Unicode 可表示的字符串。
-與 Python 不同，引號不能包含在 <code>'</code> 中。 如果要在字符串中使用 <code>&quot;</code>，請使用 <code>\&quot;</code>。</p>
+<p>可以使用任何 Unicode 可表示的字符串
+與 Python 不同，引號不能包含在 <code>'</code> 中。 如果要在字符串中使用 <code>&quot;</code>，請使用 <code>\&quot;</code></p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;?????????? ??????????&quot;, ...
 </code></pre>
-<p><code>{}</code> 允許您在字符串中嵌入表達式。 這稱為字符串插值。
-如果要輸出 <code>{</code>、<code>}</code> 本身，請使用 <code>\{</code>、<code>\}</code>。</p>
+<p><code>{}</code> 允許您在字符串中嵌入表達式。 這稱為字符串插值
+如果要輸出 <code>{</code>、<code>}</code> 本身，請使用 <code>\{</code>、<code>\}</code></p>
 <pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;{1} + {1} is {1+1}&quot;
 s = &quot;1+1&quot;
 assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
 </code></pre>
 <h3 id="指數字面量"><a class="header" href="#指數字面量">指數字面量</a></h3>
-<p>這是學術計算中常用的表示指數符號的文字。 它是&quot;比率&quot;類型的一個實例。
-該符號與 Python 中的符號相同。</p>
+<p>這是學術計算中常用的表示指數符號的文字。 它是&quot;比率&quot;類型的一個實例
+該符號與 Python 中的符號相同</p>
 <pre><code class="language-python">1e-34, 0.4e-10, 2.455+e5, 245e5, 25E5, ...
 </code></pre>
 <pre><code class="language-python">assert 1e-10 == 0.0000000001
 </code></pre>
 <h2 id="復合字面量"><a class="header" href="#復合字面量">復合字面量</a></h2>
-<p>這些文字中的每一個都有自己的文檔分別描述它們，因此請參閱該文檔以獲取詳細信息。</p>
+<p>這些文字中的每一個都有自己的文檔分別描述它們，因此請參閱該文檔以獲取詳細信息</p>
 <h3 id="a-href10_arrayhtml數組字面量a"><a class="header" href="#a-href10_arrayhtml數組字面量a"><a href="./10_array.html">數組字面量</a></a></h3>
 <pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], [1, &quot;1&quot;, True, [1]], ...
 </code></pre>
@@ -221,7 +221,7 @@ assert 0.0f32 == 0.0f64
 </code></pre>
 <p>一個&quot;復雜&quot;對象只是一個虛數單位對象<code>im</code>的算術組合</p>
 <h2 id="-less-乘法"><a class="header" href="#-less-乘法">*-less 乘法</a></h2>
-<p>在 Erg 中，您可以省略 <code>*</code> 來表示乘法，只要解釋上沒有混淆即可。 但是，運算符的組合強度設置為強于 <code>*</code>。</p>
+<p>在 Erg 中，您可以省略 <code>*</code> 來表示乘法，只要解釋上沒有混淆即可。 但是，運算符的組合強度設置為強于 <code>*</code></p>
 <pre><code class="language-python"># same as `assert (1*m) / (1*s) == 1*(m/s)`
 assert 1m / 1s == 1 (m/s)
 </code></pre>

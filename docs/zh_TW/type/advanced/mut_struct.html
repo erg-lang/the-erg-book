@@ -145,25 +145,25 @@
                     <main>
                         <h1 id="可變結構類型"><a class="header" href="#可變結構類型">可變結構類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/mut_struct.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/mut_struct.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p><code>T!</code> 類型被描述為可以被任何 <code>T</code> 類型對象替換的盒子類型。</p>
+<p><code>T!</code> 類型被描述為可以被任何 <code>T</code> 類型對象替換的盒子類型</p>
 <pre><code class="language-python">Particle!State: {&quot;base&quot;, &quot;excited&quot;}! = Class(... Impl := Phantom State)
 Particle!
     # 此方法將狀態從&quot;base&quot;移動到&quot;excited&quot;
     apply_electric_field!(ref! self(&quot;base&quot; ~&gt; &quot;excited&quot;), field: Vector) = ...
 </code></pre>
-<p><code>T!</code> 類型可以替換數據，但不能改變其結構。
-更像是一個真實程序的行為，它不能改變它的大小(在堆上)。 這樣的類型稱為不可變結構(mutable)類型。</p>
-<p>事實上，有些數據結構不能用不變的結構類型來表示。
-例如，可變長度數組。 <code>[T; N]!</code>類型可以包含任何<code>[T; N]</code>，但不能被<code>[T; N+1]</code> 等等。</p>
-<p>換句話說，長度不能改變。 要改變長度，必須改變類型本身的結構。</p>
-<p>這是通過可變結構(可變)類型實現的。</p>
+<p><code>T!</code> 類型可以替換數據，但不能改變其結構
+更像是一個真實程序的行為，它不能改變它的大小(在堆上)。 這樣的類型稱為不可變結構(mutable)類型</p>
+<p>事實上，有些數據結構不能用不變的結構類型來表示
+例如，可變長度數組。 <code>[T; N]!</code>類型可以包含任何<code>[T; N]</code>，但不能被<code>[T; N+1]</code> 等等</p>
+<p>換句話說，長度不能改變。 要改變長度，必須改變類型本身的結構</p>
+<p>這是通過可變結構(可變)類型實現的</p>
 <pre><code class="language-python">v = [Str; !0].new()
 v.push! &quot;Hello&quot;
 v: [Str; !1].
 </code></pre>
-<p>對于可變結構類型，可變類型參數用 <code>!</code> 標記。 在上述情況下，類型 <code>[Str; !0]</code> 可以更改為 <code>[Str; !1]</code> 等等。 即，可以改變長度。
-順便說一句，<code>[T; !N]</code> 類型是 <code>ArrayWithLength!(T, !N)</code> 類型的糖衣語法。</p>
-<p>可變結構類型當然可以是用戶定義的。 但是請注意，在構造方法方面與不變結構類型存在一些差異。</p>
+<p>對于可變結構類型，可變類型參數用 <code>!</code> 標記。 在上述情況下，類型 <code>[Str; !0]</code> 可以更改為 <code>[Str; !1]</code> 等等。 即，可以改變長度
+順便說一句，<code>[T; !N]</code> 類型是 <code>ArrayWithLength!(T, !N)</code> 類型的糖衣語法</p>
+<p>可變結構類型當然可以是用戶定義的。 但是請注意，在構造方法方面與不變結構類型存在一些差異</p>
 <pre><code class="language-python">Nil T = Class(Impl := Phantom T)
 List T, !0 = Inherit Nil T
 List T, N: Nat! = Class {head = T; rest = List(T, !N-1)}

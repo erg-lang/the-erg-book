@@ -145,7 +145,7 @@
                     <main>
                         <h1 id="傳播賦值"><a class="header" href="#傳播賦值">傳播賦值</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/28_spread_syntax.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/28_spread_syntax.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>在分解賦值中，將 <code>...</code> 放在變量前面會將所有剩余元素展開到該變量中。 這稱為擴展賦值。</p>
+<p>在分解賦值中，將 <code>...</code> 放在變量前面會將所有剩余元素展開到該變量中。 這稱為擴展賦值</p>
 <pre><code class="language-python">[x,...y] = [1, 2, 3]
 assert x == 1
 assert y == [2, 3]
@@ -154,8 +154,8 @@ assert x == 1
 assert y == (2, 3)
 </code></pre>
 <h2 id="提取賦值"><a class="header" href="#提取賦值">提取賦值</a></h2>
-<p>如果在 <code>...</code> 之后沒有寫入任何內容，則忽略并分配剩余的元素。 這種類型的擴展賦值具體稱為抽取賦值。
-提取分配是一種方便的語法，用于本地化模塊或記錄中的特定屬性。</p>
+<p>如果在 <code>...</code> 之后沒有寫入任何內容，則忽略并分配剩余的元素。 這種類型的擴展賦值具體稱為抽取賦值
+提取分配是一種方便的語法，用于本地化模塊或記錄中的特定屬性</p>
 <pre><code class="language-python">{sin; cos; tan; ..} = import &quot;math&quot;
 </code></pre>
 <p>After that, you can use <code>sin, cos, tan</code> locally.</p>

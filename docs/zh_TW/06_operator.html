@@ -145,10 +145,10 @@
                     <main>
                         <h1 id="運算符"><a class="header" href="#運算符">運算符</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/06_operator.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/06_operator.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>運算符是表示操作的符號。 操作數是運算符(左)右側的東西。</p>
-<p>運算符是一種函數，因此它們本身就是可以綁定到變量的一流對象。 綁定時，需要用```括起來。
-對于<code>+</code>(和<code>-</code>)，有一元和二元運算符，所以必須指定<code>_+_</code>(二元運算)/<code>+_</code>(一元運算)。</p>
-<pre><code class="language-python">add = `+` # 語法錯誤：指定 `_+_` 或 `+_`
+<p>運算符是表示操作的符號。 操作數是運算符(左)右側的東西</p>
+<p>運算符是一種函數，因此它們本身就是可以綁定到變量的一流對象。 綁定時，需要用```括起來
+對于<code>+</code>(和<code>-</code>)，有一元和二元運算符，所以必須指定<code>_+_</code>(二元運算)/<code>+_</code>(一元運算)</p>
+<pre><code class="language-python">add = `+` # 語法錯誤: 指定 `_+_` 或 `+_`
 add=`_+_`
 assert f(1, 2) == 3
 assert f(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
@@ -156,10 +156,10 @@ assert f(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
 g = `*` # OK, 這只是二進制
 assert g(1, 2) == 2
 </code></pre>
-<p>一些稱為特殊形式的基本運算符不能被綁定。</p>
-<pre><code class="language-python">def = `=` # 語法錯誤：無法綁定 `=` 運算符，這是一種特殊形式
+<p>一些稱為特殊形式的基本運算符不能被綁定</p>
+<pre><code class="language-python">def = `=` # 語法錯誤: 無法綁定 `=` 運算符，這是一種特殊形式
 # NG: def x, 1
-function = `-&gt;` # 語法錯誤：無法綁定 `-&gt;` 運算符，這是一種特殊形式
+function = `-&gt;` # 語法錯誤: 無法綁定 `-&gt;` 運算符，這是一種特殊形式
 # NG: function x, x + 1
 </code></pre>
 

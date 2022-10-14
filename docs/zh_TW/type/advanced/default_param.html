@@ -145,7 +145,7 @@
                     <main>
                         <h1 id="帶默認參數的函數類型"><a class="header" href="#帶默認參數的函數類型">帶默認參數的函數類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/default_param.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/default_param.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>首先，讓我們看一個使用默認參數的示例。</p>
+<p>首先，讓我們看一個使用默認參數的示例</p>
 <pre><code class="language-python">f: (Int, Int, z := Int) -&gt; Int
 f(x, y, z := 0) = x + y + z
 
@@ -158,12 +158,12 @@ fold(f, arr, acc := 0) = fold(f, arr[1..], f(acc, arr[0]))
 assert fold(f, [1, 2, 3]) == 6
 assert fold(g, [1, 2, 3]) == 8
 </code></pre>
-<p><code>:=</code> 之后的參數是默認參數。
+<p><code>:=</code> 之后的參數是默認參數
 子類型規則如下:</p>
 <pre><code class="language-python">((X, y := Y) -&gt; Z) &lt;: (X -&gt; Z)
 ((X, y := Y, ...) -&gt; Z) &lt;: ((X, ...) -&gt; Z)
 </code></pre>
-<p>第一個意味著可以用沒有默認參數的函數來識別具有默認參數的函數。
+<p>第一個意味著可以用沒有默認參數的函數來識別具有默認參數的函數
 第二個意味著可以省略任何默認參數。</p>
 
                     </main>

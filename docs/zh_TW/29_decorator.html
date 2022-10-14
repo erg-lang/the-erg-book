@@ -145,18 +145,18 @@
                     <main>
                         <h1 id="裝飾器修飾符"><a class="header" href="#裝飾器修飾符">裝飾器(修飾符)</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/29_decorator.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/29_decorator.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>裝飾器用于向類型或函數添加或演示特定狀態或行為。
-裝飾器的語法如下。</p>
+<p>裝飾器用于向類型或函數添加或演示特定狀態或行為
+裝飾器的語法如下</p>
 <pre><code class="language-python">@deco
 X=...
 </code></pre>
-<p>你可以有多個裝飾器，只要它們不沖突。</p>
-<p>裝飾器不是一個特殊的對象，它只是一個單參數函數。 裝飾器等價于下面的偽代碼。</p>
+<p>你可以有多個裝飾器，只要它們不沖突</p>
+<p>裝飾器不是一個特殊的對象，它只是一個單參數函數。 裝飾器等價于下面的偽代碼</p>
 <pre><code class="language-python">X=...
 X = deco(X)
 </code></pre>
-<p>Erg 不允許重新分配變量，因此上面的代碼不起作用。
-對于簡單的變量，它與<code>X = deco(...)</code> 相同，但對于即時塊和子例程，你不能這樣做，所以你需要一個裝飾器。</p>
+<p>Erg 不允許重新分配變量，因此上面的代碼不起作用
+對于簡單的變量，它與<code>X = deco(...)</code> 相同，但對于即時塊和子例程，你不能這樣做，所以你需要一個裝飾器</p>
 <pre><code class="language-python">@deco
 f x =
     y = ...
@@ -167,15 +167,15 @@ f x =
 @LongNameDeco2
 C = Class...
 </code></pre>
-<p>下面是一些常用的內置裝飾器。</p>
+<p>下面是一些常用的內置裝飾器</p>
 <h2 id="可繼承"><a class="header" href="#可繼承">可繼承</a></h2>
-<p>指示定義類型是可繼承的類。 如果為參數 <code>scope</code> 指定 <code>&quot;public&quot;</code>，甚至可以繼承外部模塊的類。 默認情況下它是<code>&quot;private&quot;</code>，不能被外部繼承。</p>
+<p>指示定義類型是可繼承的類。 如果為參數 <code>scope</code> 指定 <code>&quot;public&quot;</code>，甚至可以繼承外部模塊的類。 默認情況下它是<code>&quot;private&quot;</code>，不能被外部繼承</p>
 <h2 id="最后"><a class="header" href="#最后">最后</a></h2>
-<p>使該方法不可覆蓋。 將它添加到類中使其成為不可繼承的類，但由于它是默認值，因此沒有意義。</p>
+<p>使該方法不可覆蓋。 將它添加到類中使其成為不可繼承的類，但由于它是默認值，因此沒有意義</p>
 <h2 id="覆蓋"><a class="header" href="#覆蓋">覆蓋</a></h2>
-<p>覆蓋屬性時使用。 默認情況下，如果您嘗試定義與基類相同的屬性，Erg 將拋出錯誤。</p>
+<p>覆蓋屬性時使用。 默認情況下，如果您嘗試定義與基類相同的屬性，Erg 將拋出錯誤</p>
 <h2 id="實現"><a class="header" href="#實現">實現</a></h2>
-<p>表示參數 trait 已實現。</p>
+<p>表示參數 trait 已實現</p>
 <pre><code class="language-python">Add = Trait {
     .`_+_` = Self.(Self) -&gt; Self
 }
@@ -191,8 +191,8 @@ C.
     `_-_` self, other = C.new {i = self::i - other::}
 </code></pre>
 <h2 id="附"><a class="header" href="#附">附</a></h2>
-<p>指定默認情況下隨 trait 附帶的附件補丁。
-這允許您重現與 Rust 特征相同的行為。</p>
+<p>指定默認情況下隨 trait 附帶的附件補丁
+這允許您重現與 Rust 特征相同的行為</p>
 <pre><code class="language-python"># foo.er
 Add R = Trait {
     .AddO = Type
@@ -206,14 +206,14 @@ AddForInt.AddO = Int
 AddForOdd = Patch(Odd, Impl := ClosedAdd)
 AddForOdd.AddO = Even
 </code></pre>
-<p>當從其他模塊導入特征時，這將自動應用附件補丁。</p>
+<p>當從其他模塊導入特征時，這將自動應用附件補丁</p>
 <pre><code class="language-Python"># 本來應該同時導入IntIsBinAdd和OddIsBinAdd，但是如果是附件補丁可以省略
 {BinAdd; ...} = import &quot;foo&quot;
 
 assert Int. AddO == Int
 assert Odd.AddO == Even
 </code></pre>
-<p>在內部，它只是使用 trait 的 .attach 方法附加的。 可以使用 trait 的 <code>.detach</code> 方法消除沖突。</p>
+<p>在內部，它只是使用 trait 的 .attach 方法附加的。 可以使用 trait 的 <code>.detach</code> 方法消除沖突</p>
 <pre><code class="language-python">@Attach X
 T = Trait...
 assert X in T. attaches
@@ -222,9 +222,9 @@ assert X not in U. attaches
 assert Y in U. attaches
 </code></pre>
 <h2 id="已棄用"><a class="header" href="#已棄用">已棄用</a></h2>
-<p>指示變量規范已過時且不推薦使用。</p>
+<p>指示變量規范已過時且不推薦使用</p>
 <h2 id="測試"><a class="header" href="#測試">測試</a></h2>
-<p>表示這是一個測試子例程。 測試子程序使用 <code>erg test</code> 命令運行。</p>
+<p>表示這是一個測試子例程。 測試子程序使用 <code>erg test</code> 命令運行</p>
 
                     </main>
 

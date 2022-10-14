@@ -145,22 +145,22 @@
                     <main>
                         <h1 id="特質"><a class="header" href="#特質">特質</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/03_trait.md&amp;commit_hash=14657486719a134f494e107774ac8f9d5a63f083"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/03_trait.md%26commit_hash%3D14657486719a134f494e107774ac8f9d5a63f083" alt="badge" /></a></p>
-<p>Trait 是一種名義類型，它將類型屬性要求添加到記錄類型。
-它類似于 Python 中的抽象基類 (ABC)，但區別在于能夠執行代數運算。</p>
+<p>Trait 是一種名義類型，它將類型屬性要求添加到記錄類型
+它類似于 Python 中的抽象基類 (ABC)，但區別在于能夠執行代數運算</p>
 <pre><code class="language-python">Norm = Trait {.x = Int; .y = Int; .norm = Self.() -&gt; Int}
 </code></pre>
-<p>特質不區分屬性和方法。</p>
-<p>注意，trait 只能聲明，不能實現(實現是通過一個叫做 patching 的特性來實現的，后面會討論)。
-可以通過指定部分類型來檢查特征在類中的實現。</p>
+<p>特質不區分屬性和方法</p>
+<p>注意，trait 只能聲明，不能實現(實現是通過一個叫做 patching 的特性來實現的，后面會討論)
+可以通過指定部分類型來檢查特征在類中的實現</p>
 <pre><code class="language-python">Point2D &lt;: Norm
 Point2D = Class {.x = Int; .y = Int}
 Point2D.norm self = self.x**2 + self.y**2
 </code></pre>
 <p>Error if the required attributes are not implemented.</p>
-<pre><code class="language-python">Point2D &lt;: Norm # 類型錯誤：Point2D 不是 Norm 的子類型
+<pre><code class="language-python">Point2D &lt;: Norm # 類型錯誤: Point2D 不是 Norm 的子類型
 Point2D = Class {.x = Int; .y = Int}
 </code></pre>
-<p>特征與結構類型一樣，可以應用組合、替換和消除等操作(例如&quot;T 和 U&quot;)。 由此產生的特征稱為即時特征。</p>
+<p>特征與結構類型一樣，可以應用組合、替換和消除等操作(例如&quot;T 和 U&quot;)。 由此產生的特征稱為即時特征</p>
 <pre><code class="language-python">T = Trait {.x = Int}
 U = Trait {.y = Int}
 V = Trait {.x = Int; y: Int}
@@ -175,9 +175,9 @@ assert Structural(W) == Structural(T.replace {.x = Ratio})
 assert points.iter().map(x -&gt; x.norm()).collect(Array) == [5, 25].
 </code></pre>
 <h2 id="特征包含"><a class="header" href="#特征包含">特征包含</a></h2>
-<p>擴展運算符 <code>...</code> 允許您將包含某個特征的特征定義為超類型。 這稱為特征的 <strong>subsumption</strong>。
-在下面的示例中，<code>BinAddSub</code> 包含 <code>BinAdd</code> 和 <code>BinSub</code>。
-這對應于類中的繼承，但與繼承不同的是，可以使用&quot;和&quot;組合多個基類型。 也允許被 <code>not</code> 部分排除的特征。</p>
+<p>擴展運算符 <code>...</code> 允許您將包含某個特征的特征定義為超類型。 這稱為特征的 <strong>subsumption</strong>
+在下面的示例中，<code>BinAddSub</code> 包含 <code>BinAdd</code> 和 <code>BinSub</code>
+這對應于類中的繼承，但與繼承不同的是，可以使用&quot;和&quot;組合多個基類型。 也允許被 <code>not</code> 部分排除的特征</p>
 <pre><code class="language-python">Add R = Trait {
     .AddO = Type
     . `_+_` = Self.(R) -&gt; Self.AddO
@@ -205,8 +205,8 @@ C.
 
 assert add(C.new(1), C.new(2)) == C.new(3)
 </code></pre>
-<p>名義特征不能簡單地通過實現請求方法來使用，而必須明確聲明已實現。
-在以下示例中，<code>add</code>不能與<code>C</code>類型的參數一起使用，因為沒有明確的實現聲明。 它必須是<code>C = Class {i = Int}, Impl := Add</code>。</p>
+<p>名義特征不能簡單地通過實現請求方法來使用，而必須明確聲明已實現
+在以下示例中，<code>add</code>不能與<code>C</code>類型的參數一起使用，因為沒有明確的實現聲明。 它必須是<code>C = Class {i = Int}, Impl := Add</code></p>
 <pre><code class="language-python">Add = Trait {
     .`_+_` = Self.(Self) -&gt; Self
 }
@@ -218,12 +218,12 @@ C.
     new i = Self.__new__ {i;}
     `_+_` self, other: Self = Self.new {i = self::i + other::i}
 
-add C.new(1), C.new(2) # 類型錯誤：C 不是 Add 的子類
-# 提示：繼承或修補&quot;添加&quot;
+add C.new(1), C.new(2) # 類型錯誤: C 不是 Add 的子類
+# 提示: 繼承或修補&quot;添加&quot;
 </code></pre>
-<p>不需要為此實現聲明結構特征，但類型推斷不起作用。 使用時需要指定類型。</p>
+<p>不需要為此實現聲明結構特征，但類型推斷不起作用。 使用時需要指定類型</p>
 <h2 id="多態特征"><a class="header" href="#多態特征">多態特征</a></h2>
-<p>特征可以帶參數。 這與多態類型相同。</p>
+<p>特征可以帶參數。 這與多態類型相同</p>
 <pre><code class="language-python">Mapper T: Type = Trait {
     .mapIter = {Iterator}
     .map = (self: Self, T -&gt; U) -&gt; Self.MapIter U
@@ -236,8 +236,8 @@ add C.new(1), C.new(2) # 類型錯誤：C 不是 Add 的子類
 assert [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
 </code></pre>
 <h2 id="override特征"><a class="header" href="#override特征">Override特征</a></h2>
-<p>派生特征可以Override基本特征的類型定義。
-在這種情況下，Override方法的類型必須是基方法類型的子類型。</p>
+<p>派生特征可以Override基本特征的類型定義
+在這種情況下，Override方法的類型必須是基方法類型的子類型</p>
 <pre><code class="language-python"># `Self.(R) -&gt; O` is a subtype of ``Self.(R) -&gt; O or Panic
 Div R, O: Type = Trait {
     . `/` = Self.(R) -&gt; O or Panic
@@ -248,7 +248,7 @@ SafeDiv R, O = Subsume Div, {
 }
 </code></pre>
 <h2 id="在-api-中實現和解決重復的特征"><a class="header" href="#在-api-中實現和解決重復的特征">在 API 中實現和解決重復的特征</a></h2>
-<p><code>Add</code>、<code>Sub</code> 和 <code>Mul</code> 的實際定義如下所示。</p>
+<p><code>Add</code>、<code>Sub</code> 和 <code>Mul</code> 的實際定義如下所示</p>
 <pre><code class="language-python">Add R = Trait {
     .Output = Type
     . `_+_` = Self.(R) -&gt; .Output
@@ -272,13 +272,13 @@ P|Self &lt;: Mul(Int)|.
     Output = P
     `*` self, other = P.new {.x = self.x * other; .y = self.y * other}
 </code></pre>
-<p>以這種方式實現的重復 API 在使用時幾乎總是類型推斷，但也可以通過使用 <code>||</code> 顯式指定類型來解決。</p>
-<pre><code class="language-python">print! P.Output # 類型錯誤：不明確的類型
+<p>以這種方式實現的重復 API 在使用時幾乎總是類型推斷，但也可以通過使用 <code>||</code> 顯式指定類型來解決</p>
+<pre><code class="language-python">print! P.Output # 類型錯誤: 不明確的類型
 print! P|&lt;: Mul(Int)|.Output # &lt;class 'P'&gt;
 </code></pre>
-<h2 id="附錄與-rust-特征的區別"><a class="header" href="#附錄與-rust-特征的區別">附錄：與 Rust 特征的區別</a></h2>
-<p>Erg 的特征忠實于 [Sch?rli 等人] (https://www.ptidej.net/courses/ift6251/fall06/presentations/061122/061122.doc.pdf) 提出的特征。
-為了允許代數運算，特征被設計為不能有方法實現目錄，但可以在必要時進行修補。</p>
+<h2 id="附錄-與-rust-特征的區別"><a class="header" href="#附錄-與-rust-特征的區別">附錄: 與 Rust 特征的區別</a></h2>
+<p>Erg 的特征忠實于 [Sch?rli 等人] (https://www.ptidej.net/courses/ift6251/fall06/presentations/061122/061122.doc.pdf) 提出的特征
+為了允許代數運算，特征被設計為不能有方法實現目錄，但可以在必要時進行修補</p>
 <p 對齊='中心'>
      <a href='./02_basic.md'>上一頁</a> | <a href='./04_class.md'>下一步</a>
 </p>

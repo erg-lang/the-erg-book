@@ -145,7 +145,7 @@
                     <main>
                         <h1 id="值類型"><a class="header" href="#值類型">值類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/08_value.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/08_value.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>值類型是可以在編譯時評估的 Erg 內置類型，具體來說：</p>
+<p>值類型是可以在編譯時評估的 Erg 內置類型，具體來說: </p>
 <pre><code class="language-python">Value = (
     Int
     or Nat
@@ -163,12 +163,12 @@
     or ConstMethod(Const, _)
 )
 </code></pre>
-<p>應用于它們的值類型對象、常量和編譯時子例程稱為 <strong>constant 表達式</strong>。</p>
+<p>應用于它們的值類型對象、常量和編譯時子例程稱為 <strong>constant 表達式</strong></p>
 <pre><code class="language-python">1, 1.0, 1+2im, True, None, &quot;aaa&quot;, [1, 2, 3], Fib(12)
 </code></pre>
-<p>小心子程序。子例程可能是也可能不是值類型。
-由于子程序的實質只是一個指針，因此可以將其視為一個值<a href="#1"><sup id="f1">1</sup></a>，但是在編譯不是子程序的東西時不能使用 在恒定的上下文中。 不是值類型，因為它沒有多大意義。</p>
-<p>將來可能會添加歸類為值類型的類型。</p>
+<p>小心子程序。子例程可能是也可能不是值類型
+由于子程序的實質只是一個指針，因此可以將其視為一個值<a href="#1"><sup id="f1">1</sup></a>，但是在編譯不是子程序的東西時不能使用 在恒定的上下文中。 不是值類型，因為它沒有多大意義</p>
+<p>將來可能會添加歸類為值類型的類型</p>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> Erg 中的術語&quot;值類型&quot;與其他語言中的定義不同。 純 Erg 語義中沒有內存的概念，并且因為它被放置在堆棧上而說它是值類型，或者因為它實際上是一個指針而說它不是值類型是不正確的。 值類型僅表示它是&quot;值&quot;類型或其子類型。 <a href="#f1">?</a></span></p>
 

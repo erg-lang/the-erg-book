@@ -145,12 +145,12 @@
                     <main>
                         <h1 id="代數類型"><a class="header" href="#代數類型">代數類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/13_algebraic.md&amp;commit_hash=c120700585fdb1d655255c8e2817bb13cc8d369e"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/13_algebraic.md%26commit_hash%3Dc120700585fdb1d655255c8e2817bb13cc8d369e" alt="badge" /></a></p>
-<p>代數類型是通過將類型視為代數來操作類型而生成的類型。
-它們處理的操作包括Union、Intersection、Diff、Complement等。
-普通類只能進行Union，其他操作會導致類型錯誤。</p>
+<p>代數類型是通過將類型視為代數來操作類型而生成的類型
+它們處理的操作包括Union、Intersection、Diff、Complement等
+普通類只能進行Union，其他操作會導致類型錯誤</p>
 <h2 id="聯合union"><a class="header" href="#聯合union">聯合(Union)</a></h2>
-<p>聯合類型可以為類型提供多種可能性。 顧名思義，它們是由&quot;或&quot;運算符生成的。
-一個典型的 Union 是 <code>Option</code> 類型。 <code>Option</code> 類型是 <code>T 或 NoneType</code> 補丁類型，主要表示可能失敗的值。</p>
+<p>聯合類型可以為類型提供多種可能性。 顧名思義，它們是由&quot;或&quot;運算符生成的
+一個典型的 Union 是 <code>Option</code> 類型。 <code>Option</code> 類型是 <code>T 或 NoneType</code> 補丁類型，主要表示可能失敗的值</p>
 <pre><code class="language-python">IntOrStr = Int or Str
 assert dict.get(&quot;some key&quot;) in (Int or NoneType)
 
@@ -158,13 +158,13 @@ assert dict.get(&quot;some key&quot;) in (Int or NoneType)
 Option T = T or NoneType
 </code></pre>
 <h2 id="路口"><a class="header" href="#路口">路口</a></h2>
-<p>交集類型是通過將類型與 <code>and</code> 操作組合得到的。</p>
+<p>交集類型是通過將類型與 <code>and</code> 操作組合得到的</p>
 <pre><code class="language-python">Num = Add and Sub and Mul and Eq
 </code></pre>
-<p>如上所述，普通類不能與&quot;and&quot;操作結合使用。 這是因為實例只屬于一個類。</p>
+<p>如上所述，普通類不能與&quot;and&quot;操作結合使用。 這是因為實例只屬于一個類</p>
 <h2 id="差異"><a class="header" href="#差異">差異</a></h2>
-<p>Diff 類型是通過 <code>not</code> 操作獲得的。
-最好使用 <code>and not</code> 作為更接近英文文本的符號，但建議只使用 <code>not</code>，因為它更適合與 <code>and</code> 和 <code>or</code> 一起使用。</p>
+<p>Diff 類型是通過 <code>not</code> 操作獲得的
+最好使用 <code>and not</code> 作為更接近英文文本的符號，但建議只使用 <code>not</code>，因為它更適合與 <code>and</code> 和 <code>or</code> 一起使用</p>
 <pre><code class="language-python">CompleteNum = Add and Sub and Mul and Div and Eq and Ord
 Num = CompleteNum not Div not Ord
 
@@ -172,9 +172,9 @@ True = Bool not {False}
 OneTwoThree = {1, 2, 3, 4, 5, 6} - {4, 5, 6, 7, 8, 9, 10}
 </code></pre>
 <h2 id="補充"><a class="header" href="#補充">補充</a></h2>
-<p>補碼類型是通過 <code>not</code> 操作得到的，這是一個一元操作。 <code>not T</code> 類型是 <code>{=} not T</code> 的簡寫。
-類型為&quot;非 T&quot;的交集等價于 Diff，類型為&quot;非 T&quot;的 Diff 等價于交集。
-但是，不推薦這種寫法。</p>
+<p>補碼類型是通過 <code>not</code> 操作得到的，這是一個一元操作。 <code>not T</code> 類型是 <code>{=} not T</code> 的簡寫
+類型為&quot;非 T&quot;的交集等價于 Diff，類型為&quot;非 T&quot;的 Diff 等價于交集
+但是，不推薦這種寫法</p>
 <pre><code class="language-python"># 非零數類型的最簡單定義
 NonZero = Not {0}
 # 不推薦使用的樣式
@@ -182,26 +182,26 @@ NonZero = Not {0}
 Bool == {True} not not {False} # 2 == 1 - -1
 </code></pre>
 <h2 id="真代數類型"><a class="header" href="#真代數類型">真代數類型</a></h2>
-<p>有兩種代數類型：可以簡化的表觀代數類型和不能進一步簡化的真實代數類型。
-&quot;表觀代數類型&quot;包括 Enum、Interval 和 Record 類型的 <code>or</code> 和 <code>and</code>。
-這些不是真正的代數類型，因為它們被簡化了，并且將它們用作類型說明符將導致警告； 要消除警告，您必須簡化它們或定義它們的類型。</p>
+<p>有兩種代數類型: 可以簡化的表觀代數類型和不能進一步簡化的真實代數類型
+&quot;表觀代數類型&quot;包括 Enum、Interval 和 Record 類型的 <code>or</code> 和 <code>and</code>
+這些不是真正的代數類型，因為它們被簡化了，并且將它們用作類型說明符將導致警告； 要消除警告，您必須簡化它們或定義它們的類型</p>
 <pre><code class="language-python">assert {1, 2, 3} or {2, 3} == {1, 2, 3}
 assert {1, 2, 3} and {2, 3} == {2, 3}
 assert -2..-1 or 1..2 == {-2, -1, 1, 2}
 
-i: {1, 2} or {3, 4} = 1 # 類型警告：{1, 2} 或 {3, 4} 可以簡化為 {1, 2, 3, 4}
+i: {1, 2} or {3, 4} = 1 # 類型警告: {1, 2} 或 {3, 4} 可以簡化為 {1, 2, 3, 4}
 p: {x = Int, ...} and {y = Int; ...} = {x = 1; y = 2; z = 3}
-# 類型警告：{x = Int, ...} 和 {y = Int; ...} 可以簡化為 {x = Int; y = 整數； ...}
+# 類型警告: {x = Int, ...} 和 {y = Int; ...} 可以簡化為 {x = Int; y = 整數； ...}
 
 Point1D = {x = Int; ...}
 Point2D = Point1D and {y = Int; ...} # == {x = Int; y = Int; ...}
 q: Point2D = {x = 1; y = 2; z = 3}
 </code></pre>
-<p>真正的代數類型包括類型&quot;或&quot;和&quot;與&quot;。 類之間的&quot;或&quot;等類屬于&quot;或&quot;類型。</p>
+<p>真正的代數類型包括類型&quot;或&quot;和&quot;與&quot;。 類之間的&quot;或&quot;等類屬于&quot;或&quot;類型</p>
 <pre><code class="language-python">assert Int or Str == Or(Int, Str)
 assert Int and Marker == And(Int, Marker)
 </code></pre>
-<p>Diff, Complement 類型不是真正的代數類型，因為它們總是可以被簡化。</p>
+<p>Diff, Complement 類型不是真正的代數類型，因為它們總是可以被簡化</p>
 
                     </main>
 

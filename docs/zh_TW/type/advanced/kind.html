@@ -145,16 +145,16 @@
                     <main>
                         <h1 id="kind"><a class="header" href="#kind">Kind</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/kind.md&amp;commit_hash=a9ea4eca75fe849e31f83570159f84b611892d7a"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/kind.md%26commit_hash%3Da9ea4eca75fe849e31f83570159f84b611892d7a" alt="badge" /></a></p>
-<p>一切都在 Erg 中輸入。類型本身也不例外。 <strong>kind</strong> 表示&quot;類型的類型&quot;。例如，<code>Int</code> 屬于 <code>Type</code>，就像 <code>1</code> 屬于 <code>Int</code>。 <code>Type</code> 是最簡單的一種，<strong>atomic kind</strong>。在類型論符號中，<code>Type</code> 對應于 <code>*</code>。</p>
-<p>在Kind的概念中，實際上重要的是一種或多種Kind(多項式Kind)。單項類型，例如<code>Option</code>，屬于它。一元Kind表示為 <code>Type -&gt; Type</code> <a href="#1"><sup id="f1">1</sup></a>。諸如 <code>Array</code> 或 <code>Option</code> 之類的 <strong>container</strong> 特別是一種以類型作為參數的多項式類型。
-正如符號 <code>Type -&gt; Type</code> 所表明的，<code>Option</code> 實際上是一個接收類型 <code>T</code> 并返回類型 <code>Option T</code> 的函數。但是，由于這個函數不是通常意義上的函數，所以通常稱為一元類。</p>
-<p>注意<code>-&gt;</code>本身，它是一個匿名函數操作符，當它接收一個類型并返回一個類型時，也可以看作是一Kind型。</p>
-<p>另請注意，不是原子Kind的Kind不是類型。正如 <code>-1</code> 是一個數字但 <code>-</code> 不是，<code>Option Int</code> 是一個類型但 <code>Option</code> 不是。 <code>Option</code> 等有時被稱為類型構造函數。</p>
+<p>一切都在 Erg 中輸入。類型本身也不例外。 <strong>kind</strong> 表示&quot;類型的類型&quot;。例如，<code>Int</code> 屬于 <code>Type</code>，就像 <code>1</code> 屬于 <code>Int</code>。 <code>Type</code> 是最簡單的一種，<strong>atomic kind</strong>。在類型論符號中，<code>Type</code> 對應于 <code>*</code></p>
+<p>在Kind的概念中，實際上重要的是一種或多種Kind(多項式Kind)。單項類型，例如<code>Option</code>，屬于它。一元Kind表示為 <code>Type -&gt; Type</code> <a href="#1"><sup id="f1">1</sup></a>。諸如 <code>Array</code> 或 <code>Option</code> 之類的 <strong>container</strong> 特別是一種以類型作為參數的多項式類型
+正如符號 <code>Type -&gt; Type</code> 所表明的，<code>Option</code> 實際上是一個接收類型 <code>T</code> 并返回類型 <code>Option T</code> 的函數。但是，由于這個函數不是通常意義上的函數，所以通常稱為一元類</p>
+<p>注意<code>-&gt;</code>本身，它是一個匿名函數操作符，當它接收一個類型并返回一個類型時，也可以看作是一Kind型</p>
+<p>另請注意，不是原子Kind的Kind不是類型。正如 <code>-1</code> 是一個數字但 <code>-</code> 不是，<code>Option Int</code> 是一個類型但 <code>Option</code> 不是。 <code>Option</code> 等有時被稱為類型構造函數</p>
 <pre><code class="language-python">assert not Option in Type
 assert Option in Type -&gt; Type
 </code></pre>
-<p>所以像下面這樣的代碼會報錯：
-在 Erg 中，方法只能在原子類型中定義，并且名稱 <code>self</code> 不能在方法的第一個參數以外的任何地方使用。</p>
+<p>所以像下面這樣的代碼會報錯: 
+在 Erg 中，方法只能在原子類型中定義，并且名稱 <code>self</code> 不能在方法的第一個參數以外的任何地方使用</p>
 <pre><code class="language-python">#K 是一元類型
 K: Type -&gt; Type
 K T = Class...
@@ -164,21 +164,21 @@ foo x = ... # OK，這就像是所謂的靜態方法
 K(T).
     baz self, x = ... # OK
 </code></pre>
-<p>二進制或更高類型的示例是 <code>{T: U}</code>(: <code>(Type, Type) -&gt; Type</code>), <code>(T, U, V)</code>(: <code>(Type, Type, Type) - &gt; Type </code>), ... 等等。</p>
-<p>還有一個零項類型<code>() -&gt; Type</code>。 這有時等同于類型論中的原子類型，但在 Erg 中有所區別。 一個例子是<code>類</code>。</p>
+<p>二進制或更高類型的示例是 <code>{T: U}</code>(: <code>(Type, Type) -&gt; Type</code>), <code>(T, U, V)</code>(: <code>(Type, Type, Type) - &gt; Type </code>), ... 等等</p>
+<p>還有一個零項類型<code>() -&gt; Type</code>。 這有時等同于類型論中的原子類型，但在 Erg 中有所區別。 一個例子是<code>類</code></p>
 <pre><code class="language-python">Nil = Class()
 </code></pre>
 <h2 id="收容類"><a class="header" href="#收容類">收容類</a></h2>
-<p>多項類型之間也存在部分類型關系，或者更確切地說是部分類型關系。</p>
+<p>多項類型之間也存在部分類型關系，或者更確切地說是部分類型關系</p>
 <pre><code class="language-python">K T = ...
 L = Inherit K
 L&lt;: K
 </code></pre>
-<p>也就是說，對于任何 <code>T</code>，如果 <code>L T &lt;: K T</code>，則 <code>L &lt;: K</code>，反之亦然。</p>
+<p>也就是說，對于任何 <code>T</code>，如果 <code>L T &lt;: K T</code>，則 <code>L &lt;: K</code>，反之亦然</p>
 <pre><code class="language-python">?T. L T &lt;: K T &lt;=&gt; L &lt;: K
 </code></pre>
 <h2 id="高階kind"><a class="header" href="#高階kind">高階Kind</a></h2>
-<p>還有一種高階Kind。 這是一種與高階函數相同的概念，一種自身接收一種類型。 <code>(Type -&gt; Type) -&gt; Type</code> 是一種更高的Kind。 讓我們定義一個屬于更高Kind的對象。</p>
+<p>還有一種高階Kind。 這是一種與高階函數相同的概念，一種自身接收一種類型。 <code>(Type -&gt; Type) -&gt; Type</code> 是一種更高的Kind。 讓我們定義一個屬于更高Kind的對象</p>
 <pre><code class="language-python">IntContainerOf K: Type -&gt; Type = K Int
 assert IntContainerOf Option == Option Int
 assert IntContainerOf Result == Result Int
@@ -186,27 +186,27 @@ assert IntContainerOf in (Type -&gt; Type) -&gt; Type
 </code></pre>
 <p>多項式類型的有界變量通常表示為 K, L, ...，其中 K 是 Kind 的 K</p>
 <h2 id="設置kind"><a class="header" href="#設置kind">設置Kind</a></h2>
-<p>在類型論中，有記錄的概念。 這與 Erg 記錄 <a href="#2"><sup id="f2">2</sup></a> 幾乎相同。</p>
+<p>在類型論中，有記錄的概念。 這與 Erg 記錄 <a href="#2"><sup id="f2">2</sup></a> 幾乎相同</p>
 <pre><code class="language-python"># 這是一條記錄，對應于類型論中所謂的記錄
 {x = 1; y = 2}
 </code></pre>
-<p>當所有的記錄值都是類型時，它是一種類型，稱為記錄類型。</p>
+<p>當所有的記錄值都是類型時，它是一種類型，稱為記錄類型</p>
 <pre><code class="language-python">assert {x = 1; y = 2} in {x = Int; y = Int}
 </code></pre>
-<p>記錄類型鍵入記錄。 一個好的猜測者可能認為應該有一個&quot;記錄類型&quot;來鍵入記錄類型。 實際上它是存在的。</p>
+<p>記錄類型鍵入記錄。 一個好的猜測者可能認為應該有一個&quot;記錄類型&quot;來鍵入記錄類型。 實際上它是存在的</p>
 <pre><code class="language-python">log Typeof {x = Int; y = Int} # {{x = Int; y = Int}}
 </code></pre>
-<p>像 <code>{{x = Int; 這樣的類型 y = Int}}</code> 是一種記錄類型。 這不是一個特殊的符號。 它只是一個枚舉類型，只有 <code>{x = Int; y = Int}</code> 作為一個元素。</p>
+<p>像 <code>{{x = Int; 這樣的類型 y = Int}}</code> 是一種記錄類型。 這不是一個特殊的符號。 它只是一個枚舉類型，只有 <code>{x = Int; y = Int}</code> 作為一個元素</p>
 <pre><code class="language-python">Point = {x = Int; y = Int}
 Pointy = {Point}
 </code></pre>
-<p>記錄類型的一個重要屬性是，如果 <code>T: |T|</code> 和 <code>U &lt;: T</code> 則 <code>U: |T|</code>。
-從枚舉實際上是篩子類型的語法糖這一事實也可以看出這一點。</p>
+<p>記錄類型的一個重要屬性是，如果 <code>T: |T|</code> 和 <code>U &lt;: T</code> 則 <code>U: |T|</code>
+從枚舉實際上是篩子類型的語法糖這一事實也可以看出這一點</p>
 <pre><code class="language-python"># {c} == {X: T | X == c} 對于普通對象，但是不能為類型定義相等性，所以 |T| == {X | X &lt;: T}
 {Point} == {P | P &lt;: Point}
 </code></pre>
-<p>類型約束中的 <code>U &lt;: T</code> 實際上是 <code>U: |T|</code> 的語法糖。
-作為此類類型的集合的種類通常稱為集合種類。 Setkind 也出現在迭代器模式中。</p>
+<p>類型約束中的 <code>U &lt;: T</code> 實際上是 <code>U: |T|</code> 的語法糖
+作為此類類型的集合的種類通常稱為集合種類。 Setkind 也出現在迭代器模式中</p>
 <pre><code class="language-python">Iterable T = Trait {
     .Iterator = {Iterator}
     .iter = (self: Self) -&gt; Self.Iterator T
@@ -229,14 +229,14 @@ Fn2(T, U).
 (Int -&gt; Int).f() # 選擇了哪一個?
 </code></pre>
 <p>在上面的示例中，方法 <code>f</code> 會選擇哪個補丁?
-天真，似乎選擇了<code>Fn T</code>，但是<code>Fn2 T，U</code>也是可以的，<code>Option T</code>原樣包含<code>T</code>，所以任何類型都適用，<code>Container K，T</code>也匹配<code>-&gt;(Int, Int)</code>，即 <code>Container(</code>-&gt;<code>, Int)</code> 為 <code>Int -&gt; Int</code>。因此，上述所有四個修復程序都是可能的選擇。</p>
-<p>在這種情況下，根據以下優先標準選擇修復程序。</p>
+天真，似乎選擇了<code>Fn T</code>，但是<code>Fn2 T，U</code>也是可以的，<code>Option T</code>原樣包含<code>T</code>，所以任何類型都適用，<code>Container K，T</code>也匹配<code>-&gt;(Int, Int)</code>，即 <code>Container(</code>-&gt;<code>, Int)</code> 為 <code>Int -&gt; Int</code>。因此，上述所有四個修復程序都是可能的選擇</p>
+<p>在這種情況下，根據以下優先標準選擇修復程序</p>
 <ul>
-<li>任何 <code>K(T)</code>(例如 <code>T or NoneType</code>)優先匹配 <code>Type -&gt; Type</code> 而不是 <code>Type</code>。</li>
-<li>任何 <code>K(T, U)</code>(例如 <code>T -&gt; U</code>)優先匹配 <code>(Type, Type) -&gt; Type</code> 而不是 <code>Type</code>。</li>
-<li>類似的標準適用于種類 3 或更多。</li>
-<li>選擇需要較少類型變量來替換的那個。例如，<code>Int -&gt; Int</code> 是 <code>T -&gt; T</code> 而不是 <code>K(T, T)</code>(替換類型變量：K, T)或 <code>T -&gt; U</code>(替換類型變量：T, U )。(替換類型變量：T)優先匹配。</li>
-<li>如果更換的次數也相同，則報錯為不可選擇。</li>
+<li>任何 <code>K(T)</code>(例如 <code>T or NoneType</code>)優先匹配 <code>Type -&gt; Type</code> 而不是 <code>Type</code></li>
+<li>任何 <code>K(T, U)</code>(例如 <code>T -&gt; U</code>)優先匹配 <code>(Type, Type) -&gt; Type</code> 而不是 <code>Type</code></li>
+<li>類似的標準適用于種類 3 或更多</li>
+<li>選擇需要較少類型變量來替換的那個。例如，<code>Int -&gt; Int</code> 是 <code>T -&gt; T</code> 而不是 <code>K(T, T)</code>(替換類型變量: K, T)或 <code>T -&gt; U</code>(替換類型變量: T, U )。(替換類型變量: T)優先匹配</li>
+<li>如果更換的次數也相同，則報錯為不可選擇</li>
 </ul>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> 在類型理論符號中，<code>*=&gt;*</code> <a href="#f1">?</a></span></p>

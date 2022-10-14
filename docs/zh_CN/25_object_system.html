@@ -145,19 +145,19 @@
                     <main>
                         <h1 id="目的"><a class="header" href="#目的">目的</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/25_object_system.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/25_object_system.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>可以分配给变量的所有数据。 <code>Object</code> 类的属性如下。</p>
+<p>可以分配给变量的所有数据。 <code>Object</code> 类的属性如下</p>
 <ul>
-<li><code>.__repr__</code>：返回对象的(非丰富)字符串表示</li>
-<li><code>.__sizeof__</code>：返回对象的大小(包括堆分配)</li>
+<li><code>.__repr__</code>: 返回对象的(非丰富)字符串表示</li>
+<li><code>.__sizeof__</code>: 返回对象的大小(包括堆分配)</li>
 <li><code>.__dir__</code>: 返回对象属性列表</li>
-<li><code>.__hash__</code>：返回对象的哈希值</li>
+<li><code>.__hash__</code>: 返回对象的哈希值</li>
 <li><code>.__getattribute__</code>: 获取并返回对象的属性</li>
-<li><code>.clone</code>：创建并返回一个对象的克隆(在内存中有一个独立的实体)</li>
-<li><code>.copy</code>：返回对象的副本(指向内存中的同一事物)</li>
+<li><code>.clone</code>: 创建并返回一个对象的克隆(在内存中有一个独立的实体)</li>
+<li><code>.copy</code>: 返回对象的副本(指向内存中的同一事物)</li>
 </ul>
 <h2 id="记录"><a class="header" href="#记录">记录</a></h2>
-<p>由记录文字(<code>{attr = value; ...}</code>)生成的对象。
-这个对象有基本的方法，比如<code>.clone</code>和<code>.__sizeof__</code>。</p>
+<p>由记录文字(<code>{attr = value; ...}</code>)生成的对象
+这个对象有基本的方法，比如<code>.clone</code>和<code>.__sizeof__</code></p>
 <pre><code class="language-python">obj = {.x = 1}
 assert obj.x == 1
 
@@ -165,7 +165,7 @@ obj2 = {...x; .y = 2}
 assert obj2.x == 1 and obj2.y == 2
 </code></pre>
 <h2 id="属性"><a class="header" href="#属性">属性</a></h2>
-<p>与对象关联的对象。 特别是，将 self (<code>self</code>) 作为其隐式第一个参数的子例程属性称为方法。</p>
+<p>与对象关联的对象。 特别是，将 self (<code>self</code>) 作为其隐式第一个参数的子例程属性称为方法</p>
 <pre><code class="language-python"># 请注意，private_attr 中没有`.`
 record = {.public_attr = j; private_attr = 2; .method = self -&gt; self.i + 1}
 record. public_attr == 2
@@ -173,29 +173,29 @@ record.private_attr # AttributeError: private_attr 是私有的
 assert record.method() == 3
 </code></pre>
 <h2 id="元素"><a class="header" href="#元素">元素</a></h2>
-<p>属于特定类型的对象(例如，&quot;1&quot;是&quot;Int&quot;类型的元素)。所有对象至少是<code>{=}</code>类型的元素。
-类的元素有时称为实例。</p>
+<p>属于特定类型的对象(例如，&quot;1&quot;是&quot;Int&quot;类型的元素)。所有对象至少是<code>{=}</code>类型的元素
+类的元素有时称为实例</p>
 <h2 id="子程序"><a class="header" href="#子程序">子程序</a></h2>
-<p>表示作为函数或过程(包括方法)实例的对象。代表子程序的类是&quot;子程序&quot;。
-实现 <code>.__call__</code> 的对象通常称为 <code>Callable</code>。</p>
+<p>表示作为函数或过程(包括方法)实例的对象。代表子程序的类是&quot;子程序&quot;
+实现 <code>.__call__</code> 的对象通常称为 <code>Callable</code></p>
 <h2 id="可调用"><a class="header" href="#可调用">可调用</a></h2>
-<p>一个实现<code>.__call__</code>的对象。它也是 <code>Subroutine</code> 的超类。</p>
+<p>一个实现<code>.__call__</code>的对象。它也是 <code>Subroutine</code> 的超类</p>
 <h2 id="类型"><a class="header" href="#类型">类型</a></h2>
-<p>定义需求属性并使对象通用化的对象。
-主要有两种类型：多态类型和单态类型。典型的单态类型有<code>Int</code>、<code>Str</code>等，多态类型有<code>Option Int</code>、<code>[Int; 3]</code>等
-此外，定义改变对象状态的方法的类型称为 Mutable 类型，需要在变量属性中添加 <code>!</code>(例如动态数组：<code>[T; !_]</code>)。</p>
+<p>定义需求属性并使对象通用化的对象
+主要有两种类型: 多态类型和单态类型。典型的单态类型有<code>Int</code>、<code>Str</code>等，多态类型有<code>Option Int</code>、<code>[Int; 3]</code>等
+此外，定义改变对象状态的方法的类型称为 Mutable 类型，需要在变量属性中添加 <code>!</code>(例如动态数组: <code>[T; !_]</code>)</p>
 <h2 id="班级"><a class="header" href="#班级">班级</a></h2>
-<p>具有 <code>.__new__</code>、<code>.__init__</code> 方法等的类型。实现基于类的面向对象。</p>
+<p>具有 <code>.__new__</code>、<code>.__init__</code> 方法等的类型。实现基于类的面向对象</p>
 <h2 id="功能"><a class="header" href="#功能">功能</a></h2>
-<p>对外部变量(不包括静态变量)有读权限但对外部变量没有读/写权限的子程序。换句话说，它没有外部副作用。
-Erg 函数的定义与 Python 的不同，因为它们不允许副作用。</p>
+<p>对外部变量(不包括静态变量)有读权限但对外部变量没有读/写权限的子程序。换句话说，它没有外部副作用
+Erg 函数的定义与 Python 的不同，因为它们不允许副作用</p>
 <h2 id="程序"><a class="header" href="#程序">程序</a></h2>
-<p>它对外部变量具有读取和&quot;自我&quot;权限，对静态变量具有读/写权限，并允许使用所有子例程。它可能有外部副作用。</p>
+<p>它对外部变量具有读取和&quot;自我&quot;权限，对静态变量具有读/写权限，并允许使用所有子例程。它可能有外部副作用</p>
 <h2 id="方法"><a class="header" href="#方法">方法</a></h2>
-<p>隐式将&quot;self&quot;作为第一个参数的子例程。它与简单的函数/过程是不同的类型。</p>
+<p>隐式将&quot;self&quot;作为第一个参数的子例程。它与简单的函数/过程是不同的类型</p>
 <h2 id="实体"><a class="header" href="#实体">实体</a></h2>
-<p>不是子例程和类型的对象。
-单态实体(<code>1</code>、<code>&quot;a&quot;</code> 等)也称为值对象，多态实体(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)也称为容器对象。</p>
+<p>不是子例程和类型的对象
+单态实体(<code>1</code>、<code>&quot;a&quot;</code> 等)也称为值对象，多态实体(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)也称为容器对象</p>
 
                     </main>
 

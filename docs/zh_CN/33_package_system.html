@@ -145,13 +145,13 @@
                     <main>
                         <h1 id="打包系统"><a class="header" href="#打包系统">打包系统</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/33_package_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/33_package_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>Erg包大致可以分为app包，即应用程序，以及lib包，即库。
-应用包的入口点是<code>src/app.er</code>。 <code>app.er</code> 中定义的<code>main</code> 函数被执行。
-lib 包的入口点是<code>src/lib.er</code>。导入包相当于导入 <code>lib.er</code>。</p>
-<p>一个包有一个称为模块的子结构，在 Erg 中是一个 Erg 文件或由 Erg 文件组成的目录。外部 Erg 文件/目录是作为模块对象的可操作对象。</p>
-<p>为了将目录识别为模块，有必要在目录中放置一个&quot;(目录名称).er&quot;文件。
-这类似于 Python 的 <code>__init__.py</code>，但与 <code>__init__.py</code> 不同的是，它放在目录之外。</p>
-<p>例如，考虑以下目录结构。</p>
+<p>Erg包大致可以分为app包，即应用程序，以及lib包，即库
+应用包的入口点是<code>src/app.er</code>。 <code>app.er</code> 中定义的<code>main</code> 函数被执行
+lib 包的入口点是<code>src/lib.er</code>。导入包相当于导入 <code>lib.er</code></p>
+<p>一个包有一个称为模块的子结构，在 Erg 中是一个 Erg 文件或由 Erg 文件组成的目录。外部 Erg 文件/目录是作为模块对象的可操作对象</p>
+<p>为了将目录识别为模块，有必要在目录中放置一个&quot;(目录名称).er&quot;文件
+这类似于 Python 的 <code>__init__.py</code>，但与 <code>__init__.py</code> 不同的是，它放在目录之外</p>
+<p>例如，考虑以下目录结构</p>
 <pre><code class="language-console">└─┬ ./src
   ├─ app.er
   ├─ foo.er
@@ -160,9 +160,9 @@ lib 包的入口点是<code>src/lib.er</code>。导入包相当于导入 <code>l
     ├─ baz.er
     └─ qux.er
 </code></pre>
-<p>您可以在 <code>app.er</code> 中导入 <code>foo</code> 和 <code>bar</code> 模块。由于 <code>bar.er</code> 文件，<code>bar</code> 目录可以被识别为一个模块。
-<code>foo</code> 模块是由文件组成的模块，<code>bar</code> 模块是由目录组成的模块。 <code>bar</code> 模块还包含 <code>baz</code> 和 <code>qux</code> 模块。
-该模块只是 <code>bar</code> 模块的一个属性，可以从 <code>app.er</code> 访问，如下所示。</p>
+<p>您可以在 <code>app.er</code> 中导入 <code>foo</code> 和 <code>bar</code> 模块。由于 <code>bar.er</code> 文件，<code>bar</code> 目录可以被识别为一个模块
+<code>foo</code> 模块是由文件组成的模块，<code>bar</code> 模块是由目录组成的模块。 <code>bar</code> 模块还包含 <code>baz</code> 和 <code>qux</code> 模块
+该模块只是 <code>bar</code> 模块的一个属性，可以从 <code>app.er</code> 访问，如下所示</p>
 <pre><code class="language-python"># app.er
 foo = import &quot;foo&quot;
 bar = import &quot;bar&quot;
@@ -172,9 +172,9 @@ baz = bar.baz
 main args =
     ...
 </code></pre>
-<p>请注意用于访问子模块的 <code>/</code> 分隔符。 这是因为可以有诸如 <code>bar.baz.er</code> 之类的文件名。
-不鼓励使用此类文件名，因为 <code>.er</code> 前缀在 Erg 中是有意义的。
-例如，用于测试的模块。 以 <code>.test.er</code> 结尾的文件是一个(白盒)测试模块，它在运行测试时执行一个用 <code>@Test</code> 修饰的子例程。</p>
+<p>请注意用于访问子模块的 <code>/</code> 分隔符。 这是因为可以有诸如 <code>bar.baz.er</code> 之类的文件名
+不鼓励使用此类文件名，因为 <code>.er</code> 前缀在 Erg 中是有意义的
+例如，用于测试的模块。 以 <code>.test.er</code> 结尾的文件是一个(白盒)测试模块，它在运行测试时执行一个用 <code>@Test</code> 修饰的子例程</p>
 <pre><code class="language-console">└─┬ ./src
   ├─ app.er
   ├─ foo.er
@@ -188,7 +188,7 @@ foo = import &quot;foo&quot;
 main args =
     ...
 </code></pre>
-<p>此外，以 .private.er 结尾的文件是私有模块，只能由同一目录中的模块访问。</p>
+<p>此外，以 .private.er 结尾的文件是私有模块，只能由同一目录中的模块访问</p>
 <pre><code class="language-console">└─┬
   ├─ foo.er
   ├─ bar.er

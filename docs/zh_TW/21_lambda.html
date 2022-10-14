@@ -145,14 +145,14 @@
                     <main>
                         <h1 id="匿名函數"><a class="header" href="#匿名函數">匿名函數</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/21_lambda.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/21_lambda.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>匿名函數是一種無需命名即可動態創建函數對象的語法。</p>
+<p>匿名函數是一種無需命名即可動態創建函數對象的語法</p>
 <pre><code class="language-python"># `-&gt;` 是匿名函數操作符
 # 同 `f x, y = x + y`
 f = (x, y) -&gt; x + y
 # same as `g(x, y: Int): Int = x + y`
 g = (x, y: Int): Int -&gt; x + y
 </code></pre>
-<p>如果只有一個參數，您可以省略 <code>()</code>。</p>
+<p>如果只有一個參數，您可以省略 <code>()</code></p>
 <pre><code class="language-python">assert [1, 2, 3].map_collect(i -&gt; i + 1) == [2, 3, 4]
 assert ((i, j) -&gt; [i, j])(1, 2) == [1, 2]
 </code></pre>
@@ -167,7 +167,7 @@ i: T() -&gt; Int
 # 在這種情況下，它被解釋為 (U()) -&gt; Int
 k: U() -&gt; Int
 </code></pre>
-<p>匿名函數可以不帶參數使用。</p>
+<p>匿名函數可以不帶參數使用</p>
 <pre><code class="language-python"># `=&gt;` 是一個匿名過程操作符
 p! = () =&gt; print! # `p!` 被調用
 # `() -&gt;`, `() =&gt;` 有語法糖 `do`, `do!`
@@ -183,7 +183,7 @@ now = if! True:
         date.now!()
     do date.new(&quot;1970&quot;, &quot;1&quot;, &quot;1&quot;, &quot;00&quot;, &quot;00&quot;)
 </code></pre>
-<p>您還可以鍵入和模式匹配。 正因為如此，<code>match</code> 函數大多是借助匿名函數的力量來實現的。
+<p>您還可以鍵入和模式匹配。 正因為如此，<code>match</code> 函數大多是借助匿名函數的力量來實現的
 作為 <code>match</code> 函數的參數給出的匿名函數從頂部開始按順序嘗試。 因此，您應該在頂部描述特殊情況，在底部描述更一般的情況。 如果你弄錯了順序，編譯器會發出警告(如果可能的話)</p>
 <pre><code class="language-python">n = (Complex or Ratio or Int).sample!()
 i = matchn:
@@ -193,7 +193,7 @@ i = matchn:
     (c: Complex) -&gt; c.real() # 對于復雜。 Int &lt; Complex，但可以回退
     _ -&gt; panic &quot;cannot convert to Int&quot; # 如果以上都不適用。 match 必須涵蓋所有模式
 </code></pre>
-<p>錯誤處理通常也使用 <code>?</code> 或 <code>match</code> 完成。</p>
+<p>錯誤處理通常也使用 <code>?</code> 或 <code>match</code> 完成</p>
 <pre><code class="language-python">res: ParseResult Int
 matchres:
     i: Int -&gt; i
@@ -205,7 +205,7 @@ match res2:
     err: Error -&gt; panic err.msg
 </code></pre>
 <h2 id="匿名多相關系數"><a class="header" href="#匿名多相關系數">匿名多相關系數</a></h2>
-<pre><code class="language-python"># 與此相同 id|T|x：T = x
+<pre><code class="language-python"># 與此相同 id|T|x: T = x
 id = |T| x: T -&gt; x
 </code></pre>
 

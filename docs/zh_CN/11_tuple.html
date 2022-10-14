@@ -145,31 +145,31 @@
                     <main>
                         <h1 id="元组"><a class="header" href="#元组">元组</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/11_tuple.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/11_tuple.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>元组类似于数组，但可以保存不同类型的对象。
-这样的集合称为不等集合。 相比之下，同构集合包括数组、集合等。</p>
+<p>元组类似于数组，但可以保存不同类型的对象
+这样的集合称为不等集合。 相比之下，同构集合包括数组、集合等</p>
 <pre><code class="language-python">t = (1, True, &quot;a&quot;)
 (i, b, s) = t
 assert(i == 1 and b == True and s == &quot;a&quot;)
 </code></pre>
-<p>元组<code>t</code>可以以<code>t.n</code>的形式检索第n个元素； 请注意，与 Python 不同，它不是 <code>t[n]</code>。
-这是因为访问元组元素更像是一个属性(在编译时检查元素的存在，并且类型可以根据 <code>n</code> 改变)而不是方法(数组的 <code>[]</code> 是一种方法)。</p>
+<p>元组<code>t</code>可以以<code>t.n</code>的形式检索第n个元素； 请注意，与 Python 不同，它不是 <code>t[n]</code>
+这是因为访问元组元素更像是一个属性(在编译时检查元素的存在，并且类型可以根据 <code>n</code> 改变)而不是方法(数组的 <code>[]</code> 是一种方法)</p>
 <pre><code class="language-python">assert t.0 == 1
 assert t.1 == True
 assert t.2 == &quot;a&quot;
 </code></pre>
-<p>括号 <code>()</code> 在不嵌套时是可选的。</p>
+<p>括号 <code>()</code> 在不嵌套时是可选的</p>
 <pre><code class="language-python">t = 1, True, &quot;a&quot;
 i, b, s = t
 </code></pre>
-<p>元组可以保存不同类型的对象，因此它们不能像数组一样被迭代。</p>
+<p>元组可以保存不同类型的对象，因此它们不能像数组一样被迭代</p>
 <pre><code class="language-python">t: ({1}, {2}, {3}) = (1, 2, 3)
-(1, 2, 3).iter().map(x -&gt; x + 1) # 类型错误：类型 ({1}, {2}, {3}) 没有方法 `.iter()`
+(1, 2, 3).iter().map(x -&gt; x + 1) # 类型错误: 类型 ({1}, {2}, {3}) 没有方法 `.iter()`
 # 如果所有类型都相同，则可以像数组一样用`(T; n)`表示，但这仍然不允许迭代
 t: (Int; 3) = (1, 2, 3)
 assert (Int; 3) == (Int, Int, Int)
 </code></pre>
-<p>但是，非同质集合(如元组)可以通过向上转换、相交等方式转换为同质集合(如数组)。
-这称为均衡。</p>
+<p>但是，非同质集合(如元组)可以通过向上转换、相交等方式转换为同质集合(如数组)
+这称为均衡</p>
 <pre><code class="language-python">(Int, Bool, Str) can be [T; 3] where T :&gt; Int, T :&gt; Bool, T :&gt; Str
 </code></pre>
 <pre><code class="language-python">t: (Int, Bool, Str) = (1, True, &quot;a&quot;) # 非同质
@@ -179,11 +179,11 @@ _a.iter().map(x -&gt; log x) # OK
 t.try_into([Show; 3])? .iter().map(x -&gt; log x) # OK
 </code></pre>
 <h2 id="单元"><a class="header" href="#单元">单元</a></h2>
-<p>零元素的元组称为 <strong>unit</strong>。 一个单元是一个值，但也指它自己的类型。</p>
+<p>零元素的元组称为 <strong>unit</strong>。 一个单元是一个值，但也指它自己的类型</p>
 <pre><code class="language-python">unit = ()
 (): ()
 </code></pre>
-<p>Unit 是所有元素 0 元组的父类。</p>
+<p>Unit 是所有元素 0 元组的父类</p>
 <pre><code class="language-python">() &gt; (Int; 0)
 () &gt; (Str; 0)
 </code></pre>
@@ -194,22 +194,22 @@ p!() =.
     print! &quot;Hello, world!&quot;
 p!: () =&gt; ()
 </code></pre>
-<p>但是，在这种情况下，Python 倾向于使用&quot;无&quot;而不是单位。
-在 Erg 中，当您从一开始就确定操作不会返回有意义的值(例如在过程中)时，您应该使用 <code>()</code>，并且当操作可能失败并且您可能会返回 <code>None</code> 将一无所获，例如在检索元素时。</p>
+<p>但是，在这种情况下，Python 倾向于使用&quot;无&quot;而不是单位
+在 Erg 中，当您从一开始就确定操作不会返回有意义的值(例如在过程中)时，您应该使用 <code>()</code>，并且当操作可能失败并且您可能会返回 <code>None</code> 将一无所获，例如在检索元素时</p>
 <h2 id="参数和元组"><a class="header" href="#参数和元组">参数和元组</a></h2>
-<p>实际上，Erg 的所有 <code>Callable</code> 对象都是一个参数和一个返回值； 一个接受 N 个参数的子例程只是接收&quot;一个具有 N 个元素的元组&quot;作为参数。</p>
+<p>实际上，Erg 的所有 <code>Callable</code> 对象都是一个参数和一个返回值； 一个接受 N 个参数的子例程只是接收&quot;一个具有 N 个元素的元组&quot;作为参数</p>
 <pre><code class="language-python"># f x = ... 被隐式假设为 f(x) = ... 被认为是
 f x = x
 assert f(1) == 1
-f(1, 2, 3) # 参数错误：f 接受 1 个位置参数，但给出了 3 个
+f(1, 2, 3) # 参数错误: f 接受 1 个位置参数，但给出了 3 个
 g x: Int, . . y: Int = y
 assert (2, 3) == g 1, 2, 3
 </code></pre>
-<p>这也解释了函数类型。</p>
+<p>这也解释了函数类型</p>
 <pre><code class="language-python">assert f in T: {(T,) -&gt; T | T}
 assert g in {(Int, ... (Int; N)) -&gt; (Int; N) | N: Nat}
 </code></pre>
-<p>准确地说，函数的输入不是元组，而是&quot;具有默认属性的命名元组&quot;。 这是一个特殊的元组，只能在函数参数中使用，可以像记录一样命名，并且可以有默认值。</p>
+<p>准确地说，函数的输入不是元组，而是&quot;具有默认属性的命名元组&quot;。 这是一个特殊的元组，只能在函数参数中使用，可以像记录一样命名，并且可以有默认值</p>
 <pre><code class="language-python">f(x: Int, y=0) = x + y
 f: (Int, y=Int) -&gt; Int
 

@@ -145,12 +145,12 @@
                     <main>
                         <h1 id="關閉"><a class="header" href="#關閉">關閉</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/23_closure.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/23_closure.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>Erg 子例程有一個稱為&quot;閉包&quot;的功能，可以捕獲外部變量。</p>
+<p>Erg 子例程有一個稱為&quot;閉包&quot;的功能，可以捕獲外部變量</p>
 <pre><code class="language-python">outer = 1
 f x = outer + x
 assert f(1) == 2
 </code></pre>
-<p>與不可變對象一樣，可變對象也可以被捕獲。</p>
+<p>與不可變對象一樣，可變對象也可以被捕獲</p>
 <pre><code class="language-python">sum = !0
 for! 1..10, i =&gt;
     sum.add!i
@@ -161,8 +161,8 @@ p!x=
 p!(1)
 assert sum == 46
 </code></pre>
-<p>但是請注意，函數不能捕獲可變對象。
-如果可以在函數中引用可變對象，則可以編寫如下代碼。</p>
+<p>但是請注意，函數不能捕獲可變對象
+如果可以在函數中引用可變對象，則可以編寫如下代碼</p>
 <pre><code class="language-python"># !!! 這段代碼實際上給出了一個錯誤！！！
 i = !0
 f x = i + x
@@ -170,8 +170,8 @@ assert f 1 == 1
 i.add! 1
 assert f 1 == 2
 </code></pre>
-<p>該函數應該為相同的參數返回相同的值，但假設被打破了。
-請注意，<code>i</code> 僅在調用時進行評估。</p>
+<p>該函數應該為相同的參數返回相同的值，但假設被打破了
+請注意，<code>i</code> 僅在調用時進行評估</p>
 <p>如果您想在定義函數時獲取可變對象的內容，請調用<code>.clone</code></p>
 <pre><code class="language-python">i = !0
 immut_i = i.clone().freeze()
@@ -187,28 +187,28 @@ for! 1..10, i =&gt;
     sum.add!i
 assert sum == 45
 </code></pre>
-<p>上面的等效程序可以用 Python 編寫如下：</p>
+<p>上面的等效程序可以用 Python 編寫如下: </p>
 <pre><code class="language-python"># Python
 sum = 0
 for i in range(1, 10):
     sum += i
 assert sum == 45
 </code></pre>
-<p>但是，Erg 建議使用更簡單的表示法。
+<p>但是，Erg 建議使用更簡單的表示法
 與其使用子例程和可變對象來傳遞狀態，不如使用一種使用函數來定位狀態的風格。這稱為函數式編程</p>
 <pre><code class="language-python"># 功能風格
 sum = (1..10).sum()
 assert sum == 45
 </code></pre>
-<p>上面的代碼給出了與之前完全相同的結果，但是您可以看到這個代碼要簡單得多。</p>
-<p><code>fold</code> 函數可以用來做比 sum 更多的事情。
-<code>fold</code> 是一個迭代器方法，它為每次迭代執行參數 <code>f</code>。
-累加結果的計數器的初始值在 <code>init</code> 中指定，并在 <code>acc</code> 中累加。</p>
+<p>上面的代碼給出了與之前完全相同的結果，但是您可以看到這個代碼要簡單得多</p>
+<p><code>fold</code> 函數可以用來做比 sum 更多的事情
+<code>fold</code> 是一個迭代器方法，它為每次迭代執行參數 <code>f</code>
+累加結果的計數器的初始值在 <code>init</code> 中指定，并在 <code>acc</code> 中累加</p>
 <pre><code class="language-python"># 從0開始，結果會
 sum = (1..10).fold(init: 0, f: (acc, i) -&gt; acc + i)
 assert sum == 45
 </code></pre>
-<p>Erg 被設計為對使用不可變對象進行編程的自然簡潔描述。</p>
+<p>Erg 被設計為對使用不可變對象進行編程的自然簡潔描述</p>
 
                     </main>
 

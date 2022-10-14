@@ -165,16 +165,16 @@ some_proc!: (T, U) =&gt; V
 # ~&gt; 表示应用前后类型参数的状态(此时self必须是变量引用)
 T!(N).some_method!: (Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
 </code></pre>
-<p>注意，<code>.some_method</code> 的类型是 <code>| N，X：Nat| (Ref!(T! N ~&gt; N+X), {X}) =&gt; ()</code>。
-对于没有 <code>ref!</code> 的方法，即在应用后被剥夺所有权，不能使用类型参数转换(<code>~&gt;</code>)。</p>
-<p>如果取得所有权，则如下所示。</p>
-<pre><code class="language-python"># 如果不使用N，可以用_省略。
+<p>注意，<code>.some_method</code> 的类型是 <code>| N，X: Nat| (Ref!(T! N ~&gt; N+X), {X}) =&gt; ()</code>
+对于没有 <code>ref!</code> 的方法，即在应用后被剥夺所有权，不能使用类型参数转换(<code>~&gt;</code>)</p>
+<p>如果取得所有权，则如下所示</p>
+<pre><code class="language-python"># 如果不使用N，可以用_省略
 # .some_method!: |N, X: Nat| (T!(N), {X}) =&gt; T!(N+X)
 .some_method!|N, X: Nat| (self: T!(N), X: Nat) =&gt; T!(N+X)
 </code></pre>
 <h2 id="运算符"><a class="header" href="#运算符">运算符</a></h2>
-<p>可以通过用 ` 括起来将其定义为普通函数。</p>
-<p>中性字母运算符，例如 <code>and</code> 和 <code>or</code> 可以通过用 ` 括起来定义为中性运算符。</p>
+<p>可以通过用 ` 括起来将其定义为普通函数</p>
+<p>中性字母运算符，例如 <code>and</code> 和 <code>or</code> 可以通过用 ` 括起来定义为中性运算符</p>
 <pre><code class="language-python">and(x, y, z) = x and y and z
 `_+_`(x: Foo, y: Foo) = x.a + y.a
 `-_`(x: Foo) = Foo.new(-x.a)

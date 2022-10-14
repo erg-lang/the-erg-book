@@ -145,9 +145,9 @@
                     <main>
                         <h1 id="可見性"><a class="header" href="#可見性">可見性</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>Erg 變量具有 <strong>visibility</strong> 的概念。
-到目前為止，我們看到的所有變量都稱為 <strong>private variables</strong>。 這是一個外部不可見的變量。
-例如，<code>foo</code> 模塊中定義的私有變量不能被另一個模塊引用。</p>
+<p>Erg 變量具有 <strong>visibility</strong> 的概念
+到目前為止，我們看到的所有變量都稱為 <strong>private variables</strong>。 這是一個外部不可見的變量
+例如，<code>foo</code> 模塊中定義的私有變量不能被另一個模塊引用</p>
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
@@ -155,8 +155,8 @@ x = &quot;this is an invisible variable&quot;
 foo = import &quot;foo&quot;
 foo.x # AttributeError: 模塊 'foo' 沒有屬性 'x' ('x' 是私有的)
 </code></pre>
-<p>另一方面，也有__public variables__，可以從外部引用。
-公共變量用<code>.</code>定義。</p>
+<p>另一方面，也有__public variables__，可以從外部引用
+公共變量用<code>.</code>定義</p>
 <pre><code class="language-python"># foo.er
 .x = &quot;this is a visible variable&quot;
 </code></pre>
@@ -175,9 +175,9 @@ assert module::x == ::x
 y =
     x + 1 # 完全是 module::x
 </code></pre>
-<p>通過使用<code>::</code>，可以區分作用域內同名的變量。
-在左側指定要引用的變量的范圍。 為頂層指定 <code>module</code>。
-如果未指定，則照常引用最里面的變量。</p>
+<p>通過使用<code>::</code>，可以區分作用域內同名的變量
+在左側指定要引用的變量的范圍。 為頂層指定 <code>module</code>
+如果未指定，則照常引用最里面的變量</p>
 <pre><code class="language-python">::x = 0
 assert x == 0
 y =
@@ -196,7 +196,7 @@ f = x -&gt;
     log module::x, self::x
 f1# 0 1
 </code></pre>
-<p><code>::</code> 還負責訪問私有實例屬性。</p>
+<p><code>::</code> 還負責訪問私有實例屬性</p>
 <pre><code class="language-python">x = 0
 C = Class {x = Int}
 C.
@@ -206,7 +206,7 @@ C.
     f2 self = self::x
 </code></pre>
 <h2 id="外部模塊中的可見性"><a class="header" href="#外部模塊中的可見性">外部模塊中的可見性</a></h2>
-<p>在一個模塊中定義的類實際上可以定義來自外部模塊的方法。</p>
+<p>在一個模塊中定義的類實際上可以定義來自外部模塊的方法</p>
 <pre><code class="language-python"># foo.er
 .Foo = Class()
 </code></pre>
@@ -223,17 +223,17 @@ Foo.
     foo.public()
     foo::private() # 屬性錯誤
 </code></pre>
-<p>但是，這兩種方法都只在該模塊中可用。
-外部定義的私有方法對 Foo 類的方法僅在定義模塊內可見。
-公共方法暴露在類之外，但不在模塊之外。</p>
+<p>但是，這兩種方法都只在該模塊中可用
+外部定義的私有方法對 Foo 類的方法僅在定義模塊內可見
+公共方法暴露在類之外，但不在模塊之外</p>
 <pre><code class="language-python"># baz.er
 {Foo; ...} = import &quot;foo&quot;
 
 foo = Foo.new()
-foo.public() # 屬性錯誤：&quot;Foo&quot;沒有屬性&quot;public&quot;(&quot;public&quot;在模塊&quot;bar&quot;中定義)
+foo.public() # 屬性錯誤: &quot;Foo&quot;沒有屬性&quot;public&quot;(&quot;public&quot;在模塊&quot;bar&quot;中定義)
 </code></pre>
-<p>此外，方法不能在要重新導出的類型中定義。
-這是為了避免混淆方法是否找到，具體取決于導入方法的模塊。</p>
+<p>此外，方法不能在要重新導出的類型中定義
+這是為了避免混淆方法是否找到，具體取決于導入方法的模塊</p>
 <pre><code class="language-python">#bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
@@ -242,7 +242,7 @@ foo.public() # 屬性錯誤：&quot;Foo&quot;沒有屬性&quot;public&quot;(&quo
 Foo.
     public self = self::private() # 錯誤
 </code></pre>
-<p>如果你想做這樣的事情，定義一個 <a href="./type/07_patch.html">patch</a>。</p>
+<p>如果你想做這樣的事情，定義一個 <a href="./type/07_patch.html">patch</a></p>
 <pre><code class="language-python">#bar.er
 {Foo; ...} = import &quot;foo&quot;
 
@@ -260,8 +260,8 @@ foo = Foo.new()
 foo.public()
 </code></pre>
 <h2 id="受限公共變量"><a class="header" href="#受限公共變量">受限公共變量</a></h2>
-<p>可變可見性不限于完全公共/私有。
-您也可以有限制地發布。</p>
+<p>可變可見性不限于完全公共/私有
+您也可以有限制地發布</p>
 <pre><code class="language-python"># foo.er
 .record = {
     .a = {

@@ -145,35 +145,35 @@
                     <main>
                         <h1 id="修补"><a class="header" href="#修补">修补</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>Erg 不允许修改现有类型和类。
-这意味着，不可能在类中定义额外的方法，也不能执行特化(一种语言特性，单态化多态声明的类型并定义专用方法，如在 C++ 中)。
-但是，在许多情况下，您可能希望向现有类型或类添加功能，并且有一个称为&quot;修补&quot;的功能允许您执行此操作。</p>
+<p>Erg 不允许修改现有类型和类
+这意味着，不可能在类中定义额外的方法，也不能执行特化(一种语言特性，单态化多态声明的类型并定义专用方法，如在 C++ 中)
+但是，在许多情况下，您可能希望向现有类型或类添加功能，并且有一个称为&quot;修补&quot;的功能允许您执行此操作</p>
 <pre><code class="language-python">StrReverse = Patch Str
 StrReverse.
     reverse self = self.iter().rev().collect(Str)
 
 assert &quot;abc&quot;.reverse() == &quot;cba&quot;
 </code></pre>
-<p>补丁的名称应该是要添加的主要功能的简单描述。
-这样，被修补类型的对象(<code>Str</code>)可以使用修补程序的方法(<code>StrReverse</code>)。
-实际上，内置方法<code>.reverse</code>并不是<code>Str</code>的方法，而是<code>StrRReverse</code>中添加的方法。</p>
-<p>但是，补丁方法的优先级低于名义类型(类/特质)的方法，并且不能覆盖现有类型。</p>
+<p>补丁的名称应该是要添加的主要功能的简单描述
+这样，被修补类型的对象(<code>Str</code>)可以使用修补程序的方法(<code>StrReverse</code>)
+实际上，内置方法<code>.reverse</code>并不是<code>Str</code>的方法，而是<code>StrRReverse</code>中添加的方法</p>
+<p>但是，补丁方法的优先级低于名义类型(类/特质)的方法，并且不能覆盖现有类型</p>
 <pre><code class="language-python">StrangeInt = Patch Int
 StrangeInt.
-    `_+_` = Int.`_-_` # 赋值错误：. `_+_` 已在 Int 中定义
+    `_+_` = Int.`_-_` # 赋值错误: . `_+_` 已在 Int 中定义
 </code></pre>
-<p>如果要覆盖，则必须从类继承。
-但是，基本上建议不要覆盖并定义具有不同名称的方法。
-由于一些安全限制，覆盖不是很容易做到。</p>
+<p>如果要覆盖，则必须从类继承
+但是，基本上建议不要覆盖并定义具有不同名称的方法
+由于一些安全限制，覆盖不是很容易做到</p>
 <pre><code class="language-python">StrangeInt = Inherit Int
 StrangeInt.
-# 覆盖方法必须被赋予覆盖装饰器。
-    # 另外，你需要覆盖所有依赖于 Int.`_+_` 的 Int 方法。
+# 覆盖方法必须被赋予覆盖装饰器
+    # 另外，你需要覆盖所有依赖于 Int.`_+_` 的 Int 方法
     @Override
     `_+_` = Super.`_-_` # OverrideError: Int.`_+_` 被 ... ````` 引用，所以这些方法也必须被覆盖
 </code></pre>
 <h2 id="选择修补程序"><a class="header" href="#选择修补程序">选择修补程序</a></h2>
-<p>可以为单一类型定义修复程序，并且可以组合在一起。</p>
+<p>可以为单一类型定义修复程序，并且可以组合在一起</p>
 <pre><code class="language-python"># foo.er
 
 StrReverse = Patch(Str)
@@ -221,9 +221,9 @@ StrReverseMk2.
 assert &quot;hello&quot;.reverse() == &quot;olleh&quot;
 </code></pre>
 <h2 id="胶水补丁"><a class="header" href="#胶水补丁">胶水补丁</a></h2>
-<p>维修程序也可以将类型相互关联。 <code>StrReverse</code> 补丁涉及 <code>Str</code> 和 <code>Reverse</code>。
-这样的补丁称为 <strong>glue patch</strong>。
-因为 <code>Str</code> 是内置类型，所以用户需要使用胶水补丁来改造特征。</p>
+<p>维修程序也可以将类型相互关联。 <code>StrReverse</code> 补丁涉及 <code>Str</code> 和 <code>Reverse</code>
+这样的补丁称为 <strong>glue patch</strong>
+因为 <code>Str</code> 是内置类型，所以用户需要使用胶水补丁来改造特征</p>
 <pre><code class="language-python">Reverse = Trait {
     .reverse = Self.() -&gt; Self
 }
@@ -233,9 +233,9 @@ StrReverse.
     reverse self =
         self.iter().rev().collect(Str)
 </code></pre>
-<p>每个类型/特征对只能定义一个胶水补丁。
-这是因为如果多个胶水修复程序同时&quot;可见&quot;，就不可能唯一确定选择哪个实现。
-但是，当移动到另一个范围(模块)时，您可以交换维修程序。</p>
+<p>每个类型/特征对只能定义一个胶水补丁
+这是因为如果多个胶水修复程序同时&quot;可见&quot;，就不可能唯一确定选择哪个实现
+但是，当移动到另一个范围(模块)时，您可以交换维修程序</p>
 <pre><code class="language-python">NumericStr = Inherit Str
 NumericStr.
     ...
@@ -243,11 +243,11 @@ NumericStr.
 NumStrRev = Patch NumericStr, Impl := Reverse
 NumStrRev.
     ...
-# 重复修补程序错误：数值Str已与&quot;反向&quot;关联`
-# 提示：'Str'(NumericStr'的超类)通过'StrReverse'与'Reverse'关联
+# 重复修补程序错误: 数值Str已与&quot;反向&quot;关联`
+# 提示: 'Str'(NumericStr'的超类)通过'StrReverse'与'Reverse'关联
 </code></pre>
-<h2 id="附录与-rust-特征的关系"><a class="header" href="#附录与-rust-特征的关系">附录：与 Rust 特征的关系</a></h2>
-<p>Erg 修复程序相当于 Rust 的(改造的)<code>impl</code> 块。</p>
+<h2 id="附录-与-rust-特征的关系"><a class="header" href="#附录-与-rust-特征的关系">附录: 与 Rust 特征的关系</a></h2>
+<p>Erg 修复程序相当于 Rust 的(改造的)<code>impl</code> 块</p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -263,7 +263,7 @@ impl Reverse for String {
 }
 <span class="boring">}
 </span></code></pre></pre>
-<p>可以说，Rust 的特征是 Erg 的特征和修复程序的特征。 这使得 Rust 的特征听起来更方便，但事实并非如此。</p>
+<p>可以说，Rust 的特征是 Erg 的特征和修复程序的特征。 这使得 Rust 的特征听起来更方便，但事实并非如此</p>
 <pre><code class="language-python"># Erg
 Reverse = Trait {
     .reverse = Self.() -&gt; Self
@@ -274,8 +274,8 @@ StrReverse.
     reverse self =
         self.iter().rev().collect(Str)
 </code></pre>
-<p>因为 impl 块在 Erg 中被对象化为补丁，所以在从其他模块导入时可以选择性地包含。 作为副作用，它还允许将外部特征实现到外部结构。
-此外，结构类型不再需要诸如 <code>dyn trait</code> 和 <code>impl trait</code> 之类的语法。</p>
+<p>因为 impl 块在 Erg 中被对象化为补丁，所以在从其他模块导入时可以选择性地包含。 作为副作用，它还允许将外部特征实现到外部结构
+此外，结构类型不再需要诸如 <code>dyn trait</code> 和 <code>impl trait</code> 之类的语法</p>
 <pre><code class="language-python"># Erg
 reversible: [Reverse; 2] = [[1, 2, 3], &quot;hello&quot;]
 
@@ -293,9 +293,9 @@ fn iter&lt;I&gt;(i: I) -&gt; impl Iterator&lt;Item = I::Item&gt; where I: IntoIt
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="通用补丁"><a class="header" href="#通用补丁">通用补丁</a></h2>
-<p>补丁不仅可以为一种特定类型定义，还可以为&quot;一般功能类型&quot;等定义。
-在这种情况下，要给出自由度的项作为参数给出(在下面的情况下，<code>T：Type</code>)。 以这种方式定义的补丁称为全对称补丁。
-如您所见，全对称补丁正是一个返回补丁的函数，但它本身也可以被视为补丁。</p>
+<p>补丁不仅可以为一种特定类型定义，还可以为&quot;一般功能类型&quot;等定义
+在这种情况下，要给出自由度的项作为参数给出(在下面的情况下，<code>T: Type</code>)。 以这种方式定义的补丁称为全对称补丁
+如您所见，全对称补丁正是一个返回补丁的函数，但它本身也可以被视为补丁</p>
 <pre><code class="language-python">FnType T: Type = Patch(T -&gt; T)
 FnType(T).
     type = T
@@ -303,9 +303,9 @@ FnType(T).
 assert (Int -&gt; Int).type == Int
 </code></pre>
 <h2 id="结构补丁"><a class="header" href="#结构补丁">结构补丁</a></h2>
-<p>此外，可以为满足特定结构的任何类型定义修复程序。
-但是，这比名义上的维修程序和类方法具有较低的优先级。</p>
-<p>在定义结构修复程序时应使用仔细的设计，因为某些属性会因扩展而丢失，例如以下内容。</p>
+<p>此外，可以为满足特定结构的任何类型定义修复程序
+但是，这比名义上的维修程序和类方法具有较低的优先级</p>
+<p>在定义结构修复程序时应使用仔细的设计，因为某些属性会因扩展而丢失，例如以下内容</p>
 <pre><code class="language-python"># 这不应该是 `Structural`
 Norm = Structural Patch {x = Int; y = Int}
 Norm.

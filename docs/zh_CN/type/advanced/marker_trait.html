@@ -145,10 +145,10 @@
                     <main>
                         <h1 id="标记特征"><a class="header" href="#标记特征">标记特征</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/marker_trait.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/marker_trait.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>标记特征是没有必需属性的特征。 也就是说，您可以在不实现任何方法的情况下实现 Impl。
-没有 required 属性似乎没有意义，但由于注册了它属于 trait 的信息，因此可以使用 patch 方法或由编译器进行特殊处理。</p>
-<p>所有标记特征都包含在&quot;标记&quot;特征中。
-作为标准提供的&quot;光&quot;是一种标记特征。</p>
+<p>标记特征是没有必需属性的特征。 也就是说，您可以在不实现任何方法的情况下实现 Impl
+没有 required 属性似乎没有意义，但由于注册了它属于 trait 的信息，因此可以使用 patch 方法或由编译器进行特殊处理</p>
+<p>所有标记特征都包含在&quot;标记&quot;特征中
+作为标准提供的&quot;光&quot;是一种标记特征</p>
 <pre><code class="language-python">Light = Subsume Marker
 </code></pre>
 <pre><code class="language-python">Person = Class {.name = Str; .age = Nat} and Light
@@ -161,7 +161,7 @@ i = MarkedInt.new(2)
 assert i + 1 == 2
 assert i in M
 </code></pre>
-<p>标记类也可以使用 <code>Excluding</code> 参数排除。</p>
+<p>标记类也可以使用 <code>Excluding</code> 参数排除</p>
 <pre><code class="language-python">NInt = Inherit MarkedInt, Impl := N, Excluding: M
 </code></pre>
 

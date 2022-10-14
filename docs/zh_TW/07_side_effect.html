@@ -145,30 +145,30 @@
                     <main>
                         <h1 id="副作用和程序"><a class="header" href="#副作用和程序">副作用和程序</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>我們一直忽略了解釋&quot;！&quot;的含義，但現在它的含義終于要揭曉了。 這個 <code>!</code> 表示這個對象是一個帶有&quot;副作用&quot;的&quot;過程&quot;。 過程是具有副作用的函數。</p>
+<p>我們一直忽略了解釋&quot;！&quot;的含義，但現在它的含義終于要揭曉了。 這個 <code>!</code> 表示這個對象是一個帶有&quot;副作用&quot;的&quot;過程&quot;。 過程是具有副作用的函數</p>
 <pre><code class="language-python">f x = print! x # EffectError: 不能為函數分配有副作用的對象
-# 提示：將名稱更改為 'f!'
+# 提示: 將名稱更改為 'f!'
 </code></pre>
-<p>上面的代碼會導致編譯錯誤。 這是因為您在函數中使用了過程。 在這種情況下，您必須將其定義為過程。</p>
+<p>上面的代碼會導致編譯錯誤。 這是因為您在函數中使用了過程。 在這種情況下，您必須將其定義為過程</p>
 <pre><code class="language-python">p! x = print! x
 </code></pre>
-<p><code>p!</code>, <code>q!</code>, ... 是過程的典型變量名。
-以這種方式定義的過程也不能在函數中使用，因此副作用是完全隔離的。</p>
+<p><code>p!</code>, <code>q!</code>, ... 是過程的典型變量名
+以這種方式定義的過程也不能在函數中使用，因此副作用是完全隔離的</p>
 <h2 id="方法"><a class="header" href="#方法">方法</a></h2>
-<p>函數和過程中的每一個都可以是方法。 函數式方法只能對<code>self</code>進行不可變引用，而程序性方法可以對<code>self</code>進行可變引用。
-<code>self</code> 是一個特殊的參數，在方法的上下文中是指調用對象本身。 引用 <code>self</code> 不能分配給任何其他變量。</p>
+<p>函數和過程中的每一個都可以是方法。 函數式方法只能對<code>self</code>進行不可變引用，而程序性方法可以對<code>self</code>進行可變引用
+<code>self</code> 是一個特殊的參數，在方法的上下文中是指調用對象本身。 引用 <code>self</code> 不能分配給任何其他變量</p>
 <pre><code class="language-python">C!.
     method ref self =
-        x = self # 所有權錯誤：無法移出`self`
+        x = self # 所有權錯誤: 無法移出`self`
         x
 </code></pre>
 <p>程序方法也可以采取 <code>self</code> 的 <a href="./18_ownership.html">ownership</a>。 從方法定義中刪除 <code>ref</code> 或 <code>ref!</code></p>
 <pre><code class="language-python">n = 1
 s = n.into(Str) # '1'
-n # 值錯誤：n 被 .into 移動(第 2 行)
+n # 值錯誤: n 被 .into 移動(第 2 行)
 </code></pre>
-<p>在任何給定時間，只有一種程序方法可以具有可變引用。 此外，在獲取可變引用時，不能從原始對象獲取更多可變引用。 從這個意義上說，<code>ref!</code> 會對<code>self</code> 產生副作用。</p>
-<p>但是請注意，可以從可變引用創建(不可變/可變)引用。 這允許在程序方法中遞歸和 <code>print!</code> 的<code>self</code>。</p>
+<p>在任何給定時間，只有一種程序方法可以具有可變引用。 此外，在獲取可變引用時，不能從原始對象獲取更多可變引用。 從這個意義上說，<code>ref!</code> 會對<code>self</code> 產生副作用</p>
+<p>但是請注意，可以從可變引用創建(不可變/可變)引用。 這允許在程序方法中遞歸和 <code>print!</code> 的<code>self</code></p>
 <pre><code class="language-python">T -&gt; T # OK (move)
 T -&gt; Ref T # OK (move)
 T =&gt; Ref! T # OK (only once)
@@ -179,13 +179,13 @@ T -&gt; Ref T # NG
 T -&gt; Ref T # OK
 T =&gt; Ref!
 </code></pre>
-<h2 id="附錄副作用的嚴格定義"><a class="header" href="#附錄副作用的嚴格定義">附錄：副作用的嚴格定義</a></h2>
-<p>代碼是否具有副作用的規則無法立即理解。
-直到你能理解它們，我們建議你暫時把它們定義為函數，如果出現錯誤，添加<code>！</code>將它們視為過程。
-但是，對于那些想了解該語言的確切規范的人，以下是對副作用的更詳細說明。</p>
-<p>首先，必須聲明返回值的等價與 Erg 中的副作用無關。
-有些過程對于任何給定的 <code>x</code> 都會導致 <code>p!(x) == p!(x)</code>(例如，總是返回 <code>None</code>)，并且有些函數會導致 <code>f(x) ！ = f(x)</code>。</p>
-<p>前者的一個例子是<code>print!</code>，后者的一個例子是下面的函數。</p>
+<h2 id="附錄-副作用的嚴格定義"><a class="header" href="#附錄-副作用的嚴格定義">附錄: 副作用的嚴格定義</a></h2>
+<p>代碼是否具有副作用的規則無法立即理解
+直到你能理解它們，我們建議你暫時把它們定義為函數，如果出現錯誤，添加<code>！</code>將它們視為過程
+但是，對于那些想了解該語言的確切規范的人，以下是對副作用的更詳細說明</p>
+<p>首先，必須聲明返回值的等價與 Erg 中的副作用無關
+有些過程對于任何給定的 <code>x</code> 都會導致 <code>p!(x) == p!(x)</code>(例如，總是返回 <code>None</code>)，并且有些函數會導致 <code>f(x) ！ = f(x)</code></p>
+<p>前者的一個例子是<code>print!</code>，后者的一個例子是下面的函數</p>
 <pre><code class="language-python">nan _ = Float.NaN
 assert nan(1) ! = nan(1)
 </code></pre>
@@ -196,14 +196,14 @@ assert T == U
 
 C = Class {i = Int}
 D = Class {i = Int}
-assert C == D # 類型錯誤：無法比較類
+assert C == D # 類型錯誤: 無法比較類
 </code></pre>
-<p>言歸正傳：Erg 中&quot;副作用&quot;的準確定義是</p>
+<p>言歸正傳: Erg 中&quot;副作用&quot;的準確定義是</p>
 <ul>
-<li>訪問可變的外部信息。</li>
+<li>訪問可變的外部信息</li>
 </ul>
-<p>&quot;外部&quot;一般是指外部范圍； Erg 無法觸及的計算機資源和執行前/執行后的信息不包含在&quot;外部&quot;中。 &quot;訪問&quot;包括閱讀和寫作。</p>
-<p>例如，考慮 <code>print!</code> 過程。 乍一看，<code>print!</code> 似乎沒有重寫任何變量。 但如果它是一個函數，它可以重寫外部變量，例如，使用如下代碼：</p>
+<p>&quot;外部&quot;一般是指外部范圍； Erg 無法觸及的計算機資源和執行前/執行后的信息不包含在&quot;外部&quot;中。 &quot;訪問&quot;包括閱讀和寫作</p>
+<p>例如，考慮 <code>print!</code> 過程。 乍一看，<code>print!</code> 似乎沒有重寫任何變量。 但如果它是一個函數，它可以重寫外部變量，例如，使用如下代碼: </p>
 <pre><code class="language-python">camera = import &quot;some_camera_module&quot;
 ocr = import &quot;some_ocr_module&quot;
 
@@ -215,16 +215,16 @@ cam = camera.new() # 攝像頭面向 PC 顯示器
 image = cam.shot!()
 n = ocr.read_num(image) # n = 3.141592
 </code></pre>
-<p>將&quot;camera&quot;模塊視為為特定相機產品提供 API 的外部庫，將&quot;ocr&quot;視為用于 OCR(光學字符識別)的庫。
-直接的副作用是由 <code>cam.shot!()</code> 引起的，但顯然這些信息是從 <code>f</code> 泄露的。 因此，<code>print!</code> 本質上不可能是一個函數。</p>
-<p>然而，在某些情況下，您可能希望臨時檢查函數中的值，而不想為此目的在相關函數中添加 <code>!</code>。 在這種情況下，可以使用 <code>log</code> 函數。
-<code>log</code> 打印整個代碼執行后的值。 這樣，副作用就不會傳播。</p>
+<p>將&quot;camera&quot;模塊視為為特定相機產品提供 API 的外部庫，將&quot;ocr&quot;視為用于 OCR(光學字符識別)的庫
+直接的副作用是由 <code>cam.shot!()</code> 引起的，但顯然這些信息是從 <code>f</code> 泄露的。 因此，<code>print!</code> 本質上不可能是一個函數</p>
+<p>然而，在某些情況下，您可能希望臨時檢查函數中的值，而不想為此目的在相關函數中添加 <code>!</code>。 在這種情況下，可以使用 <code>log</code> 函數
+<code>log</code> 打印整個代碼執行后的值。 這樣，副作用就不會傳播</p>
 <pre><code class="language-python">log &quot;this will be printed after execution&quot;
 print! &quot;this will be printed immediately&quot;
 # 這將立即打印
 # 這將在執行后打印
 </code></pre>
-<p>如果沒有反饋給程序，或者換句話說，如果沒有外部對象可以使用內部信息，那么信息的&quot;泄漏&quot;是可以允許的。 只需要不&quot;傳播&quot;信息。</p>
+<p>如果沒有反饋給程序，或者換句話說，如果沒有外部對象可以使用內部信息，那么信息的&quot;泄漏&quot;是可以允許的。 只需要不&quot;傳播&quot;信息</p>
 
 
                     </main>

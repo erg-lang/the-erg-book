@@ -145,26 +145,26 @@
                     <main>
                         <h1 id="幻影phantom类"><a class="header" href="#幻影phantom类">幻影(phantom)类</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/phantom.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/phantom.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>幻像类型是标记特征，其存在仅用于向编译器提供注释。
-作为幻像类型的一种用法，让我们看一下列表的结构。</p>
+<p>幻像类型是标记特征，其存在仅用于向编译器提供注释
+作为幻像类型的一种用法，让我们看一下列表的结构</p>
 <pre><code class="language-python">Nil = Class()
 List T, 0 = Inherit Nil
 List T, N: Nat = Class {head = T; rest = List(T, N-1)}
 </code></pre>
-<p>此代码导致错误。</p>
+<p>此代码导致错误</p>
 <pre><code class="language-python">3 | List T, 0 = Inherit Nil
                         ^^^
-类型构造错误：由于Nil没有参数T，所以无法用Nil构造List(T, 0)
-提示：使用 'Phantom' 特质消耗 T
+类型构造错误: 由于Nil没有参数T，所以无法用Nil构造List(T, 0)
+提示: 使用 'Phantom' 特质消耗 T
 </code></pre>
-<p>此错误是在使用 <code>List(_, 0).new Nil.new()</code> 时无法推断 <code>T</code> 的抱怨。
-在这种情况下，无论 <code>T</code> 类型是什么，它都必须在右侧使用。 大小为零的类型(例如长度为零的元组)很方便，因为它没有运行时开销。</p>
+<p>此错误是在使用 <code>List(_, 0).new Nil.new()</code> 时无法推断 <code>T</code> 的抱怨
+在这种情况下，无论 <code>T</code> 类型是什么，它都必须在右侧使用。 大小为零的类型(例如长度为零的元组)很方便，因为它没有运行时开销</p>
 <pre><code class="language-python">Nil T = Class((T; 0))
 List T, 0 = Inherit Nil T
 List T, N: Nat = Class {head = T; rest = List(T, N-1)}
 </code></pre>
-<p>此代码通过编译。 但是理解意图有点棘手，除非类型参数是类型，否则不能使用它。</p>
-<p>在这种情况下，幻影类型正是您所需要的。 幻像类型是大小为 0 的广义类型。</p>
+<p>此代码通过编译。 但是理解意图有点棘手，除非类型参数是类型，否则不能使用它</p>
+<p>在这种情况下，幻影类型正是您所需要的。 幻像类型是大小为 0 的广义类型</p>
 <pre><code class="language-python">Nil T = Class(Impl := Phantom T)
 List T, 0 = Inherit Nil T
 List T, N: Nat = Class {head = T; rest = List(T, N-1)}
@@ -172,16 +172,16 @@ List T, N: Nat = Class {head = T; rest = List(T, N-1)}
 nil = Nil(Int).new()
 assert nil.__size__ == 0
 </code></pre>
-<p><code>Phantom</code> 拥有<code>T</code> 类型。 但实际上 <code>Phantom T</code> 类型的大小是 0 并且不包含 <code>T</code> 类型的对象。</p>
-<p>此外，<code>Phantom</code> 可以使用除其类型之外的任意类型参数。 在下面的示例中，<code>Phantom</code> 包含一个名为 <code>State</code> 的类型参数，它是 <code>Str</code> 的子类型对象。
-同样，<code>State</code> 是一个假的类型变量，不会出现在对象的实体中。</p>
+<p><code>Phantom</code> 拥有<code>T</code> 类型。 但实际上 <code>Phantom T</code> 类型的大小是 0 并且不包含 <code>T</code> 类型的对象</p>
+<p>此外，<code>Phantom</code> 可以使用除其类型之外的任意类型参数。 在下面的示例中，<code>Phantom</code> 包含一个名为 <code>State</code> 的类型参数，它是 <code>Str</code> 的子类型对象
+同样，<code>State</code> 是一个假的类型变量，不会出现在对象的实体中</p>
 <pre><code class="language-python">VM! State: {&quot;stopped&quot;, &quot;running&quot;}! = Class(... State)
 VM!(&quot;stopped&quot;).
     start ref! self(&quot;stopped&quot; ~&gt; &quot;running&quot;) =
         self.do_something!()
         self::set_phantom!(&quot;running&quot;))
 </code></pre>
-<p><code>state</code> 是通过 <code>update_phantom!</code> 或 <code>set_phantom!</code> 方法更新的。
+<p><code>state</code> 是通过 <code>update_phantom!</code> 或 <code>set_phantom!</code> 方法更新的
 这是标准补丁为<code>Phantom!</code>(<code>Phantom</code>的变量版本)提供的方法，其用法与变量<code>update!</code>和<code>set!</code>相同。</p>
 
                     </main>

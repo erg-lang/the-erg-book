@@ -146,35 +146,35 @@
                         <h1 id="类型的基本语法"><a class="header" href="#类型的基本语法">类型的基本语法</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <h2 id="类型规范"><a class="header" href="#类型规范">类型规范</a></h2>
-<p>在 Erg 中，可以在 <code>:</code> 之后指定变量的类型，如下所示。这可以与作业同时完成。</p>
+<p>在 Erg 中，可以在 <code>:</code> 之后指定变量的类型，如下所示。这可以与作业同时完成</p>
 <pre><code class="language-python">i: Int # 将变量 i 声明为 Int 类型
 i: Int = 1
 j = 1 # 类型说明可以省略
 </code></pre>
-<p>您还可以指定普通表达式的类型。</p>
+<p>您还可以指定普通表达式的类型</p>
 <pre><code class="language-python">i = 1: Int
 f([1, &quot;a&quot;]: [Int or Str])
 </code></pre>
-<p>对于简单的变量赋值，大多数类型说明可以省略。
-在定义子例程和类型时，类型规范更有用。</p>
+<p>对于简单的变量赋值，大多数类型说明可以省略
+在定义子例程和类型时，类型规范更有用</p>
 <pre><code class="language-python"># 参数的类型规范
 f x, y: Array Int = ...
 T X, Y: Array Int = ...
 </code></pre>
-<p>请注意，在上述情况下，<code>x, y</code> 都是 <code>Array Int</code>。</p>
+<p>请注意，在上述情况下，<code>x, y</code> 都是 <code>Array Int</code></p>
 <pre><code class="language-python"># 大写变量的值必须是常量表达式
 f X: Int = X
 </code></pre>
 <p>或者，如果你不需要关于类型参数的完整信息，你可以用 <code>_</code> 省略它</p>
 <pre><code class="language-python">g v: [T; _] = ...
 </code></pre>
-<p>但是请注意，类型规范中的 <code>_</code> 意味着 <code>Object</code>。</p>
-<pre><code class="language-python">f x: _, y: Int = x + y # 类型错误：Object 和 Int 之间没有实现 +
+<p>但是请注意，类型规范中的 <code>_</code> 意味着 <code>Object</code></p>
+<pre><code class="language-python">f x: _, y: Int = x + y # 类型错误: Object 和 Int 之间没有实现 +
 </code></pre>
 <h2 id="子类型规范"><a class="header" href="#子类型规范">子类型规范</a></h2>
-<p>除了 <code>:</code>(类型声明运算符)，Erg 还允许您使用 <code>&lt;:</code>(部分类型声明运算符)来指定类型之间的关系。
-<code>&lt;:</code> 的左边只能指定一个类。 使用 <code>Subtypeof</code> 或类似的运算符来比较结构类型。</p>
-<p>这也经常在定义子例程或类型时使用，而不是简单地指定变量。</p>
+<p>除了 <code>:</code>(类型声明运算符)，Erg 还允许您使用 <code>&lt;:</code>(部分类型声明运算符)来指定类型之间的关系
+<code>&lt;:</code> 的左边只能指定一个类。 使用 <code>Subtypeof</code> 或类似的运算符来比较结构类型</p>
+<p>这也经常在定义子例程或类型时使用，而不是简单地指定变量</p>
 <pre><code class="language-python"># 参数的子类型规范
 f X &lt;: T = ...
 
@@ -185,10 +185,10 @@ Iterable T = Trait {
     ...
 }
 </code></pre>
-<p>也可以在定义类时使用子类型规范来静态检查该类是否是指定类型的子类型。</p>
+<p>也可以在定义类时使用子类型规范来静态检查该类是否是指定类型的子类型</p>
 <pre><code class="language-python"># C 类是 Show 的子类型
 C = Class Object, Impl := Show
-C.show self = ... # 显示所需的属性。
+C.show self = ... # 显示所需的属性
 </code></pre>
 <p>您也可以仅在特定情况下指定子类型</p>
 <pre><code class="language-python">K T: Eq
@@ -199,7 +199,7 @@ K(T).
 K(Int).
     show self = ...
 </code></pre>
-<p>实现结构类型时建议使用子类型规范。
+<p>实现结构类型时建议使用子类型规范
 这是因为，由于结构子类型的性质，拼写错误或类型规范错误在实现所需属性时不会导致错误</p>
 <pre><code class="language-python">C = Class Object
 C.shoe self = ... # Show 由于 Typo 没有实现(它被认为只是一种独特的方法)
@@ -235,23 +235,23 @@ Point3D = {x = Int; y = Int; z = Int}
 IorS = Int or Str
 Vector = Array Int
 </code></pre>
-<p>此外，当显示错误时，如果定义了复合类型(在上面的示例中，右侧类型不是第一个类型)，编译器将为它们使用别名。</p>
-<p>但是，每个模块只允许一个相同类型的别名，多个别名将导致警告。
-这意味着应将具有不同用途的类型定义为单独的类型。
-目的还在于防止在已经具有别名的类型之上添加别名。</p>
+<p>此外，当显示错误时，如果定义了复合类型(在上面的示例中，右侧类型不是第一个类型)，编译器将为它们使用别名</p>
+<p>但是，每个模块只允许一个相同类型的别名，多个别名将导致警告
+这意味着应将具有不同用途的类型定义为单独的类型
+目的还在于防止在已经具有别名的类型之上添加别名</p>
 <pre><code class="language-python">Id = Int
-UserId = Int # 类型警告：重复别名：Id 和 UserId
+UserId = Int # 类型警告: 重复别名: Id 和 UserId
 
 Ids = Array Id
-Ints = Array Int # 类型警告：重复别名：Isd 和 Ints
+Ints = Array Int # 类型警告: 重复别名: Isd 和 Ints
 
 IorS = Int or Str
 IorSorB = IorS or Bool
-IorSorB_ = Int or Str or Bool # 类型警告：重复别名：IorSorB 和 IorSorB_
+IorSorB_ = Int or Str or Bool # 类型警告: 重复别名: IorSorB 和 IorSorB_
 
 Point2D = {x = Int; y = Int}
 Point3D = {.... Point2D; z = Int}
-Point = {x = Int; y = Int; z = Int} # 类型警告：重复别名：Point3D 和 Point
+Point = {x = Int; y = Int; z = Int} # 类型警告: 重复别名: Point3D 和 Point
 </code></pre>
 
 

@@ -145,7 +145,7 @@
                     <main>
                         <h1 id="子類型"><a class="header" href="#子類型">子類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/16_subtyping.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/16_subtyping.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>在 Erg 中，可以使用比較運算符 <code>&lt;</code>、<code>&gt;</code> 確定類包含。</p>
+<p>在 Erg 中，可以使用比較運算符 <code>&lt;</code>、<code>&gt;</code> 確定類包含</p>
 <pre><code class="language-python">Nat &lt; Int
 Int &lt; Object
 1... _ &lt; Nat
@@ -153,15 +153,15 @@ Int &lt; Object
 {=} &gt; {x = Int}
 {I: Int | I &gt;= 1} &lt; {I: Int | I &gt;= 0}
 </code></pre>
-<p>請注意，這與 <code>&lt;:</code> 運算符的含義不同。 它聲明左側的類是右側類型的子類型，并且僅在編譯時才有意義。</p>
+<p>請注意，這與 <code>&lt;:</code> 運算符的含義不同。 它聲明左側的類是右側類型的子類型，并且僅在編譯時才有意義</p>
 <pre><code class="language-python">C &lt;: T # T: 結構類型
 f|D &lt;: E| ...
 
 assert F &lt; G
 </code></pre>
-<p>您還可以為多態子類型規范指定 <code>Self &lt;: Add</code>，例如 <code>Self(R, O) &lt;: Add(R, O)</code>。</p>
+<p>您還可以為多態子類型規范指定 <code>Self &lt;: Add</code>，例如 <code>Self(R, O) &lt;: Add(R, O)</code></p>
 <h2 id="結構類型和類類型關系"><a class="header" href="#結構類型和類類型關系">結構類型和類類型關系</a></h2>
-<p>結構類型是結構類型的類型，如果它們具有相同的結構，則被認為是相同的對象。</p>
+<p>結構類型是結構類型的類型，如果它們具有相同的結構，則被認為是相同的對象</p>
 <pre><code class="language-python">T = Structural {i = Int}
 U = Structural {i = Int}
 
@@ -174,15 +174,15 @@ assert t in U
 <pre><code class="language-python">C = Class {i = Int}
 D = Class {i = Int}
 
-assert C == D # 類型錯誤：無法比較類
+assert C == D # 類型錯誤: 無法比較類
 c = C.new {i = 1}
 assert c in C
 assert not c in D
 </code></pre>
 <h2 id="子程序的子類型化"><a class="header" href="#子程序的子類型化">子程序的子類型化</a></h2>
-<p>子例程的參數和返回值只采用一個類。
-換句話說，您不能直接將結構類型或特征指定為函數的類型。
-必須使用部分類型規范將其指定為&quot;作為該類型子類型的單個類&quot;。</p>
+<p>子例程的參數和返回值只采用一個類
+換句話說，您不能直接將結構類型或特征指定為函數的類型
+必須使用部分類型規范將其指定為&quot;作為該類型子類型的單個類&quot;</p>
 <pre><code class="language-python"># OK
 f1 x, y: Int = x + y
 # NG
@@ -191,7 +191,7 @@ f2 x, y: Add = x + y
 # A 是一些具體的類
 f3&lt;A &lt;: Add&gt; x, y: A = x + y
 </code></pre>
-<p>子程序中的類型推斷也遵循此規則。 當子例程中的變量具有未指定的類型時，編譯器首先檢查它是否是其中一個類的實例，如果不是，則在特征范圍內查找匹配項。 如果仍然找不到，則會發生編譯錯誤。 此錯誤可以通過使用結構類型來解決，但由于推斷匿名類型可能會給程序員帶來意想不到的后果，因此它被設計為由程序員使用 <code>Structural</code> 顯式指定。</p>
+<p>子程序中的類型推斷也遵循此規則。 當子例程中的變量具有未指定的類型時，編譯器首先檢查它是否是其中一個類的實例，如果不是，則在特征范圍內查找匹配項。 如果仍然找不到，則會發生編譯錯誤。 此錯誤可以通過使用結構類型來解決，但由于推斷匿名類型可能會給程序員帶來意想不到的后果，因此它被設計為由程序員使用 <code>Structural</code> 顯式指定</p>
 <h2 id="類向上轉換"><a class="header" href="#類向上轉換">類向上轉換</a></h2>
 <pre><code class="language-python">i: Int
 i as (Int or Str)

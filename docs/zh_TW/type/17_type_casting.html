@@ -146,9 +146,9 @@
                         <h1 id="投擲"><a class="header" href="#投擲">投擲</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/17_type_casting.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/17_type_casting.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <h2 id="向上轉型"><a class="header" href="#向上轉型">向上轉型</a></h2>
-<p>因為 Python 是一種使用鴨子類型的語言，所以沒有強制轉換的概念。沒有必要向上轉型，本質上也沒有向下轉型。
-但是，Erg 是靜態類型的，因此有時必須進行強制轉換。
-一個簡單的例子是 <code>1 + 2.0</code>：<code>+</code>(Int, Ratio) 或 Int(&lt;: Add(Ratio, Ratio)) 操作在 Erg 語言規范中沒有定義。這是因為 <code>Int &lt;: Ratio</code>，所以 1 向上轉換為 1.0，即 Ratio 的一個實例。</p>
+<p>因為 Python 是一種使用鴨子類型的語言，所以沒有強制轉換的概念。沒有必要向上轉型，本質上也沒有向下轉型
+但是，Erg 是靜態類型的，因此有時必須進行強制轉換
+一個簡單的例子是 <code>1 + 2.0</code>: <code>+</code>(Int, Ratio) 或 Int(&lt;: Add(Ratio, Ratio)) 操作在 Erg 語言規范中沒有定義。這是因為 <code>Int &lt;: Ratio</code>，所以 1 向上轉換為 1.0，即 Ratio 的一個實例</p>
 <p>~~ Erg擴展字節碼在BINARY_ADD中增加了類型信息，此時類型信息為Ratio-Ratio。在這種情況下，BINARY_ADD 指令執行 Int 的轉換，因此沒有插入指定轉換的特殊指令。因此，例如，即使您在子類中重寫了某個方法，如果您將父類指定為類型，則會執行類型強制，并在父類的方法中執行該方法(在編譯時執行名稱修改以引用父母的方法)。編譯器只執行類型強制驗證和名稱修改。運行時不強制轉換對象(當前。可以實現強制轉換指令以優化執行)。 ~~</p>
 <pre><code class="language-python">@Inheritable
 Parent = Class()
@@ -169,7 +169,7 @@ child = Child.new()
 parent # 來自Parent的問候！
 child #  來自child的問候！
 </code></pre>
-<p>此行為不會造成與 Python 的不兼容。 首先，Python 沒有指定變量的類型，所以可以這么說，所有的變量都是類型變量。 由于類型變量會選擇它們可以適應的最小類型，因此如果您沒有在 Erg 中指定類型，則可以實現與 Python 中相同的行為。</p>
+<p>此行為不會造成與 Python 的不兼容。 首先，Python 沒有指定變量的類型，所以可以這么說，所有的變量都是類型變量。 由于類型變量會選擇它們可以適應的最小類型，因此如果您沒有在 Erg 中指定類型，則可以實現與 Python 中相同的行為</p>
 <pre><code class="language-python">@Inheritable
 Parent = Class()
 Parent.

@@ -145,19 +145,19 @@
                     <main>
                         <h1 id="目的"><a class="header" href="#目的">目的</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/25_object_system.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/25_object_system.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>可以分配給變量的所有數據。 <code>Object</code> 類的屬性如下。</p>
+<p>可以分配給變量的所有數據。 <code>Object</code> 類的屬性如下</p>
 <ul>
-<li><code>.__repr__</code>：返回對象的(非豐富)字符串表示</li>
-<li><code>.__sizeof__</code>：返回對象的大小(包括堆分配)</li>
+<li><code>.__repr__</code>: 返回對象的(非豐富)字符串表示</li>
+<li><code>.__sizeof__</code>: 返回對象的大小(包括堆分配)</li>
 <li><code>.__dir__</code>: 返回對象屬性列表</li>
-<li><code>.__hash__</code>：返回對象的哈希值</li>
+<li><code>.__hash__</code>: 返回對象的哈希值</li>
 <li><code>.__getattribute__</code>: 獲取并返回對象的屬性</li>
-<li><code>.clone</code>：創建并返回一個對象的克隆(在內存中有一個獨立的實體)</li>
-<li><code>.copy</code>：返回對象的副本(指向內存中的同一事物)</li>
+<li><code>.clone</code>: 創建并返回一個對象的克隆(在內存中有一個獨立的實體)</li>
+<li><code>.copy</code>: 返回對象的副本(指向內存中的同一事物)</li>
 </ul>
 <h2 id="記錄"><a class="header" href="#記錄">記錄</a></h2>
-<p>由記錄文字(<code>{attr = value; ...}</code>)生成的對象。
-這個對象有基本的方法，比如<code>.clone</code>和<code>.__sizeof__</code>。</p>
+<p>由記錄文字(<code>{attr = value; ...}</code>)生成的對象
+這個對象有基本的方法，比如<code>.clone</code>和<code>.__sizeof__</code></p>
 <pre><code class="language-python">obj = {.x = 1}
 assert obj.x == 1
 
@@ -165,7 +165,7 @@ obj2 = {...x; .y = 2}
 assert obj2.x == 1 and obj2.y == 2
 </code></pre>
 <h2 id="屬性"><a class="header" href="#屬性">屬性</a></h2>
-<p>與對象關聯的對象。 特別是，將 self (<code>self</code>) 作為其隱式第一個參數的子例程屬性稱為方法。</p>
+<p>與對象關聯的對象。 特別是，將 self (<code>self</code>) 作為其隱式第一個參數的子例程屬性稱為方法</p>
 <pre><code class="language-python"># 請注意，private_attr 中沒有`.`
 record = {.public_attr = j; private_attr = 2; .method = self -&gt; self.i + 1}
 record. public_attr == 2
@@ -173,29 +173,29 @@ record.private_attr # AttributeError: private_attr 是私有的
 assert record.method() == 3
 </code></pre>
 <h2 id="元素"><a class="header" href="#元素">元素</a></h2>
-<p>屬于特定類型的對象(例如，&quot;1&quot;是&quot;Int&quot;類型的元素)。所有對象至少是<code>{=}</code>類型的元素。
-類的元素有時稱為實例。</p>
+<p>屬于特定類型的對象(例如，&quot;1&quot;是&quot;Int&quot;類型的元素)。所有對象至少是<code>{=}</code>類型的元素
+類的元素有時稱為實例</p>
 <h2 id="子程序"><a class="header" href="#子程序">子程序</a></h2>
-<p>表示作為函數或過程(包括方法)實例的對象。代表子程序的類是&quot;子程序&quot;。
-實現 <code>.__call__</code> 的對象通常稱為 <code>Callable</code>。</p>
+<p>表示作為函數或過程(包括方法)實例的對象。代表子程序的類是&quot;子程序&quot;
+實現 <code>.__call__</code> 的對象通常稱為 <code>Callable</code></p>
 <h2 id="可調用"><a class="header" href="#可調用">可調用</a></h2>
-<p>一個實現<code>.__call__</code>的對象。它也是 <code>Subroutine</code> 的超類。</p>
+<p>一個實現<code>.__call__</code>的對象。它也是 <code>Subroutine</code> 的超類</p>
 <h2 id="類型"><a class="header" href="#類型">類型</a></h2>
-<p>定義需求屬性并使對象通用化的對象。
-主要有兩種類型：多態類型和單態類型。典型的單態類型有<code>Int</code>、<code>Str</code>等，多態類型有<code>Option Int</code>、<code>[Int; 3]</code>等
-此外，定義改變對象狀態的方法的類型稱為 Mutable 類型，需要在變量屬性中添加 <code>!</code>(例如動態數組：<code>[T; !_]</code>)。</p>
+<p>定義需求屬性并使對象通用化的對象
+主要有兩種類型: 多態類型和單態類型。典型的單態類型有<code>Int</code>、<code>Str</code>等，多態類型有<code>Option Int</code>、<code>[Int; 3]</code>等
+此外，定義改變對象狀態的方法的類型稱為 Mutable 類型，需要在變量屬性中添加 <code>!</code>(例如動態數組: <code>[T; !_]</code>)</p>
 <h2 id="班級"><a class="header" href="#班級">班級</a></h2>
-<p>具有 <code>.__new__</code>、<code>.__init__</code> 方法等的類型。實現基于類的面向對象。</p>
+<p>具有 <code>.__new__</code>、<code>.__init__</code> 方法等的類型。實現基于類的面向對象</p>
 <h2 id="功能"><a class="header" href="#功能">功能</a></h2>
-<p>對外部變量(不包括靜態變量)有讀權限但對外部變量沒有讀/寫權限的子程序。換句話說，它沒有外部副作用。
-Erg 函數的定義與 Python 的不同，因為它們不允許副作用。</p>
+<p>對外部變量(不包括靜態變量)有讀權限但對外部變量沒有讀/寫權限的子程序。換句話說，它沒有外部副作用
+Erg 函數的定義與 Python 的不同，因為它們不允許副作用</p>
 <h2 id="程序"><a class="header" href="#程序">程序</a></h2>
-<p>它對外部變量具有讀取和&quot;自我&quot;權限，對靜態變量具有讀/寫權限，并允許使用所有子例程。它可能有外部副作用。</p>
+<p>它對外部變量具有讀取和&quot;自我&quot;權限，對靜態變量具有讀/寫權限，并允許使用所有子例程。它可能有外部副作用</p>
 <h2 id="方法"><a class="header" href="#方法">方法</a></h2>
-<p>隱式將&quot;self&quot;作為第一個參數的子例程。它與簡單的函數/過程是不同的類型。</p>
+<p>隱式將&quot;self&quot;作為第一個參數的子例程。它與簡單的函數/過程是不同的類型</p>
 <h2 id="實體"><a class="header" href="#實體">實體</a></h2>
-<p>不是子例程和類型的對象。
-單態實體(<code>1</code>、<code>&quot;a&quot;</code> 等)也稱為值對象，多態實體(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)也稱為容器對象。</p>
+<p>不是子例程和類型的對象
+單態實體(<code>1</code>、<code>&quot;a&quot;</code> 等)也稱為值對象，多態實體(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)也稱為容器對象</p>
 
                     </main>
 

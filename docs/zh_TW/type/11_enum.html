@@ -145,13 +145,13 @@
                     <main>
                         <h1 id="枚舉類型"><a class="header" href="#枚舉類型">枚舉類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/11_enum.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/11_enum.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>Set 生成的枚舉類型。
-枚舉類型可以與類型規范一起使用，但可以通過將它們分類為類或定義修復程序來定義進一步的方法。</p>
-<p>具有枚舉類型的部分類型系統稱為枚舉部分類型。</p>
+<p>Set 生成的枚舉類型
+枚舉類型可以與類型規范一起使用，但可以通過將它們分類為類或定義修復程序來定義進一步的方法</p>
+<p>具有枚舉類型的部分類型系統稱為枚舉部分類型</p>
 <pre><code class="language-python">Bool = {True, False}
 Status = {&quot;ok&quot;, &quot;error&quot;}
 </code></pre>
-<p>由于 <code>1..7</code> 可以重寫為 <code>{1, 2, 3, 4, 5, 6, 7}</code>，所以當元素是有限的時，Enum 類型本質上等同于 Range 類型。</p>
+<p>由于 <code>1..7</code> 可以重寫為 <code>{1, 2, 3, 4, 5, 6, 7}</code>，所以當元素是有限的時，Enum 類型本質上等同于 Range 類型</p>
 <pre><code class="language-python">Binary! = Class {0, 1}!.
     invert! ref! self =
         if! self == 0:
@@ -163,7 +163,7 @@ Status = {&quot;ok&quot;, &quot;error&quot;}
 b = Binary!.new !0
 b.invert!()
 </code></pre>
-<p>順便說一下，Erg 的 Enum 類型是一個包含其他語言中常見的枚舉類型的概念。</p>
+<p>順便說一下，Erg 的 Enum 類型是一個包含其他語言中常見的枚舉類型的概念</p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -174,11 +174,11 @@ enum Status { Ok, Error }
 <pre><code class="language-python"># Erg
 Status = {&quot;Ok&quot;, &quot;Error&quot;}
 </code></pre>
-<p>Rust 的不同之處在于它使用了結構子類型(SST)。</p>
+<p>Rust 的不同之處在于它使用了結構子類型(SST)</p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>// Status 和 ExtraStatus 之間沒有關系。
+</span>// Status 和 ExtraStatus 之間沒有關系
 enum Status { Ok, Error }
 enum ExtraStatus { Ok, Error, Unknown }
 
@@ -197,12 +197,12 @@ Status = Trait {&quot;Ok&quot;, &quot;Error&quot;}
 ExtraStatus = Trait {&quot;Ok&quot;, &quot;Error&quot;, &quot;Unknown&quot;}
     # ...
 </code></pre>
-<p>方法也可以通過補丁添加。</p>
-<p>使用&quot;或&quot;運算符明確指示包含或向現有 Enum 類型添加選項。</p>
+<p>方法也可以通過補丁添加</p>
+<p>使用&quot;或&quot;運算符明確指示包含或向現有 Enum 類型添加選項</p>
 <pre><code class="language-python">ExtraStatus = Status or {&quot;Unknown&quot;}
 </code></pre>
-<p>一個元素所屬的所有類都相同的枚舉類型稱為同質枚舉類型。</p>
-<p>默認情況下，可以將需求類型為同類枚舉類型的類視為元素所屬類的子類。</p>
+<p>一個元素所屬的所有類都相同的枚舉類型稱為同質枚舉類型</p>
+<p>默認情況下，可以將需求類型為同類枚舉類型的類視為元素所屬類的子類</p>
 <p>如果您不想這樣做，可以將其設為包裝類</p>
 <pre><code class="language-python">Abc = Class {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;}
 Abc.new(&quot;A&quot;).is_uppercase()

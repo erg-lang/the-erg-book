@@ -145,14 +145,14 @@
                     <main>
                         <h1 id="匿名函数"><a class="header" href="#匿名函数">匿名函数</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/21_lambda.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/21_lambda.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>匿名函数是一种无需命名即可动态创建函数对象的语法。</p>
+<p>匿名函数是一种无需命名即可动态创建函数对象的语法</p>
 <pre><code class="language-python"># `-&gt;` 是匿名函数操作符
 # 同 `f x, y = x + y`
 f = (x, y) -&gt; x + y
 # same as `g(x, y: Int): Int = x + y`
 g = (x, y: Int): Int -&gt; x + y
 </code></pre>
-<p>如果只有一个参数，您可以省略 <code>()</code>。</p>
+<p>如果只有一个参数，您可以省略 <code>()</code></p>
 <pre><code class="language-python">assert [1, 2, 3].map_collect(i -&gt; i + 1) == [2, 3, 4]
 assert ((i, j) -&gt; [i, j])(1, 2) == [1, 2]
 </code></pre>
@@ -167,7 +167,7 @@ i: T() -&gt; Int
 # 在这种情况下，它被解释为 (U()) -&gt; Int
 k: U() -&gt; Int
 </code></pre>
-<p>匿名函数可以不带参数使用。</p>
+<p>匿名函数可以不带参数使用</p>
 <pre><code class="language-python"># `=&gt;` 是一个匿名过程操作符
 p! = () =&gt; print! # `p!` 被调用
 # `() -&gt;`, `() =&gt;` 有语法糖 `do`, `do!`
@@ -183,7 +183,7 @@ now = if! True:
         date.now!()
     do date.new(&quot;1970&quot;, &quot;1&quot;, &quot;1&quot;, &quot;00&quot;, &quot;00&quot;)
 </code></pre>
-<p>您还可以键入和模式匹配。 正因为如此，<code>match</code> 函数大多是借助匿名函数的力量来实现的。
+<p>您还可以键入和模式匹配。 正因为如此，<code>match</code> 函数大多是借助匿名函数的力量来实现的
 作为 <code>match</code> 函数的参数给出的匿名函数从顶部开始按顺序尝试。 因此，您应该在顶部描述特殊情况，在底部描述更一般的情况。 如果你弄错了顺序，编译器会发出警告(如果可能的话)</p>
 <pre><code class="language-python">n = (Complex or Ratio or Int).sample!()
 i = matchn:
@@ -193,7 +193,7 @@ i = matchn:
     (c: Complex) -&gt; c.real() # 对于复杂。 Int &lt; Complex，但可以回退
     _ -&gt; panic &quot;cannot convert to Int&quot; # 如果以上都不适用。 match 必须涵盖所有模式
 </code></pre>
-<p>错误处理通常也使用 <code>?</code> 或 <code>match</code> 完成。</p>
+<p>错误处理通常也使用 <code>?</code> 或 <code>match</code> 完成</p>
 <pre><code class="language-python">res: ParseResult Int
 matchres:
     i: Int -&gt; i
@@ -205,7 +205,7 @@ match res2:
     err: Error -&gt; panic err.msg
 </code></pre>
 <h2 id="匿名多相关系数"><a class="header" href="#匿名多相关系数">匿名多相关系数</a></h2>
-<pre><code class="language-python"># 与此相同 id|T|x：T = x
+<pre><code class="language-python"># 与此相同 id|T|x: T = x
 id = |T| x: T -&gt; x
 </code></pre>
 

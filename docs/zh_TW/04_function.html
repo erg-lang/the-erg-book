@@ -145,21 +145,21 @@
                     <main>
                         <h1 id="功能"><a class="header" href="#功能">功能</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>函數是一個塊，它接受一個&quot;參數&quot;，對其進行處理，并將其作為&quot;返回值&quot;返回。 定義如下。</p>
+<p>函數是一個塊，它接受一個&quot;參數&quot;，對其進行處理，并將其作為&quot;返回值&quot;返回。 定義如下</p>
 <pre><code class="language-python">add x, y = x + y
 # 或者
 add(x, y) = x + y
 </code></pre>
-<p>在函數名之后指定的名稱稱為參數。
-相反，傳遞給函數的對象稱為參數。
-函數 <code>add</code> 是一個以 <code>x</code> 和 <code>y</code> 作為參數并返回它們之和的函數，<code>x + y</code>。
-可以按如下方式調用(應用/調用)定義的函數。</p>
+<p>在函數名之后指定的名稱稱為參數
+相反，傳遞給函數的對象稱為參數
+函數 <code>add</code> 是一個以 <code>x</code> 和 <code>y</code> 作為參數并返回它們之和的函數，<code>x + y</code>
+可以按如下方式調用(應用/調用)定義的函數</p>
 <pre><code class="language-python">add 1, 2
 # or
 add(1, 2)
 </code></pre>
 <h2 id="冒號應用風格"><a class="header" href="#冒號應用風格">冒號應用風格</a></h2>
-<p>函數像<code>f x, y, ...</code>一樣被調用，但是如果單行參數太多，可以使用<code>:</code>(冒號)來應用它們。</p>
+<p>函數像<code>f x, y, ...</code>一樣被調用，但是如果單行參數太多，可以使用<code>:</code>(冒號)來應用它們</p>
 <pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
@@ -180,11 +180,11 @@ add(1, 2)
 </code></pre>
 <p>在 <code>:</code> 之后，除了注釋之外，不得編寫任何代碼，并且必須始終在新行上</p>
 <h2 id="關鍵字參數"><a class="header" href="#關鍵字參數">關鍵字參數</a></h2>
-<p>如果使用大量參數定義函數，則存在以錯誤順序傳遞參數的危險。
-在這種情況下，使用關鍵字參數調用函數是安全的。</p>
+<p>如果使用大量參數定義函數，則存在以錯誤順序傳遞參數的危險
+在這種情況下，使用關鍵字參數調用函數是安全的</p>
 <pre><code class="language-python">f x, y, z, w, v, u: Int = ...
 </code></pre>
-<p>上面定義的函數有很多參數，并且排列順序混亂。 您不應該創建這樣的函數，但是在使用別人編寫的代碼時可能會遇到這樣的代碼。 因此，我們使用關鍵字參數。 如果使用關鍵字參數，則值會從名稱傳遞到正確的參數，即使它們的順序錯誤。</p>
+<p>上面定義的函數有很多參數，并且排列順序混亂。 您不應該創建這樣的函數，但是在使用別人編寫的代碼時可能會遇到這樣的代碼。 因此，我們使用關鍵字參數。 如果使用關鍵字參數，則值會從名稱傳遞到正確的參數，即使它們的順序錯誤</p>
 <pre><code class="language-python">f u: 6, v: 5, w: 4, x: 1, y: 2, z: 3
 </code></pre>
 <p>請注意，緊跟在 <code>:</code> 之后的關鍵字參數和新行被視為冒號調用樣式</p>
@@ -196,8 +196,8 @@ f x:
     y
 </code></pre>
 <h2 id="定義錯誤參數"><a class="header" href="#定義錯誤參數">定義錯誤參數</a></h2>
-<p>當某些參數大部分是固定的并且您希望能夠省略它們時，使用默認參數。</p>
-<p>默認參數由<code>:=</code>(walrus運算符)指定。 如果未指定 <code>base</code>，則將 <code>math.E</code> 分配給 <code>base</code>。</p>
+<p>當某些參數大部分是固定的并且您希望能夠省略它們時，使用默認參數</p>
+<p>默認參數由<code>:=</code>(walrus運算符)指定。 如果未指定 <code>base</code>，則將 <code>math.E</code> 分配給 <code>base</code></p>
 <pre><code class="language-python">math_log x: Ratio, base := math.E = ...
 
 assert math_log(100, 10) == 2
@@ -220,7 +220,7 @@ f [x, y] := [1, 2] = ...
 <pre><code class="language-python">f x := 1, y := x = ... # NG
 </code></pre>
 <h2 id="可變長度參數"><a class="header" href="#可變長度參數">可變長度參數</a></h2>
-<p>輸出其參數的日志(記錄)的 <code>log</code> 函數可以采用任意數量的參數。</p>
+<p>輸出其參數的日志(記錄)的 <code>log</code> 函數可以采用任意數量的參數</p>
 <pre><code class="language-python">記錄&quot;你好&quot;、&quot;世界&quot;、&quot;！&quot; # 你好世界 ！
 </code></pre>
 <p>要定義這樣的函數，請將 <code>...</code> 添加到參數中。 這樣，函數將參數作為可變長度數組接收</p>
@@ -243,38 +243,38 @@ f 1, 2, 3, 4, 5
 fib 1 = 1
 fib(n: Nat): Nat = fib(n - 1) + fib(n - 2)
 </code></pre>
-<p>注意一個函數定義有多個模式不是所謂的重載(multiple definition)； 一個函數只有一個定義。 在上面的示例中，&quot;n&quot;必須與&quot;0&quot;或&quot;1&quot;屬于同一類型。 此外，與 <code>match</code> 一樣，模式匹配是從上到下完成的。</p>
+<p>注意一個函數定義有多個模式不是所謂的重載(multiple definition)； 一個函數只有一個定義。 在上面的示例中，&quot;n&quot;必須與&quot;0&quot;或&quot;1&quot;屬于同一類型。 此外，與 <code>match</code> 一樣，模式匹配是從上到下完成的</p>
 <p>如果不同類的實例混合在一起，最后一個定義必須指定函數參數的類型為<code>Or</code></p>
 <pre><code class="language-python">f &quot;aa&quot; = ...
 f 1 = ...
 # `f x = ... ` 無效
 f x: Int or Str = ...
 </code></pre>
-<p>此外，像 <code>match</code> 一樣，它也必須是詳盡的。</p>
+<p>此外，像 <code>match</code> 一樣，它也必須是詳盡的</p>
 <pre><code class="language-python">fib 0 = 0
 fib 1 = 1
-# 模式錯誤：fib 參數的模式并不詳盡
+# 模式錯誤: fib 參數的模式并不詳盡
 </code></pre>
-<p>但是，可以通過使用稍后描述的 <a href="./type/12_refinement.html">refinement type</a> 顯式指定類型來使其詳盡無遺。</p>
+<p>但是，可以通過使用稍后描述的 <a href="./type/12_refinement.html">refinement type</a> 顯式指定類型來使其詳盡無遺</p>
 <pre><code class="language-python">fib: 0..1 -&gt; 0..1
 fib 0 = 0
 fib 1 = 1
 # OK
 </code></pre>
 <h2 id="遞歸函數"><a class="header" href="#遞歸函數">遞歸函數</a></h2>
-<p>遞歸函數是在其定義中包含自身的函數。</p>
-<p>作為一個簡單的例子，讓我們定義一個執行階乘計算的函數<code>factorial</code>。 階乘是&quot;將所有小于或等于的正數相乘&quot;的計算。
-5 的階乘是 <code>5*4*3*2*1 == 120</code>。</p>
+<p>遞歸函數是在其定義中包含自身的函數</p>
+<p>作為一個簡單的例子，讓我們定義一個執行階乘計算的函數<code>factorial</code>。 階乘是&quot;將所有小于或等于的正數相乘&quot;的計算
+5 的階乘是 <code>5*4*3*2*1 == 120</code></p>
 <pre><code class="language-python">factorial 0 = 1
 factorial 1 = 1
 factorial(n: Nat): Nat = n * factorial(n - 1)
 </code></pre>
-<p>首先，從階乘的定義來看，0和1的階乘都是1。
-反過來，2的階乘是<code>2*1 == 2</code>，3的階乘是<code>3*2*1 == 6</code>，4的階乘是<code>4*3*2*1 == 24 </code>。
-如果我們仔細觀察，我們可以看到一個數 n 的階乘是前一個數 n-1 乘以 n 的階乘。
-將其放入代碼中，我們得到 <code>n * factorial(n - 1)</code>。
-由于 <code>factorial</code> 的定義包含自身，<code>factorial</code> 是一個遞歸函數。</p>
-<p>提醒一下，如果您不添加類型規范，則會這樣推斷。</p>
+<p>首先，從階乘的定義來看，0和1的階乘都是1
+反過來，2的階乘是<code>2*1 == 2</code>，3的階乘是<code>3*2*1 == 6</code>，4的階乘是<code>4*3*2*1 == 24 </code>
+如果我們仔細觀察，我們可以看到一個數 n 的階乘是前一個數 n-1 乘以 n 的階乘
+將其放入代碼中，我們得到 <code>n * factorial(n - 1)</code>
+由于 <code>factorial</code> 的定義包含自身，<code>factorial</code> 是一個遞歸函數</p>
+<p>提醒一下，如果您不添加類型規范，則會這樣推斷</p>
 <pre><code class="language-python">factorial: |T &lt;: Sub(Int, T) and Mul(Int, Int) and Eq(Int)| T -&gt; Int
 factorial 0 = 1
 factorial 1 = 1
@@ -283,12 +283,12 @@ factorial n = n * factorial(n - 1)
 <p>但是，即使您可以推理，您也應該明確指定遞歸函數的類型。 在上面的例子中，像&quot;factorial(-1)&quot;這樣的代碼可以工作，但是</p>
 <pre><code class="language-python">factorial(-1) == -1 * factorial(-2) == -1 * -2 * factorial(-3) == ...
 </code></pre>
-<p>并且這種計算不會停止。 遞歸函數必須仔細定義值的范圍，否則您可能會陷入無限循環。
-所以類型規范也有助于避免接受意外的值。</p>
+<p>并且這種計算不會停止。 遞歸函數必須仔細定義值的范圍，否則您可能會陷入無限循環
+所以類型規范也有助于避免接受意外的值</p>
 <h2 id="編譯時函數"><a class="header" href="#編譯時函數">編譯時函數</a></h2>
-<p>函數名以大寫字母開頭，表示編譯時函數。 用戶定義的編譯時函數必須將所有參數作為常量，并且必須指定它們的類型。
-編譯時函數的功能有限。 在編譯時函數中只能使用常量表達式，即只有一些運算符(例如求積、比較和類型構造操作)和編譯時函數。 要傳遞的參數也必須是常量表達式。
-作為回報，優點是計算可以在編譯時完成。</p>
+<p>函數名以大寫字母開頭，表示編譯時函數。 用戶定義的編譯時函數必須將所有參數作為常量，并且必須指定它們的類型
+編譯時函數的功能有限。 在編譯時函數中只能使用常量表達式，即只有一些運算符(例如求積、比較和類型構造操作)和編譯時函數。 要傳遞的參數也必須是常量表達式
+作為回報，優點是計算可以在編譯時完成</p>
 <pre><code class="language-python">Add(X, Y: Nat): Nat = X + Y
 assert Add(1, 2) == 3
 
@@ -297,20 +297,20 @@ Factorial(X: Nat): Nat = X * Factorial(X - 1)
 assert Factorial(10) == 3628800
 
 math = import &quot;math&quot;
-Sin X = math.sin X # 常量錯誤：此函數在編譯時不可計算
+Sin X = math.sin X # 常量錯誤: 此函數在編譯時不可計算
 </code></pre>
-<p>編譯時函數也用于多態類型定義。</p>
+<p>編譯時函數也用于多態類型定義</p>
 <pre><code class="language-python">Option T: Type = T or NoneType
 Option: Type -&gt; Type
 </code></pre>
-<h2 id="附錄功能對比"><a class="header" href="#附錄功能對比">附錄：功能對比</a></h2>
-<p>Erg 沒有為函數定義 <code>==</code>。 這是因為通常沒有函數的結構等價算法。</p>
+<h2 id="附錄-功能對比"><a class="header" href="#附錄-功能對比">附錄: 功能對比</a></h2>
+<p>Erg 沒有為函數定義 <code>==</code>。 這是因為通常沒有函數的結構等價算法</p>
 <pre><code class="language-python">f = x: Int -&gt; (x + 1)**2
 g = x: Int -&gt; x**2 + 2x + 1
 
-assert f == g # 類型錯誤：無法比較函數
+assert f == g # 類型錯誤: 無法比較函數
 </code></pre>
-<p>盡管 <code>f</code> 和 <code>g</code> 總是返回相同的結果，但要做出這樣的決定是極其困難的。 我們必須向編譯器教授代數。
+<p>盡管 <code>f</code> 和 <code>g</code> 總是返回相同的結果，但要做出這樣的決定是極其困難的。 我們必須向編譯器教授代數
 所以 Erg 完全放棄了函數比較，并且 <code>(x -&gt; x) == (x -&gt; x)</code> 也會導致編譯錯誤。 這是與 Python 不同的規范，應該注意</p>
 <pre><code class="language-python"># Python，奇怪的例子
 f = lambda x: x
@@ -326,11 +326,11 @@ f a
 # 將完成到
 f(a)
 
-f a, b # 類型錯誤：f() 接受 1 個位置參數，但給出了 2 個
-f(a, b) # # 類型錯誤：f() 接受 1 個位置參數，但給出了 2 個
+f a, b # 類型錯誤: f() 接受 1 個位置參數，但給出了 2 個
+f(a, b) # # 類型錯誤: f() 接受 1 個位置參數，但給出了 2 個
 f((a, b)) # OK
 </code></pre>
-<p>函數類型<code>T -&gt; U</code>實際上是<code>(T,) -&gt; U</code>的語法糖。</p>
+<p>函數類型<code>T -&gt; U</code>實際上是<code>(T,) -&gt; U</code>的語法糖</p>
 
 
                     </main>

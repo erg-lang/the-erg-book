@@ -145,22 +145,22 @@
                     <main>
                         <h1 id="set"><a class="header" href="#set">Set</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>一个Set代表一个集合，它在结构上是一个重复的无序数组。</p>
+<p>一个Set代表一个集合，它在结构上是一个重复的无序数组</p>
 <pre><code class="language-python">assert Set.from([1, 2, 3, 2, 1]) == {1, 2, 3}
 assert {1, 2} == {1, 1, 2} # 重复的被自动删除
 assert {1, 2} == {2, 1}
 </code></pre>
 <p>它也可以用类型和长度来声明</p>
 <pre><code class="language-python">a: {Int; 3} = {0, 1, 2} # OK
-b: {Int; 3} = {0, 0, 0} # NG，重复的内容被删除，长度也会改变。
+b: {Int; 3} = {0, 0, 0} # NG，重复的内容被删除，长度也会改变
 #[
 TypeError: the type of b is mismatched
 expected:  Set(Int, 3)
 but found: Set({0, }, 1)
 ]#
 </code></pre>
-<p>此外，只有实现<code>Eq</code>跟踪的对象才能成为集合的元素。</p>
-<p>因此，不可能使用Floats等作为集合元素。</p>
+<p>此外，只有实现<code>Eq</code>跟踪的对象才能成为集合的元素</p>
+<p>因此，不可能使用Floats等作为集合元素</p>
 <pre><code class="language-python">d = {0.0, 1.0} # NG
 #[
 1│ d = {0.0, 1.0}
@@ -170,7 +170,7 @@ expected:  Eq(Float)
 but found: {0.0, 1.0, }
 ]#
 </code></pre>
-<p>Set可以执行集合操作。</p>
+<p>Set可以执行集合操作</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
 assert not 1 in {}
 assert {1} or {2} == {1, 2}
@@ -181,12 +181,12 @@ assert {1, 2} not {2} == {1}
 <pre><code class="language-python">s: {Int or Str} = {&quot;a&quot;, 1, &quot;b&quot;, -1}
 </code></pre>
 <h2 id="sets为类型"><a class="header" href="#sets为类型">Sets为类型</a></h2>
-<p>Sets也可以被视为类型。 这种类型称为 <em>枚举类型</em>。</p>
+<p>Sets也可以被视为类型。 这种类型称为 <em>枚举类型</em></p>
 <pre><code class="language-python">i: {1, 2, 3} = 1
 assert i in {1, 2, 3}
 </code></pre>
-<p>Set的元素直接是类型的元素。
-请注意，这些Set本身是不同的。</p>
+<p>Set的元素直接是类型的元素
+请注意，这些Set本身是不同的</p>
 <pre><code class="language-python">mut_set = {1, 2, 3}.into {Int; !3}
 mut_set.insert!(4)
 </code></pre>
