@@ -199,10 +199,10 @@ hello, world!
 <p>The code after <code>#</code> is ignored as a comment. Use this to explain the intent of the code or to temporarily disable the code.</p>
 <pre><code class="language-python"># Comment
 # `#` and after are ignored until a new line is inserted
-#[
+# [
 Multi-line comment
 Treated as a comment all the way up to the corresponding `]#`
-]#
+]# 
 </code></pre>
 <h2 id="expressions-separators"><a class="header" href="#expressions-separators">Expressions, separators</a></h2>
 <p>A script is a series of expressions. An expression is something that can be calculated or evaluated, and in Erg almost everything is an expression.
@@ -1127,22 +1127,22 @@ assert {1, 2} == {2, 1}
 <p>Sets can be declared by specifying type and length.</p>
 <pre><code class="language-python">a: {Int; 3} = {0, 1, 2} # OK
 b: {Int; 3} = {0, 0, 0} # NG, Duplicates are deleted, and the length changes.
-#[
+# [
 TypeError: the type of b is mismatched
 expected:  Set(Int, 3)
 but found: Set({0, }, 1)
-]#
+]# 
 </code></pre>
 <p>In addition, only objects that implement the <code>Eq</code> trait can be elements of the Set.</p>
 <p>Therefore, it is not possible to use the Set elements such as a Float.</p>
 <pre><code class="language-python">d = {0.0, 1.0} # NG
-#[
+# [
 1│ d = {0.0, 1.0}
         ^^^^^^^^
 TypeError: the type of _ is mismatched:
 expected:  Eq(Float)
 but found: {0.0, 1.0, }
-]#
+]# 
 </code></pre>
 <p>Sets can perform set operations.</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
@@ -3072,7 +3072,7 @@ assert Option in Type -&gt; Type
 </code></pre>
 <p>So code like the following will result in an error:
 In Erg, methods can only be defined in atomic kinds, and the name <code>self</code> cannot be used anywhere other than the first argument of a method.</p>
-<pre><code class="language-python">#K is an unary kind
+<pre><code class="language-python"># K is an unary kind
 K: Type -&gt; Type
 K T = Class...
 K.
@@ -3398,7 +3398,7 @@ And the <code>IteratorImpl</code> patch is the core of the iteration functionali
 </code></pre>
 <p>Types such as <code>Iterable</code> that provide an interface for handling traits (in this case <code>Iterator</code>) in a static dispatch yet unified manner are called companion class adapters.</p>
 <hr />
-<p><span id="1" style="font-size:x-small"><sup>1</sup> There doesn't seem to be a uniform name for this pattern, but in Rust, there is [companion struct pattern]( https://gist.github.com/qnighy/be99c2ece6f3f4b1248608a04e104b38#:~:text=%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%80%82-,companion%20struct,-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%80%81%E3 %81%9D%E3%81%AE), and was named after it. <a href="16_iterator.html#f1">↩</a> </span></p>
+<p><span id="1" style="font-size:x-small"><sup>1</sup> There doesn't seem to be a uniform name for this pattern, but in Rust, there is [companion struct pattern]( https://gist.github.com/qnighy/be99c2ece6f3f4b1248608a04e104b38# :~:text=%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%80%82-,companion%20struct,-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%80%81%E3 %81%9D%E3%81%AE), and was named after it. <a href="16_iterator.html#f1">↩</a> </span></p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mutability"><a class="header" href="#mutability">Mutability</a></h1>
 <p>As we have already seen, all Erg variables are immutable. However, Erg objects have the concept of mutability.
@@ -3556,7 +3556,7 @@ For example, a private variable defined in the <code>foo</code> module cannot be
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python">#bar.er
+<pre><code class="language-python"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: Module 'foo' has no attribute 'x' ('x' is private)
 </code></pre>
@@ -3565,7 +3565,7 @@ Public variables are defined with <code>.</code>.</p>
 <pre><code class="language-python"># foo.er
 .x = &quot;this is a visible variable&quot;
 </code></pre>
-<pre><code class="language-python">#bar.er
+<pre><code class="language-python"># bar.er
 foo = import &quot;foo&quot;
 assert foo.x == &quot;this is a visible variable&quot;
 </code></pre>
@@ -3615,7 +3615,7 @@ C.
 <pre><code class="language-python"># foo.er
 .Foo = Class()
 </code></pre>
-<pre><code class="language-python">#bar.er
+<pre><code class="language-python"># bar.er
 {Foo; ...} = import &quot;foo&quot;
 
 Foo::
@@ -3639,7 +3639,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 </code></pre>
 <p>Also, methods cannot be defined in the type to be re-exported.
 This is to avoid confusion about methods being found or not found depending on the module they are imported from.</p>
-<pre><code class="language-python">#bar.er
+<pre><code class="language-python"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::
@@ -3648,7 +3648,7 @@ Foo.
     public self = self::private() # Error
 </code></pre>
 <p>If you want to do something like this, define a <a href="./type/07_patch.html">patch</a>.</p>
-<pre><code class="language-python">#bar.er
+<pre><code class="language-python"># bar.er
 {Foo; ...} = import &quot;foo&quot;
 
 FooImpl = Patch Foo
@@ -3890,7 +3890,7 @@ assert sum == 45
 <pre><code class="language-python"># Defining the foo module is almost the same as defining this record
 foo = {.i = 1}
 </code></pre>
-<pre><code class="language-python:bar.er">#bar.er
+<pre><code class="language-python:bar.er"># bar.er
 foo = import &quot;foo&quot;
 print! foo # &lt;module 'foo'&gt;
 assert foo.i == 1
@@ -4226,7 +4226,7 @@ C = Class...
 <p>Below are some frequently used built-in decorators.</p>
 <h2 id="inheritable"><a class="header" href="#inheritable">Inheritable</a></h2>
 <p>Indicates that the defining type is an inheritable class. If you specify <code>&quot;public&quot;</code> for the argument <code>scope</code>, it will be possible to inherit even the class of the external module. By default it is <code>&quot;private&quot;</code> and cannot be inherited externally.</p>
-<p>##Final</p>
+<h2 id="final"><a class="header" href="#final">Final</a></h2>
 <p>Make the method non-overridable. Adding it to a class makes it a non-inheritable class, but since it's the default it doesn't make sense.</p>
 <h2 id="override"><a class="header" href="#override">Override</a></h2>
 <p>Used when overriding attributes. By default, Erg will throw an error if you try to define the same attribute as the base class.</p>
@@ -4277,7 +4277,7 @@ U = T.detach(X).attach(Y)
 assert X not in U. attaches
 assert Y in U. attaches
 </code></pre>
-<p>##Deprecated</p>
+<h2 id="deprecated"><a class="header" href="#deprecated">Deprecated</a></h2>
 <p>Indicates that the variable specification is obsolete and deprecated.</p>
 <h2 id="test"><a class="header" href="#test">Test</a></h2>
 <p>Indicates that this is a test subroutine. Test subroutines are run with the <code>erg test</code> command.</p>
