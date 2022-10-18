@@ -159,15 +159,38 @@ assert foo.i == 1
 <p>Since module types are also record types, deconstruction assignment is possible.</p>
 <pre><code class="language-python">{sin; cos; ...} = import &quot;math&quot;
 </code></pre>
-<h2 id="module-visibility"><a class="header" href="#module-visibility">module visibility</a></h2>
-<pre><code class="language-console">└─┬ ./src
-   ├─ lib.er
-   ├─ foo.er
-   ├─bar.er
-   └─┬ bar
-     ├─ baz.er
-     └─ qux.er
+<h2 id="module-visibility"><a class="header" href="#module-visibility">Module Visibility</a></h2>
+<p>Directories as well as files can be modules.
+However, by default Erg does not recognize directories as Erg modules. To have it recognized, create a file named <code>__init__.er</code>.
+<code>__init__.er</code> is similar to <code>__init__.py</code> in Python.</p>
+<pre><code class="language-console">└─┬ bar
+  └─ __init__.er
 </code></pre>
+<p>Now the <code>bar</code> directory is recognized as a module. If the only file in <code>bar</code> is <code>__init__.er</code>, there is not much point in having a directory structure, but it is useful if you want to bundle several modules into a single module. For example:</p>
+<pre><code class="language-console">└─┬ bar
+  ├─ __init__.er
+  ├─ baz.er
+  └─ qux.er
+</code></pre>
+<p>From outside the <code>bar</code> directory, you can use like the following.</p>
+<pre><code class="language-erg">bar = import &quot;bar&quot;
+
+bar.baz.p!()
+bar.qux.p!()
+</code></pre>
+<p><code>__init__.er</code> is not just a marker that makes a directory as a module, it also controls the visibility of the module.</p>
+<pre><code class="language-erg"># __init__.er
+
+# `. /` points to the current directory. It can be omitted
+.baz = import &quot;. /baz&quot;
+qux = import &quot;. /qux&quot;
+
+.f x =
+    .baz.f ...
+.g x =
+    qux.f ...
+</code></pre>
+<p>When you import a <code>bar</code> module from outside, the <code>baz</code> module will be accessible, but the <code>qux</code> module will not.</p>
 <h2 id="circular-dependencies"><a class="header" href="#circular-dependencies">circular dependencies</a></h2>
 <p>Erg allows you to define circular dependencies between modules.</p>
 <pre><code class="language-python"># foo.er
@@ -196,6 +219,7 @@ foo = import &quot;foo&quot;
 print! foo.x
 .x = 0
 </code></pre>
+<p>In addition, An Erg module that is an entry point (i.e., a module that <code>__name__ == &quot;__main__&quot;</code>) cannot be the subject of circular references.</p>
 
 
                     </main>

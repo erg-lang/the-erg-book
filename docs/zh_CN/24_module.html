@@ -144,8 +144,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="模块"><a class="header" href="#模块">模块</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
-<p>Erg允许您将文件本身视为单个记录(Record)。这称为模块。</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=48107a2d1719892be50588de764991cba6db39b4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D48107a2d1719892be50588de764991cba6db39b4" alt="badge" /></a></p>
+<p>Erg允许您将文件本身视为单个记录(Record)。这称为模块</p>
 <pre><code class="language-python:foo.er"># foo.er
 .i = 1
 </code></pre>
@@ -161,14 +161,59 @@ assert foo.i == 1
 <pre><code class="language-python">{sin; cos; ...} = import &quot;math&quot;
 </code></pre>
 <h2 id="模块可见性"><a class="header" href="#模块可见性">模块可见性</a></h2>
-<pre><code class="language-console">└─┬ ./src
-   ├─ lib.er
-   ├─ foo.er
-   ├─bar.er
-   └─┬ bar
-     ├─ baz.er
-     └─ qux.er
+<p>目录和文件都可以是模块
+但是，在默认情况下，Erg不将目录识别为Erg模块。要让它被识别，创建一个名为<code>__init__.er</code>的文件
+<code>__init__.er</code>类似于Python中的<code>__init__.py</code></p>
+<pre><code class="language-console">└─┬ bar
+  └─ __init__.er
 </code></pre>
+<p>现在 <code>bar</code> 目录被识别为一个模块。如果 <code>bar</code> 中的唯一文件是 <code>__init__.er</code>，则目录结构没有多大意义，但如果您想将多个模块捆绑到一个模块中，它会很有用。例如: </p>
+<pre><code class="language-console">└─┬ bar
+  ├─ __init__.er
+  ├─ baz.er
+  └─ qux.er
+</code></pre>
+<p>在 <code>bar</code> 目录之外，您可以像下面这样使用</p>
+<pre><code class="language-erg">bar = import &quot;bar&quot;
+bar.baz.p!()
+bar.qux.p!()
+</code></pre>
+<p><code>__init__.er</code> 不仅仅是一个将目录作为模块的标记，它还控制模块的可见性</p>
+<pre><code class="language-erg"># __init__.er
+# `. /` 指向当前目录。可以省略
+.baz = import &quot;. /baz&quot;
+qux = import &quot;. /qux&quot;
+.f x =
+    .baz.f ...
+.g x =
+    qux.f ...
+</code></pre>
+<p>当你从外部导入 <code>bar</code> 模块时，<code>baz</code> 模块可以访问，但 <code>qux</code> 模块不能。</p>
+<h2 id="循环依赖"><a class="header" href="#循环依赖">循环依赖</a></h2>
+<p>Erg 允许您定义模块之间的循环依赖关系。</p>
+<pre><code class="language-python"># foo.er
+bar = import &quot;bar&quot;
+print! bar.g 1
+.f x = x
+</code></pre>
+<pre><code class="language-python"># bar.er
+foo = import &quot;foo&quot;
+print! foo.f 1
+.g x = x
+</code></pre>
+<p>但是，由过程调用创建的变量不能在循环引用模块中定义
+这是因为 Erg 根据依赖关系重新排列定义的顺序</p>
+<pre><code class="language-python"># foo.er
+bar = import &quot;bar&quot;
+print! bar.x
+.x = g!(1) # 模块错误：由过程调用创建的变量不能在循环引用模块中定义
+</code></pre>
+<pre><code class="language-python"># bar.er
+foo = import &quot;foo&quot;
+print! foo.x
+.x = 0
+</code></pre>
+<p>此外，作为入口点的 Erg 模块（即 <code>__name__ == &quot;__main__&quot;</code> 的模块）不能成为循环引用的主题</p>
 
                     </main>
 

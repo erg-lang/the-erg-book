@@ -3952,7 +3952,7 @@ assert sum == 45
 <p>不変オブジェクトによるプログラミングで自然と簡潔な記述となるように、Ergは設計されています。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="モジュール"><a class="header" href="#モジュール">モジュール</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=48107a2d1719892be50588de764991cba6db39b4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D48107a2d1719892be50588de764991cba6db39b4" alt="badge" /></a></p>
 <p>Ergでは、ファイル自体を1つのレコードとみなすことができます。これをモジュールと呼びます。</p>
 <pre><code class="language-python:foo.er"># foo.er
 .i = 1
@@ -3969,14 +3969,66 @@ assert foo.i == 1
 <pre><code class="language-python">{sin; cos; ...} = import &quot;math&quot;
 </code></pre>
 <h2 id="モジュールの可視性"><a class="header" href="#モジュールの可視性">モジュールの可視性</a></h2>
-<pre><code class="language-console">└─┬ ./src
-  ├─ lib.er
-  ├─ foo.er
-  ├─ bar.er
-  └─┬ bar
-    ├─ baz.er
-    └─ qux.er
+<p>ファイルだけでなく、ディレクトリもモジュールとなりえます。
+ただしデフォルトでErgはディレクトリをErgモジュールとしては認識しません。認識させるには、<code>__init__.er</code>という名前のファイルを作成します。
+<code>__init__.er</code>はPythonの<code>__init__.py</code>と同じようなものです。</p>
+<pre><code class="language-console">└─┬ bar
+  └─ __init__.er
 </code></pre>
+<p>これで、<code>bar</code>ディレクトリはモジュールとして認識されます。<code>bar</code>内にあるファイルが<code>__init__.er</code>だけならばあまりディレクトリ構造にする意味はありませんが、複数のモジュールを束ねて一つのモジュールとしたい場合は便利です。すなわち、このような場合です。</p>
+<pre><code class="language-console">└─┬ bar
+  ├─ __init__.er
+  ├─ baz.er
+  └─ qux.er
+</code></pre>
+<p><code>bar</code>ディレクトリの外側からは以下のようにして使用できます。</p>
+<pre><code class="language-erg">bar = import &quot;bar&quot;
+
+bar.baz.p!()
+bar.qux.p!()
+</code></pre>
+<p><code>__init__.er</code>は単にディレクトリをモジュールとして機能させるだけのマーカーではなく、モジュールの可視性を制御する役割も持ちます。</p>
+<pre><code class="language-erg"># __init__.er
+
+# `./`はカレントディレクトリを指す。なくても良い
+.baz = import &quot;./baz&quot;
+qux = import &quot;./qux&quot;
+
+.f x =
+    .baz.f ...
+.g x =
+    qux.f ...
+</code></pre>
+<p>外から<code>bar</code>モジュールをインポートしたとき、<code>baz</code>モジュールはアクセス可能ですが、<code>qux</code>モジュールはアクセス不可能になります。</p>
+<h2 id="モジュールの循環参照"><a class="header" href="#モジュールの循環参照">モジュールの循環参照</a></h2>
+<p>Ergでは、モジュール間の循環的な依存関係を定義することができます。</p>
+<pre><code class="language-python"># foo.er
+bar = import &quot;bar&quot;
+
+print! bar.g 1
+.f x = x
+</code></pre>
+<pre><code class="language-python"># bar.er
+foo = &quot;foo &quot;をインポート
+
+print! foo.f 1
+.g x = x
+</code></pre>
+<p>しかし、手続き呼び出しによって作られた変数は、循環参照モジュールで定義することはできません。
+これは、Ergが依存関係に従って定義の順番を並べ替えるからです。</p>
+<pre><code class="language-python"># foo.er
+bar = import &quot;bar&quot;
+
+print! bar.x
+.x = g!(1) # ModuleError: 手続き呼び出しで作られた変数は、循環参照モジュールで定義できない
+</code></pre>
+<pre><code class="language-python"># bar.er
+foo = import &quot;foo&quot;
+
+print! foo.x
+.x = 0
+</code></pre>
+<p>また、エントリポイントであるErgモジュール（すなわち <code>__name__ == &quot;__main__&quot;</code> であるモジュール）は循環参照の対象になることはできません。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="対象体"><a class="header" href="#対象体">対象体</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/25_object_system.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/25_object_system.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>

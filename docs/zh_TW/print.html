@@ -2327,7 +2327,7 @@ OpaqueAbc.new(&quot;A&quot;).is_uppercase() # 類型錯誤
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="細化類型"><a class="header" href="#細化類型">細化類型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=94015f61ed0018714a6271ecf60ff2ca38733ce6"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3D94015f61ed0018714a6271ecf60ff2ca38733ce6" alt="badge" /></a></p>
-<p>細化類型是受謂詞表達式約束的類型。 枚舉類型和區間類型是細化類型的語法糖</p>
+<p>細化類型是受謂詞表達式約束的類型。枚舉類型和區間類型是細化類型的語法糖</p>
 <p>細化類型的標準形式是<code>{Elem: Type | (Pred)*}</code>。這意味著該類型是其元素為滿足 <code>Pred</code> 的 <code>Elem</code> 的類型
 可用于篩選類型的類型僅為 <a href="type/./08_value.html">數值類型</a></p>
 <pre><code class="language-python">Nat = 0.. _
@@ -2337,17 +2337,17 @@ Char = StrWithLen 1
 [Int; 3] == {_: Array Int, N | N == 3}
 Array3OrMore == {A: Array _, N | N &gt;= 3}
 </code></pre>
-<p>當有多個 pred 時，可以用 <code>;</code> 或 <code>and</code> 或 <code>or</code> 分隔。 <code>;</code> 和 <code>and</code> 的意思是一樣的</p>
+<p>當有多個 pred 時，可以用 <code>;</code> 或 <code>and</code> 或 <code>or</code> 分隔。<code>;</code> 和 <code>and</code> 的意思是一樣的</p>
 <p><code>Odd</code> 的元素是 <code>1, 3, 5, 7, 9, ...</code>
 它被稱為細化類型，因為它的元素是現有類型的一部分，就好像它是細化一樣</p>
-<p><code>Pred</code> 被稱為(左側)謂詞表達式。 和賦值表達式一樣，它不返回有意義的值，左側只能放置一個模式
-也就是說，諸如<code>X**2 - 5X + 6 == 0</code>之類的表達式不能用作細化類型的謂詞表達式。 在這方面，它不同于右側的謂詞表達式</p>
-<pre><code class="language-python">{X: Int | X**2 - 5X + 6 == 0} # 語法錯誤: 謂詞形式無效。 只有名字可以在左邊
+<p><code>Pred</code> 被稱為(左側)謂詞表達式。和賦值表達式一樣，它不返回有意義的值，左側只能放置一個模式
+也就是說，諸如<code>X**2 - 5X + 6 == 0</code>之類的表達式不能用作細化類型的謂詞表達式。在這方面，它不同于右側的謂詞表達式</p>
+<pre><code class="language-python">{X: Int | X**2 - 5X + 6 == 0} # 語法錯誤: 謂詞形式無效。只有名字可以在左邊
 </code></pre>
 <p>如果你知道如何解二次方程，你會期望上面的細化形式等價于<code>{2, 3}</code>
 但是，Erg 編譯器對代數的了解很少，因此無法解決右邊的謂詞</p>
 <h2 id="智能投射"><a class="header" href="#智能投射">智能投射</a></h2>
-<p>很高興您定義了 <code>Odd</code>，但事實上，它看起來不能在文字之外使用太多。 要將普通 <code>Int</code> 對象中的奇數提升為 <code>Odd</code>，即將 <code>Int</code> 向下轉換為 <code>Odd</code>，您需要傳遞 <code>Odd</code> 的構造函數
+<p>很高興您定義了 <code>Odd</code>，但事實上，它看起來不能在文字之外使用太多。要將普通 <code>Int</code> 對象中的奇數提升為 <code>Odd</code>，即將 <code>Int</code> 向下轉換為 <code>Odd</code>，您需要傳遞 <code>Odd</code> 的構造函數
 對于細化類型，普通構造函數 <code>.new</code> 可能會出現恐慌，并且有一個名為 <code>.try_new</code> 的輔助構造函數返回一個 <code>Result</code> 類型</p>
 <pre><code class="language-python">i = Odd.new (0..10).sample!()
 i: Odd # or Panic
@@ -3919,8 +3919,8 @@ assert sum == 45
 </code></pre>
 <p>Erg 被設計為對使用不可變對象進行編程的自然簡潔描述</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="模塊"><a class="header" href="#模塊">模塊</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
-<p>Erg允許您將文件本身視為單個記錄(Record)。這稱為模塊。</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=48107a2d1719892be50588de764991cba6db39b4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D48107a2d1719892be50588de764991cba6db39b4" alt="badge" /></a></p>
+<p>Erg允許您將文件本身視為單個記錄(Record)。這稱為模塊</p>
 <pre><code class="language-python:foo.er"># foo.er
 .i = 1
 </code></pre>
@@ -3936,14 +3936,59 @@ assert foo.i == 1
 <pre><code class="language-python">{sin; cos; ...} = import &quot;math&quot;
 </code></pre>
 <h2 id="模塊可見性"><a class="header" href="#模塊可見性">模塊可見性</a></h2>
-<pre><code class="language-console">└─┬ ./src
-   ├─ lib.er
-   ├─ foo.er
-   ├─bar.er
-   └─┬ bar
-     ├─ baz.er
-     └─ qux.er
+<p>目錄和文件都可以是模塊
+但是，在默認情況下，Erg不將目錄識別為Erg模塊。要讓它被識別，創建一個名為<code>__init__.er</code>的文件
+<code>__init__.er</code>類似于Python中的<code>__init__.py</code></p>
+<pre><code class="language-console">└─┬ bar
+  └─ __init__.er
 </code></pre>
+<p>現在 <code>bar</code> 目錄被識別為一個模塊。如果 <code>bar</code> 中的唯一文件是 <code>__init__.er</code>，則目錄結構沒有多大意義，但如果您想將多個模塊捆綁到一個模塊中，它會很有用。例如: </p>
+<pre><code class="language-console">└─┬ bar
+  ├─ __init__.er
+  ├─ baz.er
+  └─ qux.er
+</code></pre>
+<p>在 <code>bar</code> 目錄之外，您可以像下面這樣使用</p>
+<pre><code class="language-erg">bar = import &quot;bar&quot;
+bar.baz.p!()
+bar.qux.p!()
+</code></pre>
+<p><code>__init__.er</code> 不僅僅是一個將目錄作為模塊的標記，它還控制模塊的可見性</p>
+<pre><code class="language-erg"># __init__.er
+# `. /` 指向當前目錄。可以省略
+.baz = import &quot;. /baz&quot;
+qux = import &quot;. /qux&quot;
+.f x =
+    .baz.f ...
+.g x =
+    qux.f ...
+</code></pre>
+<p>當你從外部導入 <code>bar</code> 模塊時，<code>baz</code> 模塊可以訪問，但 <code>qux</code> 模塊不能。</p>
+<h2 id="循環依賴"><a class="header" href="#循環依賴">循環依賴</a></h2>
+<p>Erg 允許您定義模塊之間的循環依賴關系。</p>
+<pre><code class="language-python"># foo.er
+bar = import &quot;bar&quot;
+print! bar.g 1
+.f x = x
+</code></pre>
+<pre><code class="language-python"># bar.er
+foo = import &quot;foo&quot;
+print! foo.f 1
+.g x = x
+</code></pre>
+<p>但是，由過程調用創建的變量不能在循環引用模塊中定義
+這是因為 Erg 根據依賴關系重新排列定義的順序</p>
+<pre><code class="language-python"># foo.er
+bar = import &quot;bar&quot;
+print! bar.x
+.x = g!(1) # 模塊錯誤：由過程調用創建的變量不能在循環引用模塊中定義
+</code></pre>
+<pre><code class="language-python"># bar.er
+foo = import &quot;foo&quot;
+print! foo.x
+.x = 0
+</code></pre>
+<p>此外，作為入口點的 Erg 模塊（即 <code>__name__ == &quot;__main__&quot;</code> 的模塊）不能成為循環引用的主題</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="對象系統"><a class="header" href="#對象系統">對象系統</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/25_object_system.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/25_object_system.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>可以分配給變量的所有數據。<code>Object</code> 類的屬性如下</p>
