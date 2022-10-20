@@ -149,18 +149,18 @@
 appパッケージのエントリポイントは<code>src/app.er</code>です。<code>app.er</code>内に定義された<code>main</code>関数が実行されます。
 libパッケージのエントリポイントは<code>src/lib.er</code>です。パッケージをインポートすることは<code>lib.er</code>をインポートすることと等価になります。</p>
 <p>パッケージにはモジュールという下位構造があります。Ergにおいてモジュールとはすなわち、Ergファイルもしくはそれで構成されたディレクトリです。外部のErgファイル/ディレクトリはモジュールオブジェクトとして操作可能な対象になるのです。</p>
-<p>ディレクトリをモジュールとして認識させるには、ディレクトリ内に<code>(ディレクトリ名).er</code>ファイルを置く必要があります。
-これはPythonの<code>__init__.py</code>と同じようなものですが、<code>__init__.py</code>と違ってディレクトリの外に置きます。</p>
+<p>ディレクトリをモジュールとして認識させるには、ディレクトリ内に<code>__init__.er</code>ファイルを置く必要があります。
+これはPythonの<code>__init__.py</code>と同じようなものです。</p>
 <p>例として、以下のようなディレクトリ構成を考えてみましょう。</p>
 <pre><code class="language-console">└─┬ ./src
   ├─ app.er
   ├─ foo.er
-  ├─ bar.er
   └─┬ bar
+    ├─ __init__.er
     ├─ baz.er
     └─ qux.er
 </code></pre>
-<p><code>app.er</code>では<code>foo</code>モジュールと<code>bar</code>モジュールをインポートできます。<code>bar</code>ディレクトリがモジュールとして認識できるのは<code>bar.er</code>ファイルがあるためです。
+<p><code>app.er</code>では<code>foo</code>モジュールと<code>bar</code>モジュールをインポートできます。<code>bar</code>ディレクトリがモジュールとして認識できるのは<code>__init__.er</code>ファイルがあるためです。
 <code>foo</code>モジュールはファイルからなるモジュールで、<code>bar</code>モジュールはディレクトリからなるモジュールです。<code>bar</code>モジュールはさらに<code>baz</code>, <code>qux</code>モジュールを内部に持ちます。
 このモジュールは単に<code>bar</code>モジュールの属性であり、<code>app.er</code>からは以下のようにアクセスできます。</p>
 <pre><code class="language-python"># app.er
@@ -173,7 +173,7 @@ main args =
     ...
 </code></pre>
 <p>サブモジュールにアクセスするための区切り文字が<code>/</code>であることに注意してください。これは、<code>bar.baz.er</code>のようなファイル名があり得るためです。
-このようなファイル名は推奨されません。Ergでは<code>.er</code>のプレフィックスが意味を持つためです。
+しかしこのようなファイル名は推奨されません。Ergでは<code>.er</code>の直前の識別子、プレフィックスが意味を持つためです。
 例えば、テスト用のモジュールです。<code>.test.er</code>で終わるファイルは(ホワイトボックス)テスト用のモジュールであり、テスト実行時に<code>@Test</code>でデコレーションされたサブルーチンが実行されます。</p>
 <pre><code class="language-console">└─┬ ./src
   ├─ app.er
@@ -186,13 +186,16 @@ foo = import &quot;foo&quot;
 main args =
     ...
 </code></pre>
-<p>また、<code>.private.er</code>で終わるファイルはプライベートモジュールであり、同一ディレクトリのモジュールからしかアクセスできません。</p>
+<p>また、<code>__init__.er</code>内でre-importされていないモジュールはプライベートモジュールであり、同一ディレクトリ内のモジュールからしかアクセスできません。</p>
 <pre><code class="language-console">└─┬
   ├─ foo.er
-  ├─ bar.er
   └─┬ bar
-    ├─ baz.private.er
+    ├─ __init__.er
+    ├─ baz.er
     └─ qux.er
+</code></pre>
+<pre><code class="language-python"># __init__.py
+.qux = import &quot;qux&quot; # this is public
 </code></pre>
 <pre><code class="language-python"># foo.er
 bar = import &quot;bar&quot;
