@@ -10,10 +10,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.8
+      - name: Set up Python 3.10
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
+          python-version: 3.10
+      - name: Set up Erg
+        uses: erg-lang/setup-erg@v1.5
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
@@ -24,28 +26,28 @@ jobs:
 
           svn export https://github.com/erg-lang/erg/trunk/doc/JA/syntax/
           mdbook build --dest-dir tmp
-          python replace_links.py
+          erg replace_links.er
           mv tmp docs/JA
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/zh_CN/syntax/
           mdbook build --dest-dir tmp
-          python replace_links.py
+          erg replace_links.er
           mv tmp docs/zh_CN
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/zh_TW/syntax/
           mdbook build --dest-dir tmp
-          python replace_links.py
+          erg replace_links.er
           mv tmp docs/zh_TW
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/EN/syntax/
           mdbook build --dest-dir tmp
-          python replace_links.py
+          erg replace_links.er
           mv tmp/* docs
           sleep 1
           rm -rf syntax
@@ -56,3 +58,5 @@ jobs:
           git add .
           git commit -m "generated"
           git push
+
+          echo done

@@ -26,7 +26,7 @@ main!() =
     for! paths, path =>
         print! path
         html = open_file! path
-        _html = replace_links html
+        _html = remove_links html
         save_file! path, _html
 
 if! __name__ == "__main__", do!:
