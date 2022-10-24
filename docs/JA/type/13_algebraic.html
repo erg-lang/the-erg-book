@@ -154,9 +154,10 @@
 <pre><code class="language-python">IntOrStr = Int or Str
 assert dict.get(&quot;some key&quot;) in (Int or NoneType)
 
-# 暗黙に`T != NoneType`となる
 Option T = T or NoneType
 </code></pre>
+<p>Union型は可換ですが結合的ではないことに注意してください。すなわち、<code>X or Y or Z</code>は<code>(X or Y) or Z</code>であって<code>X or (Y or Z)</code>とはなりません。
+これを認めると、例えば<code>Int or Option(Str)</code>と<code>Option(Int) or Str</code>と<code>Option(Int or Str)</code>が同じ型になってしまいます。</p>
 <h2 id="交差型"><a class="header" href="#交差型">交差型</a></h2>
 <p>Intersection型は型同士を<code>and</code>演算で結合して得られます。</p>
 <pre><code class="language-python">Num = Add and Sub and Mul and Eq
@@ -202,6 +203,7 @@ q: Point2D = {x = 1; y = 2; z = 3}
 assert Int and Marker == And(Int, Marker)
 </code></pre>
 <p>Diff, Complement型は必ず簡約できるので真の代数演算型ではありません。</p>
+
 
                     </main>
 

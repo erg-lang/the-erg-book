@@ -2375,9 +2375,10 @@ A typical Union is the <code>Option</code> type. The <code>Option</code> type is
 <pre><code class="language-python">IntOrStr = Int or Str
 assert dict.get(&quot;some key&quot;) in (Int or NoneType)
 
-# Implicitly become `T != NoneType`
 Option T = T or NoneType
 </code></pre>
+<p>Note that Union types are commutative but not associative. That is, <code>X or Y or Z</code> is <code>(X or Y) or Z</code>, not <code>X or (Y or Z)</code>.
+Allowing this would result in, for example, <code>Int or Option(Str)</code>, <code>Option(Int) or Str</code> and <code>Option(Int or Str)</code> being of the same type.</p>
 <h2 id="intersection"><a class="header" href="#intersection">Intersection</a></h2>
 <p>Intersection types are got by combining types with the <code>and</code> operation.</p>
 <pre><code class="language-python">Num = Add and Sub and Mul and Eq
@@ -2423,6 +2424,7 @@ q: Point2D = {x = 1; y = 2; z = 3}
 assert Int and Marker == And(Int, Marker)
 </code></pre>
 <p>Diff, Complement types are not true algebraic types because they can always be simplified.</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dependent-type"><a class="header" href="#dependent-type">dependent type</a></h1>
 <p>Dependent types are a feature that can be said to be the biggest feature of Erg.
 A dependent type is a type that takes a value as an argument. Ordinary polymorphic types can take only types as arguments, but dependent types relax that restriction.</p>
