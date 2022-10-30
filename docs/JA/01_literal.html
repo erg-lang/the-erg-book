@@ -149,15 +149,16 @@
 <h3 id="整数リテラルint-literal"><a class="header" href="#整数リテラルint-literal">整数リテラル(Int Literal)</a></h3>
 <pre><code class="language-python">0, -0, 1, -1, 2, -2, 3, -3, ...
 </code></pre>
-<p>0未満の数値は<code>Int</code>リテラルとして型が解釈されます。</p>
+<p>整数(Int)リテラルはInt型のオブジェクトです。</p>
 <blockquote>
-<p><strong>Note</strong>: また、<code>Int</code>リテラルの部分型として<code>Nat</code>リテラルが存在します。
-0以上の数値は<code>Nat</code>リテラルとして型が解釈されます。</p>
+<p><strong>Note</strong>: <code>Int</code>型の部分型として<code>Nat</code>型が存在します。
+0以上の数値は<code>Nat</code>型とも解釈できます。</p>
 </blockquote>
 <h3 id="有理数リテラルratio-literal"><a class="header" href="#有理数リテラルratio-literal">有理数リテラル(Ratio Literal)</a></h3>
 <pre><code class="language-python">0.00, -0.0, 0.1, 400.104, ...
 </code></pre>
-<p><code>Ratio</code>リテラルで整数部分または小数部分が<code>0</code>のときは、その<code>0</code>を省略できます。</p>
+<p>有理数を表すリテラルです。専ら小数として表現されますが、内部的には分数として扱われます。
+<code>Ratio</code>リテラルで整数部分または小数部分が<code>0</code>のときは、その<code>0</code>を省略できます。</p>
 <pre><code class="language-python">assert 1.0 == 1.
 assert 0.5 == .5
 </code></pre>
@@ -186,7 +187,7 @@ assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
 <h2 id="リテラルを組み合わせて生成するもの複合リテラル"><a class="header" href="#リテラルを組み合わせて生成するもの複合リテラル">リテラルを組み合わせて生成するもの(複合リテラル)</a></h2>
 <p>これらのリテラルは、それぞれ単独で解説されているドキュメントがあるので、詳しくはそちらを参照してください。</p>
 <h3 id="a-href10_arrayhtml配列リテラルarray-literala"><a class="header" href="#a-href10_arrayhtml配列リテラルarray-literala"><a href="./10_array.html">配列リテラル(Array Literal)</a></a></h3>
-<pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], [1, &quot;1&quot;, True, [1]], ...
+<pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], ...
 </code></pre>
 <h3 id="a-href11_tuplehtml組リテラルtuple-literala"><a class="header" href="#a-href11_tuplehtml組リテラルtuple-literala"><a href="./11_tuple.html">組リテラル(Tuple Literal)</a></a></h3>
 <pre><code class="language-python">(), (1, 2, 3), (1, &quot;hello&quot;, True), ...
@@ -198,7 +199,7 @@ assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
 <pre><code class="language-python">{=}, {one = 1}, {one = 1; two = 2}, {.name = &quot;John&quot;; .age = 12}, {.name = Str; .age = Nat}, ...
 </code></pre>
 <h3 id="a-href14_sethtml集合リテラルset-literala"><a class="header" href="#a-href14_sethtml集合リテラルset-literala"><a href="./14_set.html">集合リテラル(Set Literal)</a></a></h3>
-<pre><code class="language-python">{}, {1}, {1, 2, 3}, {&quot;1&quot;, &quot;2&quot;, &quot;1&quot;}, {1, &quot;1&quot;, True, [1]} ...
+<pre><code class="language-python">{}, {1}, {1, 2, 3}, {&quot;1&quot;, &quot;2&quot;, &quot;1&quot;}, ...
 </code></pre>
 <p><code>Array</code>リテラルとの違いとして、<code>Set</code>では重複する要素が取り除かれます。</p>
 <pre><code class="language-python">assert {1, 2, 1} == {1, 2}
@@ -207,24 +208,33 @@ assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
 <h2 id="真偽値オブジェクトboolean-object"><a class="header" href="#真偽値オブジェクトboolean-object">真偽値オブジェクト(Boolean Object)</a></h2>
 <pre><code class="language-python">True, False
 </code></pre>
+<p>真偽値オブジェクトはBool型の単なるシングルトン(ダブルトン?)です。
+Pythonからの伝統により、<code>Bool</code>型は<code>Int</code>型ないし<code>Nat</code>型のサブタイプとなります。
+すなわち、<code>True</code>は<code>1</code>、<code>False</code>は<code>0</code>と解釈できます。</p>
+<pre><code class="language-python">assert True * 2 == 1
+</code></pre>
 <h3 id="noneオブジェクト"><a class="header" href="#noneオブジェクト">Noneオブジェクト</a></h3>
 <pre><code class="language-python">None
 </code></pre>
+<p><code>NoneType</code>型のシングルトンです。</p>
 <h2 id="範囲オブジェクトrange-object"><a class="header" href="#範囲オブジェクトrange-object">範囲オブジェクト(Range Object)</a></h2>
-<pre><code class="language-python">assert 0..5 == {1, 2, 3, 4, 5}
-assert 0..10 in 5
+<pre><code class="language-python">assert 0..10 in 5
 assert 0..&lt;10 notin 10
 assert 0..9 == 0..&lt;10
+assert (0..5).to_set() == {1, 2, 3, 4, 5}
+assert &quot;a&quot; in &quot;a&quot;..&quot;z&quot;
 </code></pre>
+<p>Pythonの<code>range</code>とは異なり、IntだけでなくStrオブジェクトなども範囲として扱うことができます。</p>
 <h2 id="浮動小数点数オブジェクトfloat-object"><a class="header" href="#浮動小数点数オブジェクトfloat-object">浮動小数点数オブジェクト(Float Object)</a></h2>
 <pre><code class="language-python">assert 0.0f64 == 0
 assert 0.0f32 == 0.0f64
 </code></pre>
-<p><code>Ratio</code>オブジェクトに<code>Float 64</code>の単位オブジェクトである<code>f64</code>を乗算したものです。</p>
+<p><code>Ratio</code>オブジェクトに<code>Float 64</code>の単位オブジェクトである<code>f64</code>を乗算したものです。
+誤差が生じる可能性がありますが、<code>Ratio</code>よりも高速に計算できます。</p>
 <h2 id="複素数オブジェクトcomplex-object"><a class="header" href="#複素数オブジェクトcomplex-object">複素数オブジェクト(Complex Object)</a></h2>
-<pre><code class="language-python">1+2im, 0.4-1.2im, 0im, im
+<pre><code class="language-python">1+2Im, 0.4-1.2Im, 0Im, Im
 </code></pre>
-<p><code>Complex</code>オブジェクトは、単に虚数単位オブジェクトである<code>im</code>との演算の組み合わせで表します。</p>
+<p><code>Complex</code>オブジェクトは、単に虚数単位オブジェクトである<code>Im</code>との演算の組み合わせで表します。</p>
 <h2 id="-less-multiplication"><a class="header" href="#-less-multiplication">*-less multiplication</a></h2>
 <p>Ergでは、解釈に紛れがない限り乗算を表す<code>*</code>を省略できます。
 ただし、演算子の結合強度は<code>*</code>よりも強く設定されています。</p>

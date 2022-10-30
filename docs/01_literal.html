@@ -151,6 +151,7 @@
 <h3 id="ratio-literal"><a class="header" href="#ratio-literal">Ratio Literal</a></h3>
 <pre><code class="language-python">0.00, -0.0, 0.1, 400.104, ...
 </code></pre>
+<p>Note that the Ratio type is different from the Float type; the API is the same, but there are differences in the accuracy and efficiency of the calculation results.</p>
 <p>If a <code>Ratio</code> literal has an integer or decimal part of <code>0</code>, you can omit the <code>0</code>.</p>
 <pre><code class="language-python">assert 1.0 == 1.
 assert 0.5 == .5
@@ -180,7 +181,7 @@ The notation is the same as in Python.</p>
 <h2 id="compound-literals"><a class="header" href="#compound-literals">Compound Literals</a></h2>
 <p>Each of these literals has its own documentation describing them separately, so please refer to that documentation for details.</p>
 <h3 id="a-href10_arrayhtmlarray-literala"><a class="header" href="#a-href10_arrayhtmlarray-literala"><a href="./10_array.html">Array Literal</a></a></h3>
-<pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], [1, &quot;1&quot;, True, [1]], ...
+<pre><code class="language-python">[], [1], [1, 2, 3], [&quot;1&quot;, &quot;2&quot;,], ...
 </code></pre>
 <h3 id="a-href11_tuplehtmltuple-literala"><a class="header" href="#a-href11_tuplehtmltuple-literala"><a href="./11_tuple.html">Tuple Literal</a></a></h3>
 <pre><code class="language-python">(), (1, 2, 3), (1, &quot;hello&quot;, True), ...
@@ -192,7 +193,7 @@ The notation is the same as in Python.</p>
 <pre><code class="language-python">{=}, {one = 1}, {one = 1; two = 2}, {.name = &quot;John&quot;; .age = 12}, {.name = Str; .age = Nat}, ...
 </code></pre>
 <h3 id="a-href14_sethtmlset-literala"><a class="header" href="#a-href14_sethtmlset-literala"><a href="./14_set.html">Set Literal</a></a></h3>
-<pre><code class="language-python">{}, {1}, {1, 2, 3}, {&quot;1&quot;, &quot;2&quot;, &quot;1&quot;}, {1, &quot;1&quot;, True, [1]} ...
+<pre><code class="language-python">{}, {1}, {1, 2, 3}, {&quot;1&quot;, &quot;2&quot;, &quot;1&quot;}, ...
 </code></pre>
 <p>As a difference from <code>Array</code> literals, duplicate elements are removed in <code>Set</code>.</p>
 <pre><code class="language-python">assert {1, 2, 1} == {1, 2}
@@ -205,10 +206,11 @@ The notation is the same as in Python.</p>
 <pre><code class="language-python">None
 </code></pre>
 <h2 id="range-object"><a class="header" href="#range-object">Range Object</a></h2>
-<pre><code class="language-python">assert 0..5 == {1, 2, 3, 4, 5}
-assert 0..10 in 5
+<pre><code class="language-python">assert 0..10 in 5
 assert 0..&lt;10 notin 10
 assert 0..9 == 0..&lt;10
+assert (0..5).to_set() == {1, 2, 3, 4, 5}
+assert &quot;a&quot; in &quot;a&quot;..&quot;z&quot;
 </code></pre>
 <h2 id="float-object"><a class="header" href="#float-object">Float Object</a></h2>
 <pre><code class="language-python">assert 0.0f64 == 0
@@ -216,9 +218,9 @@ assert 0.0f32 == 0.0f64
 </code></pre>
 <p>Float objects are constructed by multiplying a <code>Ratio</code> object by <code>f64</code>, which is a <code>Float 64</code> unit object.</p>
 <h2 id="complex-object"><a class="header" href="#complex-object">Complex Object</a></h2>
-<pre><code class="language-python">1+2im, 0.4-1.2im, 0im, im
+<pre><code class="language-python">1+2Im, 0.4-1.2Im, 0Im, Im
 </code></pre>
-<p>A <code>Complex</code> object is simply an arithmetic combination of an imaginary unit object, <code>im</code>.</p>
+<p>A <code>Complex</code> object is simply an arithmetic combination of an imaginary unit object, <code>Im</code>.</p>
 <h2 id="-less-multiplication"><a class="header" href="#-less-multiplication">*-less multiplication</a></h2>
 <p>In Erg, you can omit the <code>*</code> to indicate multiplication as long as there is no confusion in interpretation. However, the combined strength of the operators is set stronger than <code>*</code>.</p>
 <pre><code class="language-python"># same as `assert (1*m) / (1*s) == 1*(m/s)`
