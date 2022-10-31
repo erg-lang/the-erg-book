@@ -834,7 +834,7 @@ assert mut_a == [2, 2, 3]
 <pre><code class="language-python.">[1, &quot;a&quot;] # 类型错误: 第一个元素是 Int，但第二个元素是 Str
 </code></pre>
 <p>但是，您可以通过像这样显式指定类型来绕过限制</p>
-<pre><code class="language-python">[1, &quot;a&quot;]: [Int or Str].
+<pre><code class="language-python">[1: Int or Str, &quot;a&quot;]
 </code></pre>
 <h2 id="切片"><a class="header" href="#切片">切片</a></h2>
 <p>一个数组也可以同时取出多个值。这称为切片</p>

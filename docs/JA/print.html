@@ -842,8 +842,8 @@ assert mut_a == [2, 2, 3]
 <p>配列には、原則として違う型のオブジェクトを入れることはできません。</p>
 <pre><code class="language-python">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
 </code></pre>
-<p>しかし、このように明示的に型指定すると制限を回避できます。</p>
-<pre><code class="language-python">[1, &quot;a&quot;]: [Int or Str]
+<p>しかし、このように要素の型を明示的に指定すると制限を回避できます。</p>
+<pre><code class="language-python">[1: Int or Str, &quot;a&quot;]
 </code></pre>
 <h2 id="スライス"><a class="header" href="#スライス">スライス</a></h2>
 <p>配列は、複数の値をまとめて取り出すこともできます。これをスライスと呼びます。</p>
