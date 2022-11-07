@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.10'
       - name: Set up Erg
-        uses: erg-lang/setup-erg@v1.5
+        uses: erg-lang/setup-erg@v1.6
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
