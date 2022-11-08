@@ -2170,8 +2170,8 @@ fn iter&lt;I&gt;(i: I) -&gt; impl Iterator&lt;Item = I::Item&gt; where I: IntoIt
 </span></code></pre></pre>
 <h2 id="for-all-patch"><a class="header" href="#for-all-patch">For-All Patch</a></h2>
 <p>A patch can be defined not only for one specific type, but also for &quot;function types in general&quot; and so on.
-In this case, the term to which the degree of freedom is to be given is given as an argument (in the case below, <code>T: Type</code>). A patch defined in this way is called an all-symmetric patch.
-As you can see, an all-symmetric patch is precisely a function that returns a patch, but it can also be considered a patch in its own right.</p>
+In this case, the term to which the degree of freedom is to be given is given as an argument (in the case below, <code>T: Type</code>). A patch defined in this way is called a for-all patch.
+As you can see, a for-all patch is precisely a function that returns a patch, but it can also be considered a patch in its own right.</p>
 <pre><code class="language-python">FnType T: Type = Patch(T -&gt; T)
 FnType(T).
     type = T
@@ -2621,7 +2621,7 @@ K.
 K(0).
     foo(self, x): Nat = ...
 </code></pre>
-<h2 id="all-symmetric-types"><a class="header" href="#all-symmetric-types">All symmetric types</a></h2>
+<h2 id="for-all-types"><a class="header" href="#for-all-types">For-all types</a></h2>
 <p>The <code>id</code> function defined in the previous section is a function that can be of any type. So what is the type of the <code>id</code> function itself?</p>
 <pre><code class="language-python">print! classof(id) # |T: Type| T -&gt; T
 </code></pre>
@@ -2681,6 +2681,7 @@ DepFn.
 assert (Int -&gt; Int).type() == Int # by DepFn
 assert DepFn(Int).type() == Int # by DepFn
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subtyping"><a class="header" href="#subtyping">Subtyping</a></h1>
 <p>In Erg, class inclusion can be determined with the comparison operators <code>&lt;</code>, <code>&gt;</code>.</p>
 <pre><code class="language-python">Nat &lt; Int
@@ -2892,15 +2893,15 @@ a: [!Str; 3]
 ...
 </code></pre>
 <p>A type <code>(...)</code> that simply becomes <code>T! = (...)!</code> when <code>T = (...)</code> is called a simple structured type. A simple structured type can also be said (semantically) to be a type that has no internal structure.
-Arrays, tuples, sets, dictionaries, and record types are all non-simple structured types, but Int and Sieve types are.</p>
-<pre><code class="language-python"># Sieve type
+Arrays, tuples, sets, dictionaries, and record types are all non-simple structured types, but Int and Refinement types are.</p>
+<pre><code class="language-python"># Refinement type
 ## Enums
 {1, 2, 3} # one of 1, 2, 3, cannot be changed
 {1, 2, 3}! # 1, 2, 3, you can change
 ## interval type
 1..12 # 1 to 12, cannot be changed
 1..12! # Any of 1-12, you can change
-## Sieve type (general type)
+## Refinement type (general type)
 {I: Int | I % 2 == 0} # even type, immutable
 {I: Int! | I % 2 == 0} # even type, can be changed
 {I: Int | I % 2 == 0}! # Exactly the same type as above, but the above notation is preferred
@@ -2912,6 +2913,7 @@ However, it is desirable to keep the change authority as local as possible, so i
 And for the type <code>T!</code> which has no internal structure, this instance is simply a box of <code>T</code> which can be swapped. A method cannot change the type.</p>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> It is intentional that <code>T!</code> and <code>T</code> types have no special linguistic relationship. It's a design. If there is a relationship, for example, if the <code>T</code>/<code>T!</code> type exists in the namespace, it will not be possible to introduce the <code>T!</code>/<code>T</code> type from another module. Also, the mutable type is not uniquely defined for the immutable type. Given the definition <code>T = (U, V)</code>, the possible variable subtypes of <code>T!</code> are <code>(U!, V)</code> and <code>(U, V!)</code>. <a href="type/18_mut.html#f1">↩</a></span></p>
+
 <div style="break-before: page; page-break-before: always;"></div><p>In the following, we will discuss more advanced type systems. Beginners do not have to read all the sections.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="function-type-with-default-arguments"><a class="header" href="#function-type-with-default-arguments">Function type with default arguments</a></h1>
 <p>First, let's look at an example of using default arguments.</p>
@@ -2972,10 +2974,10 @@ Existential types are not difficult. You already know the existential type, just
 f x: T = ...
 </code></pre>
 <p>The trait <code>T</code> above is used as the existential type.
-In contrast, <code>T</code> in the lower case is only a trait, and <code>X</code> is an for-all type.</p>
+In contrast, <code>T</code> in the lower case is only a trait, and <code>X</code> is a for-all type.</p>
 <pre><code class="language-python">f|X &lt;: T| x: X = ...
 </code></pre>
-<p>In fact, the existential type is replaced by an for-all type. So why is there such a thing as an existential type?
+<p>In fact, the existential type is replaced by a for-all type. So why is there such a thing as an existential type?
 First of all, as we saw above, existential types do not involve type variables, which simplifies type specification.
 Also, since the type variable can be removed, it is possible to construct a type that would have rank 2 or higher if it were an all-presumptive type.</p>
 <pre><code class="language-python">show_map f: (|T| T -&gt; T), arr: [Show; _] =
@@ -3122,7 +3124,7 @@ assert IntContainerOf in (Type -&gt; Type) -&gt; Type
 Pointy = {Point}
 </code></pre>
 <p>An important property of record kind is that if <code>T: |T|</code> and <code>U &lt;: T</code> then <code>U: |T|</code>.
-This is also evident from the fact that enums are actually syntactic sugar for sieve types.</p>
+This is also evident from the fact that enums are actually syntactic sugar for refinement types.</p>
 <pre><code class="language-python"># {c} == {X: T | X == c} for normal objects, but
 # Equality may not be defined for types, so |T| == {X | X &lt;: T}
 {Point} == {P | P &lt;: Point}
@@ -4069,7 +4071,7 @@ name = match num:
     E -&gt; &quot;e&quot;
     _ -&gt; &quot;unnamed&quot;
 </code></pre>
-<h3 id="sieve-pattern"><a class="header" href="#sieve-pattern">Sieve pattern</a></h3>
+<h3 id="refinement-pattern-1"><a class="header" href="#refinement-pattern-1">Refinement pattern</a></h3>
 <pre><code class="language-python"># these two are the same
 Array(T, N: {N | N &gt;= 3})
 Array(T, N | N &gt;= 3)
@@ -4160,6 +4162,7 @@ A non-unique form is not trivial whether it works correctly or is equivalent to 
 <h4 id="set-1"><a class="header" href="#set-1">set</a></h4>
 <p>There is no set pattern. Because the set has no way to uniquely retrieve the elements.
 You can retrieve them by iterator, but the order is not guaranteed.</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comprehension"><a class="header" href="#comprehension">Comprehension</a></h1>
 <p>Array with <code>[expr | (name &lt;- iterable)+ (predicate)*]</code>,
 set with <code>{expr | (name &lt;- iterable)+ (predicate)*}</code>,
@@ -4196,14 +4199,15 @@ assert [(i, j) | i &lt;- 1..&lt;3; j &lt;- 3..&lt;5] == [(i, j) | j &lt;- 3..&lt
 <pre><code class="language-python"># Python
 assert [(i, j) for i in range(1, 3) for j in range(3, 5)] == [(i, j) for j in range(3, 5) for i in range(1, 3)]
 </code></pre>
-<h2 id="sieve-type"><a class="header" href="#sieve-type">Sieve type</a></h2>
-<p>Similar to comprehensions are sieve types. A sieve type is a type (enumerated type) created in the form <code>{Name: Type | Predicate}</code>.
-In the case of the sieve type, only one Name can be specified and the layout cannot be specified (however, multiple values ​​can be handled if it is a tuple type), and the Predicate can be calculated at compile time, that is, only a constant expression can be specified.</p>
+<h2 id="refinement-type-1"><a class="header" href="#refinement-type-1">Refinement type</a></h2>
+<p>Similar to comprehensions are refinement types. A refinement type is a type (enumerated type) created in the form <code>{Name: Type | Predicate}</code>.
+In the case of the refinement type, only one Name can be specified and the layout cannot be specified (however, multiple values ​​can be handled if it is a tuple type), and the Predicate can be calculated at compile time, that is, only a constant expression can be specified.</p>
 <pre><code class="language-python">Nat = {I: Int | I &gt;= 0}
 # If the predicate expression is only and, it can be replaced with ;
 # Nat2D = {(I, J): (Int, Int) | I &gt;= 0; J &gt;= 0}
 Nat2D = {(I, J): (Int, Int) | I &gt;= 0 and J &gt;= 0}
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="spread-assignment"><a class="header" href="#spread-assignment">Spread assignment</a></h1>
 <p>In a decomposing assignment, putting <code>...</code> in front of a variable expands all remaining elements into that variable. This is called expansion assignment.</p>
 <pre><code class="language-python">[x,...y] = [1, 2, 3]
@@ -4679,7 +4683,7 @@ make_g: () =&gt; Generator!
 <li>[Add]</li>
 <li><a href="type/02_basic.html#aliasing">alias</a></li>
 <li><a href="./type/02_basic.html#aliasing">Aliasing</a></li>
-<li><a href="./type/15_quantified.html#all-symmetric-types">All symmetric types</a></li>
+<li><a href="./type/15_quantified.html#For-all-types">For all types</a></li>
 <li><a href="./type/13_algebraic.html">algebraic type</a></li>
 <li>[And]</li>
 <li>[and]</li>

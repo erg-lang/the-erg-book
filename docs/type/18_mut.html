@@ -243,15 +243,15 @@ a: [!Str; 3]
 ...
 </code></pre>
 <p>A type <code>(...)</code> that simply becomes <code>T! = (...)!</code> when <code>T = (...)</code> is called a simple structured type. A simple structured type can also be said (semantically) to be a type that has no internal structure.
-Arrays, tuples, sets, dictionaries, and record types are all non-simple structured types, but Int and Sieve types are.</p>
-<pre><code class="language-python"># Sieve type
+Arrays, tuples, sets, dictionaries, and record types are all non-simple structured types, but Int and Refinement types are.</p>
+<pre><code class="language-python"># Refinement type
 ## Enums
 {1, 2, 3} # one of 1, 2, 3, cannot be changed
 {1, 2, 3}! # 1, 2, 3, you can change
 ## interval type
 1..12 # 1 to 12, cannot be changed
 1..12! # Any of 1-12, you can change
-## Sieve type (general type)
+## Refinement type (general type)
 {I: Int | I % 2 == 0} # even type, immutable
 {I: Int! | I % 2 == 0} # even type, can be changed
 {I: Int | I % 2 == 0}! # Exactly the same type as above, but the above notation is preferred
@@ -263,6 +263,7 @@ However, it is desirable to keep the change authority as local as possible, so i
 And for the type <code>T!</code> which has no internal structure, this instance is simply a box of <code>T</code> which can be swapped. A method cannot change the type.</p>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> It is intentional that <code>T!</code> and <code>T</code> types have no special linguistic relationship. It's a design. If there is a relationship, for example, if the <code>T</code>/<code>T!</code> type exists in the namespace, it will not be possible to introduce the <code>T!</code>/<code>T</code> type from another module. Also, the mutable type is not uniquely defined for the immutable type. Given the definition <code>T = (U, V)</code>, the possible variable subtypes of <code>T!</code> are <code>(U!, V)</code> and <code>(U, V!)</code>. <a href="#f1">↩</a></span></p>
+
 
                     </main>
 

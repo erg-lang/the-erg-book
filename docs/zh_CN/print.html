@@ -2837,7 +2837,7 @@ x = a.freeze_map a: [Nat; 3] -&gt; a.iter().map(i -&gt; i + 1).filter(i -&gt; i 
 KT: ImmutType = Class ...
 K!T: Type = Class ...
 </code></pre>
-<p>在标准库中，变量 <code>(...)!</code> 类型通常基于不可变 <code>(...)</code> 类型。但是，<code>T!</code> 和 <code>T</code> 类型没有特殊的语言关系，并且不能这样构造 <a href="type/18_mut.html#1"><sup id="f1">1</sup></a> </p>
+<p>在标准库中，变量 <code>(...)!</code> 类型通常基于不可变 <code>(...)</code> 类型。但是，<code>T!</code> 和 <code>T</code> 类型没有特殊的语言关系，并且不能这样构造 <a href="type/18_mut.html#1"><sup id="f1">1</sup></a></p>
 <p>请注意，有几种类型的对象可变性
 下面我们将回顾内置集合类型的不可变/可变语义</p>
 <pre><code class="language-python"># 数组类型
@@ -2854,7 +2854,7 @@ K!T: Type = Class ...
 </code></pre>
 <p>当然，您不必全部记住和使用它们
 对于可变数组类型，只需将 <code>!</code> 添加到您想要可变的部分，实际上是 <code>[T; N]</code>, <code>[T!; N]</code>，<code>[T; !N]</code>, <code> [T!; !N]</code> 可以涵盖大多数情况</p>
-<p>这些数组类型是语法糖，实际类型是: </p>
+<p>这些数组类型是语法糖，实际类型是:</p>
 <pre><code class="language-python"># actually 4 types
 [T; N] = Array(T, N)
 [T; !N] = Array!(T, !N)
@@ -2904,7 +2904,7 @@ a: [!Str; 3]
 ...
 </code></pre>
 <p>一个类型 <code>(...)</code> 简单地变成了 <code>T! = (...)!</code> 当 <code>T = (...)</code> 被称为简单结构化类型。简单的结构化类型也可以(语义上)说是没有内部结构的类型
-数组、元组、集合、字典和记录类型都是非简单的结构化类型，但 Int 和 Sieve 类型是</p>
+数组、元组、集合、字典和记录类型都是非简单的结构化类型，但 Int 和 Refinement 类型是</p>
 <pre><code class="language-python"># 筛子类型
 ## 枚举
 {1, 2, 3} # 1, 2, 3 之一，不可更改
@@ -2924,6 +2924,7 @@ a: [!Str; 3]
 而对于没有内部结构的类型‘T!’，这个实例只是一个可以交换的‘T’盒子。方法不能更改类型</p>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> <code>T!</code> 和 <code>T</code> 类型没有特殊的语言关系是有意的。这是一个设计。如果存在关系，例如命名空间中存在<code>T</code>/<code>T!</code>类型，则无法从其他模块引入<code>T!</code>/<code>T</code>类型。此外，可变类型不是为不可变类型唯一定义的。给定定义 <code>T = (U, V)</code>，<code>T!</code> 的可能变量子类型是 <code>(U!, V)</code> 和 <code>(U, V!)</code>。<a href="type/18_mut.html#f1">↩</a></span></p>
+
 <div style="break-before: page; page-break-before: always;"></div><p>下面，我们将讨论更高级的类型系统。初学者不必阅读所有部分。<a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="带默认参数的函数类型"><a class="header" href="#带默认参数的函数类型">带默认参数的函数类型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/default_param.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/default_param.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
@@ -4230,12 +4231,13 @@ assert [(i, j) for i in range(1, 3) for j in range(3, 5)] == [(i, j) for j in ra
 </code></pre>
 <h2 id="筛子类型"><a class="header" href="#筛子类型">筛子类型</a></h2>
 <p>与推导类似的是筛类型。筛子类型是以<code>{Name: Type | Predicate}</code>创建的(枚举类型)
-sieve类型的情况下，只能指定一个Name，不能指定布局(但是如果是tuple类型可以处理多个值)，Predicate可以在编译时计算，即 ，只能指定一个常量表达式</p>
+refinement类型的情况下，只能指定一个Name，不能指定布局(但是如果是tuple类型可以处理多个值)，Predicate可以在编译时计算，即 ，只能指定一个常量表达式</p>
 <pre><code class="language-python">Nat = {I: Int | I &gt;= 0}
 # 如果谓词表达式只有and，可以替换为:
 # Nat2D = {(I, J): (Int, Int) | I &gt;= 0; J &gt;= 0}
 Nat2D = {(I, J): (Int, Int) | I &gt;= 0 and J &gt;= 0}
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="扩展语法"><a class="header" href="#扩展语法">扩展语法</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/28_spread_syntax.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/28_spread_syntax.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>在分解赋值中，将 <code>...</code> 放在变量前面会将所有剩余元素展开到该变量中。这称为展开赋值</p>
@@ -4710,7 +4712,7 @@ make_g: () =&gt; Generator!
 <li>[Add]</li>
 <li><a href="type/02_basic.html">alias</a></li>
 <li><a href="./type/02_basic.html">Aliasing</a></li>
-<li><a href="./type/15_quantified.html">All symmetric types</a></li>
+<li><a href="./type/15_quantified.html">For all types</a></li>
 <li><a href="./type/13_algebraic.html">algebraic type</a></li>
 <li>[And]</li>
 <li>[and]</li>

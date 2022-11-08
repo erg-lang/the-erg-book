@@ -177,7 +177,7 @@ x = a.freeze_map a: [Nat; 3] -&gt; a.iter().map(i -&gt; i + 1).filter(i -&gt; i 
 KT: ImmutType = Class ...
 K!T: Type = Class ...
 </code></pre>
-<p>在標準庫中，變量 <code>(...)!</code> 類型通常基于不可變 <code>(...)</code> 類型。但是，<code>T!</code> 和 <code>T</code> 類型沒有特殊的語言關系，并且不能這樣構造 <a href="#1"><sup id="f1">1</sup></a> </p>
+<p>在標準庫中，變量 <code>(...)!</code> 類型通常基于不可變 <code>(...)</code> 類型。但是，<code>T!</code> 和 <code>T</code> 類型沒有特殊的語言關系，并且不能這樣構造 <a href="#1"><sup id="f1">1</sup></a></p>
 <p>請注意，有幾種類型的對象可變性
 下面我們將回顧內置集合類型的不可變/可變語義</p>
 <pre><code class="language-python"># 數組類型
@@ -194,7 +194,7 @@ K!T: Type = Class ...
 </code></pre>
 <p>當然，您不必全部記住和使用它們
 對于可變數組類型，只需將 <code>!</code> 添加到您想要可變的部分，實際上是 <code>[T; N]</code>, <code>[T!; N]</code>，<code>[T; !N]</code>, <code> [T!; !N]</code> 可以涵蓋大多數情況</p>
-<p>這些數組類型是語法糖，實際類型是: </p>
+<p>這些數組類型是語法糖，實際類型是:</p>
 <pre><code class="language-python"># actually 4 types
 [T; N] = Array(T, N)
 [T; !N] = Array!(T, !N)
@@ -244,7 +244,7 @@ a: [!Str; 3]
 ...
 </code></pre>
 <p>一個類型 <code>(...)</code> 簡單地變成了 <code>T! = (...)!</code> 當 <code>T = (...)</code> 被稱為簡單結構化類型。簡單的結構化類型也可以(語義上)說是沒有內部結構的類型
-數組、元組、集合、字典和記錄類型都是非簡單的結構化類型，但 Int 和 Sieve 類型是</p>
+數組、元組、集合、字典和記錄類型都是非簡單的結構化類型，但 Int 和 Refinement 類型是</p>
 <pre><code class="language-python"># 篩子類型
 ## 枚舉
 {1, 2, 3} # 1, 2, 3 之一，不可更改
@@ -264,6 +264,7 @@ a: [!Str; 3]
 而對于沒有內部結構的類型‘T!’，這個實例只是一個可以交換的‘T’盒子。方法不能更改類型</p>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> <code>T!</code> 和 <code>T</code> 類型沒有特殊的語言關系是有意的。這是一個設計。如果存在關系，例如命名空間中存在<code>T</code>/<code>T!</code>類型，則無法從其他模塊引入<code>T!</code>/<code>T</code>類型。此外，可變類型不是為不可變類型唯一定義的。給定定義 <code>T = (U, V)</code>，<code>T!</code> 的可能變量子類型是 <code>(U!, V)</code> 和 <code>(U, V!)</code>。<a href="#f1">?</a></span></p>
+
 
                     </main>
 

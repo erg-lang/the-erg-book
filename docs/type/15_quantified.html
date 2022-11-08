@@ -280,7 +280,7 @@ K.
 K(0).
     foo(self, x): Nat = ...
 </code></pre>
-<h2 id="all-symmetric-types"><a class="header" href="#all-symmetric-types">All symmetric types</a></h2>
+<h2 id="for-all-types"><a class="header" href="#for-all-types">For-all types</a></h2>
 <p>The <code>id</code> function defined in the previous section is a function that can be of any type. So what is the type of the <code>id</code> function itself?</p>
 <pre><code class="language-python">print! classof(id) # |T: Type| T -&gt; T
 </code></pre>
@@ -340,6 +340,7 @@ DepFn.
 assert (Int -&gt; Int).type() == Int # by DepFn
 assert DepFn(Int).type() == Int # by DepFn
 </code></pre>
+
 
                     </main>
 

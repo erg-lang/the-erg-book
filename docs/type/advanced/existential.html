@@ -150,10 +150,10 @@ Existential types are not difficult. You already know the existential type, just
 f x: T = ...
 </code></pre>
 <p>The trait <code>T</code> above is used as the existential type.
-In contrast, <code>T</code> in the lower case is only a trait, and <code>X</code> is an for-all type.</p>
+In contrast, <code>T</code> in the lower case is only a trait, and <code>X</code> is a for-all type.</p>
 <pre><code class="language-python">f|X &lt;: T| x: X = ...
 </code></pre>
-<p>In fact, the existential type is replaced by an for-all type. So why is there such a thing as an existential type?
+<p>In fact, the existential type is replaced by a for-all type. So why is there such a thing as an existential type?
 First of all, as we saw above, existential types do not involve type variables, which simplifies type specification.
 Also, since the type variable can be removed, it is possible to construct a type that would have rank 2 or higher if it were an all-presumptive type.</p>
 <pre><code class="language-python">show_map f: (|T| T -&gt; T), arr: [Show; _] =

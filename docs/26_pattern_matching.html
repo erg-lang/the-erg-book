@@ -196,7 +196,7 @@ name = match num:
     E -&gt; &quot;e&quot;
     _ -&gt; &quot;unnamed&quot;
 </code></pre>
-<h3 id="sieve-pattern"><a class="header" href="#sieve-pattern">Sieve pattern</a></h3>
+<h3 id="refinement-pattern"><a class="header" href="#refinement-pattern">Refinement pattern</a></h3>
 <pre><code class="language-python"># these two are the same
 Array(T, N: {N | N &gt;= 3})
 Array(T, N | N &gt;= 3)
@@ -287,6 +287,7 @@ A non-unique form is not trivial whether it works correctly or is equivalent to 
 <h4 id="set"><a class="header" href="#set">set</a></h4>
 <p>There is no set pattern. Because the set has no way to uniquely retrieve the elements.
 You can retrieve them by iterator, but the order is not guaranteed.</p>
+
 
                     </main>
 

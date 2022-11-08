@@ -182,12 +182,13 @@ assert [(i, j) for i in range(1, 3) for j in range(3, 5)] == [(i, j) for j in ra
 </code></pre>
 <h2 id="筛子类型"><a class="header" href="#筛子类型">筛子类型</a></h2>
 <p>与推导类似的是筛类型。筛子类型是以<code>{Name: Type | Predicate}</code>创建的(枚举类型)
-sieve类型的情况下，只能指定一个Name，不能指定布局(但是如果是tuple类型可以处理多个值)，Predicate可以在编译时计算，即 ，只能指定一个常量表达式</p>
+refinement类型的情况下，只能指定一个Name，不能指定布局(但是如果是tuple类型可以处理多个值)，Predicate可以在编译时计算，即 ，只能指定一个常量表达式</p>
 <pre><code class="language-python">Nat = {I: Int | I &gt;= 0}
 # 如果谓词表达式只有and，可以替换为:
 # Nat2D = {(I, J): (Int, Int) | I &gt;= 0; J &gt;= 0}
 Nat2D = {(I, J): (Int, Int) | I &gt;= 0 and J &gt;= 0}
 </code></pre>
+
 
                     </main>
 

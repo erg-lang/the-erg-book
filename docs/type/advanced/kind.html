@@ -200,7 +200,7 @@ assert IntContainerOf in (Type -&gt; Type) -&gt; Type
 Pointy = {Point}
 </code></pre>
 <p>An important property of record kind is that if <code>T: |T|</code> and <code>U &lt;: T</code> then <code>U: |T|</code>.
-This is also evident from the fact that enums are actually syntactic sugar for sieve types.</p>
+This is also evident from the fact that enums are actually syntactic sugar for refinement types.</p>
 <pre><code class="language-python"># {c} == {X: T | X == c} for normal objects, but
 # Equality may not be defined for types, so |T| == {X | X &lt;: T}
 {Point} == {P | P &lt;: Point}
