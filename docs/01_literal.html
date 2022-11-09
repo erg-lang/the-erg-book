@@ -198,30 +198,33 @@ The notation is the same as in Python.</p>
 <p>As a difference from <code>Array</code> literals, duplicate elements are removed in <code>Set</code>.</p>
 <pre><code class="language-python">assert {1, 2, 1} == {1, 2}
 </code></pre>
-<h3 id="what-looks-like-a-literal-but-isnt"><a class="header" href="#what-looks-like-a-literal-but-isnt">What looks like a literal but isn't</a></h3>
-<h2 id="boolean-object"><a class="header" href="#boolean-object">Boolean Object</a></h2>
+<h2 id="what-looks-like-a-literal-but-isnt"><a class="header" href="#what-looks-like-a-literal-but-isnt">What looks like a literal but isn't</a></h2>
+<h3 id="boolean-object"><a class="header" href="#boolean-object">Boolean Object</a></h3>
+<p><code>True</code> and <code>False</code> are simply constant objects of type <code>Bool</code>.</p>
 <pre><code class="language-python">True, False
 </code></pre>
 <h3 id="none-object"><a class="header" href="#none-object">None Object</a></h3>
+<p><code>None</code> is a singleton object of type <code>NoneType</code>.</p>
 <pre><code class="language-python">None
 </code></pre>
-<h2 id="range-object"><a class="header" href="#range-object">Range Object</a></h2>
+<h3 id="range-object"><a class="header" href="#range-object">Range Object</a></h3>
+<p>Unlike Python's <code>range</code>, it can treat not only <code>Int</code> but also any object of type that allows comparisons (subtype of <code>Ord</code>, e.g. <code>Str</code>, <code>Ratio</code>, etc.).</p>
 <pre><code class="language-python">assert 0..10 in 5
 assert 0..&lt;10 notin 10
 assert 0..9 == 0..&lt;10
 assert (0..5).to_set() == {1, 2, 3, 4, 5}
 assert &quot;a&quot; in &quot;a&quot;..&quot;z&quot;
 </code></pre>
-<h2 id="float-object"><a class="header" href="#float-object">Float Object</a></h2>
+<h3 id="float-object"><a class="header" href="#float-object">Float Object</a></h3>
 <pre><code class="language-python">assert 0.0f64 == 0
 assert 0.0f32 == 0.0f64
 </code></pre>
 <p>Float objects are constructed by multiplying a <code>Ratio</code> object by <code>f64</code>, which is a <code>Float 64</code> unit object.</p>
-<h2 id="complex-object"><a class="header" href="#complex-object">Complex Object</a></h2>
+<h3 id="complex-object"><a class="header" href="#complex-object">Complex Object</a></h3>
 <pre><code class="language-python">1+2Im, 0.4-1.2Im, 0Im, Im
 </code></pre>
 <p>A <code>Complex</code> object is simply an arithmetic combination of an imaginary unit object, <code>Im</code>.</p>
-<h2 id="-less-multiplication"><a class="header" href="#-less-multiplication">*-less multiplication</a></h2>
+<h3 id="-less-multiplication"><a class="header" href="#-less-multiplication">*-less multiplication</a></h3>
 <p>In Erg, you can omit the <code>*</code> to indicate multiplication as long as there is no confusion in interpretation. However, the combined strength of the operators is set stronger than <code>*</code>.</p>
 <pre><code class="language-python"># same as `assert (1*m) / (1*s) == 1*(m/s)`
 assert 1m / 1s == 1 (m/s)
