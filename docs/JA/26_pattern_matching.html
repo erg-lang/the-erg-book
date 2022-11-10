@@ -211,6 +211,7 @@ _: Int = 1
 zero _ = 0
 right(_, r) = r
 </code></pre>
+<p>文脈によって制約付けられていない場合、<code>_</code>は<code>Obj</code>型となる。</p>
 <h3 id="可変長パターン"><a class="header" href="#可変長パターン">可変長パターン</a></h3>
 <p>後述するタプル/配列/レコードパターンと組み合わせて使います。</p>
 <pre><code class="language-python">[i, ...j] = [1, 2, 3, 4]

@@ -845,6 +845,11 @@ assert mut_a == [2, 2, 3]
 <p>しかし、このように要素の型を明示的に指定すると制限を回避できます。</p>
 <pre><code class="language-python">[1: Int or Str, &quot;a&quot;]
 </code></pre>
+<blockquote>
+<p>しかしこのような場合、基本的には後述する <strong>タプル</strong> を使うべきです。</p>
+<pre><code class="language-python">(1, &quot;a&quot;)
+</code></pre>
+</blockquote>
 <h2 id="スライス"><a class="header" href="#スライス">スライス</a></h2>
 <p>配列は、複数の値をまとめて取り出すこともできます。これをスライスと呼びます。</p>
 <pre><code class="language-python">l = [1, 2, 3, 4]
@@ -887,7 +892,9 @@ assert (Int; 3) == (Int, Int, Int)
 </code></pre>
 <p>ただし、非等質なコレクション(タプルなど)はアップキャスト、Intersectionなどによって等質なコレクション(配列など)に変換できます。
 これを等質化といいます。</p>
-<pre><code class="language-python">(Int, Bool, Str) can be [T; 3] | T :&gt; Int, T :&gt; Bool, T :&gt; Str
+<pre><code class="language-python">homogenize rule
+
+* (X, Y, Z, ...) can be [T; N] if T :&gt; X, T :&gt; Y, T :&gt; Z, ...
 </code></pre>
 <pre><code class="language-python">t: (Int, Bool, Str) = (1, True, &quot;a&quot;) # 非等質
 a: [Int or Bool or Str; 3] = [1, True, &quot;a&quot;] # 等質
@@ -4164,6 +4171,7 @@ _: Int = 1
 zero _ = 0
 right(_, r) = r
 </code></pre>
+<p>文脈によって制約付けられていない場合、<code>_</code>は<code>Obj</code>型となる。</p>
 <h3 id="可変長パターン"><a class="header" href="#可変長パターン">可変長パターン</a></h3>
 <p>後述するタプル/配列/レコードパターンと組み合わせて使います。</p>
 <pre><code class="language-python">[i, ...j] = [1, 2, 3, 4]

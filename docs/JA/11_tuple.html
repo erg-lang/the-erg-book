@@ -170,7 +170,9 @@ assert (Int; 3) == (Int, Int, Int)
 </code></pre>
 <p>ただし、非等質なコレクション(タプルなど)はアップキャスト、Intersectionなどによって等質なコレクション(配列など)に変換できます。
 これを等質化といいます。</p>
-<pre><code class="language-python">(Int, Bool, Str) can be [T; 3] | T :&gt; Int, T :&gt; Bool, T :&gt; Str
+<pre><code class="language-python">homogenize rule
+
+* (X, Y, Z, ...) can be [T; N] if T :&gt; X, T :&gt; Y, T :&gt; Z, ...
 </code></pre>
 <pre><code class="language-python">t: (Int, Bool, Str) = (1, True, &quot;a&quot;) # 非等質
 a: [Int or Bool or Str; 3] = [1, True, &quot;a&quot;] # 等質
