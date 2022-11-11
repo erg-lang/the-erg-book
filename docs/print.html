@@ -888,42 +888,21 @@ t.try_into([Show; 3])? .iter().map(x -&gt; log x) # OK
 <pre><code class="language-python">unit = ()
 (): ()
 </code></pre>
-<p>Unit is a superclass of all element 0 tuples.</p>
-<pre><code class="language-python">() &gt; (Int; 0)
-() &gt; (Str; 0)
+<p>Unit is a superclass of all tuples.</p>
+<pre><code class="language-python">() :&gt; (Int; 0)
+() :&gt; (Str; 0)
+() :&gt; (Int, Str)
+...
 </code></pre>
 <p>The use of this object is for procedures with no arguments and no return value, etc. Erg subroutines must have arguments and a return value. However, in some cases, such as a procedure, there may be no meaningful arguments or return value, only side effects. In such cases, we use units as &quot;meaningless, formal values.</p>
 <pre><code class="language-python"># ↓ Actually, this parenthesis is a unit
 p!() =.
     # `print!` does not return a meaningful value
     print! &quot;Hello, world!&quot;
-p!: () =&gt; ()
+p!: () =&gt; () # The parameter part is part of the syntax, not a tuple
 </code></pre>
 <p>However, Python tends to use <code>None</code> instead of units in such cases.
 In Erg, you should use <code>()</code> when you are sure from the beginning that the operation will not return a meaningful value, such as in a procedure, and return <code>None</code> when there is a possibility that the operation will fail and you will get nothing, such as when retrieving an element.</p>
-<h2 id="arguments-and-tuple"><a class="header" href="#arguments-and-tuple">Arguments and Tuple</a></h2>
-<p>Actually, all of Erg's <code>Callable</code> objects are one argument and one return value; a subroutine that takes N arguments was just receiving &quot;one tuple with N elements&quot; as an argument.</p>
-<pre><code class="language-python"># f x = ... is implicitly assumed to be f(x) = ... is considered to be
-f x = x
-assert f(1) == 1
-f(1, 2, 3) # ArgumentError: f takes 1 positional argument but 3 were given
-# ArgumentError: f takes 1 positional argument but 3 were given
-g x: Int, . . y: Int = y
-assert (2, 3) == g 1, 2, 3
-</code></pre>
-<p>This also explains the function type.</p>
-<pre><code class="language-python">assert f in T: {(T,) -&gt; T | T}
-assert g in {(Int, ... (Int; N)) -&gt; (Int; N) | N: Nat}
-</code></pre>
-<p>To be precise, the function's input is not a tuple but a &quot;Named tuple with default attributes&quot;. This is a special tuple that can only be used in function arguments, can be named like a record, and can have a default value.</p>
-<pre><code class="language-python">f(x: Int, y=0) = x + y
-f: (Int, y=Int) -&gt; Int
-
-f(x=0, y=1)
-f(y=1, x=0)
-f(x=0)
-f(0)
-</code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dict"><a class="header" href="#dict">Dict</a></h1>
 <p>Dict is a collection of key/value pairs.</p>

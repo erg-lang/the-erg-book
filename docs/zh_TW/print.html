@@ -891,41 +891,20 @@ t.try_into([Show; 3])? .iter().map(x -&gt; log x) # OK
 <pre><code class="language-python">unit = ()
 (): ()
 </code></pre>
-<p>Unit 是所有元素 0 元組的父類</p>
-<pre><code class="language-python">() &gt; (Int; 0)
-() &gt; (Str; 0)
+<p>Unit是所有图元的超级类。</p>
+<pre><code class="language-python">() :&gt; (Int; 0)
+() :&gt; (Str; 0)
+() :&gt; (Int, Str)
+...
 </code></pre>
 <p>該對象的用途是用于沒有參數和沒有返回值的過程等。Erg 子例程必須有參數和返回值。但是，在某些情況下，例如過程，可能沒有有意義的參數或返回值，只有副作用。在這種情況下，我們將單位用作&quot;無意義的正式值&quot;</p>
-<pre><code class="language-python"># ↓ Actually, this parenthesis is a unit
-p!() =.
+<pre><code class="language-python">p!() =
     # `print!` does not return a meaningful value
     print! &quot;Hello, world!&quot;
-p!: () =&gt; ()
+p!: () =&gt; () # The parameter part is part of the syntax, not a tuple
 </code></pre>
 <p>但是，在這種情況下，Python 傾向于使用&quot;無&quot;而不是單位
 在 Erg 中，當您從一開始就確定操作不會返回有意義的值(例如在過程中)時，您應該使用 <code>()</code>，并且當操作可能失敗并且您可能會返回 <code>None</code> 將一無所獲，例如在檢索元素時</p>
-<h2 id="參數和元組"><a class="header" href="#參數和元組">參數和元組</a></h2>
-<p>實際上，Erg 的所有 <code>Callable</code> 對象都是一個參數和一個返回值； 一個接受 N 個參數的子例程只是接收&quot;一個具有 N 個元素的元組&quot;作為參數</p>
-<pre><code class="language-python"># f x = ... 被隱式假設為 f(x) = ... 被認為是
-f x = x
-assert f(1) == 1
-f(1, 2, 3) # 參數錯誤: f 接受 1 個位置參數，但給出了 3 個
-g x: Int, . . y: Int = y
-assert (2, 3) == g 1, 2, 3
-</code></pre>
-<p>這也解釋了函數類型</p>
-<pre><code class="language-python">assert f in T: {(T,) -&gt; T | T}
-assert g in {(Int, ... (Int; N)) -&gt; (Int; N) | N: Nat}
-</code></pre>
-<p>準確地說，函數的輸入不是元組，而是&quot;具有默認屬性的命名元組&quot;。這是一個特殊的元組，只能在函數參數中使用，可以像記錄一樣命名，并且可以有默認值</p>
-<pre><code class="language-python">f(x: Int, y=0) = x + y
-f: (Int, y=Int) -&gt; Int
-
-f(x=0, y=1)
-f(y=1, x=0)
-f(x=0)
-f(0)
-</code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="字典"><a class="header" href="#字典">字典</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>

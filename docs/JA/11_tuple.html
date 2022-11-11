@@ -185,42 +185,20 @@ t.try_into([Show; 3])?.iter().map(x -&gt; log x) # OK
 <pre><code class="language-python">unit = ()
 (): ()
 </code></pre>
-<p>ユニットはすべての要素0のタプルのスーパークラスです。</p>
-<pre><code class="language-python">() &gt; (Int; 0)
-() &gt; (Str; 0)
+<p>ユニットはすべてのタプルのスーパークラスです。</p>
+<pre><code class="language-python">() :&gt; (Int; 0)
+() :&gt; (Str; 0)
+() :&gt; (Int, Str)
+...
 </code></pre>
 <p>このオブジェクトの使いみちは、引数、戻り値がないプロシージャなどです。Ergのサブルーチンは、必ず引数と戻り値を持つ必要があります。しかしプロシージャなどの場合、副作用を起こすだけで意味のある引数・戻り値がない場合もあります。その際に「意味のない、形式上の値」としてユニットを使うわけです。</p>
-<pre><code class="language-python"># ↓ 実はこの括弧はユニット
-p!() =
+<pre><code class="language-python">p!() =
     # `print!`は意味のある値を返さない
     print! &quot;Hello, world!&quot;
-p!: () =&gt; ()
+p!: () =&gt; () # 引数部分は構文の一部でありタプルではない
 </code></pre>
 <p>ただしPythonはこのようなときユニットではなく<code>None</code>を使う傾向があります。
-Ergでの使い分けとしては、プロシージャなどではじめから意味のある値を返さないことが確定しているときは<code>()</code>、要素の取得のように操作が失敗して何も得られない可能性があるときは<code>None</code>を返してください。</p>
-<h2 id="引数とタプル"><a class="header" href="#引数とタプル">引数とタプル</a></h2>
-<p>実は、Ergの<code>Callable</code>オブジェクトは全て1引数で1戻り値です。N個の引数を取るサブルーチンは、「N個の要素を持つタプル1つ」を引数として受け取っているだけだったのです。</p>
-<pre><code class="language-python"># f x = ...は暗黙にf(x) = ...とみなされる
-f x = x
-assert f(1) == 1
-f(1, 2, 3) # ArgumentError: f takes 1 positional argument but 3 were given
-# 可変個の引数を受け取る
-g x: Int, ...y: Int = y
-assert (2, 3) == g 1, 2, 3
-</code></pre>
-<p>関数の型もこれで説明が付きます。</p>
-<pre><code class="language-python">assert f in T: {(T,) -&gt; T | T}
-assert g in {(Int, ...(Int; N)) -&gt; (Int; N) | N: Nat}
-</code></pre>
-<p>正確には、関数の入力はタプルではなく「デフォルト属性付きNamedタプル」です。これは関数の引数でだけ使える特殊なタプルで、レコードのように名前付けができ、デフォルト値を持つことができます。</p>
-<pre><code class="language-python">f(x: Int, y=0) = x + y
-f: (Int, y=Int) -&gt; Int
-
-f(x=0, y=1)
-f(y=1, x=0)
-f(x=0)
-f(0)
-</code></pre>
+Ergでの使い分けとしては、プロシージャなどではじめから意味のある値を返さないことが確定しているときは<code>()</code>、要素の取得のように操作が失敗して何も得られなかったときは<code>None</code>を返してください。</p>
 
 
                     </main>
