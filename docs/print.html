@@ -2319,11 +2319,17 @@ That is, expressions such as <code>X**2 - 5X + 6 == 0</code> cannot be used as r
 </code></pre>
 <p>If you know how to solve quadratic equations, you would expect the above refinement form to be equivalent to <code>{2, 3}</code>.
 However, the Erg compiler has very little knowledge of algebra, so it cannot solve the predicate on the right.</p>
+<h2 id="subtyping-rules-for-refinement-types"><a class="header" href="#subtyping-rules-for-refinement-types">Subtyping rules for refinement types</a></h2>
+<p>All refinement types are subtypes of the type specified in the <code>Type</code> part.</p>
+<pre><code class="language-erg">{I: Int | I &lt;= 0} &lt;: Int
+</code></pre>
+<p>Otherwise, the current Erg has a subtyping type rule for integer comparisons.</p>
+<pre><code class="language-erg">{I: Int | I &lt;= 5} &lt;: {I: Int | I &lt;= 0}
+</code></pre>
 <h2 id="smart-cast"><a class="header" href="#smart-cast">Smart Cast</a></h2>
 <p>It's nice that you defined <code>Odd</code>, but as it is, it doesn't look like it can be used much outside of literals. To promote an odd number in a normal <code>Int</code> object to <code>Odd</code>, i.e., to downcast an <code>Int</code> to <code>Odd</code>, you need to pass the constructor of <code>Odd</code>.
 For refinement types, the normal constructor <code>.new</code> may panic, and there is an auxiliary constructor called <code>.try_new</code> that returns a <code>Result</code> type.</p>
-<pre><code class="language-python">i = Odd.new (0..10).sample!()
-i: Odd # or Panic
+<pre><code class="language-python">i = Odd.new (0..10).sample!() # i: Odd (or Panic)
 </code></pre>
 <p>It can also be used as a type specification in <code>match</code>.</p>
 <pre><code class="language-python"># i: 0..10

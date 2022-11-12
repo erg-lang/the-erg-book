@@ -201,6 +201,25 @@ vm.stop!() # TypeError: VM!(!&quot;stopped&quot;, 1) doesn't have .stop!()
 # .arrayと連動してself: Self(T, N)の型が変わる
 MyStruct!(T, N: Nat!) = Class {.array: [T; !N]}
 </code></pre>
+<h2 id="実体指定"><a class="header" href="#実体指定">実体指定</a></h2>
+<p>動的配列<code>arr: [T; !N]</code>について、処理を進めていくうちに<code>N</code>の情報が失われてしまったとします。
+この情報は<code>assert arr.__len__() == X</code>とすることで回復させることができます。</p>
+<pre><code class="language-erg">arr: [Int; !_]
+assert arr.__len__() == 3
+arr: [Int; !3]
+</code></pre>
+<p>これは型パラメータの <strong>実体指定</strong> によって可能となっています。配列型<code>Array(T, N)</code>は以下のように定義されています。</p>
+<pre><code class="language-erg">Array T &lt;-&gt; Union Self.map(x -&gt; Typeof x), N &lt;-&gt; Self.__len__() = ...
+</code></pre>
+<p><code>&lt;-&gt;</code>は依存型のパラメータのみで使える特別な記号で、そのパラメータに対する実体を指示します。実体であるところの右辺式は、コンパイル時に計算可能でなくても構いません。コンパイル時情報である<code>N</code>と実行時情報である<code>Self.__len__()</code>が実体指定を通してリンクされる訳です。
+実体指定に沿った方法でassertionが行われると、型パラメータの情報が復活します。すなわち、<code>assert arr.__len__() == N</code>とすると<code>N</code>の情報が復活します。ただしこの場合の<code>N</code>はコンパイル時計算可能でなくてはなりません。
+実体指定は<code>assert</code>以外に<code>match</code>でも活用されます。</p>
+<pre><code class="language-erg">arr: [Obj; _]
+match! arr:
+    pair: [Obj; 2] =&gt; ...
+    ints: [Int; _] =&gt; ...
+    _ =&gt; ...
+</code></pre>
 
 
                     </main>
