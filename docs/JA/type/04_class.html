@@ -346,8 +346,8 @@ XorY = Enum X, Y
 </code></pre>
 <p>それぞれの型には<code>XorY.X</code>, <code>XorY.Y</code>のようにしてアクセスでき、コンストラクタは<code>X.new |&gt; XorY.new</code>のようにして取得できます。</p>
 <pre><code class="language-python">x1 = XorY.new X.new()
-x2 = (X.new |&gt; XorY.new)()
-x3 = (Y.new |&gt; XorY.new)()
+x2 = (X.new |&gt; XorY.new())()
+x3 = (Y.new |&gt; XorY.new())()
 assert x1 == x2
 assert x1 != x3
 </code></pre>

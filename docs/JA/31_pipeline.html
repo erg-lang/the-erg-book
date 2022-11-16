@@ -146,10 +146,10 @@
                         <h1 id="パイプライン演算子"><a class="header" href="#パイプライン演算子">パイプライン演算子</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/31_pipeline.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/31_pipeline.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>パイプライン演算子は、次のように使います。</p>
-<pre><code class="language-python">assert f(g(x)) == (x |&gt; g |&gt; f)
-assert f(g(x, y)) == ((x, y) |&gt; g |&gt; f)
+<pre><code class="language-python">assert f(g(x)) == (x |&gt; g() |&gt; f())
+assert f(g(x, y)) == (x |&gt; g(y) |&gt; f())
 </code></pre>
-<p>つまり、<code>Callable(object)</code>という順序を<code>object |&gt; Callable</code>に変えられます。
+<p>つまり、<code>Callable(object)</code>という順序を<code>object |&gt; Callable()</code>に変えられます。
 パイプライン演算子はメソッドに対しても使えます。メソッドの場合、<code>object.method(args)</code>が<code>object |&gt;.method(args)</code>と変わります。
 単に<code>|&gt;</code>が増えただけにも見えるが、結合強度が低めなので<code>()</code>の量を減らせる場合があります。</p>
 <pre><code class="language-python">rand = -1.0..1.0 |&gt;.sample!()
@@ -157,7 +157,7 @@ log rand # 0.2597...
 
 1+1*2 |&gt;.times do log(&quot;a&quot;, end := &quot;&quot;) # aaa
 
-evens = 1..100 |&gt;.iter |&gt;.filter i -&gt; i % 2 == 0 |&gt;.collect Array
+evens = 1..100 |&gt;.iter() |&gt;.filter i -&gt; i % 2 == 0 |&gt;.collect Array
 # パイプライン演算子を使わずに実装する場合、
 _evens = (1..100).iter().filter(i -&gt; i % 2 == 0).collect(Array)
 # または

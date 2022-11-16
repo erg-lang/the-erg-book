@@ -1760,8 +1760,8 @@ XorY = Enum X, Y
 </code></pre>
 <p>Each type can be accessed as <code>XorY.X</code>, <code>XorY.Y</code> and the constructor can be obtained as <code>X.new |&gt; XorY.new</code>.</p>
 <pre><code class="language-python">x1 = XorY.new X.new()
-x2 = (X.new |&gt; XorY.new)()
-x3 = (Y.new |&gt; XorY.new)()
+x2 = (X.new |&gt; XorY.new())()
+x3 = (Y.new |&gt; XorY.new())()
 assert x1 == x2
 assert x1 != x3
 </code></pre>
@@ -4383,10 +4383,10 @@ An unrecoverable error is an error caused by an external factor such as a softwa
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pipeline-operator"><a class="header" href="#pipeline-operator">pipeline operator</a></h1>
 <p>Pipeline operators are used like this:</p>
-<pre><code class="language-python">assert f(g(x)) == (x |&gt; g |&gt; f)
-assert f(g(x, y)) == ((x, y) |&gt; g |&gt; f)
+<pre><code class="language-python">assert f(g(x)) == (x |&gt; g |&gt; f())
+assert f(g(x, y)) == (x |&gt; g(y) |&gt; f())
 </code></pre>
-<p>In other words, the order <code>Callable(object)</code> can be changed to <code>object |&gt; Callable</code>.
+<p>In other words, the order <code>Callable(object)</code> can be changed to <code>object |&gt; Callable()</code>.
 The pipeline operator can also be used on methods. For methods, <code>object.method(args)</code> changes to <code>object |&gt;.method(args)</code>.
 It looks like just more <code>|&gt;</code>, but since the bond strength is low, you may be able to reduce the amount of <code>()</code>.</p>
 <pre><code class="language-python">rand = -1.0..1.0 |&gt;.sample!()
@@ -4394,7 +4394,7 @@ log rand # 0.2597...
 
 1+1*2 |&gt;.times do log(&quot;a&quot;, end := &quot;&quot;) # aaa
 
-evens = 1..100 |&gt;.iter |&gt;.filter i -&gt; i % 2 == 0 |&gt;.collect Array
+evens = 1..100 |&gt;.iter() |&gt;.filter i -&gt; i % 2 == 0 |&gt;.collect Array
 # When implemented without the pipeline operator,
 _evens = (1..100).iter().filter(i -&gt; i % 2 == 0).collect(Array)
 # or
@@ -4403,6 +4403,7 @@ __evens = 1..100 \
     .filter i -&gt; i % 2 == 0 \
     .collect Array
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="integration-with-python"><a class="header" href="#integration-with-python">Integration with Python</a></h1>
 <h2 id="export-to-python"><a class="header" href="#export-to-python">Export to Python</a></h2>
 <p>When the Erg script is compiled, a .pyc file is generated, which can simply be imported as a Python module.

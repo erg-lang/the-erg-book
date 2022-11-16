@@ -145,10 +145,10 @@
                     <main>
                         <h1 id="pipeline-operator"><a class="header" href="#pipeline-operator">pipeline operator</a></h1>
 <p>Pipeline operators are used like this:</p>
-<pre><code class="language-python">assert f(g(x)) == (x |&gt; g |&gt; f)
-assert f(g(x, y)) == ((x, y) |&gt; g |&gt; f)
+<pre><code class="language-python">assert f(g(x)) == (x |&gt; g |&gt; f())
+assert f(g(x, y)) == (x |&gt; g(y) |&gt; f())
 </code></pre>
-<p>In other words, the order <code>Callable(object)</code> can be changed to <code>object |&gt; Callable</code>.
+<p>In other words, the order <code>Callable(object)</code> can be changed to <code>object |&gt; Callable()</code>.
 The pipeline operator can also be used on methods. For methods, <code>object.method(args)</code> changes to <code>object |&gt;.method(args)</code>.
 It looks like just more <code>|&gt;</code>, but since the bond strength is low, you may be able to reduce the amount of <code>()</code>.</p>
 <pre><code class="language-python">rand = -1.0..1.0 |&gt;.sample!()
@@ -156,7 +156,7 @@ log rand # 0.2597...
 
 1+1*2 |&gt;.times do log(&quot;a&quot;, end := &quot;&quot;) # aaa
 
-evens = 1..100 |&gt;.iter |&gt;.filter i -&gt; i % 2 == 0 |&gt;.collect Array
+evens = 1..100 |&gt;.iter() |&gt;.filter i -&gt; i % 2 == 0 |&gt;.collect Array
 # When implemented without the pipeline operator,
 _evens = (1..100).iter().filter(i -&gt; i % 2 == 0).collect(Array)
 # or
@@ -165,6 +165,7 @@ __evens = 1..100 \
     .filter i -&gt; i % 2 == 0 \
     .collect Array
 </code></pre>
+
 
                     </main>
 
