@@ -207,7 +207,7 @@ f(1, 2); 1 + 1
 assert i == 2
 </code></pre>
 <p>これはセミコロン(<code>;</code>)では実現できません。</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # SyntaxError:  cannot use `;` in parentheses
+<pre><code class="language-python compile_fail">i = (x = 1; x + 1) # SyntaxError:  cannot use `;` in parentheses
 </code></pre>
 <h2 id="インデント"><a class="header" href="#インデント">インデント</a></h2>
 <p>ErgはPythonと同じくインデントを使ってブロックを表します。ブロックの開始を示すトリガーとなる演算子(特殊形式)は、<code>=</code>, <code>-&gt;</code>, <code>=&gt;</code>, <code>do</code>, <code>do!</code>の5種類です(その他に、演算子ではありませんが<code>:</code>と<code>|</code>もインデントを生成します)。それぞれの意味は後述します。</p>

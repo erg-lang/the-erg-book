@@ -160,7 +160,7 @@ match c:
     f -&gt; log &quot;func&quot;
 </code></pre>
 <p>如果您想向外界公开一个属性，请在开头使用 <code>.</code> 定义它。如果你不把<code>.</code>放在开头，它将是私有的。为避免混淆，它们不能在同一范围内共存</p>
-<pre><code class="language-python">o = {x = 1; .x = 2} # 语法错误: 同名的私有变量和公共变量不能共存
+<pre><code class="language-python compile_fail">o = {x = 1; .x = 2} # 语法错误: 同名的私有变量和公共变量不能共存
 </code></pre>
 <h2 id="文字标识符"><a class="header" href="#文字标识符">文字标识符</a></h2>
 <p>可以通过将字符串括在单引号 ('') 中来规避上述规则。也就是说，程序对象也可以在没有 <code>!</code> 的情况下分配。但是，在这种情况下，即使该值是常量表达式，也不会被视为常量

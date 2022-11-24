@@ -161,7 +161,7 @@ but found: Set({0, }, 1)
 </code></pre>
 <p>此外，只有實現<code>Eq</code>跟蹤的對象才能成為集合的元素</p>
 <p>因此，不可能使用Floats等作為集合元素</p>
-<pre><code class="language-python">d = {0.0, 1.0} # NG
+<pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
 # [
 1│ d = {0.0, 1.0}
         ^^^^^^^^

@@ -151,7 +151,7 @@
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: Module 'foo' has no attribute 'x' ('x' is private)
 </code></pre>
@@ -234,7 +234,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 </code></pre>
 <p>また、Re-exportする型にメソッドを定義することはできません。
 インポート元のモジュールによってメソッドが見つかったり見つからなかったりといった混乱を防ぐためです。</p>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::

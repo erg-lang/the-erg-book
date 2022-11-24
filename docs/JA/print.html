@@ -208,7 +208,7 @@ f(1, 2); 1 + 1
 assert i == 2
 </code></pre>
 <p>これはセミコロン(<code>;</code>)では実現できません。</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # SyntaxError:  cannot use `;` in parentheses
+<pre><code class="language-python compile_fail">i = (x = 1; x + 1) # SyntaxError:  cannot use `;` in parentheses
 </code></pre>
 <h2 id="インデント"><a class="header" href="#インデント">インデント</a></h2>
 <p>ErgはPythonと同じくインデントを使ってブロックを表します。ブロックの開始を示すトリガーとなる演算子(特殊形式)は、<code>=</code>, <code>-&gt;</code>, <code>=&gt;</code>, <code>do</code>, <code>do!</code>の5種類です(その他に、演算子ではありませんが<code>:</code>と<code>|</code>もインデントを生成します)。それぞれの意味は後述します。</p>
@@ -307,7 +307,7 @@ assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
 <p>真偽値オブジェクトはBool型の単なるシングルトン(ダブルトン?)です。
 Pythonからの伝統により、<code>Bool</code>型は<code>Int</code>型ないし<code>Nat</code>型のサブタイプとなります。
 すなわち、<code>True</code>は<code>1</code>、<code>False</code>は<code>0</code>と解釈できます。</p>
-<pre><code class="language-python">assert True * 2 == 1
+<pre><code class="language-python">assert True * 2 == 2
 </code></pre>
 <h3 id="noneオブジェクト"><a class="header" href="#noneオブジェクト">Noneオブジェクト</a></h3>
 <pre><code class="language-python">None
@@ -359,7 +359,7 @@ l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
 <p>また、変数への再代入もできません。その代わりに使える機能、すなわち可変な状態を保持する機能については後述します。</p>
-<pre><code class="language-python">i = 1
+<pre><code class="language-python compile_fail">i = 1
 i = i + 1 # AssignError: cannot assign twice
 </code></pre>
 <p>内側のスコープで同じ名前の変数を定義できますが、上に被せているだけで、値を破壊的に書き換えているわけではありません。外側のスコープに戻れば値も戻ります。
@@ -521,6 +521,12 @@ add(1, 2)
 f:
     x
     y
+
+# Ok
+f(
+    x,
+    y
+)
 </code></pre>
 <h2 id="キーワード引数"><a class="header" href="#キーワード引数">キーワード引数</a></h2>
 <p>引数の数が多い関数を定義されていると、引数を渡す順番を間違える危険性があります。
@@ -724,7 +730,7 @@ g = `*` # OK, this is binary only
 assert g(1, 2) == 2
 </code></pre>
 <p>ただし、特殊形式と呼ばれる一部の演算子は束縛できないことに注意してください。</p>
-<pre><code class="language-python">def = `=` # SyntaxError: cannot bind `=` operator, this is a special form
+<pre><code class="language-python compile_fail">def = `=` # SyntaxError: cannot bind `=` operator, this is a special form
 # NG: def x, 1
 function = `-&gt;` # SyntaxError: cannot bind `-&gt;` operator, this is a special form
 # NG: function x, x + 1
@@ -733,7 +739,7 @@ function = `-&gt;` # SyntaxError: cannot bind `-&gt;` operator, this is a specia
 <div style="break-before: page; page-break-before: always;"></div><h1 id="副作用とプロシージャ"><a class="header" href="#副作用とプロシージャ">副作用とプロシージャ</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>これまで<code>print!</code>の<code>!</code>の意味を説明せずにいましたが、いよいよその意味が明かされます。この!は、ズバリこのオブジェクトが「副作用」のある「プロシージャ」であることを示しています。プロシージャは関数に「副作用」という効果を与えたものです。</p>
-<pre><code class="language-python">f x = print! x # EffectError: functions cannot be assigned objects with side effects
+<pre><code class="language-python compile_fail">f x = print! x # EffectError: functions cannot be assigned objects with side effects
 # hint: change the name to 'f!'
 </code></pre>
 <p>上のコードはコンパイルエラーになります。関数中でプロシージャを使用しているからです。このような場合は、プロシージャとして定義しなくてはなりません。</p>
@@ -750,7 +756,7 @@ function = `-&gt;` # SyntaxError: cannot bind `-&gt;` operator, this is a specia
         x
 </code></pre>
 <p>メソッドは<code>self</code>の所有権を奪うこともできます。そのメソッドの定義では<code>ref</code>または<code>ref!</code>を外します。</p>
-<pre><code class="language-python">n = 1
+<pre><code class="language-python compile_fail">n = 1
 s = n.into(Str) # 所有権がnから移動し、s = '1'になる
 n # ValueError: n was moved by .into (line 2)
 </code></pre>
@@ -840,7 +846,7 @@ mut_a[0].inc!()
 assert mut_a == [2, 2, 3]
 </code></pre>
 <p>配列には、原則として違う型のオブジェクトを入れることはできません。</p>
-<pre><code class="language-python">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
+<pre><code class="language-python compile_fail">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
 </code></pre>
 <p>しかし、このように要素の型を明示的に指定すると制限を回避できます。</p>
 <pre><code class="language-python">[1: Int or Str, &quot;a&quot;]
@@ -1132,25 +1138,25 @@ john + 1
 assert {1, 2} == {1, 1, 2} # 重複は自動で削除される
 assert {1, 2} == {2, 1}
 </code></pre>
-<p>型や長さを指定して宣言することもできます</p>
+<p>型や長さを指定して宣言することもできます。</p>
 <pre><code class="language-python">a: {Int; 3} = {0, 1, 2} # OK
 b: {Int; 3} = {0, 0, 0} # NG、重複が削除されて長さが変わる
 # [
 TypeError: the type of b is mismatched
 expected:  Set(Int, 3)
 but found: Set({0, }, 1)
-]# 
+]#
 </code></pre>
-<p>また、<code>Eq</code>トレイトが実装されているオブジェクトのみが集合の要素になれます</p>
-<p>そのため、Floatなどを集合の要素として使用することはできません</p>
-<pre><code class="language-python">d = {0.0, 1.0} # NG
+<p>また、<code>Eq</code>トレイトが実装されているオブジェクトのみが集合の要素になれます。</p>
+<p>そのため、Floatなどを集合の要素として使用することはできません。</p>
+<pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
 # [
 1│ d = {0.0, 1.0}
         ^^^^^^^^
 TypeError: the type of _ is mismatched:
 expected:  Eq(Float)
 but found: {0.0, 1.0, }
-]# 
+]#
 </code></pre>
 <p>セットは集合演算を行えます。</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
@@ -3613,14 +3619,14 @@ peek_str s
 </code></pre>
 <p>借用した値は元のオブジェクトに対する <strong>参照</strong> と呼ばれます。
 参照をまた別のサブルーチンに渡す「又貸し」はできますが、借りているだけなので消費することはできません。</p>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # log関数は引数を借用するだけなので、又貸しできる
     log s
     # discard関数は引数を消費するので、エラー
     discard s # OwnershipError: cannot consume a borrowed value
     # hint: use `clone` method
 </code></pre>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # これもエラー(=は右辺を消費する)
     x = s # OwnershipError: cannot consume a borrowed value
     x
@@ -3639,7 +3645,7 @@ peek_str s
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: Module 'foo' has no attribute 'x' ('x' is private)
 </code></pre>
@@ -3722,7 +3728,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 </code></pre>
 <p>また、Re-exportする型にメソッドを定義することはできません。
 インポート元のモジュールによってメソッドが見つかったり見つからなかったりといった混乱を防ぐためです。</p>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::
@@ -3789,7 +3795,7 @@ match c:
     f -&gt; log &quot;func&quot;
 </code></pre>
 <p>属性を外部に公開したい場合は、初めに<code>.</code>をつけて定義します。<code>.</code>を初めにつけなかった場合は非公開になります。混乱を避けるため同一のスコープ内で共存はできません。</p>
-<pre><code class="language-python">o = {x = 1; .x = 2} # SyntaxError: private and public variables with the same name cannot coexist
+<pre><code class="language-python compile_fail">o = {x = 1; .x = 2} # SyntaxError: private and public variables with the same name cannot coexist
 </code></pre>
 <h2 id="リテラル識別子"><a class="header" href="#リテラル識別子">リテラル識別子</a></h2>
 <p>以上の規則は、文字列をシングルクォート('')で囲むと回避できます。すなわち、プロシージャルオブジェクトも<code>!</code>をつけずに代入することができます。ただしこの場合、値が定数式でも定数とはみなされません。
@@ -3926,7 +3932,7 @@ assert sum == 46
 </code></pre>
 <p>しかし、関数は可変オブジェクトを捕捉できないので注意が必要です。
 仮に可変オブジェクトが関数内で参照できると、以下のようなコードが書けてしまいます。</p>
-<pre><code class="language-python"># !!! このコードは実際にはエラーになる !!!
+<pre><code class="language-python compile_fail"># !!! このコードは実際にはエラーになる !!!
 i = !0
 f x = i + x
 assert f 1 == 1
@@ -4304,14 +4310,13 @@ assert x == 1
 assert y == (2, 3)
 </code></pre>
 <h2 id="抽出代入"><a class="header" href="#抽出代入">抽出代入</a></h2>
-<p><code>...</code>のあとに何も書かない場合、残りの要素は無視して代入されます。このタイプの展開代入を特に抽出代入と呼びます。
-抽出代入は、モジュールやレコード内にある特定の属性をローカルに持ってくる際に便利な構文です。</p>
-<pre><code class="language-python">{sin; cos; tan; ..} = import &quot;math&quot;
+<p>抽出代入は、モジュールやレコード内にある特定の属性をローカルに持ってくる際に便利な構文です。</p>
+<pre><code class="language-python">{sin; cos; tan} = import &quot;math&quot;
 </code></pre>
 <p>このようにすると、以降はローカルで<code>sin, cos, tan</code>が使用できます。</p>
 <p>レコードでも同じようにできます。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}
-{x; y; ...} = record
+{x; y} = record
 </code></pre>
 <p>全て展開したい場合は<code>{*} = record</code>とします。OCamlなどでいう<code>open</code>です。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}

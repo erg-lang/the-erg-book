@@ -205,14 +205,14 @@ peek_str s
 </code></pre>
 <p>借用した値は元のオブジェクトに対する <strong>参照</strong> と呼ばれます。
 参照をまた別のサブルーチンに渡す「又貸し」はできますが、借りているだけなので消費することはできません。</p>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # log関数は引数を借用するだけなので、又貸しできる
     log s
     # discard関数は引数を消費するので、エラー
     discard s # OwnershipError: cannot consume a borrowed value
     # hint: use `clone` method
 </code></pre>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # これもエラー(=は右辺を消費する)
     x = s # OwnershipError: cannot consume a borrowed value
     x

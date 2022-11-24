@@ -163,7 +163,7 @@ assert sum == 46
 </code></pre>
 <p>しかし、関数は可変オブジェクトを捕捉できないので注意が必要です。
 仮に可変オブジェクトが関数内で参照できると、以下のようなコードが書けてしまいます。</p>
-<pre><code class="language-python"># !!! このコードは実際にはエラーになる !!!
+<pre><code class="language-python compile_fail"># !!! このコードは実際にはエラーになる !!!
 i = !0
 f x = i + x
 assert f 1 == 1

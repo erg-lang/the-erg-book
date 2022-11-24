@@ -159,7 +159,7 @@ match c:
     f -&gt; log &quot;func&quot;
 </code></pre>
 <p>If you want to expose an attribute to the outside world, define it with <code>.</code> at the beginning. If you don't put <code>.</code> at the beginning, it will be private. To avoid confusion, they cannot coexist within the same scope.</p>
-<pre><code class="language-python">o = {x = 1; .x = 2} # SyntaxError: private and public variables with the same name cannot coexist
+<pre><code class="language-python compile_fail">o = {x = 1; .x = 2} # SyntaxError: private and public variables with the same name cannot coexist
 </code></pre>
 <h2 id="literal-identifiers"><a class="header" href="#literal-identifiers">Literal Identifiers</a></h2>
 <p>The above rule can be circumvented by enclosing the string in single quotes (''). That is, procedural objects can also be assigned without <code>!</code>. However, in this case, even if the value is a constant expression, it is not considered a constant.

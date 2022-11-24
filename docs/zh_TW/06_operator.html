@@ -157,7 +157,7 @@ g = `*` # OK, 這只是二進制
 assert g(1, 2) == 2
 </code></pre>
 <p>一些稱為特殊形式的基本運算符不能被綁定</p>
-<pre><code class="language-python">def = `=` # 語法錯誤: 無法綁定 `=` 運算符，這是一種特殊形式
+<pre><code class="language-python compile_fail">def = `=` # 語法錯誤: 無法綁定 `=` 運算符，這是一種特殊形式
 # NG: def x, 1
 function = `-&gt;` # 語法錯誤: 無法綁定 `-&gt;` 運算符，這是一種特殊形式
 # NG: function x, x + 1

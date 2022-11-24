@@ -156,7 +156,7 @@ mut_a[0].inc!()
 assert mut_a == [2, 2, 3]
 </code></pre>
 <p>As a rule, arrays cannot contain objects of different types.</p>
-<pre><code class="language-python.">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
+<pre><code class="language-python compile_fail">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
 </code></pre>
 <p>However, you can bypass the restriction by explicitly specifying the type like this.</p>
 <pre><code class="language-python">[1: Int or Str, &quot;a&quot;]

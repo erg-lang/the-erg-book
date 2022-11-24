@@ -219,7 +219,7 @@ f(1, 2); 1 + 1
 assert i == 2
 </code></pre>
 <p>這不能用分號 (<code>;</code>) 完成</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # 語法錯誤: 不能在括號中使用 `;`
+<pre><code class="language-python compile_fail">i = (x = 1; x + 1) # 語法錯誤: 不能在括號中使用 `;`
 </code></pre>
 <h2 id="縮進"><a class="header" href="#縮進">縮進</a></h2>
 <p>Erg 和 Python 一樣，使用縮進來表示塊。有五個運算符(特殊形式)觸發塊的開始: <code>=</code>、<code>-&gt;</code>、<code>=&gt;</code>、<code>do</code> 和 <code>do!</code>(此外，<code>:</code> 和 <code>|</code> ，雖然不是運算符，但也會產生縮進)。每個的含義將在后面描述</p>
@@ -355,7 +355,7 @@ l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
 <p>也不能重新分配給變量。稍后將描述可用于保存可變狀態的語法</p>
-<pre><code class="language-python">i = 1
+<pre><code class="language-python compile_fail">i = 1
 i = i + 1 # 分配錯誤: 不能分配兩次
 </code></pre>
 <p>您可以在內部范圍內定義具有相同名稱的變量，但您只是覆蓋它，而不是破壞性地重寫它的值。如果您返回外部范圍，該值也會返回
@@ -713,7 +713,7 @@ g = `*` # OK, 這只是二進制
 assert g(1, 2) == 2
 </code></pre>
 <p>一些稱為特殊形式的基本運算符不能被綁定</p>
-<pre><code class="language-python">def = `=` # 語法錯誤: 無法綁定 `=` 運算符，這是一種特殊形式
+<pre><code class="language-python compile_fail">def = `=` # 語法錯誤: 無法綁定 `=` 運算符，這是一種特殊形式
 # NG: def x, 1
 function = `-&gt;` # 語法錯誤: 無法綁定 `-&gt;` 運算符，這是一種特殊形式
 # NG: function x, x + 1
@@ -722,7 +722,7 @@ function = `-&gt;` # 語法錯誤: 無法綁定 `-&gt;` 運算符，這是一種
 <div style="break-before: page; page-break-before: always;"></div><h1 id="副作用和程序"><a class="header" href="#副作用和程序">副作用和程序</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>我們一直忽略了解釋&quot;！&quot;的含義，但現在它的含義終于要揭曉了。這個 <code>!</code> 表示這個對象是一個帶有&quot;副作用&quot;的&quot;過程&quot;。過程是具有副作用的函數</p>
-<pre><code class="language-python">f x = print! x # EffectError: 不能為函數分配有副作用的對象
+<pre><code class="language-python compile_fail">f x = print! x # EffectError: 不能為函數分配有副作用的對象
 # 提示: 將名稱更改為 'f!'
 </code></pre>
 <p>上面的代碼會導致編譯錯誤。這是因為您在函數中使用了過程。在這種情況下，您必須將其定義為過程</p>
@@ -733,13 +733,13 @@ function = `-&gt;` # 語法錯誤: 無法綁定 `-&gt;` 運算符，這是一種
 <h2 id="方法"><a class="header" href="#方法">方法</a></h2>
 <p>函數和過程中的每一個都可以是方法。函數式方法只能對<code>self</code>進行不可變引用，而程序性方法可以對<code>self</code>進行可變引用
 <code>self</code> 是一個特殊的參數，在方法的上下文中是指調用對象本身。引用 <code>self</code> 不能分配給任何其他變量</p>
-<pre><code class="language-python">C!.
+<pre><code class="language-python compile_fail">C!.
     method ref self =
         x = self # 所有權錯誤: 無法移出`self`
         x
 </code></pre>
 <p>程序方法也可以采取 <code>self</code> 的 <a href="./18_ownership.html">ownership</a>。從方法定義中刪除 <code>ref</code> 或 <code>ref!</code></p>
-<pre><code class="language-python">n = 1
+<pre><code class="language-python compile_fail">n = 1
 s = n.into(Str) # '1'
 n # 值錯誤: n 被 .into 移動(第 2 行)
 </code></pre>
@@ -1118,7 +1118,7 @@ but found: Set({0, }, 1)
 </code></pre>
 <p>此外，只有實現<code>Eq</code>跟蹤的對象才能成為集合的元素</p>
 <p>因此，不可能使用Floats等作為集合元素</p>
-<pre><code class="language-python">d = {0.0, 1.0} # NG
+<pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
 # [
 1│ d = {0.0, 1.0}
         ^^^^^^^^
@@ -3542,14 +3542,14 @@ peek_str s
 </code></pre>
 <p>借來的值稱為原始對象的 <strong>reference</strong>
 您可以&quot;轉租&quot;對另一個子例程的引用，但您不能使用它，因為您只是借用它</p>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # 由于日志函數只借用參數，所以可以轉租
     log s
     # 錯誤，因為丟棄函數消耗了參數
     discard s # OwnershipError: 不能消費借來的值
     # 提示: 使用 `clone` 方法
 </code></pre>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # 這也不好(=消耗右邊)
      x = s # OwnershipError: 不能消費借來的值
     x
@@ -3568,7 +3568,7 @@ peek_str s
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: 模塊 'foo' 沒有屬性 'x' ('x' 是私有的)
 </code></pre>
@@ -3651,7 +3651,7 @@ foo.public() # 屬性錯誤: &quot;Foo&quot;沒有屬性&quot;public&quot;(&quot
 </code></pre>
 <p>此外，方法不能在要重新導出的類型中定義
 這是為了避免混淆方法是否找到，具體取決于導入方法的模塊</p>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::
@@ -3717,7 +3717,7 @@ match c:
     f -&gt; log &quot;func&quot;
 </code></pre>
 <p>如果您想向外界公開一個屬性，請在開頭使用 <code>.</code> 定義它。如果你不把<code>.</code>放在開頭，它將是私有的。為避免混淆，它們不能在同一范圍內共存</p>
-<pre><code class="language-python">o = {x = 1; .x = 2} # 語法錯誤: 同名的私有變量和公共變量不能共存
+<pre><code class="language-python compile_fail">o = {x = 1; .x = 2} # 語法錯誤: 同名的私有變量和公共變量不能共存
 </code></pre>
 <h2 id="文字標識符"><a class="header" href="#文字標識符">文字標識符</a></h2>
 <p>可以通過將字符串括在單引號 ('') 中來規避上述規則。也就是說，程序對象也可以在沒有 <code>!</code> 的情況下分配。但是，在這種情況下，即使該值是常量表達式，也不會被視為常量
@@ -3852,7 +3852,7 @@ assert sum == 46
 </code></pre>
 <p>但是請注意，函數不能捕獲可變對象
 如果可以在函數中引用可變對象，則可以編寫如下代碼</p>
-<pre><code class="language-python"># !!! 這段代碼實際上給出了一個錯誤！！！
+<pre><code class="language-python compile_fail"># !!! 這段代碼實際上給出了一個錯誤！！！
 i = !0
 f x = i + x
 assert f 1 == 1
@@ -3876,7 +3876,7 @@ for! 1..10, i =&gt;
     sum.add!i
 assert sum == 45
 </code></pre>
-<p>上面的等效程序可以用 Python 編寫如下: </p>
+<p>上面的等效程序可以用 Python 編寫如下:</p>
 <pre><code class="language-python"># Python
 sum = 0
 for i in range(1, 10):
@@ -3922,7 +3922,7 @@ assert foo.i == 1
 <pre><code class="language-console">└─┬ bar
   └─ __init__.er
 </code></pre>
-<p>現在 <code>bar</code> 目錄被識別為一個模塊。如果 <code>bar</code> 中的唯一文件是 <code>__init__.er</code>，則目錄結構沒有多大意義，但如果您想將多個模塊捆綁到一個模塊中，它會很有用。例如: </p>
+<p>現在 <code>bar</code> 目錄被識別為一個模塊。如果 <code>bar</code> 中的唯一文件是 <code>__init__.er</code>，則目錄結構沒有多大意義，但如果您想將多個模塊捆綁到一個模塊中，它會很有用。例如:</p>
 <pre><code class="language-console">└─┬ bar
   ├─ __init__.er
   ├─ baz.er
@@ -4228,14 +4228,13 @@ assert x == 1
 assert y == (2, 3)
 </code></pre>
 <h2 id="提取賦值"><a class="header" href="#提取賦值">提取賦值</a></h2>
-<p>如果在 <code>...</code> 之后沒有寫入任何內容，則忽略并分配剩余的元素。這種類型的賦值具體稱為提取賦值
-提取分配是一種方便的語法，用于本地化模塊或記錄中的特定屬性</p>
-<pre><code class="language-python">{sin; cos; tan; ..} = import &quot;math&quot;
+<p>提取分配是一種方便的語法，用于本地化模塊或記錄中的特定屬性</p>
+<pre><code class="language-python">{sin; cos; tan} = import &quot;math&quot;
 </code></pre>
 <p>之后，您可以在本地使用<code>sin，cos，tan</code></p>
 <p>您可以對記錄執行相同的操作。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}
-{x; y; ...} = record
+{x; y} = record
 </code></pre>
 <p>如果要全部展開，請使用<code>{*}=record</code>。它在OCaml中是<code>open</code>。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}

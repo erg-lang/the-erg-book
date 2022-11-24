@@ -163,7 +163,7 @@ assert sum == 46
 </code></pre>
 <p>但是请注意，函数不能捕获可变对象
 如果可以在函数中引用可变对象，则可以编写如下代码</p>
-<pre><code class="language-python"># !!! 这段代码实际上给出了一个错误！！！
+<pre><code class="language-python compile_fail"># !!! 这段代码实际上给出了一个错误！！！
 i = !0
 f x = i + x
 assert f 1 == 1

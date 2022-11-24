@@ -221,7 +221,7 @@ This differs from a function with no arguments, which does not add <code>()</cod
 assert i == 2
 </code></pre>
 <p>This cannot be accomplished with a semicolon (<code>;</code>).</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # SyntaxError: cannot use `;` in parentheses
+<pre><code class="language-python compile_fail">i = (x = 1; x + 1) # SyntaxError: cannot use `;` in parentheses
 </code></pre>
 <h2 id="indentation"><a class="header" href="#indentation">Indentation</a></h2>
 <p>Erg, like Python, uses indentation to represent blocks. There are five operators (special forms) that trigger the start of a block: <code>=</code>, <code>-&gt;</code>, <code>=&gt;</code>, <code>do</code>, and <code>do!</code> (In addition, <code>:</code> and <code>|</code>, although not operators, also produce indentation). The meanings of each are described later.</p>
@@ -359,7 +359,7 @@ l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
 <p>It is also not possible to reassign to a variable. The syntax that can be used instead, to hold mutable states, are described later.</p>
-<pre><code class="language-python">i = 1
+<pre><code class="language-python compile_fail">i = 1
 i = i + 1 # AssignError: cannot assign twice
 </code></pre>
 <p>You can define a variable with the same name in the inner scope, but you are only covering it over, not destructively rewriting its value. If you go back to the outer scope, the value will return as well.
@@ -516,6 +516,12 @@ Also, you cannot use <code>:</code> immediately after a function. Only <code>do<
 f:
     x
     y
+
+# Ok
+f(
+    x,
+    y
+)
 </code></pre>
 <h2 id="keyword-arguments"><a class="header" href="#keyword-arguments">Keyword Arguments</a></h2>
 <p>If a function is defined with a large number of parameters, there is a danger of passing the arguments in the wrong order.
@@ -715,7 +721,7 @@ g = `*` # OK, this is binary only
 assert g(1, 2) == 2
 </code></pre>
 <p>Some fundamental operators, called special forms, cannot be bound.</p>
-<pre><code class="language-python">def = `=` # SyntaxError: cannot bind `=` operator, this is a special form
+<pre><code class="language-python compile_fail">def = `=` # SyntaxError: cannot bind `=` operator, this is a special form
 # NG: def x, 1
 function = `-&gt;` # SyntaxError: cannot bind `-&gt;` operator, this is a special form
 # NG: function x, x + 1
@@ -723,7 +729,7 @@ function = `-&gt;` # SyntaxError: cannot bind `-&gt;` operator, this is a specia
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="side-effects-and-procedures"><a class="header" href="#side-effects-and-procedures">Side effects and procedures</a></h1>
 <p>We have been neglecting to explain the meaning of the <code>!</code>, but now its meaning will finally be revealed. This <code>!</code> indicates that this object is a &quot;procedure&quot; with a &quot;side-effect&quot;. A procedure is a function with a side-effect.</p>
-<pre><code class="language-python">f x = print! x # EffectError: functions cannot be assigned objects with side effects
+<pre><code class="language-python compile_fail">f x = print! x # EffectError: functions cannot be assigned objects with side effects
 # hint: change the name to 'f!'
 </code></pre>
 <p>The above code will result in a compile error. This is because you are using a procedure in a function. In such a case, you must define it as a procedure.</p>
@@ -734,13 +740,13 @@ Procedures defined in this way also cannot be used within a function, so side-ef
 <h2 id="methods"><a class="header" href="#methods">Methods</a></h2>
 <p>Functions and procedures each can be methods. Functional methods can only take immutable references to <code>self</code>, while procedural methods can take mutable references to <code>self</code>.
 The <code>self</code> is a special parameter, which in the context of a method refers to the calling object itself. The reference <code>self</code> cannot be assigned to any other variable.</p>
-<pre><code class="language-python">C!.
+<pre><code class="language-python compile_fail">C!.
     method ref self =
         x = self # OwnershipError: cannot move out 'self'
         x
 </code></pre>
 <p>Procedural methods can also take <a href="./18_ownership.html">ownership</a> of <code>self</code>. Remove <code>ref</code> or <code>ref!</code> from the method definition.</p>
-<pre><code class="language-python">n = 1
+<pre><code class="language-python compile_fail">n = 1
 s = n.into(Str) # '1'
 n # ValueError: n was moved by .into (line 2)
 </code></pre>
@@ -829,7 +835,7 @@ mut_a[0].inc!()
 assert mut_a == [2, 2, 3]
 </code></pre>
 <p>As a rule, arrays cannot contain objects of different types.</p>
-<pre><code class="language-python.">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
+<pre><code class="language-python compile_fail">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
 </code></pre>
 <p>However, you can bypass the restriction by explicitly specifying the type like this.</p>
 <pre><code class="language-python">[1: Int or Str, &quot;a&quot;]
@@ -895,8 +901,7 @@ t.try_into([Show; 3])? .iter().map(x -&gt; log x) # OK
 ...
 </code></pre>
 <p>The use of this object is for procedures with no arguments and no return value, etc. Erg subroutines must have arguments and a return value. However, in some cases, such as a procedure, there may be no meaningful arguments or return value, only side effects. In such cases, we use units as &quot;meaningless, formal values.</p>
-<pre><code class="language-python"># ↓ Actually, this parenthesis is a unit
-p!() =.
+<pre><code class="language-python">p!() =.
     # `print!` does not return a meaningful value
     print! &quot;Hello, world!&quot;
 p!: () =&gt; () # The parameter part is part of the syntax, not a tuple
@@ -1119,7 +1124,7 @@ but found: Set({0, }, 1)
 </code></pre>
 <p>In addition, only objects that implement the <code>Eq</code> trait can be elements of the Set.</p>
 <p>Therefore, it is not possible to use the Set elements such as a Float.</p>
-<pre><code class="language-python">d = {0.0, 1.0} # NG
+<pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
 # [
 1│ d = {0.0, 1.0}
         ^^^^^^^^
@@ -3526,14 +3531,14 @@ peek_str s
 </code></pre>
 <p>A borrowed value is called a <strong>reference</strong> to the original object.
 You can &quot;sublease&quot; the reference to another subroutine, but you cannot consume it because you are only borrowing it.</p>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # Since the log function only borrows the arguments, it can be sub-leased
     log s
     # error because the discard function consumes arguments
     discard s # OwnershipError: cannot consume a borrowed value
     # hint: use `clone` method
 </code></pre>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # This is no good either (= consumes the right side)
     x = s # OwnershipError: cannot consume a borrowed value
     x
@@ -3550,7 +3555,7 @@ For example, a private variable defined in the <code>foo</code> module cannot be
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: Module 'foo' has no attribute 'x' ('x' is private)
 </code></pre>
@@ -3633,7 +3638,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 </code></pre>
 <p>Also, methods cannot be defined in the type to be re-exported.
 This is to avoid confusion about methods being found or not found depending on the module they are imported from.</p>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::
@@ -3698,7 +3703,7 @@ match c:
     f -&gt; log &quot;func&quot;
 </code></pre>
 <p>If you want to expose an attribute to the outside world, define it with <code>.</code> at the beginning. If you don't put <code>.</code> at the beginning, it will be private. To avoid confusion, they cannot coexist within the same scope.</p>
-<pre><code class="language-python">o = {x = 1; .x = 2} # SyntaxError: private and public variables with the same name cannot coexist
+<pre><code class="language-python compile_fail">o = {x = 1; .x = 2} # SyntaxError: private and public variables with the same name cannot coexist
 </code></pre>
 <h2 id="literal-identifiers"><a class="header" href="#literal-identifiers">Literal Identifiers</a></h2>
 <p>The above rule can be circumvented by enclosing the string in single quotes (''). That is, procedural objects can also be assigned without <code>!</code>. However, in this case, even if the value is a constant expression, it is not considered a constant.
@@ -3830,7 +3835,7 @@ assert sum == 46
 </code></pre>
 <p>Note, however, that functions cannot capture mutable objects.
 If a mutable object can be referenced in a function, you can write code like the following.</p>
-<pre><code class="language-python"># !!! This code actually gives an error !!!
+<pre><code class="language-python compile_fail"># !!! This code actually gives an error !!!
 i = !0
 f x = i + x
 assert f 1 == 1
@@ -4207,14 +4212,13 @@ assert x == 1
 assert y == (2, 3)
 </code></pre>
 <h2 id="extract-assignment"><a class="header" href="#extract-assignment">Extract assignment</a></h2>
-<p>If nothing is written after <code>...</code>, the remaining elements are ignored and assigned. This type of expansion assignment is specifically called extractive assignment.
-Extraction assignment is a convenient syntax for localizing specific attributes within a module or record.</p>
-<pre><code class="language-python">{sin; cos; tan; ..} = import &quot;math&quot;
+<p>Extraction assignment is a convenient syntax for localizing specific attributes within a module or record.</p>
+<pre><code class="language-python">{sin; cos; tan} = import &quot;math&quot;
 </code></pre>
 <p>After that, you can use <code>sin, cos, tan</code> locally.</p>
 <p>You can do the same with records.</p>
 <pre><code class="language-python">record = {x = 1; y = 2}
-{x; y; ...} = record
+{x; y} = record
 </code></pre>
 <p>If you want to expand all, use <code>{*} = record</code>. It is <code>open</code> in OCaml.</p>
 <pre><code class="language-python">record = {x = 1; y = 2}

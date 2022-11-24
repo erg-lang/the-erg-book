@@ -163,7 +163,7 @@ assert sum == 46
 </code></pre>
 <p>但是請注意，函數不能捕獲可變對象
 如果可以在函數中引用可變對象，則可以編寫如下代碼</p>
-<pre><code class="language-python"># !!! 這段代碼實際上給出了一個錯誤！！！
+<pre><code class="language-python compile_fail"># !!! 這段代碼實際上給出了一個錯誤！！！
 i = !0
 f x = i + x
 assert f 1 == 1
@@ -187,7 +187,7 @@ for! 1..10, i =&gt;
     sum.add!i
 assert sum == 45
 </code></pre>
-<p>上面的等效程序可以用 Python 編寫如下: </p>
+<p>上面的等效程序可以用 Python 編寫如下:</p>
 <pre><code class="language-python"># Python
 sum = 0
 for i in range(1, 10):

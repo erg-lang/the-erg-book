@@ -150,7 +150,7 @@ For example, a private variable defined in the <code>foo</code> module cannot be
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: Module 'foo' has no attribute 'x' ('x' is private)
 </code></pre>
@@ -233,7 +233,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 </code></pre>
 <p>Also, methods cannot be defined in the type to be re-exported.
 This is to avoid confusion about methods being found or not found depending on the module they are imported from.</p>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::

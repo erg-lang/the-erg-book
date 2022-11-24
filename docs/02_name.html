@@ -163,7 +163,7 @@ l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
 <p>It is also not possible to reassign to a variable. The syntax that can be used instead, to hold mutable states, are described later.</p>
-<pre><code class="language-python">i = 1
+<pre><code class="language-python compile_fail">i = 1
 i = i + 1 # AssignError: cannot assign twice
 </code></pre>
 <p>You can define a variable with the same name in the inner scope, but you are only covering it over, not destructively rewriting its value. If you go back to the outer scope, the value will return as well.

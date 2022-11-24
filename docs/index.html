@@ -220,7 +220,7 @@ This differs from a function with no arguments, which does not add <code>()</cod
 assert i == 2
 </code></pre>
 <p>This cannot be accomplished with a semicolon (<code>;</code>).</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # SyntaxError: cannot use `;` in parentheses
+<pre><code class="language-python compile_fail">i = (x = 1; x + 1) # SyntaxError: cannot use `;` in parentheses
 </code></pre>
 <h2 id="indentation"><a class="header" href="#indentation">Indentation</a></h2>
 <p>Erg, like Python, uses indentation to represent blocks. There are five operators (special forms) that trigger the start of a block: <code>=</code>, <code>-&gt;</code>, <code>=&gt;</code>, <code>do</code>, and <code>do!</code> (In addition, <code>:</code> and <code>|</code>, although not operators, also produce indentation). The meanings of each are described later.</p>

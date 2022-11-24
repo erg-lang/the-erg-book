@@ -218,7 +218,7 @@ f(1, 2); 1 + 1
 assert i == 2
 </code></pre>
 <p>这不能用分号 (<code>;</code>) 完成</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # 语法错误: 不能在括号中使用 `;`
+<pre><code class="language-python compile_fail">i = (x = 1; x + 1) # 语法错误: 不能在括号中使用 `;`
 </code></pre>
 <h2 id="缩进"><a class="header" href="#缩进">缩进</a></h2>
 <p>Erg 和 Python 一样，使用缩进来表示块。有五个运算符(特殊形式)触发块的开始: <code>=</code>、<code>-&gt;</code>、<code>=&gt;</code>、<code>do</code> 和 <code>do!</code>(此外，<code>:</code> 和 <code>|</code> ，虽然不是运算符，但也会产生缩进)。每个的含义将在后面描述</p>

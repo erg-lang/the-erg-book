@@ -145,7 +145,7 @@
                     <main>
                         <h1 id="side-effects-and-procedures"><a class="header" href="#side-effects-and-procedures">Side effects and procedures</a></h1>
 <p>We have been neglecting to explain the meaning of the <code>!</code>, but now its meaning will finally be revealed. This <code>!</code> indicates that this object is a &quot;procedure&quot; with a &quot;side-effect&quot;. A procedure is a function with a side-effect.</p>
-<pre><code class="language-python">f x = print! x # EffectError: functions cannot be assigned objects with side effects
+<pre><code class="language-python compile_fail">f x = print! x # EffectError: functions cannot be assigned objects with side effects
 # hint: change the name to 'f!'
 </code></pre>
 <p>The above code will result in a compile error. This is because you are using a procedure in a function. In such a case, you must define it as a procedure.</p>
@@ -156,13 +156,13 @@ Procedures defined in this way also cannot be used within a function, so side-ef
 <h2 id="methods"><a class="header" href="#methods">Methods</a></h2>
 <p>Functions and procedures each can be methods. Functional methods can only take immutable references to <code>self</code>, while procedural methods can take mutable references to <code>self</code>.
 The <code>self</code> is a special parameter, which in the context of a method refers to the calling object itself. The reference <code>self</code> cannot be assigned to any other variable.</p>
-<pre><code class="language-python">C!.
+<pre><code class="language-python compile_fail">C!.
     method ref self =
         x = self # OwnershipError: cannot move out 'self'
         x
 </code></pre>
 <p>Procedural methods can also take <a href="./18_ownership.html">ownership</a> of <code>self</code>. Remove <code>ref</code> or <code>ref!</code> from the method definition.</p>
-<pre><code class="language-python">n = 1
+<pre><code class="language-python compile_fail">n = 1
 s = n.into(Str) # '1'
 n # ValueError: n was moved by .into (line 2)
 </code></pre>

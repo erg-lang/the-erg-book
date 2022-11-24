@@ -160,7 +160,7 @@ but found: Set({0, }, 1)
 </code></pre>
 <p>In addition, only objects that implement the <code>Eq</code> trait can be elements of the Set.</p>
 <p>Therefore, it is not possible to use the Set elements such as a Float.</p>
-<pre><code class="language-python">d = {0.0, 1.0} # NG
+<pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
 # [
 1│ d = {0.0, 1.0}
         ^^^^^^^^

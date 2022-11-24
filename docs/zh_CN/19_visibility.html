@@ -151,7 +151,7 @@
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: 模块 'foo' 没有属性 'x' ('x' 是私有的)
 </code></pre>
@@ -234,7 +234,7 @@ foo.public() # 属性错误: &quot;Foo&quot;没有属性&quot;public&quot;(&quot
 </code></pre>
 <p>此外，方法不能在要重新导出的类型中定义
 这是为了避免混淆方法是否找到，具体取决于导入方法的模块</p>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::

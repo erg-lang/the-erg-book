@@ -154,14 +154,13 @@ assert x == 1
 assert y == (2, 3)
 </code></pre>
 <h2 id="提取赋值"><a class="header" href="#提取赋值">提取赋值</a></h2>
-<p>如果在 <code>...</code> 之后没有写入任何内容，则忽略并分配剩余的元素。这种类型的赋值具体称为提取赋值
-提取分配是一种方便的语法，用于本地化模块或记录中的特定属性</p>
-<pre><code class="language-python">{sin; cos; tan; ..} = import &quot;math&quot;
+<p>提取分配是一种方便的语法，用于本地化模块或记录中的特定属性</p>
+<pre><code class="language-python">{sin; cos; tan} = import &quot;math&quot;
 </code></pre>
 <p>之后，您可以在本地使用<code>sin，cos，tan</code></p>
 <p>您可以对记录执行相同的操作。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}
-{x; y; ...} = record
+{x; y} = record
 </code></pre>
 <p>如果要全部展开，请使用<code>{*}=record</code>。它在OCaml中是<code>open</code>。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}

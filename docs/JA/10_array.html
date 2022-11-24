@@ -157,7 +157,7 @@ mut_a[0].inc!()
 assert mut_a == [2, 2, 3]
 </code></pre>
 <p>配列には、原則として違う型のオブジェクトを入れることはできません。</p>
-<pre><code class="language-python">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
+<pre><code class="language-python compile_fail">[1, &quot;a&quot;] # TypeError: 1st element is Int, but 2nd element is Str
 </code></pre>
 <p>しかし、このように要素の型を明示的に指定すると制限を回避できます。</p>
 <pre><code class="language-python">[1: Int or Str, &quot;a&quot;]

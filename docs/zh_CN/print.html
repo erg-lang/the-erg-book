@@ -219,7 +219,7 @@ f(1, 2); 1 + 1
 assert i == 2
 </code></pre>
 <p>这不能用分号 (<code>;</code>) 完成</p>
-<pre><code class="language-python">i = (x = 1; x + 1) # 语法错误: 不能在括号中使用 `;`
+<pre><code class="language-python compile_fail">i = (x = 1; x + 1) # 语法错误: 不能在括号中使用 `;`
 </code></pre>
 <h2 id="缩进"><a class="header" href="#缩进">缩进</a></h2>
 <p>Erg 和 Python 一样，使用缩进来表示块。有五个运算符(特殊形式)触发块的开始: <code>=</code>、<code>-&gt;</code>、<code>=&gt;</code>、<code>do</code> 和 <code>do!</code>(此外，<code>:</code> 和 <code>|</code> ，虽然不是运算符，但也会产生缩进)。每个的含义将在后面描述</p>
@@ -355,7 +355,7 @@ l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
 <p>也不能重新分配给变量。稍后将描述可用于保存可变状态的语法</p>
-<pre><code class="language-python">i = 1
+<pre><code class="language-python compile_fail">i = 1
 i = i + 1 # 分配错误: 不能分配两次
 </code></pre>
 <p>您可以在内部范围内定义具有相同名称的变量，但您只是覆盖它，而不是破坏性地重写它的值。如果您返回外部范围，该值也会返回
@@ -713,7 +713,7 @@ g = `*` # OK, 这只是二进制
 assert g(1, 2) == 2
 </code></pre>
 <p>一些称为特殊形式的基本运算符不能被绑定</p>
-<pre><code class="language-python">def = `=` # 语法错误: 无法绑定 `=` 运算符，这是一种特殊形式
+<pre><code class="language-python compile_fail">def = `=` # 语法错误: 无法绑定 `=` 运算符，这是一种特殊形式
 # NG: def x, 1
 function = `-&gt;` # 语法错误: 无法绑定 `-&gt;` 运算符，这是一种特殊形式
 # NG: function x, x + 1
@@ -722,7 +722,7 @@ function = `-&gt;` # 语法错误: 无法绑定 `-&gt;` 运算符，这是一种
 <div style="break-before: page; page-break-before: always;"></div><h1 id="副作用和程序"><a class="header" href="#副作用和程序">副作用和程序</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>我们一直忽略了解释&quot;！&quot;的含义，但现在它的含义终于要揭晓了。这个 <code>!</code> 表示这个对象是一个带有&quot;副作用&quot;的&quot;过程&quot;。过程是具有副作用的函数</p>
-<pre><code class="language-python">f x = print! x # EffectError: 不能为函数分配有副作用的对象
+<pre><code class="language-python compile_fail">f x = print! x # EffectError: 不能为函数分配有副作用的对象
 # 提示: 将名称更改为 'f!'
 </code></pre>
 <p>上面的代码会导致编译错误。这是因为您在函数中使用了过程。在这种情况下，您必须将其定义为过程</p>
@@ -733,13 +733,13 @@ function = `-&gt;` # 语法错误: 无法绑定 `-&gt;` 运算符，这是一种
 <h2 id="方法"><a class="header" href="#方法">方法</a></h2>
 <p>函数和过程中的每一个都可以是方法。函数式方法只能对<code>self</code>进行不可变引用，而程序性方法可以对<code>self</code>进行可变引用
 <code>self</code> 是一个特殊的参数，在方法的上下文中是指调用对象本身。引用 <code>self</code> 不能分配给任何其他变量</p>
-<pre><code class="language-python">C!.
+<pre><code class="language-python compile_fail">C!.
     method ref self =
         x = self # 所有权错误: 无法移出`self`
         x
 </code></pre>
 <p>程序方法也可以采取 <code>self</code> 的 <a href="./18_ownership.html">ownership</a>。从方法定义中删除 <code>ref</code> 或 <code>ref!</code></p>
-<pre><code class="language-python">n = 1
+<pre><code class="language-python compile_fail">n = 1
 s = n.into(Str) # '1'
 n # 值错误: n 被 .into 移动(第 2 行)
 </code></pre>
@@ -898,8 +898,7 @@ t.try_into([Show; 3])? .iter().map(x -&gt; log x) # OK
 ...
 </code></pre>
 <p>该对象的用途是用于没有参数和没有返回值的过程等。Erg 子例程必须有参数和返回值。但是，在某些情况下，例如过程，可能没有有意义的参数或返回值，只有副作用。在这种情况下，我们将单位用作&quot;无意义的正式值&quot;</p>
-<pre><code class="language-python"># ↓ Actually, this parenthesis is a unit
-p!() =.
+<pre><code class="language-python">p!() =.
     # `print!` does not return a meaningful value
     print! &quot;Hello, world!&quot;
 p!: () =&gt; () # The parameter part is part of the syntax, not a tuple
@@ -1119,7 +1118,7 @@ but found: Set({0, }, 1)
 </code></pre>
 <p>此外，只有实现<code>Eq</code>跟踪的对象才能成为集合的元素</p>
 <p>因此，不可能使用Floats等作为集合元素</p>
-<pre><code class="language-python">d = {0.0, 1.0} # NG
+<pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
 # [
 1│ d = {0.0, 1.0}
         ^^^^^^^^
@@ -3543,14 +3542,14 @@ peek_str s
 </code></pre>
 <p>借来的值称为原始对象的 <strong>reference</strong>
 您可以&quot;转租&quot;对另一个子例程的引用，但您不能使用它，因为您只是借用它</p>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # 由于日志函数只借用参数，所以可以转租
     log s
     # 错误，因为丢弃函数消耗了参数
     discard s # OwnershipError: 不能消费借来的值
     # 提示: 使用 `clone` 方法
 </code></pre>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # 这也不好(=消耗右边)
      x = s # OwnershipError: 不能消费借来的值
     x
@@ -3569,7 +3568,7 @@ peek_str s
 <pre><code class="language-python"># foo.er
 x = &quot;this is an invisible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 foo = import &quot;foo&quot;
 foo.x # AttributeError: 模块 'foo' 没有属性 'x' ('x' 是私有的)
 </code></pre>
@@ -3652,7 +3651,7 @@ foo.public() # 属性错误: &quot;Foo&quot;没有属性&quot;public&quot;(&quot
 </code></pre>
 <p>此外，方法不能在要重新导出的类型中定义
 这是为了避免混淆方法是否找到，具体取决于导入方法的模块</p>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python compile_fail"># bar.er
 {.Foo; ...} = import &quot;foo&quot;
 
 .Foo::
@@ -3718,7 +3717,7 @@ match c:
     f -&gt; log &quot;func&quot;
 </code></pre>
 <p>如果您想向外界公开一个属性，请在开头使用 <code>.</code> 定义它。如果你不把<code>.</code>放在开头，它将是私有的。为避免混淆，它们不能在同一范围内共存</p>
-<pre><code class="language-python">o = {x = 1; .x = 2} # 语法错误: 同名的私有变量和公共变量不能共存
+<pre><code class="language-python compile_fail">o = {x = 1; .x = 2} # 语法错误: 同名的私有变量和公共变量不能共存
 </code></pre>
 <h2 id="文字标识符"><a class="header" href="#文字标识符">文字标识符</a></h2>
 <p>可以通过将字符串括在单引号 ('') 中来规避上述规则。也就是说，程序对象也可以在没有 <code>!</code> 的情况下分配。但是，在这种情况下，即使该值是常量表达式，也不会被视为常量
@@ -3853,7 +3852,7 @@ assert sum == 46
 </code></pre>
 <p>但是请注意，函数不能捕获可变对象
 如果可以在函数中引用可变对象，则可以编写如下代码</p>
-<pre><code class="language-python"># !!! 这段代码实际上给出了一个错误！！！
+<pre><code class="language-python compile_fail"># !!! 这段代码实际上给出了一个错误！！！
 i = !0
 f x = i + x
 assert f 1 == 1
@@ -4229,14 +4228,13 @@ assert x == 1
 assert y == (2, 3)
 </code></pre>
 <h2 id="提取赋值"><a class="header" href="#提取赋值">提取赋值</a></h2>
-<p>如果在 <code>...</code> 之后没有写入任何内容，则忽略并分配剩余的元素。这种类型的赋值具体称为提取赋值
-提取分配是一种方便的语法，用于本地化模块或记录中的特定属性</p>
-<pre><code class="language-python">{sin; cos; tan; ..} = import &quot;math&quot;
+<p>提取分配是一种方便的语法，用于本地化模块或记录中的特定属性</p>
+<pre><code class="language-python">{sin; cos; tan} = import &quot;math&quot;
 </code></pre>
 <p>之后，您可以在本地使用<code>sin，cos，tan</code></p>
 <p>您可以对记录执行相同的操作。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}
-{x; y; ...} = record
+{x; y} = record
 </code></pre>
 <p>如果要全部展开，请使用<code>{*}=record</code>。它在OCaml中是<code>open</code>。</p>
 <pre><code class="language-python">record = {x = 1; y = 2}
@@ -4443,7 +4441,7 @@ private = &quot;this is a private variable&quot;
 <pre><code class="language-python">import foo
 
 print(foo.public)
-print(foo.private) # 属性错误: 
+print(foo.private) # 属性错误:
 </code></pre>
 <h2 id="从-python-导入"><a class="header" href="#从-python-导入">从 Python 导入</a></h2>
 <p>默认情况下，从 Python 导入的所有对象都是&quot;Object&quot;类型。由于此时无法进行比较，因此有必要细化类型</p>

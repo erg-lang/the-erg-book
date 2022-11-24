@@ -205,14 +205,14 @@ peek_str s
 </code></pre>
 <p>借來的值稱為原始對象的 <strong>reference</strong>
 您可以&quot;轉租&quot;對另一個子例程的引用，但您不能使用它，因為您只是借用它</p>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # 由于日志函數只借用參數，所以可以轉租
     log s
     # 錯誤，因為丟棄函數消耗了參數
     discard s # OwnershipError: 不能消費借來的值
     # 提示: 使用 `clone` 方法
 </code></pre>
-<pre><code class="language-python">steal_str ref(s: Str!) =
+<pre><code class="language-python compile_fail">steal_str ref(s: Str!) =
     # 這也不好(=消耗右邊)
      x = s # OwnershipError: 不能消費借來的值
     x

@@ -164,7 +164,7 @@ l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
 <p>また、変数への再代入もできません。その代わりに使える機能、すなわち可変な状態を保持する機能については後述します。</p>
-<pre><code class="language-python">i = 1
+<pre><code class="language-python compile_fail">i = 1
 i = i + 1 # AssignError: cannot assign twice
 </code></pre>
 <p>内側のスコープで同じ名前の変数を定義できますが、上に被せているだけで、値を破壊的に書き換えているわけではありません。外側のスコープに戻れば値も戻ります。

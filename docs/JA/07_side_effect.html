@@ -146,7 +146,7 @@
                         <h1 id="副作用とプロシージャ"><a class="header" href="#副作用とプロシージャ">副作用とプロシージャ</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p>これまで<code>print!</code>の<code>!</code>の意味を説明せずにいましたが、いよいよその意味が明かされます。この!は、ズバリこのオブジェクトが「副作用」のある「プロシージャ」であることを示しています。プロシージャは関数に「副作用」という効果を与えたものです。</p>
-<pre><code class="language-python">f x = print! x # EffectError: functions cannot be assigned objects with side effects
+<pre><code class="language-python compile_fail">f x = print! x # EffectError: functions cannot be assigned objects with side effects
 # hint: change the name to 'f!'
 </code></pre>
 <p>上のコードはコンパイルエラーになります。関数中でプロシージャを使用しているからです。このような場合は、プロシージャとして定義しなくてはなりません。</p>
@@ -163,7 +163,7 @@
         x
 </code></pre>
 <p>メソッドは<code>self</code>の所有権を奪うこともできます。そのメソッドの定義では<code>ref</code>または<code>ref!</code>を外します。</p>
-<pre><code class="language-python">n = 1
+<pre><code class="language-python compile_fail">n = 1
 s = n.into(Str) # 所有権がnから移動し、s = '1'になる
 n # ValueError: n was moved by .into (line 2)
 </code></pre>
