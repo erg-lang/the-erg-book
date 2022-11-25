@@ -7,3 +7,8 @@ title = "The Erg Book"
 
 # [build]
 # build-dir = "docs"
+
+[output.html]
+additional-css = [
+    "theme/css/error.css",
+]
