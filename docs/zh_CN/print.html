@@ -426,7 +426,7 @@ assert x ! = NaN
 assert x ! = x
 </code></pre>
 <p>还有其他对象首先没有定义等价关系</p>
-<pre><code class="language-python">f = x -&gt; x**2 + 2x + 1
+<pre><code class="language-python compile_fail">f = x -&gt; x**2 + 2x + 1
 g = x -&gt; (x + 1)**2
 f == g # 类型错误: 无法比较函数对象
 
@@ -926,7 +926,7 @@ assert l[[]] == &quot;empty&quot;
 </code></pre>
 <p>从 dict 文字生成 dict 时，会检查重复键
 任何重复都会导致编译错误</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # Key错误: 重复键`Alice`
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # Key错误: 重复键`Alice`
 </code></pre>
 <p>空字典是用 <code>{:}</code> 创建的。请注意，<code>{}</code> 表示一个空集</p>
 <pre><code class="language-python">mut_dict = !{:}
@@ -1111,22 +1111,19 @@ assert {1, 2} == {2, 1}
 <p>它也可以用类型和长度来声明</p>
 <pre><code class="language-python">a: {Int; 3} = {0, 1, 2} # OK
 b: {Int; 3} = {0, 0, 0} # NG，重复的内容被删除，长度也会改变
-# [
-TypeError: the type of b is mismatched
-expected:  Set(Int, 3)
-but found: Set({0, }, 1)
-]# 
+# TypeError: the type of b is mismatched
+# expected:  Set(Int, 3)
+# but found: Set({0, }, 1)
 </code></pre>
 <p>此外，只有实现<code>Eq</code>跟踪的对象才能成为集合的元素</p>
 <p>因此，不可能使用Floats等作为集合元素</p>
 <pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
-# [
-1│ d = {0.0, 1.0}
-        ^^^^^^^^
-TypeError: the type of _ is mismatched:
-expected:  Eq(Float)
-but found: {0.0, 1.0, }
-]# 
+#
+# 1│ d = {0.0, 1.0}
+#         ^^^^^^^^
+# TypeError: the type of _ is mismatched:
+# expected:  Eq(Float)
+# but found: {0.0, 1.0, }
 </code></pre>
 <p>Set可以执行集合操作</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
@@ -1148,6 +1145,7 @@ assert i in {1, 2, 3}
 <pre><code class="language-python">mut_set = {1, 2, 3}.into {Int; !3}
 mut_set.insert!(4)
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="类型"><a class="header" href="#类型">类型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/15_type.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/15_type.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
 <p>类型是 Erg 中一个非常重要的特性，所以我们有一个 <a href="./type/01_type_system.html">dedicated section</a>。请看那里</p>

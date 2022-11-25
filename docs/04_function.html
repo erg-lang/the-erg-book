@@ -259,7 +259,7 @@ f 1 = ...
 f x: Int or Str = ...
 </code></pre>
 <p>Also, like <code>match</code>, it must also be exhaustive.</p>
-<pre><code class="language-python">fib 0 = 0
+<pre><code class="language-python compile_fail">fib 0 = 0
 fib 1 = 1
 # PatternError: pattern of fib's parameter is not exhaustive
 </code></pre>

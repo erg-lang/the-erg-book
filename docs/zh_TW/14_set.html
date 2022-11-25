@@ -154,22 +154,19 @@ assert {1, 2} == {2, 1}
 <p>它也可以用類型和長度來聲明</p>
 <pre><code class="language-python">a: {Int; 3} = {0, 1, 2} # OK
 b: {Int; 3} = {0, 0, 0} # NG，重復的內容被刪除，長度也會改變
-# [
-TypeError: the type of b is mismatched
-expected:  Set(Int, 3)
-but found: Set({0, }, 1)
-]# 
+# TypeError: the type of b is mismatched
+# expected:  Set(Int, 3)
+# but found: Set({0, }, 1)
 </code></pre>
 <p>此外，只有實現<code>Eq</code>跟蹤的對象才能成為集合的元素</p>
 <p>因此，不可能使用Floats等作為集合元素</p>
 <pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
-# [
-1│ d = {0.0, 1.0}
-        ^^^^^^^^
-TypeError: the type of _ is mismatched:
-expected:  Eq(Float)
-but found: {0.0, 1.0, }
-]# 
+#
+# 1│ d = {0.0, 1.0}
+#         ^^^^^^^^
+# TypeError: the type of _ is mismatched:
+# expected:  Eq(Float)
+# but found: {0.0, 1.0, }
 </code></pre>
 <p>Set可以執行集合操作</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
@@ -191,6 +188,7 @@ assert i in {1, 2, 3}
 <pre><code class="language-python">mut_set = {1, 2, 3}.into {Int; !3}
 mut_set.insert!(4)
 </code></pre>
+
 
                     </main>
 

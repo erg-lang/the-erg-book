@@ -236,7 +236,7 @@ assert x ! = NaN
 assert x ! = x
 </code></pre>
 <p>還有其他對象首先沒有定義等價關系</p>
-<pre><code class="language-python">f = x -&gt; x**2 + 2x + 1
+<pre><code class="language-python compile_fail">f = x -&gt; x**2 + 2x + 1
 g = x -&gt; (x + 1)**2
 f == g # 類型錯誤: 無法比較函數對象
 

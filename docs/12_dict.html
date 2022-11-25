@@ -162,7 +162,7 @@ You could say that a Dict is a Set with values.</p>
 </code></pre>
 <p>When generating a dict from a dict literal, it is checked for duplicate keys.
 Any duplicates will result in a compile error.</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
 </code></pre>
 <p>Empty Dict is created with <code>{:}</code>. Note that <code>{}</code> denotes an empty set.</p>
 <pre><code class="language-python">mut_dict = !{:}

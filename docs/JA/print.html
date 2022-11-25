@@ -421,7 +421,7 @@ Del y, Z
 f(2) # NameError: f is not defined (deleted in line 6)
 </code></pre>
 <p>ただし、<code>Del</code>によって削除できるのはモジュール内で定義された代数のみです。<code>True</code>などの組み込み定数は削除できません。</p>
-<pre><code class="language-python">Del True # TypeError: cannot delete built-in constants
+<pre><code class="language-python compile_fail">Del True # TypeError: cannot delete built-in constants
 Del print! # TypeError: cannot delete built-in variables
 </code></pre>
 <h2 id="付録-代入と同値性"><a class="header" href="#付録-代入と同値性">付録: 代入と同値性</a></h2>
@@ -431,7 +431,7 @@ assert x != Float.NaN
 assert x != x
 </code></pre>
 <p>その他、そもそも同値関係が定義されていないオブジェクトも存在する。</p>
-<pre><code class="language-python">f = x -&gt; x**2 + 2x + 1
+<pre><code class="language-python compile_fail">f = x -&gt; x**2 + 2x + 1
 g = x -&gt; (x + 1)**2
 f == g # TypeError: cannot compare function objects
 
@@ -603,7 +603,7 @@ f 1 = ...
 f x: Int or Str = ...
 </code></pre>
 <p>また、<code>match</code>と同じく網羅性がなくてはなりません。</p>
-<pre><code class="language-python">fib 0 = 0
+<pre><code class="language-python compile_fail">fib 0 = 0
 fib 1 = 1
 # PatternError: pattern of fib's parameter is not exhaustive
 </code></pre>
@@ -949,7 +949,7 @@ Dictは値付きのSetと言うこともできるでしょう。</p>
 </code></pre>
 <p>DictリテラルからDictを生成する場合、キーの重複がないかチェックされます。
 重複がある場合コンパイルエラーとなりますが、自明でない場合もあり、その場合は後に登録された方が残ります(左から順番に登録されます)。</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
 x = f(...) # x == 2
 {2x+2: 1, 2(x+1): 2} # {6: 2}
 </code></pre>
@@ -1142,22 +1142,19 @@ assert {1, 2} == {2, 1}
 <p>型や長さを指定して宣言することもできます。</p>
 <pre><code class="language-python">a: {Int; 3} = {0, 1, 2} # OK
 b: {Int; 3} = {0, 0, 0} # NG、重複が削除されて長さが変わる
-# [
-TypeError: the type of b is mismatched
-expected:  Set(Int, 3)
-but found: Set({0, }, 1)
-]#
+# TypeError: the type of b is mismatched
+# expected:  Set(Int, 3)
+# but found: Set({0, }, 1)
 </code></pre>
 <p>また、<code>Eq</code>トレイトが実装されているオブジェクトのみが集合の要素になれます。</p>
 <p>そのため、Floatなどを集合の要素として使用することはできません。</p>
 <pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
-# [
-1│ d = {0.0, 1.0}
-        ^^^^^^^^
-TypeError: the type of _ is mismatched:
-expected:  Eq(Float)
-but found: {0.0, 1.0, }
-]#
+#
+# 1│ d = {0.0, 1.0}
+#         ^^^^^^^^
+# TypeError: the type of _ is mismatched:
+# expected:  Eq(Float)
+# but found: {0.0, 1.0, }
 </code></pre>
 <p>セットは集合演算を行えます。</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
@@ -1370,7 +1367,7 @@ f X: Int = X
 <pre><code class="language-python">g v: [T; _] = ...
 </code></pre>
 <p>ただし、型指定の箇所で<code>_</code>を指定するとそれは<code>Object</code>を意味することに注意して下さい。</p>
-<pre><code class="language-python">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
+<pre><code class="language-python compile_fail">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
 </code></pre>
 <h2 id="型表示"><a class="header" href="#型表示">型表示</a></h2>
 <p>Ergでは変数だけでなく任意の式に対して明示的に型を表示することができます。この構文を型表示(type ascription)と呼びます。</p>
@@ -1618,7 +1615,7 @@ print! classof(john) # Person
 このようなインスタンスを生成するサブルーチンはコンストラクタと呼ばれます。
 上のクラスでは、フィールド名等を省略できるように<code>.new</code>メソッドを定義しています。</p>
 <p>以下のように改行せず定義すると文法エラーになるので注意してください。</p>
-<pre><code class="language-python">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
+<pre><code class="language-python compile_fail">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
 </code></pre>
 <blockquote>
 <p><strong>Warning</strong>: これは最近追加された仕様なので、以降のドキュメントでは守られていない場合があります。見つけた場合は報告してください。</p>
@@ -1921,10 +1918,10 @@ Inherited!.
 両者は別のトレイトです(<code>Add</code>は<a href="type/./advanced/variance.html">共変</a>なので<code>Add(Real, Real) :&gt; Add(Int, Int)</code>ではありますが)。</p>
 <h2 id="多重継承の禁止"><a class="header" href="#多重継承の禁止">多重継承の禁止</a></h2>
 <p>Ergでは通常のクラス同士でIntersection(交差), Diff(除外), Complement(否定)が行えません。</p>
-<pre><code class="language-python">Int and Str # TypeError: cannot unite classes
+<pre><code class="language-python compile_fail">Int and Str # TypeError: cannot unite classes
 </code></pre>
 <p>このルールにより、複数のクラスを継承すること、すなわち多重継承が行えません。</p>
-<pre><code class="language-python">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
+<pre><code class="language-python compile_fail">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
 </code></pre>
 <p>ただし、Pythonの多重継承されたクラスは使用可能です。</p>
 <h2 id="多層多段継承の禁止"><a class="header" href="#多層多段継承の禁止">多層(多段)継承の禁止</a></h2>

@@ -163,7 +163,7 @@ print! classof(john) # Person
 このようなインスタンスを生成するサブルーチンはコンストラクタと呼ばれます。
 上のクラスでは、フィールド名等を省略できるように<code>.new</code>メソッドを定義しています。</p>
 <p>以下のように改行せず定義すると文法エラーになるので注意してください。</p>
-<pre><code class="language-python">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
+<pre><code class="language-python compile_fail">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
 </code></pre>
 <blockquote>
 <p><strong>Warning</strong>: これは最近追加された仕様なので、以降のドキュメントでは守られていない場合があります。見つけた場合は報告してください。</p>

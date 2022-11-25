@@ -162,7 +162,7 @@ Instances can be created with <code>&lt;Class name&gt;::__new__ {&lt;attribute n
 The subroutine that creates such an instance is called a constructor.
 In the class above, the <code>.new</code> method is defined so that field names, etc. can be omitted.</p>
 <p>Note that the following definition without line breaks will result in a syntax error.</p>
-<pre><code class="language-python">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
+<pre><code class="language-python compile_fail">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
 </code></pre>
 <blockquote>
 <p><strong>Warning</strong>: This is a recently added specification and may not be followed in subsequent documents. If you find it, please report it.</p>

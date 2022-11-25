@@ -164,7 +164,7 @@ Dictは値付きのSetと言うこともできるでしょう。</p>
 </code></pre>
 <p>DictリテラルからDictを生成する場合、キーの重複がないかチェックされます。
 重複がある場合コンパイルエラーとなりますが、自明でない場合もあり、その場合は後に登録された方が残ります(左から順番に登録されます)。</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
 x = f(...) # x == 2
 {2x+2: 1, 2(x+1): 2} # {6: 2}
 </code></pre>

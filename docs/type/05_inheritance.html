@@ -243,10 +243,10 @@ It is the responsibility of the programmer creating the derived class to correct
 They are two different traits (<code>Add</code> is a <a href="./advanced/variance.html">covariate</a>, so <code>Add(Real, Real) :&gt; Add(Int, Int)</code>).</p>
 <h2 id="multiple-inheritance"><a class="header" href="#multiple-inheritance">Multiple Inheritance</a></h2>
 <p>Erg does not allow intersection, diff, and complement between normal classes.</p>
-<pre><code class="language-python">Int and Str # TypeError: cannot unite classes
+<pre><code class="language-python compile_fail">Int and Str # TypeError: cannot unite classes
 </code></pre>
 <p>This rule prevents inheritance from multiple classes, i.e., multiple inheritance.</p>
-<pre><code class="language-python">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
+<pre><code class="language-python compile_fail">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
 </code></pre>
 <p>However, multiple inherited Python classes can be used.</p>
 <h2 id="multi-layer-multi-level-inheritance"><a class="header" href="#multi-layer-multi-level-inheritance">Multi-layer (multi-level) Inheritance</a></h2>

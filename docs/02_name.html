@@ -224,7 +224,7 @@ Del y, Z
 f(2) # NameError: f is not defined (deleted in line 6)
 </code></pre>
 <p>Note that <code>Del</code> can only delete variables defined in the user-defined module. Built-in constants such as <code>True</code> cannot be deleted.</p>
-<pre><code class="language-python">Del True # TypeError: cannot delete built-in constants
+<pre><code class="language-python compile_fail">Del True # TypeError: cannot delete built-in constants
 Del print! # TypeError: cannot delete built-in variables
 </code></pre>
 <h2 id="appendix-assignment-and-equivalence"><a class="header" href="#appendix-assignment-and-equivalence">Appendix: Assignment and Equivalence</a></h2>
@@ -234,7 +234,7 @@ assert x ! = NaN
 assert x ! = x
 </code></pre>
 <p>There are other objects for which no equivalence relation is defined in the first place.</p>
-<pre><code class="language-python">f = x -&gt; x**2 + 2x + 1
+<pre><code class="language-python compile_fail">f = x -&gt; x**2 + 2x + 1
 g = x -&gt; (x + 1)**2
 f == g # TypeError: cannot compare function objects
 

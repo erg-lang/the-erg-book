@@ -163,7 +163,7 @@ assert l[[]] == &quot;empty&quot;
 </code></pre>
 <p>從 dict 文字生成 dict 時，會檢查重復鍵
 任何重復都會導致編譯錯誤</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # Key錯誤: 重復鍵`Alice`
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # Key錯誤: 重復鍵`Alice`
 </code></pre>
 <p>空字典是用 <code>{:}</code> 創建的。請注意，<code>{}</code> 表示一個空集</p>
 <pre><code class="language-python">mut_dict = !{:}

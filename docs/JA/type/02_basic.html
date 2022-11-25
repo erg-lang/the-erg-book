@@ -170,7 +170,7 @@ f X: Int = X
 <pre><code class="language-python">g v: [T; _] = ...
 </code></pre>
 <p>ただし、型指定の箇所で<code>_</code>を指定するとそれは<code>Object</code>を意味することに注意して下さい。</p>
-<pre><code class="language-python">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
+<pre><code class="language-python compile_fail">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
 </code></pre>
 <h2 id="型表示"><a class="header" href="#型表示">型表示</a></h2>
 <p>Ergでは変数だけでなく任意の式に対して明示的に型を表示することができます。この構文を型表示(type ascription)と呼びます。</p>

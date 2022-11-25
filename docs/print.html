@@ -420,7 +420,7 @@ Del y, Z
 f(2) # NameError: f is not defined (deleted in line 6)
 </code></pre>
 <p>Note that <code>Del</code> can only delete variables defined in the user-defined module. Built-in constants such as <code>True</code> cannot be deleted.</p>
-<pre><code class="language-python">Del True # TypeError: cannot delete built-in constants
+<pre><code class="language-python compile_fail">Del True # TypeError: cannot delete built-in constants
 Del print! # TypeError: cannot delete built-in variables
 </code></pre>
 <h2 id="appendix-assignment-and-equivalence"><a class="header" href="#appendix-assignment-and-equivalence">Appendix: Assignment and Equivalence</a></h2>
@@ -430,7 +430,7 @@ assert x ! = NaN
 assert x ! = x
 </code></pre>
 <p>There are other objects for which no equivalence relation is defined in the first place.</p>
-<pre><code class="language-python">f = x -&gt; x**2 + 2x + 1
+<pre><code class="language-python compile_fail">f = x -&gt; x**2 + 2x + 1
 g = x -&gt; (x + 1)**2
 f == g # TypeError: cannot compare function objects
 
@@ -596,7 +596,7 @@ f 1 = ...
 f x: Int or Str = ...
 </code></pre>
 <p>Also, like <code>match</code>, it must also be exhaustive.</p>
-<pre><code class="language-python">fib 0 = 0
+<pre><code class="language-python compile_fail">fib 0 = 0
 fib 1 = 1
 # PatternError: pattern of fib's parameter is not exhaustive
 </code></pre>
@@ -928,7 +928,7 @@ You could say that a Dict is a Set with values.</p>
 </code></pre>
 <p>When generating a dict from a dict literal, it is checked for duplicate keys.
 Any duplicates will result in a compile error.</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # KeyError: Duplicate key &quot;Alice&quot;
 </code></pre>
 <p>Empty Dict is created with <code>{:}</code>. Note that <code>{}</code> denotes an empty set.</p>
 <pre><code class="language-python">mut_dict = !{:}
@@ -1117,22 +1117,19 @@ assert {1, 2} == {2, 1}
 <p>Sets can be declared by specifying type and length.</p>
 <pre><code class="language-python">a: {Int; 3} = {0, 1, 2} # OK
 b: {Int; 3} = {0, 0, 0} # NG, Duplicates are deleted, and the length changes.
-# [
-TypeError: the type of b is mismatched
-expected:  Set(Int, 3)
-but found: Set({0, }, 1)
-]# 
+# TypeError: the type of b is mismatched
+# expected:  Set(Int, 3)
+# but found: Set({0, }, 1)
 </code></pre>
 <p>In addition, only objects that implement the <code>Eq</code> trait can be elements of the Set.</p>
 <p>Therefore, it is not possible to use the Set elements such as a Float.</p>
 <pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
-# [
-1│ d = {0.0, 1.0}
-        ^^^^^^^^
-TypeError: the type of _ is mismatched:
-expected:  Eq(Float)
-but found: {0.0, 1.0, }
-]# 
+#
+# 1│ d = {0.0, 1.0}
+#         ^^^^^^^^
+# TypeError: the type of _ is mismatched:
+# expected:  Eq(Float)
+# but found: {0.0, 1.0, }
 </code></pre>
 <p>Sets can perform set operations.</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
@@ -1154,6 +1151,7 @@ Note that the sets themselves are different.</p>
 <pre><code class="language-python">mut_set = {1, 2, 3}.into {Int; !3}
 mut_set.insert!(4)
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">types</a></h1>
 <p>Types are a very important feature in Erg, so we have a <a href="./type/01_type_system.html">dedicated section</a>. Please see there.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ergs-type-system"><a class="header" href="#ergs-type-system">Erg's Type System</a></h1>
@@ -1340,7 +1338,7 @@ f X: Int = X
 <pre><code class="language-python">g v: [T; _] = ...
 </code></pre>
 <p>Note, however, <code>_</code> at a type specification implies <code>Object</code>.</p>
-<pre><code class="language-python">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
+<pre><code class="language-python compile_fail">f x: _, y: Int = x + y # TypeError: + is not implemented between Object and Int
 </code></pre>
 <h2 id="type-ascription"><a class="header" href="#type-ascription">Type ascription</a></h2>
 <p>Erg can explicitly indicate the type of any expression as well as variables. This syntax is called type ascription.</p>
@@ -1586,7 +1584,7 @@ Instances can be created with <code>&lt;Class name&gt;::__new__ {&lt;attribute n
 The subroutine that creates such an instance is called a constructor.
 In the class above, the <code>.new</code> method is defined so that field names, etc. can be omitted.</p>
 <p>Note that the following definition without line breaks will result in a syntax error.</p>
-<pre><code class="language-python">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
+<pre><code class="language-python compile_fail">Person.new name, age = ... # SyntaxError: cannot define attributes directly on an object
 </code></pre>
 <blockquote>
 <p><strong>Warning</strong>: This is a recently added specification and may not be followed in subsequent documents. If you find it, please report it.</p>
@@ -1883,10 +1881,10 @@ It is the responsibility of the programmer creating the derived class to correct
 They are two different traits (<code>Add</code> is a <a href="type/./advanced/variance.html">covariate</a>, so <code>Add(Real, Real) :&gt; Add(Int, Int)</code>).</p>
 <h2 id="multiple-inheritance"><a class="header" href="#multiple-inheritance">Multiple Inheritance</a></h2>
 <p>Erg does not allow intersection, diff, and complement between normal classes.</p>
-<pre><code class="language-python">Int and Str # TypeError: cannot unite classes
+<pre><code class="language-python compile_fail">Int and Str # TypeError: cannot unite classes
 </code></pre>
 <p>This rule prevents inheritance from multiple classes, i.e., multiple inheritance.</p>
-<pre><code class="language-python">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
+<pre><code class="language-python compile_fail">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
 </code></pre>
 <p>However, multiple inherited Python classes can be used.</p>
 <h2 id="multi-layer-multi-level-inheritance"><a class="header" href="#multi-layer-multi-level-inheritance">Multi-layer (multi-level) Inheritance</a></h2>

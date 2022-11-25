@@ -163,7 +163,7 @@ assert l[[]] == &quot;empty&quot;
 </code></pre>
 <p>从 dict 文字生成 dict 时，会检查重复键
 任何重复都会导致编译错误</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # Key错误: 重复键`Alice`
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Alice&quot;: 1} # Key错误: 重复键`Alice`
 </code></pre>
 <p>空字典是用 <code>{:}</code> 创建的。请注意，<code>{}</code> 表示一个空集</p>
 <pre><code class="language-python">mut_dict = !{:}

@@ -245,10 +245,10 @@ Inherited!.
 両者は別のトレイトです(<code>Add</code>は<a href="./advanced/variance.html">共変</a>なので<code>Add(Real, Real) :&gt; Add(Int, Int)</code>ではありますが)。</p>
 <h2 id="多重継承の禁止"><a class="header" href="#多重継承の禁止">多重継承の禁止</a></h2>
 <p>Ergでは通常のクラス同士でIntersection(交差), Diff(除外), Complement(否定)が行えません。</p>
-<pre><code class="language-python">Int and Str # TypeError: cannot unite classes
+<pre><code class="language-python compile_fail">Int and Str # TypeError: cannot unite classes
 </code></pre>
 <p>このルールにより、複数のクラスを継承すること、すなわち多重継承が行えません。</p>
-<pre><code class="language-python">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
+<pre><code class="language-python compile_fail">IntAndStr = Inherit Int and Str # SyntaxError: multiple inheritance of classes is not allowed
 </code></pre>
 <p>ただし、Pythonの多重継承されたクラスは使用可能です。</p>
 <h2 id="多層多段継承の禁止"><a class="header" href="#多層多段継承の禁止">多層(多段)継承の禁止</a></h2>
