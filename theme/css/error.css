@@ -1,6 +1,9 @@
 code.compile_fail {
 	border-left: 2px solid red;
 }
+code.compile_warn {
+	border-left: 2px solid yellow;
+}
 
 pre .tooltip {
 	position: absolute;
