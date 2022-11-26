@@ -300,7 +300,7 @@ For example, <code>Int</code> and <code>Str</code> are both <code>Add</code>, bu
     l + r # TypeError: there is no implementation of `_+_`: |T, U &lt;: Add| (T, U) -&gt; &lt;Failure&gt;
 </code></pre>
 <p>Also, the types <code>A</code> and <code>B</code> below are not considered the same type. However, the type <code>O</code> is considered to match.</p>
-<pre><code class="language-python">... |R1; R2; O; A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
+<pre><code class="language-python">... |R1, R2, O, A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
 </code></pre>
 
 

@@ -247,7 +247,7 @@ Vector = Array Int
 <p>ただし同じ型のエイリアスは1つのモジュールにつき1つまでで、複数のエイリアスがある場合warningが出ます。
 これは、違う目的の型は別々の型として新しく定義するべき、ということです。
 また、すでにエイリアスのある型に重ねてエイリアスを付けることを防ぐ目的もあります。</p>
-<pre><code class="language-python">Id = Int
+<pre><code class="language-python compile_warn">Id = Int
 UserId = Int # TypeWarning: duplicate aliases: Id and UserId
 
 Ids = Array Id

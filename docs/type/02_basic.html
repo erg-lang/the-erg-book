@@ -246,7 +246,7 @@ Vector = Array Int
 <p>However, only one alias of the same type is allowed per module, and multiple aliases will result in a warning.
 This means that types with different purposes should be defined as separate types.
 The purpose is also to prevent adding aliases on top of types that already have aliases.</p>
-<pre><code class="language-python">Id = Int
+<pre><code class="language-python compile_warn">Id = Int
 UserId = Int # TypeWarning: duplicate aliases: Id and UserId
 
 Ids = Array Id

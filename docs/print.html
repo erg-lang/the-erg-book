@@ -1310,7 +1310,7 @@ For example, <code>Int</code> and <code>Str</code> are both <code>Add</code>, bu
     l + r # TypeError: there is no implementation of `_+_`: |T, U &lt;: Add| (T, U) -&gt; &lt;Failure&gt;
 </code></pre>
 <p>Also, the types <code>A</code> and <code>B</code> below are not considered the same type. However, the type <code>O</code> is considered to match.</p>
-<pre><code class="language-python">... |R1; R2; O; A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
+<pre><code class="language-python">... |R1, R2, O, A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basic-syntax-for-types"><a class="header" href="#basic-syntax-for-types">Basic syntax for types</a></h1>
@@ -1415,7 +1415,7 @@ Vector = Array Int
 <p>However, only one alias of the same type is allowed per module, and multiple aliases will result in a warning.
 This means that types with different purposes should be defined as separate types.
 The purpose is also to prevent adding aliases on top of types that already have aliases.</p>
-<pre><code class="language-python">Id = Int
+<pre><code class="language-python compile_warn">Id = Int
 UserId = Int # TypeWarning: duplicate aliases: Id and UserId
 
 Ids = Array Id
