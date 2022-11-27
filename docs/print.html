@@ -530,15 +530,7 @@ In such cases, it is safe to call the function using keyword arguments.</p>
 <pre><code class="language-python">f x, y, z, w, v, u: Int = ...
 </code></pre>
 <p>The functions defined above have many arguments and are arranged in a confusing order. You should not create such a function, but you may encounter such code when using code written by others. Therefore, we use keyword arguments. If you use keyword arguments, the values are passed from the name to the correct argument, even if they are in the wrong order.</p>
-<pre><code class="language-python">f u: 6, v: 5, w: 4, x: 1, y: 2, z: 3
-</code></pre>
-<p>Note that keyword arguments and a new line immediately after the <code>:</code> are considered a colon-call style.</p>
-<pre><code class="language-python"># means `f(x: y)`
-f x: y
-
-# means `f(x, y)`
-f x:
-    y
+<pre><code class="language-python">f u := 6, v := 5, w:= 4, x := 1, y := 2, z := 3
 </code></pre>
 <h2 id="default-parameters"><a class="header" href="#default-parameters">Default parameters</a></h2>
 <p>Default parameters are used when some parameters are mostly fixed and you want to be able to omit them.</p>
@@ -1461,7 +1453,7 @@ assert Structural(W) == Structural(T.replace {.x = Ratio})
 assert points.iter().map(x -&gt; x.norm()).collect(Array) == [5, 25].
 </code></pre>
 <h2 id="trait-inclusion"><a class="header" href="#trait-inclusion">Trait inclusion</a></h2>
-<p>The expansion operator <code>...</code> allows you to define a trait that contains a certain trait as a supertype. This is called the <strong>subsumption</strong> of a trait.
+<p><code>Subsume</code> allows you to define a trait that contains a certain trait as a supertype. This is called the <strong>subsumption</strong> of a trait.
 In the example below, <code>BinAddSub</code> subsumes <code>BinAdd</code> and <code>BinSub</code>.
 This corresponds to Inheritance in a class, but unlike Inheritance, multiple base types can be combined using <code>and</code>. Traits that are partially excluded by <code>not</code> are also allowed.</p>
 <pre><code class="language-python">Add R = Trait {

@@ -176,7 +176,7 @@ assert Structural(W) == Structural(T.replace {.x = Ratio})
 assert points.iter().map(x -&gt; x.norm()).collect(Array) == [5, 25]
 </code></pre>
 <h2 id="トレイトの包摂"><a class="header" href="#トレイトの包摂">トレイトの包摂</a></h2>
-<p>展開演算子<code>...</code>によって、あるトレイトを上位型として含むトレイトを定義できます。これをトレイトの <strong>包摂(Subsumption)</strong> と呼びます。
+<p>関数<code>Subsume</code>によって、あるトレイトを上位型として含むトレイトを定義できます。これをトレイトの <strong>包摂(Subsumption)</strong> と呼びます。
 下の例でいうと、<code>BinAddSub</code>は<code>BinAdd</code>と<code>BinSub</code>を包摂しています。
 これはクラスにおける継承(Inheritance)に対応しますが、継承と違い複数の基底型を<code>and</code>で合成して指定できます。<code>not</code>によって一部を除外したトレイトでもOKです。</p>
 <pre><code class="language-python">Add R = Trait {
@@ -252,15 +252,15 @@ SafeDiv R, O = Subsume Div, {
 <p>実際の<code>Add</code>, <code>Sub</code>, <code>Mul</code>の定義はこのようになっています。</p>
 <pre><code class="language-python">Add R = Trait {
     .Output = Type
-    .`_+_` = Self.(R) -&gt; .Output
+    .`_+_` = (Self, R) -&gt; .Output
 }
 Sub R = Trait {
     .Output = Type
-    .`_-_` = Self.(R) -&gt; .Output
+    .`_-_` = (Self, R) -&gt; .Output
 }
 Mul R = Trait {
     .Output = Type
-    .`*` = Self.(R) -&gt; .Output
+    .`*` = (Self, R) -&gt; .Output
 }
 </code></pre>
 <p><code>.Output</code>という変数の名前が重複しています。これら複数のトレイトを同時に実装したい場合、以下のように指定します。</p>

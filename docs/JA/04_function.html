@@ -196,19 +196,11 @@ f(
 <p>上に定義された関数は、引数が多く、分かりにくい並びをしています。
 このような関数は作るべきではありませんが、他人の書いたコードを使うときにこのようなコードにあたってしまうかもしれません。
 そこで、キーワード引数を使います。キーワード引数は並びよりも名前が優先されるため、順番を間違えていても名前から正しい引数に値が渡されます。</p>
-<pre><code class="language-python">f u: 6, v: 5, w: 4, x: 1, y: 2, z: 3
-</code></pre>
-<p>キーワード引数と<code>:</code>の後にすぐ改行してしまうとコロン適用スタイルとみなされるので注意してください。</p>
-<pre><code class="language-python"># means `f(x: y)`
-f x: y
-
-# means `f(x, y)`
-f x:
-    y
+<pre><code class="language-python">f u := 6, v := 5, w := 4, x := 1, y := 2, z := 3
 </code></pre>
 <h2 id="デフォルト引数"><a class="header" href="#デフォルト引数">デフォルト引数</a></h2>
 <p>ある引数が大抵の場合決まりきっており省略できるようにしたい場合、デフォルト引数を使うと良いでしょう。</p>
-<p>デフォルト引数は<code>:=</code>(or-assign operator)で指定します。<code>base</code>が指定されなかったら<code>math.E</code>を<code>base</code>に代入します。</p>
+<p>デフォルト引数は<code>:=</code>(default-assign operator)で指定します。<code>base</code>が指定されなかったら<code>math.E</code>を<code>base</code>に代入します。</p>
 <pre><code class="language-python">math_log x: Ratio, base := math.E = ...
 
 assert math_log(100, 10) == 2

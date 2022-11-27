@@ -175,7 +175,7 @@ assert Structural(W) == Structural(T.replace {.x = Ratio})
 assert points.iter().map(x -&gt; x.norm()).collect(Array) == [5, 25].
 </code></pre>
 <h2 id="trait-inclusion"><a class="header" href="#trait-inclusion">Trait inclusion</a></h2>
-<p>The expansion operator <code>...</code> allows you to define a trait that contains a certain trait as a supertype. This is called the <strong>subsumption</strong> of a trait.
+<p><code>Subsume</code> allows you to define a trait that contains a certain trait as a supertype. This is called the <strong>subsumption</strong> of a trait.
 In the example below, <code>BinAddSub</code> subsumes <code>BinAdd</code> and <code>BinSub</code>.
 This corresponds to Inheritance in a class, but unlike Inheritance, multiple base types can be combined using <code>and</code>. Traits that are partially excluded by <code>not</code> are also allowed.</p>
 <pre><code class="language-python">Add R = Trait {

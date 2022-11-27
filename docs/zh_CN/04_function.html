@@ -186,17 +186,9 @@ add(1, 2)
 <pre><code class="language-python">f x, y, z, w, v, u: Int = ...
 </code></pre>
 <p>上面定义的函数有很多参数，并且排列顺序混乱。您不应该创建这样的函数，但是在使用别人编写的代码时可能会遇到这样的代码。因此，我们使用关键字参数。如果使用关键字参数，则值会从名称传递到正确的参数，即使它们的顺序错误</p>
-<pre><code class="language-python">f u: 6, v: 5, w: 4, x: 1, y: 2, z: 3
+<pre><code class="language-python">f u := 6, v := 5, w := 4, x := 1, y := 2, z := 3
 </code></pre>
-<p>请注意，紧跟在 <code>:</code> 之后的关键字参数和新行被视为冒号调用样式</p>
-<pre><code class="language-python"># 意思是 `f(x: y)`
-f x: y
-
-# 意思是 `f(x, y)`
-f x:
-    y
-</code></pre>
-<h2 id="定义错误参数"><a class="header" href="#定义错误参数">定义错误参数</a></h2>
+<h2 id="定义默认参数"><a class="header" href="#定义默认参数">定义默认参数</a></h2>
 <p>当某些参数大部分是固定的并且您希望能够省略它们时，使用默认参数</p>
 <p>默认参数由<code>:=</code>(walrus运算符)指定。如果未指定 <code>base</code>，则将 <code>math.E</code> 分配给 <code>base</code></p>
 <pre><code class="language-python">math_log x: Ratio, base := math.E = ...
@@ -222,7 +214,7 @@ f [x, y] := [1, 2] = ...
 </code></pre>
 <h2 id="可变长度参数"><a class="header" href="#可变长度参数">可变长度参数</a></h2>
 <p>输出其参数的日志(记录)的 <code>log</code> 函数可以采用任意数量的参数</p>
-<pre><code class="language-python">记录&quot;你好&quot;、&quot;世界&quot;、&quot;！&quot; # 你好世界 ！
+<pre><code class="language-python">log &quot;你好&quot;, &quot;世界&quot;, &quot;！&quot; # 你好 世界 ！
 </code></pre>
 <p>要定义这样的函数，请将 <code>...</code> 添加到参数中。这样，函数将参数作为可变长度数组接收</p>
 <pre><code class="language-python">f ...x =

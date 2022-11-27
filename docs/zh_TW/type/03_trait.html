@@ -176,7 +176,7 @@ assert Structural(W) == Structural(T.replace {.x = Ratio})
 assert points.iter().map(x -&gt; x.norm()).collect(Array) == [5, 25].
 </code></pre>
 <h2 id="trait包含"><a class="header" href="#trait包含">Trait包含</a></h2>
-<p>擴展運算符 <code>...</code> 允許您將包含某個Trait的Trait定義為超類型。這稱為Trait的 <strong>subsumption</strong>
+<p><code>Subsume</code> 允許您將包含某個Trait的Trait定義為超類型。這稱為Trait的 <strong>subsumption</strong>
 在下面的示例中，<code>BinAddSub</code> 包含 <code>BinAdd</code> 和 <code>BinSub</code>
 這對應于類中的繼承，但與繼承不同的是，可以使用&quot;和&quot;組合多個基類型。也允許被 <code>not</code> 部分排除的Trait</p>
 <pre><code class="language-python">Add R = Trait {
