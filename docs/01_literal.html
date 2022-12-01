@@ -166,11 +166,9 @@ Subsequent documents may use <code>assert</code> to indicate that the results ar
 Unlike Python, quotation marks cannot be enclosed in <code>'</code>. If you want to use <code>&quot;</code> in a string, use <code>\&quot;</code>.</p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;السَّلَامُ عَلَيْكُمْ&quot;, ...
 </code></pre>
-<p><code>{}</code> allows you to embed expressions in strings. This is called string interpolation.
-If you want to output <code>{</code>, <code>}</code> itself, use <code>\{</code>, <code>\}</code>.</p>
-<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;{1} + {1} is {1+1}&quot;
-s = &quot;1+1&quot;
-assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
+<p><code>\{..}</code> allows you to embed expressions in strings. This is called string interpolation.
+If you want to output <code>\{..}</code> itself, use <code>\\{..}</code>.</p>
+<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;\{1} + \{1} is \{1+1}&quot;
 </code></pre>
 <h3 id="exponential-literal"><a class="header" href="#exponential-literal">Exponential Literal</a></h3>
 <p>This is a literal representing exponential notation often used in academic calculations. It is an instance of type <code>Ratio</code>.

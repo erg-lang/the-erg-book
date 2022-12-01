@@ -273,11 +273,9 @@ assert 0.5 == .5
 與 Python 不同，引號不能包含在 <code>'</code> 中。如果要在字符串中使用 <code>&quot;</code>，請使用 <code>\&quot;</code></p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;?????????? ??????????&quot;, ...
 </code></pre>
-<p><code>{}</code> 允許您在字符串中嵌入表達式。這稱為字符串插值
-如果要輸出 <code>{</code>、<code>}</code> 本身，請使用 <code>\{</code>、<code>\}</code></p>
-<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;{1} + {1} is {1+1}&quot;
-s = &quot;1+1&quot;
-assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
+<p><code>\{..}</code> 允許您在字符串中嵌入表達式。這稱為字符串插值
+如果要輸出 <code>\{..}</code> 本身，請使用 <code>\\{..}</code></p>
+<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;\{1} + \{1} is \{1+1}&quot;
 </code></pre>
 <h3 id="指數字面量"><a class="header" href="#指數字面量">指數字面量</a></h3>
 <p>這是學術計算中常用的表示指數符號的文字。它是&quot;比率&quot;類型的一個實例
@@ -992,7 +990,7 @@ Named = {.name = Str}
 john: Named
 
 greet! n: Named =
-    print! &quot;Hello, I am {n.name}&quot;
+    print! &quot;Hello, I am \{n.name}&quot;
 john # &quot;你好，我是約翰 print！
 
 Named.name # Str
@@ -1009,7 +1007,7 @@ match point:
     {x = 0; y = 0; z = 0} -&gt; &quot;origin&quot;
     {x = _; y = 0; z = 0} -&gt; &quot;on the x axis&quot;
     {x = 0; ...} -&gt; &quot;x = 0&quot;
-    {x = x; y = y; z = z} -&gt; &quot;({x}, {y}, {z})&quot;
+    {x = x; y = y; z = z} -&gt; &quot;(\{x}, \{y}, \{z})&quot;
 </code></pre>
 <p>當存在與屬性同名的變量時，<code>x = ...</code>也可以縮寫為<code>x</code>，例如<code>x = x</code>或<code>x = .x</code>到<code>x</code>，和<code> .x = .x</code> 或 <code>.x = x</code> 到 <code>.x</code>
 但是，當只有一個屬性時，必須在其后加上<code>;</code>以與集合區分開來</p>
@@ -1075,7 +1073,7 @@ y =
 <pre><code class="language-python">john = {
     name = &quot;John Smith&quot;
     age = !20
-    .greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    .greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     .inc_age! ref! self = self::age.update! x -&gt; x + 1
 }
 john + 1
@@ -1085,7 +1083,7 @@ john + 1
 這在 <a href="./type/04_class.html">class</a> 中有描述</p>
 <pre><code class="language-python">Person = Inherit {name = Str; age = Nat}
 Person.
-    greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     inc_age! ref! self = self::age.update! x -&gt; x + 1
 
 john = Person.new {name = &quot;John Smith&quot;; age = 20}
@@ -1501,8 +1499,8 @@ add C.new(1), C.new(2) # 類型錯誤: C 不是 Add 的子類
 # ArrayIterator &lt;: Mapper
 # ArrayIterator.MapIter == ArrayMapper
 # [1, 2, 3].iter(): ArrayIterator Int
-# [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;): ArrayMapper Str
-assert [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
+# [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;): ArrayMapper Str
+assert [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
 </code></pre>
 <h2 id="overridetrait"><a class="header" href="#overridetrait">OverrideTrait</a></h2>
 <p>派生Trait可以Override基本Trait的類型定義
@@ -1603,9 +1601,9 @@ Person::
     species = &quot;human&quot;
 Person.
     describe() =
-        log &quot;species: {species}&quot;
+        log &quot;species: \{Person::species}&quot;
     greet self =
-        log &quot;Hello, My name is {self::name}.&quot;
+        log &quot;Hello, My name is \{self::name}.&quot;
 
 Person.describe() # 類型: Person
 Person.greet() # 類型錯誤: 未綁定的方法 Person.greet 需要一個參數
@@ -1689,7 +1687,7 @@ DogImpl.
 Person = {.name = Str; .age = Nat}
 PersonImpl = Patch Person
 PersonImpl.
-    greet self = log &quot;Hello, my name is {self.name}.&quot;
+    greet self = log &quot;Hello, my name is \{self.name}.&quot;
 
 john = {.name = &quot;John Smith&quot;; .age = 20}
 john.bark() # &quot;Yelp!&quot;
@@ -1700,7 +1698,7 @@ john.bark() # &quot;Yelp!&quot;
 Dog.bark = log &quot;Yelp!&quot;
 ...
 Person = Class {.name = Str; .age = Nat}
-Person.greet self = log &quot;Hello, my name is {self.name}.&quot;
+Person.greet self = log &quot;Hello, my name is \{self.name}.&quot;
 
 john = Person.new {.name = &quot;John Smith&quot;; .age = 20}
 john.bark() # 類型錯誤: `Person` 對象沒有方法 `.bark`
@@ -1834,7 +1832,7 @@ Base!
 Inherited! = Inherit Base!
 Inherited!
     @Override
-    g! ref! self = self.f!() # 無限遞歸警告: 此代碼陷入無限循環 
+    g! ref! self = self.f!() # 無限遞歸警告: 此代碼陷入無限循環
     # 覆蓋錯誤: 方法 `.g` 被 `.f` 引用但未被覆蓋
 </code></pre>
 <p>在繼承類 <code>Inherited!</code> 中，<code>.g!</code> 方法被重寫以將處理轉移到 <code>.f!</code>。但是，基類中的 <code>.f!</code> 方法會將其處理轉移到 <code>.g!</code>，從而導致無限循環。<code>.f</code> 是 <code>Base!</code> 類中的一個沒有問題的方法，但它被覆蓋以一種意想不到的方式使用，并且被破壞了</p>
@@ -1943,9 +1941,9 @@ Dog = Class {name = Str; breed = Str}
 Person = Class {name = Str}
 Student = Inherit Person, additional: {id = Int}
 structural_greet! person: Named =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 greet! person: Person =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 
 max = Dog.new {name = &quot;Max&quot;, breed = &quot;Labrador&quot;}
 john = Person.new {name = &quot;John&quot;}
@@ -1954,7 +1952,7 @@ alice = Student.new {name = &quot;Alice&quot;, id = 123}
 structural_greet! max # 你好，我是馬克斯
 structural_greet! john # 你好，我是約翰
 greet! alice # 你好，我是愛麗絲
-greet! max # 類型錯誤: 
+greet! max # 類型錯誤:
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="名義子類型與結構子類型"><a class="header" href="#名義子類型與結構子類型">名義子類型與結構子類型</a></h1>
@@ -2782,7 +2780,7 @@ IntTryFromFloat.
 但是你當然也可以定義可變類型。變量類型用 <code>!</code> 聲明</p>
 <pre><code class="language-python">Person! = Class({name = Str; age = Nat!})
 Person!.
-    greet! ref! self = print! &quot;Hello, my name is {self::name}. I am {self::age}.&quot;
+    greet! ref! self = print! &quot;Hello, my name is \{self::name}. I am \{self::age}.&quot;
     inc_age!ref!self = self::name.update!old -&gt; old + 1
 </code></pre>
 <p>準確地說，基類型是可變類型或包含可變類型的復合類型的類型必須在類型名稱的末尾有一個&quot;！&quot;。沒有 <code>!</code> 的類型可以存在于同一個命名空間中，并被視為單獨的類型
@@ -4140,7 +4138,7 @@ List T.
 <li>其實只是枚舉類型</li>
 </ul>
 <pre><code class="language-python">match x:
-    i: {1, 2} -&gt; &quot;one or two: {i}&quot;
+    i: {1, 2} -&gt; &quot;one or two: \{i}&quot;
     _ -&gt; &quot;other&quot;
 </code></pre>
 <h3 id="range-模式"><a class="header" href="#range-模式">Range 模式</a></h3>
@@ -4162,6 +4160,7 @@ match i
 <h4 id="set-1"><a class="header" href="#set-1">Set</a></h4>
 <p>沒有固定的模式。因為集合沒有辦法唯一地檢索元素
 您可以通過迭代器檢索它們，但不能保證順序</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="推導式"><a class="header" href="#推導式">推導式</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/27_comprehension.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/27_comprehension.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>Array 和 <code>[expr | (name &lt;- iterable)+ (predicate)*]</code>,

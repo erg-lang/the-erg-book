@@ -210,7 +210,7 @@ Base!
 Inherited! = Inherit Base!
 Inherited!
     @Override
-    g! ref! self = self.f!() # 無限遞歸警告: 此代碼陷入無限循環 
+    g! ref! self = self.f!() # 無限遞歸警告: 此代碼陷入無限循環
     # 覆蓋錯誤: 方法 `.g` 被 `.f` 引用但未被覆蓋
 </code></pre>
 <p>在繼承類 <code>Inherited!</code> 中，<code>.g!</code> 方法被重寫以將處理轉移到 <code>.f!</code>。但是，基類中的 <code>.f!</code> 方法會將其處理轉移到 <code>.g!</code>，從而導致無限循環。<code>.f</code> 是 <code>Base!</code> 類中的一個沒有問題的方法，但它被覆蓋以一種意想不到的方式使用，并且被破壞了</p>
@@ -319,9 +319,9 @@ Dog = Class {name = Str; breed = Str}
 Person = Class {name = Str}
 Student = Inherit Person, additional: {id = Int}
 structural_greet! person: Named =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 greet! person: Person =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 
 max = Dog.new {name = &quot;Max&quot;, breed = &quot;Labrador&quot;}
 john = Person.new {name = &quot;John&quot;}
@@ -330,7 +330,7 @@ alice = Student.new {name = &quot;Alice&quot;, id = 123}
 structural_greet! max # 你好，我是馬克斯
 structural_greet! john # 你好，我是約翰
 greet! alice # 你好，我是愛麗絲
-greet! max # 類型錯誤: 
+greet! max # 類型錯誤:
 </code></pre>
 
 

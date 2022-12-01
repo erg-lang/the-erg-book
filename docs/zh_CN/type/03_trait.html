@@ -233,8 +233,8 @@ add C.new(1), C.new(2) # 类型错误: C 不是 Add 的子类
 # ArrayIterator &lt;: Mapper
 # ArrayIterator.MapIter == ArrayMapper
 # [1, 2, 3].iter(): ArrayIterator Int
-# [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;): ArrayMapper Str
-assert [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
+# [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;): ArrayMapper Str
+assert [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
 </code></pre>
 <h2 id="overridetrait"><a class="header" href="#overridetrait">OverrideTrait</a></h2>
 <p>派生Trait可以Override基本Trait的类型定义

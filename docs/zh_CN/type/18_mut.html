@@ -153,7 +153,7 @@
 但是你当然也可以定义可变类型。变量类型用 <code>!</code> 声明</p>
 <pre><code class="language-python">Person! = Class({name = Str; age = Nat!})
 Person!.
-    greet! ref! self = print! &quot;Hello, my name is {self::name}. I am {self::age}.&quot;
+    greet! ref! self = print! &quot;Hello, my name is \{self::name}. I am \{self::age}.&quot;
     inc_age!ref!self = self::name.update!old -&gt; old + 1
 </code></pre>
 <p>准确地说，基类型是可变类型或包含可变类型的复合类型的类型必须在类型名称的末尾有一个&quot;！&quot;。没有 <code>!</code> 的类型可以存在于同一个命名空间中，并被视为单独的类型

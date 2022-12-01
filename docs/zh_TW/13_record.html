@@ -194,7 +194,7 @@ Named = {.name = Str}
 john: Named
 
 greet! n: Named =
-    print! &quot;Hello, I am {n.name}&quot;
+    print! &quot;Hello, I am \{n.name}&quot;
 john # &quot;你好，我是約翰 print！
 
 Named.name # Str
@@ -211,7 +211,7 @@ match point:
     {x = 0; y = 0; z = 0} -&gt; &quot;origin&quot;
     {x = _; y = 0; z = 0} -&gt; &quot;on the x axis&quot;
     {x = 0; ...} -&gt; &quot;x = 0&quot;
-    {x = x; y = y; z = z} -&gt; &quot;({x}, {y}, {z})&quot;
+    {x = x; y = y; z = z} -&gt; &quot;(\{x}, \{y}, \{z})&quot;
 </code></pre>
 <p>當存在與屬性同名的變量時，<code>x = ...</code>也可以縮寫為<code>x</code>，例如<code>x = x</code>或<code>x = .x</code>到<code>x</code>，和<code> .x = .x</code> 或 <code>.x = x</code> 到 <code>.x</code>
 但是，當只有一個屬性時，必須在其后加上<code>;</code>以與集合區分開來</p>
@@ -277,7 +277,7 @@ y =
 <pre><code class="language-python">john = {
     name = &quot;John Smith&quot;
     age = !20
-    .greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    .greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     .inc_age! ref! self = self::age.update! x -&gt; x + 1
 }
 john + 1
@@ -287,7 +287,7 @@ john + 1
 這在 <a href="./type/04_class.html">class</a> 中有描述</p>
 <pre><code class="language-python">Person = Inherit {name = Str; age = Nat}
 Person.
-    greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     inc_age! ref! self = self::age.update! x -&gt; x + 1
 
 john = Person.new {name = &quot;John Smith&quot;; age = 20}

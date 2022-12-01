@@ -166,11 +166,9 @@ assert 0.5 == .5
 與 Python 不同，引號不能包含在 <code>'</code> 中。如果要在字符串中使用 <code>&quot;</code>，請使用 <code>\&quot;</code></p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;?????????? ??????????&quot;, ...
 </code></pre>
-<p><code>{}</code> 允許您在字符串中嵌入表達式。這稱為字符串插值
-如果要輸出 <code>{</code>、<code>}</code> 本身，請使用 <code>\{</code>、<code>\}</code></p>
-<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;{1} + {1} is {1+1}&quot;
-s = &quot;1+1&quot;
-assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
+<p><code>\{..}</code> 允許您在字符串中嵌入表達式。這稱為字符串插值
+如果要輸出 <code>\{..}</code> 本身，請使用 <code>\\{..}</code></p>
+<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;\{1} + \{1} is \{1+1}&quot;
 </code></pre>
 <h3 id="指數字面量"><a class="header" href="#指數字面量">指數字面量</a></h3>
 <p>這是學術計算中常用的表示指數符號的文字。它是&quot;比率&quot;類型的一個實例

@@ -275,11 +275,9 @@ Subsequent documents may use <code>assert</code> to indicate that the results ar
 Unlike Python, quotation marks cannot be enclosed in <code>'</code>. If you want to use <code>&quot;</code> in a string, use <code>\&quot;</code>.</p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;السَّلَامُ عَلَيْكُمْ&quot;, ...
 </code></pre>
-<p><code>{}</code> allows you to embed expressions in strings. This is called string interpolation.
-If you want to output <code>{</code>, <code>}</code> itself, use <code>\{</code>, <code>\}</code>.</p>
-<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;{1} + {1} is {1+1}&quot;
-s = &quot;1+1&quot;
-assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
+<p><code>\{..}</code> allows you to embed expressions in strings. This is called string interpolation.
+If you want to output <code>\{..}</code> itself, use <code>\\{..}</code>.</p>
+<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;\{1} + \{1} is \{1+1}&quot;
 </code></pre>
 <h3 id="exponential-literal"><a class="header" href="#exponential-literal">Exponential Literal</a></h3>
 <p>This is a literal representing exponential notation often used in academic calculations. It is an instance of type <code>Ratio</code>.
@@ -999,7 +997,7 @@ Named = {.name = Str}
 john: Named
 
 greet! n: Named =
-    print! &quot;Hello, I am {n.name}&quot;
+    print! &quot;Hello, I am \{n.name}&quot;
 john # &quot;Hello, I am John&quot; print!
 
 Named.name # Str
@@ -1016,7 +1014,7 @@ match point:
     {x = 0; y = 0; z = 0} -&gt; &quot;origin&quot;
     {x = _; y = 0; z = 0} -&gt; &quot;on the x axis&quot;
     {x = 0; ...} -&gt; &quot;x = 0&quot;
-    {x = x; y = y; z = z} -&gt; &quot;({x}, {y}, {z})&quot;
+    {x = x; y = y; z = z} -&gt; &quot;(\{x}, \{y}, \{z})&quot;
 </code></pre>
 <p><code>x = ...</code> can also be abbreviated to <code>x</code> when there is a variable with the same name as the attribute, for example, <code>x = x</code> or <code>x = .x</code> to <code>x</code>, and <code>.x = .x</code> or <code>.x = x</code> to <code>.x</code>.
 However, when there is only one attribute, it must be followed by <code>;</code> to distinguish it from a set.</p>
@@ -1082,7 +1080,7 @@ This is inefficient, and as the number of attributes increases, error messages a
 <pre><code class="language-python">john = {
     name = &quot;John Smith&quot;
     age = !20
-    .greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    .greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     .inc_age! ref! self = self::age.update! x -&gt; x + 1
 }
 john + 1
@@ -1092,7 +1090,7 @@ john + 1
 This is described in <a href="./type/04_class.html">class</a>.</p>
 <pre><code class="language-python">Person = Inherit {name = Str; age = Nat}
 Person.
-    greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     inc_age! ref! self = self::age.update! x -&gt; x + 1
 
 john = Person.new {name = &quot;John Smith&quot;; age = 20}
@@ -1510,8 +1508,8 @@ add C.new(1), C.new(2) # TypeError: C is not a subclass of Add
 # ArrayIterator &lt;: Mapper
 # ArrayIterator.MapIter == ArrayMapper
 # [1, 2, 3].iter(): ArrayIterator Int
-# [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;): ArrayMapper Str
-assert [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
+# [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;): ArrayMapper Str
+assert [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
 </code></pre>
 <h2 id="override-in-trait"><a class="header" href="#override-in-trait">Override in Trait</a></h2>
 <p>Derived traits can override the type definitions of the base trait.
@@ -1609,9 +1607,9 @@ Person::
     species = &quot;human&quot;
 Person.
     describe() =
-        log &quot;species: {species}&quot;
+        log &quot;species: \{species}&quot;
     greet self =
-        log &quot;Hello, My name is {self::name}.&quot;
+        log &quot;Hello, My name is \{self::name}.&quot;
 
 Person.describe() # species: human
 Person.greet() # TypeError: unbound method Person.greet needs an argument
@@ -1695,7 +1693,7 @@ DogImpl.
 Person = {.name = Str; .age = Nat}
 PersonImpl = Patch Person
 PersonImpl.
-    greet self = log &quot;Hello, my name is {self.name}.&quot;
+    greet self = log &quot;Hello, my name is \{self.name}.&quot;
 
 john = {.name = &quot;John Smith&quot;; .age = 20}
 john.bark() # &quot;Yelp!&quot;
@@ -1706,7 +1704,7 @@ The former is impossible, so it is safer to make it inapplicable. In such cases,
 Dog.bark = log &quot;Yelp!&quot;
 ...
 Person = Class {.name = Str; .age = Nat}
-Person.greet self = log &quot;Hello, my name is {self.name}.&quot;
+Person.greet self = log &quot;Hello, my name is \{self.name}.&quot;
 
 john = Person.new {.name = &quot;John Smith&quot;; .age = 20}
 john.bark() # TypeError: `Person` object has no method `.bark`.
@@ -1948,9 +1946,9 @@ Dog = Class {name = Str; breed = Str}
 Person = Class {name = Str}
 Student = Inherit Person, additional: {id = Int}
 structural_greet! person: Named =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 greet! person: Person =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 
 max = Dog.new {name = &quot;Max&quot;, breed = &quot;Labrador&quot;}
 john = Person.new {name = &quot;John&quot;}
@@ -2785,7 +2783,7 @@ IntTryFromFloat.
 But you can of course also define mutable types. Variable types are declared with <code>!</code>.</p>
 <pre><code class="language-python">Person! = Class({name = Str; age = Nat!})
 Person!.
-    greet! ref! self = print! &quot;Hello, my name is {self::name}. I am {self::age}.&quot;
+    greet! ref! self = print! &quot;Hello, my name is \{self::name}. I am \{self::age}.&quot;
     inc_age!ref!self = self::name.update!old -&gt; old + 1
 </code></pre>
 <p>To be precise, a type whose base type is a mutable type, or a composite type containing mutable types, must have a <code>!</code> at the end of the type name. Types without <code>!</code> can exist in the same namespace and are treated as separate types.
@@ -4127,7 +4125,7 @@ List T.
 <h3 id="enumeration-pattern"><a class="header" href="#enumeration-pattern">enumeration pattern</a></h3>
 <p>*Actually, it's just an enumeration type</p>
 <pre><code class="language-python">match x:
-    i: {1, 2} -&gt; &quot;one or two: {i}&quot;
+    i: {1, 2} -&gt; &quot;one or two: \{i}&quot;
     _ -&gt; &quot;other&quot;
 </code></pre>
 <h3 id="range-pattern"><a class="header" href="#range-pattern">range pattern</a></h3>

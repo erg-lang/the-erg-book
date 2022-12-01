@@ -268,11 +268,9 @@ assert 0.5 == .5
 Pythonとは違い、<code>'</code>ではクオーテーション(囲み)できません。文字列の中で<code>&quot;</code>を使いたいときは<code>\&quot;</code>としてください。</p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;السَّلَامُ عَلَيْكُمْ&quot;, ...
 </code></pre>
-<p><code>{}</code>によって文字列の中に式を埋めこめます。これを文字列補間(string interpolation)といいます。
-<code>{</code>, <code>}</code>自体を出力したい場合は<code>\{</code>, <code>\}</code>とします。</p>
-<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;{1} + {1} is {1+1}&quot;
-s = &quot;1+1&quot;
-assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
+<p><code>\{...}</code>によって文字列の中に式を埋めこめます。これを文字列補間(string interpolation)といいます。
+<code>\{...}</code>自体を出力したい場合は<code>\\{...}</code>とします。</p>
+<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;\{1} + \{1} is \{1+1}&quot;
 </code></pre>
 <h3 id="指数リテラルexponential-literal"><a class="header" href="#指数リテラルexponential-literal">指数リテラル(Exponential Literal)</a></h3>
 <p>これは学術計算でよく使用される指数表記を表すリテラルです。<code>Ratio</code>型のインスタンスになります。
@@ -1023,7 +1021,7 @@ Named = {.name = Str}
 john: Named
 
 greet! n: Named =
-    print! &quot;Hello, I am {n.name}&quot;
+    print! &quot;Hello, I am \{n.name}&quot;
 greet! john # &quot;Hello, I am John&quot;
 
 print! Named.name # Str
@@ -1106,7 +1104,7 @@ y =
 <pre><code class="language-python">john = {
     name = &quot;John Smith&quot;
     age = !20
-    .greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    .greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     .inc_age! ref! self = self::age.update! x -&gt; x + 1
 }
 john + 1
@@ -1116,7 +1114,7 @@ john + 1
 これについては<a href="./type/04_class.html">クラス</a>の項で詳しく説明します。</p>
 <pre><code class="language-python">Person = Inherit {name = Str; age = Nat}
 Person.
-    greet! ref self = print! &quot;Hello, my name is {self::name} and I am {self::age} years old.&quot;
+    greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     inc_age! ref! self = self::age.update! x -&gt; x + 1
 
 john = Person.new {name = &quot;John Smith&quot;; age = 20}
@@ -1541,7 +1539,7 @@ add C.new(1), C.new(2) # TypeError: C is not subclass of Add
 # ArrayIterator.MapIter == ArrayMapper
 # [1, 2, 3].iter(): ArrayIterator Int
 # [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;): ArrayMapper Str
-assert [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+assert [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
 </code></pre>
 <h2 id="トレイトにおけるオーバーライド"><a class="header" href="#トレイトにおけるオーバーライド">トレイトにおけるオーバーライド</a></h2>
 <p>派生トレイトでは基底トレイトの型定義をオーバーライドできます。
@@ -1640,9 +1638,9 @@ Person::
     species = &quot;human&quot;
 Person.
     describe() =
-        log &quot;species: {species}&quot;
+        log &quot;species: \{Person::species}&quot;
     greet self =
-        log &quot;Hello, My name is {self::name}.&quot;
+        log &quot;Hello, My name is \{self::name}.&quot;
 
 Person.describe() # species: human
 Person.greet() # TypeError: unbound method Person.greet needs an argument
@@ -1728,7 +1726,7 @@ DogImpl.
 Person = {.name = Str; .age = Nat}
 PersonImpl = Patch Person
 PersonImpl.
-    greet self = log &quot;Hello, my name is {self.name}.&quot;
+    greet self = log &quot;Hello, my name is \{self.name}.&quot;
 
 john = {.name = &quot;John Smith&quot;; .age = 20}
 john.bark() # &quot;Yelp!&quot;
@@ -1741,7 +1739,7 @@ Dog.
 ...
 Person = Class {.name = Str; .age = Nat}
 Person.
-    greet self = log &quot;Hello, my name is {self.name}.&quot;
+    greet self = log &quot;Hello, my name is \{self.name}.&quot;
 
 john = Person.new {.name = &quot;John Smith&quot;; .age = 20}
 john.bark() # TypeError: `Person` object has no method `.bark`
@@ -1985,9 +1983,9 @@ Dog = Class {name = Str; breed = Str}
 Person = Class {name = Str}
 Student = Inherit Person, additional: {id = Int}
 structural_greet! person: Named =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 greet! person: Person =
-    print! &quot;Hello, my name is {person::name}.&quot;
+    print! &quot;Hello, my name is \{person::name}.&quot;
 
 max = Dog.new {name = &quot;Max&quot;, breed = &quot;Labrador&quot;}
 john = Person.new {name = &quot;John&quot;}
@@ -2853,7 +2851,7 @@ IntTryFromFloat.
 しかし可変な型ももちろん定義できます。可変型は<code>!</code>を付けて宣言します。</p>
 <pre><code class="language-python">Person! = Class({name = Str; age = Nat!})
 Person!.
-    greet! ref! self = print! &quot;Hello, my name is {self::name}. I am {self::age}.&quot;
+    greet! ref! self = print! &quot;Hello, my name is \{self::name}. I am \{self::age}.&quot;
     inc_age! ref! self = self::name.update! old -&gt; old + 1
 </code></pre>
 <p>正確には、可変型・または可変型を含む複合型を基底型とする型は型名の最後に<code>!</code>を付けなくてはなりません。<code>!</code>を付けない型も同一の名前空間に存在してよく、別の型として扱われます。
@@ -2965,6 +2963,7 @@ a: [!Str; 3]
 また内部構造を持たない型<code>T!</code>の場合、このインスタンスは単に入れ替え可能な<code>T</code>のボックスです。メソッドによって型を変更することはできません。</p>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> <code>T!</code>型と<code>T</code>型に言語上の特別な関係がないのは意図的な設計です。関連があったとすると、例えば名前空間に<code>T</code>/<code>T!</code>型が存在するときに別のモジュールから<code>T!</code>/<code>T</code>型を導入できなくなるなどの不都合が生じます。また、不変型に対し可変型は一意に定まりません。<code>T = (U, V)</code>という定義があった際、<code>(U!, V)</code>と<code>(U, V!)</code>という可変サブタイプが<code>T!</code>としてあり得えます。<a href="type/18_mut.html#f1">↩</a></span></p>
+
 <div style="break-before: page; page-break-before: always;"></div><p>以降は更に高度な型システムを解説します。入門者の方はすべての項を読まなくても問題ありません。</p>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="デフォルト引数付きの関数型"><a class="header" href="#デフォルト引数付きの関数型">デフォルト引数付きの関数型</a></h1>
@@ -4222,7 +4221,7 @@ List T.
 <h3 id="列挙パターン"><a class="header" href="#列挙パターン">列挙パターン</a></h3>
 <p>※実際には単なる列挙型</p>
 <pre><code class="language-python">match x:
-    i: {1, 2} -&gt; &quot;one or two: {i}&quot;
+    i: {1, 2} -&gt; &quot;one or two: \{i}&quot;
     _ -&gt; &quot;other&quot;
 </code></pre>
 <h3 id="範囲パターン"><a class="header" href="#範囲パターン">範囲パターン</a></h3>

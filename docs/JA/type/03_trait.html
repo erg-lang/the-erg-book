@@ -234,7 +234,7 @@ add C.new(1), C.new(2) # TypeError: C is not subclass of Add
 # ArrayIterator.MapIter == ArrayMapper
 # [1, 2, 3].iter(): ArrayIterator Int
 # [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;): ArrayMapper Str
-assert [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+assert [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
 </code></pre>
 <h2 id="トレイトにおけるオーバーライド"><a class="header" href="#トレイトにおけるオーバーライド">トレイトにおけるオーバーライド</a></h2>
 <p>派生トレイトでは基底トレイトの型定義をオーバーライドできます。

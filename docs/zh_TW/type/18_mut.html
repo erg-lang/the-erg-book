@@ -153,7 +153,7 @@
 但是你當然也可以定義可變類型。變量類型用 <code>!</code> 聲明</p>
 <pre><code class="language-python">Person! = Class({name = Str; age = Nat!})
 Person!.
-    greet! ref! self = print! &quot;Hello, my name is {self::name}. I am {self::age}.&quot;
+    greet! ref! self = print! &quot;Hello, my name is \{self::name}. I am \{self::age}.&quot;
     inc_age!ref!self = self::name.update!old -&gt; old + 1
 </code></pre>
 <p>準確地說，基類型是可變類型或包含可變類型的復合類型的類型必須在類型名稱的末尾有一個&quot;！&quot;。沒有 <code>!</code> 的類型可以存在于同一個命名空間中，并被視為單獨的類型

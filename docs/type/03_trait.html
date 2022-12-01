@@ -232,8 +232,8 @@ add C.new(1), C.new(2) # TypeError: C is not a subclass of Add
 # ArrayIterator &lt;: Mapper
 # ArrayIterator.MapIter == ArrayMapper
 # [1, 2, 3].iter(): ArrayIterator Int
-# [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;): ArrayMapper Str
-assert [1, 2, 3].iter().map(x -&gt; &quot;{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
+# [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;): ArrayMapper Str
+assert [1, 2, 3].iter().map(x -&gt; &quot;\{x}&quot;).collect(Array) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].
 </code></pre>
 <h2 id="override-in-trait"><a class="header" href="#override-in-trait">Override in Trait</a></h2>
 <p>Derived traits can override the type definitions of the base trait.

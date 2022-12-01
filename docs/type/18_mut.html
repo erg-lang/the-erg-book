@@ -152,7 +152,7 @@
 But you can of course also define mutable types. Variable types are declared with <code>!</code>.</p>
 <pre><code class="language-python">Person! = Class({name = Str; age = Nat!})
 Person!.
-    greet! ref! self = print! &quot;Hello, my name is {self::name}. I am {self::age}.&quot;
+    greet! ref! self = print! &quot;Hello, my name is \{self::name}. I am \{self::age}.&quot;
     inc_age!ref!self = self::name.update!old -&gt; old + 1
 </code></pre>
 <p>To be precise, a type whose base type is a mutable type, or a composite type containing mutable types, must have a <code>!</code> at the end of the type name. Types without <code>!</code> can exist in the same namespace and are treated as separate types.

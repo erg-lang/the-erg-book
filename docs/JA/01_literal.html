@@ -172,11 +172,9 @@ assert 0.5 == .5
 Pythonとは違い、<code>'</code>ではクオーテーション(囲み)できません。文字列の中で<code>&quot;</code>を使いたいときは<code>\&quot;</code>としてください。</p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;السَّلَامُ عَلَيْكُمْ&quot;, ...
 </code></pre>
-<p><code>{}</code>によって文字列の中に式を埋めこめます。これを文字列補間(string interpolation)といいます。
-<code>{</code>, <code>}</code>自体を出力したい場合は<code>\{</code>, <code>\}</code>とします。</p>
-<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;{1} + {1} is {1+1}&quot;
-s = &quot;1+1&quot;
-assert &quot;\{1+1}\&quot; == &quot;\{{s}\}&quot;
+<p><code>\{...}</code>によって文字列の中に式を埋めこめます。これを文字列補間(string interpolation)といいます。
+<code>\{...}</code>自体を出力したい場合は<code>\\{...}</code>とします。</p>
+<pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;\{1} + \{1} is \{1+1}&quot;
 </code></pre>
 <h3 id="指数リテラルexponential-literal"><a class="header" href="#指数リテラルexponential-literal">指数リテラル(Exponential Literal)</a></h3>
 <p>これは学術計算でよく使用される指数表記を表すリテラルです。<code>Ratio</code>型のインスタンスになります。
