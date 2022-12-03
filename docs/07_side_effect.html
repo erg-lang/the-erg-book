@@ -169,7 +169,7 @@ n # ValueError: n was moved by .into (line 2)
 </code></pre>
 <p>Only one procedural methods can have a mutable reference at any given time. In addition, while a mutable reference is taken, no more mutable reference can be taken from the original object. In this sense, <code>ref!</code> causes a side-effect on <code>self</code>.</p>
 <p>Note, however, that it is possible to create (immutable/mutable) references from mutable references. This allows recursion and <code>print!</code> of <code>self</code> in procedural methods.</p>
-<pre><code class="language-python">T -&gt; T # OK (move)
+<pre><code class="language-python checker_ignore">T -&gt; T # OK (move)
 T -&gt; Ref T # OK (move)
 T =&gt; Ref! T # OK (only once)
 Ref T -&gt; T # NG
@@ -190,7 +190,7 @@ There are procedures that for any given <code>x</code> will result in <code>p!(x
 assert nan(1) ! = nan(1)
 </code></pre>
 <p>There are also objects, such as classes, for which equivalence determination itself is not possible.</p>
-<pre><code class="language-python">T = Structural {i = Int}
+<pre><code class="language-python checker_ignore">T = Structural {i = Int}
 U = Structural {i = Int}
 assert T == U
 

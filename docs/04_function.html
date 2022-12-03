@@ -147,7 +147,8 @@
                         <h1 id="function"><a class="header" href="#function">Function</a></h1>
 <p>A function is a block that takes an &quot;argument&quot;, processes it, and returns it as a &quot;return value&quot;. It is defined as follows.</p>
 <pre><code class="language-python">add x, y = x + y
-# or
+</code></pre>
+<pre><code class="language-python"># or
 add(x, y) = x + y
 </code></pre>
 <p>The names specified after a function name are called parameters.
@@ -160,9 +161,9 @@ add(1, 2)
 </code></pre>
 <h2 id="colon-application-style"><a class="header" href="#colon-application-style">Colon application style</a></h2>
 <p>Functions are invoked like <code>f x, y, ...</code>, but if there are too many arguments for a single line, they can be applied using <code>:</code> (colon).</p>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2:
     some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <p>Codes above mean the same thing. This style is also useful when using <code>if</code> functions, for example.</p>
@@ -176,12 +177,12 @@ add(1, 2)
 </code></pre>
 <p>After <code>:</code>, no code other than comments may be written, and must always be on a new line.
 Also, you cannot use <code>:</code> immediately after a function. Only <code>do</code> and <code>do!</code> can do this.</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 f:
     x
     y
-
-# Ok
+</code></pre>
+<pre><code class="language-python checker_ignore"># Ok
 f(
     x,
     y
@@ -193,7 +194,7 @@ In such cases, it is safe to call the function using keyword arguments.</p>
 <pre><code class="language-python">f x, y, z, w, v, u: Int = ...
 </code></pre>
 <p>The functions defined above have many arguments and are arranged in a confusing order. You should not create such a function, but you may encounter such code when using code written by others. Therefore, we use keyword arguments. If you use keyword arguments, the values are passed from the name to the correct argument, even if they are in the wrong order.</p>
-<pre><code class="language-python">f u := 6, v := 5, w:= 4, x := 1, y := 2, z := 3
+<pre><code class="language-python checker_ignore">f u := 6, v := 5, w:= 4, x := 1, y := 2, z := 3
 </code></pre>
 <h2 id="default-parameters"><a class="header" href="#default-parameters">Default parameters</a></h2>
 <p>Default parameters are used when some parameters are mostly fixed and you want to be able to omit them.</p>
@@ -214,10 +215,10 @@ p!(None) # None
 f [x, y] := [1, 2] = ...
 </code></pre>
 <p>However, within the default arguments, it is not possible to call the procedures (described later) or assign mutable objects.</p>
-<pre><code class="language-python">f x := p! 1 = ... # NG
+<pre><code class="language-python compile_fail">f x := p! 1 = ... # NG
 </code></pre>
 <p>Also, the argument just defined cannot be used as the value passed to the default argument.</p>
-<pre><code class="language-python">f x := 1, y := x = ... # NG
+<pre><code class="language-python compile_fail">f x := 1, y := x = ... # NG
 </code></pre>
 <h2 id="variable-length-arguments"><a class="header" href="#variable-length-arguments">Variable-length arguments</a></h2>
 <p>The <code>log</code> function, which outputs a log (record) of its arguments, can take any number of arguments.</p>
@@ -295,8 +296,8 @@ assert Add(1, 2) == 3
 Factorial 0 = 1
 Factorial(X: Nat): Nat = X * Factorial(X - 1)
 assert Factorial(10) == 3628800
-
-math = import &quot;math&quot;
+</code></pre>
+<pre><code class="language-python compile_fail">math = import &quot;math&quot;
 Sin X = math.sin X # ConstantError: this function is not computable at compile time
 </code></pre>
 <p>Compile-time functions are also used in polymorphic type definitions.</p>
@@ -305,20 +306,20 @@ Option: Type -&gt; Type
 </code></pre>
 <h2 id="appendix-function-comparison"><a class="header" href="#appendix-function-comparison">Appendix: Function Comparison</a></h2>
 <p>Erg does not define <code>==</code> for functions. This is because there is no structural equivalence algorithm for functions in general.</p>
-<pre><code class="language-python">f = x: Int -&gt; (x + 1)**2
+<pre><code class="language-python compile_fail">f = x: Int -&gt; (x + 1)**2
 g = x: Int -&gt; x**2 + 2x + 1
 
 assert f == g # TypeError: cannot compare functions
 </code></pre>
 <p>Although <code>f</code> and <code>g</code> always return the same result, it is extremely difficult to make that determination. We have to teach algebra to the compiler.
 So Erg gives up on function comparisons entirely, and <code>(x -&gt; x) == (x -&gt; x)</code> also results in a compile error. This is a different specification from Python and should be noted.</p>
-<pre><code class="language-python"># Python, weird example
+<pre><code class="language-python checker_ignore"># Python, weird example
 f = lambda x: x
 assert f == f
 assert (lambda x: x) ! = (lambda x: x)
 </code></pre>
 <h2 id="appendix2--completion"><a class="header" href="#appendix2--completion">Appendix2: ()-completion</a></h2>
-<pre><code class="language-python">f x: Object = ...
+<pre><code class="language-python checker_ignore">f x: Object = ...
 # will be completed to
 f(x: Object) = ...
 

@@ -197,7 +197,7 @@ main args =
 <pre><code class="language-python"># __init__.py
 .qux = import &quot;qux&quot; # this is public
 </code></pre>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 bar = import &quot;bar&quot;
 bar.qux
 bar.baz # AttributeError: module 'baz' is private

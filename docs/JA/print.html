@@ -3983,8 +3983,10 @@ foo = import &quot;foo&quot;
 print! foo # &lt;module 'foo'&gt;
 assert foo.i == 1
 </code></pre>
-<p>モジュール型はレコード型でもあるので、分解代入が可能です。</p>
-<pre><code class="language-python">{sin; cos; ...} = import &quot;math&quot;
+<p>モジュール型はレコード型でもあるので、分解代入が可能です。
+モジュールの場合は最後の<code>...</code>を省略できます。</p>
+<pre><code class="language-python"># same as {sin; cos; ...} = import &quot;math&quot;
+{sin; cos} = import &quot;math&quot;
 </code></pre>
 <h2 id="モジュールの可視性"><a class="header" href="#モジュールの可視性">モジュールの可視性</a></h2>
 <p>ファイルだけでなく、ディレクトリもモジュールとなりえます。

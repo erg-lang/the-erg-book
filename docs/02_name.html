@@ -157,9 +157,10 @@ Here we specify that <code>n</code> is a natural number (<code>Nat</code>) type.
 <pre><code class="language-python">n: Nat = 1
 </code></pre>
 <p>Note that, unlike other languages, multiple assignments are not allowed.</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 l1 = l2 = [1, 2, 3] # SyntaxError: multiple assignment not allowed
-# OK
+</code></pre>
+<pre><code class="language-python"># OK
 l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
@@ -178,7 +179,7 @@ if x.is_zero(), do:
 assert x == 0
 </code></pre>
 <p>The following may seem possible at first glance, but it is still not possible. This is a design decision, not a technical constraint.</p>
-<pre><code class="language-python">x = 0
+<pre><code class="language-python compile_fail">x = 0
 if x.is_zero(), do:
     x = x + 1 # NameError: cannot define variables refer to variables with the same name
     assert x == 1
@@ -187,7 +188,7 @@ assert x == 0
 <h2 id="constants"><a class="header" href="#constants">Constants</a></h2>
 <p>Constants are also a type of algebra. If you start an identifier with a capital letter, it is treated as a constant. They are called constants because once defined, they do not change.
 The <code>N</code> part is called the constant name (or identifier). Otherwise, it is the same as a variable.</p>
-<pre><code class="language-python">N = 0
+<pre><code class="language-python compile_fail">N = 0
 if True, do:
     N = 1 # AssignError: constants cannot be shadowed
     pass()
@@ -207,12 +208,13 @@ match! x:
 <p>The above code prints <code>π</code> when <code>x</code> is <code>3.141592653589793</code>. If <code>x</code> is changed to any other number, it prints <code>other</code>.</p>
 <p>Some objects cannot be bound as constants. Mutable objects, for example. Mutable objects are objects whose states can be changed, as described in detail later.
 This is because of the rule that only constant expressions can be assigned to constants. Constant expressions are also discussed later.</p>
-<pre><code class="language-python">X = 1 # OK
-X = !1 # TypeError: cannot define Int! object as a constant
+<pre><code class="language-python compile_fail">X = 1 # OK
+</code></pre>
+<pre><code class="language-python">X = !1 # TypeError: cannot define Int! object as a constant
 </code></pre>
 <h2 id="delete-an-variable"><a class="header" href="#delete-an-variable">Delete an Variable</a></h2>
 <p>You can delete an variable by using the <code>Del</code> function. All other variables that depend on the variable (that is, that refer directly to the value of the variable) are also removed.</p>
-<pre><code class="language-python">x = 1
+<pre><code class="language-python checker_ignore">x = 1
 y = 2
 Z = 3
 f a = x + a
@@ -230,8 +232,8 @@ Del print! # TypeError: cannot delete built-in variables
 <h2 id="appendix-assignment-and-equivalence"><a class="header" href="#appendix-assignment-and-equivalence">Appendix: Assignment and Equivalence</a></h2>
 <p>Note that <code>x == a</code> is not necessarily true when <code>x = a</code>. An example is <code>Float.NaN</code>. This is the formal specification of floating-point numbers as defined by IEEE 754.</p>
 <pre><code class="language-python">x = Float.NaN
-assert x ! = NaN
-assert x ! = x
+assert x != NaN
+assert x != x
 </code></pre>
 <p>There are other objects for which no equivalence relation is defined in the first place.</p>
 <pre><code class="language-python compile_fail">f = x -&gt; x**2 + 2x + 1

@@ -158,7 +158,7 @@ Specify <code>Error</code> in <code>pyimport</code> <code>exception_type</code> 
 <h2 id="exceptions-and-result-types"><a class="header" href="#exceptions-and-result-types">Exceptions and Result types</a></h2>
 <p>The <code>Result</code> type represents values ​​that may be errors. Error handling with <code>Result</code> is superior to the exception mechanism in several ways.
 First of all, it's obvious from the type definition that the subroutine might throw an error, and it's also obvious when you actually use it.</p>
-<pre><code class="language-python"># Python
+<pre><code class="language-python checker_ignore"># Python
 try:
     x = foo().bar()
     y = baz()
@@ -181,7 +181,7 @@ Precisely <code>y</code> could also be of type <code>Result</code>, but you'll h
 <p>The benefits of using the <code>Result</code> type don't stop there. The <code>Result</code> type is also thread-safe. This means that error information can be (easily) passed between parallel executions.</p>
 <h2 id="context"><a class="header" href="#context">Context</a></h2>
 <p>Since the <code>Error</code>/<code>Result</code> type alone does not cause side effects, unlike exceptions, it cannot have information such as the sending location (Context), but if you use the <code>.context</code> method, you can put information in the <code>Error</code> object. can be added. The <code>.context</code> method is a type of method that consumes the <code>Error</code> object itself and creates a new <code>Error</code> object. They are chainable and can hold multiple contexts.</p>
-<pre><code class="language-python">f() =
+<pre><code class="language-python chekcer_ignore">f() =
     todo() \
         .context &quot;to be implemented in ver 1.2&quot; \
         .context &quot;and more hints ...&quot;
@@ -197,7 +197,7 @@ f()
 Therefore, in Erg, the <code>Error</code> object has an attribute called <code>.stack</code>, and reproduces a pseudo-exception mechanism-like stack trace.
 <code>.stack</code> is an array of caller objects. Each time an Error object is <code>returned</code> (including by <code>?</code>) it pushes its calling subroutine onto the <code>.stack</code>.
 And if it is <code>?</code>ed or <code>.unwrap</code>ed in a context where <code>return</code> is not possible, it will panic with a traceback.</p>
-<pre><code class="language-python">f x =
+<pre><code class="language-python checker_ignore">f x =
     ...
     y = foo.try_some(x)?
     ...
@@ -221,8 +221,9 @@ i = g(1)?
 <p>Erg also has a mechanism for dealing with unrecoverable errors called <strong>panicing</strong>.
 An unrecoverable error is an error caused by an external factor such as a software/hardware malfunction, an error so fatal that it makes no sense to continue executing the code, or an error unexpected by the programmer. Etc. If this happens, the program will be terminated immediately, because the programmer's efforts cannot restore normal operation. This is called &quot;panicing&quot;.</p>
 <p>Panic is done with the <code>panic</code> function.</p>
-<pre><code class="language-python">panic &quot;something went wrong!&quot;
+<pre><code class="language-python checker_ignore">panic &quot;something went wrong!&quot;
 </code></pre>
+
 
                     </main>
 

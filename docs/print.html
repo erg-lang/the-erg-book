@@ -163,7 +163,7 @@ There is also a separate <a href="../API/index.html">Standard API</a> and <a hre
 <p>This is almost identical to Python and other languages in the same family. The most striking feature is the <code>!</code>, the meaning of which will be explained later.
 In Erg, parentheses <code>()</code> can be omitted unless there is some confusion in interpretation.
 The omission of parentheses is similar to Ruby, but it is not possible to omit parentheses that can be interpreted in more than one way.</p>
-<pre><code class="language-python">print! &quot;Hello, World!&quot; # OK
+<pre><code class="language-python checker_ignore">print! &quot;Hello, World!&quot; # OK
 print! &quot;Hello,&quot;, &quot;World!&quot; # OK
 print!() # OK
 print! # OK, but this does not mean to call, simply to get `print!` as a callable object
@@ -202,7 +202,7 @@ hello, world!
 # `#` and after are ignored until a new line is inserted
 #[
 Multi-line comment
-Treated as a comment all the way up to the corresponding `]#`
+Everything from `#[` to `]#` is a comment.
 ]#
 </code></pre>
 <h2 id="expressions-separators"><a class="header" href="#expressions-separators">Expressions, separators</a></h2>
@@ -210,6 +210,7 @@ Treated as a comment all the way up to the corresponding `]#`
 Each expression is separated by a separator - either a new line or a semicolon <code>;</code>-.
 Erg scripts are basically evaluated from left to right, top to bottom.</p>
 <pre><code class="language-python">n = 1 # assignment expression
+f x, y = x + y # function definition
 f(1, 2) # function-call expression
 1 + 1 # operator-call expression
 f(1, 2); 1 + 1
@@ -351,9 +352,10 @@ Here we specify that <code>n</code> is a natural number (<code>Nat</code>) type.
 <pre><code class="language-python">n: Nat = 1
 </code></pre>
 <p>Note that, unlike other languages, multiple assignments are not allowed.</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 l1 = l2 = [1, 2, 3] # SyntaxError: multiple assignment not allowed
-# OK
+</code></pre>
+<pre><code class="language-python"># OK
 l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
@@ -372,7 +374,7 @@ if x.is_zero(), do:
 assert x == 0
 </code></pre>
 <p>The following may seem possible at first glance, but it is still not possible. This is a design decision, not a technical constraint.</p>
-<pre><code class="language-python">x = 0
+<pre><code class="language-python compile_fail">x = 0
 if x.is_zero(), do:
     x = x + 1 # NameError: cannot define variables refer to variables with the same name
     assert x == 1
@@ -381,7 +383,7 @@ assert x == 0
 <h2 id="constants"><a class="header" href="#constants">Constants</a></h2>
 <p>Constants are also a type of algebra. If you start an identifier with a capital letter, it is treated as a constant. They are called constants because once defined, they do not change.
 The <code>N</code> part is called the constant name (or identifier). Otherwise, it is the same as a variable.</p>
-<pre><code class="language-python">N = 0
+<pre><code class="language-python compile_fail">N = 0
 if True, do:
     N = 1 # AssignError: constants cannot be shadowed
     pass()
@@ -401,12 +403,13 @@ match! x:
 <p>The above code prints <code>π</code> when <code>x</code> is <code>3.141592653589793</code>. If <code>x</code> is changed to any other number, it prints <code>other</code>.</p>
 <p>Some objects cannot be bound as constants. Mutable objects, for example. Mutable objects are objects whose states can be changed, as described in detail later.
 This is because of the rule that only constant expressions can be assigned to constants. Constant expressions are also discussed later.</p>
-<pre><code class="language-python">X = 1 # OK
-X = !1 # TypeError: cannot define Int! object as a constant
+<pre><code class="language-python compile_fail">X = 1 # OK
+</code></pre>
+<pre><code class="language-python">X = !1 # TypeError: cannot define Int! object as a constant
 </code></pre>
 <h2 id="delete-an-variable"><a class="header" href="#delete-an-variable">Delete an Variable</a></h2>
 <p>You can delete an variable by using the <code>Del</code> function. All other variables that depend on the variable (that is, that refer directly to the value of the variable) are also removed.</p>
-<pre><code class="language-python">x = 1
+<pre><code class="language-python checker_ignore">x = 1
 y = 2
 Z = 3
 f a = x + a
@@ -424,8 +427,8 @@ Del print! # TypeError: cannot delete built-in variables
 <h2 id="appendix-assignment-and-equivalence"><a class="header" href="#appendix-assignment-and-equivalence">Appendix: Assignment and Equivalence</a></h2>
 <p>Note that <code>x == a</code> is not necessarily true when <code>x = a</code>. An example is <code>Float.NaN</code>. This is the formal specification of floating-point numbers as defined by IEEE 754.</p>
 <pre><code class="language-python">x = Float.NaN
-assert x ! = NaN
-assert x ! = x
+assert x != NaN
+assert x != x
 </code></pre>
 <p>There are other objects for which no equivalence relation is defined in the first place.</p>
 <pre><code class="language-python compile_fail">f = x -&gt; x**2 + 2x + 1
@@ -467,22 +470,24 @@ i: Int # this will pass
 i: Nat # this will not pass (-1 is not an element of Nat)
 </code></pre>
 <p>Functions can be declared in 2 different ways.</p>
-<pre><code class="language-python">f: (x: Int, y: Int) -&gt; Int
+<pre><code class="language-python checker_ignore">f: (x: Int, y: Int) -&gt; Int
 f: (Int, Int) -&gt; Int
 </code></pre>
 <p>If you declare the argument names explicitly, a type error will result if the names are different at definition time. If you want to give the argument names arbitrary names, you can declare them in the second way. In that case, only the method name and its type will be seen by type checking.</p>
-<pre><code class="language-python">T = Trait {
+<pre><code class="language-python compile_fail">T = Trait {
     .f = (x: Int, y: Int): Int
 }
 
-C = Class(U, Impl := T)
-C.f(a: Int, b: Int): Int = ... # TypeError: `.f` must be type of `(x: Int, y: Int) -&gt; Int`, not `(a: Int, b: Int) -&gt; Int`
+C = Class()
+C|&lt;: T|.
+    f(a: Int, b: Int): Int = ... # TypeError: `.f` must be type of `(x: Int, y: Int) -&gt; Int`, not `(a: Int, b: Int) -&gt; Int`
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="function"><a class="header" href="#function">Function</a></h1>
 <p>A function is a block that takes an &quot;argument&quot;, processes it, and returns it as a &quot;return value&quot;. It is defined as follows.</p>
 <pre><code class="language-python">add x, y = x + y
-# or
+</code></pre>
+<pre><code class="language-python"># or
 add(x, y) = x + y
 </code></pre>
 <p>The names specified after a function name are called parameters.
@@ -495,9 +500,9 @@ add(1, 2)
 </code></pre>
 <h2 id="colon-application-style"><a class="header" href="#colon-application-style">Colon application style</a></h2>
 <p>Functions are invoked like <code>f x, y, ...</code>, but if there are too many arguments for a single line, they can be applied using <code>:</code> (colon).</p>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2:
     some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <p>Codes above mean the same thing. This style is also useful when using <code>if</code> functions, for example.</p>
@@ -511,12 +516,12 @@ add(1, 2)
 </code></pre>
 <p>After <code>:</code>, no code other than comments may be written, and must always be on a new line.
 Also, you cannot use <code>:</code> immediately after a function. Only <code>do</code> and <code>do!</code> can do this.</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 f:
     x
     y
-
-# Ok
+</code></pre>
+<pre><code class="language-python checker_ignore"># Ok
 f(
     x,
     y
@@ -528,7 +533,7 @@ In such cases, it is safe to call the function using keyword arguments.</p>
 <pre><code class="language-python">f x, y, z, w, v, u: Int = ...
 </code></pre>
 <p>The functions defined above have many arguments and are arranged in a confusing order. You should not create such a function, but you may encounter such code when using code written by others. Therefore, we use keyword arguments. If you use keyword arguments, the values are passed from the name to the correct argument, even if they are in the wrong order.</p>
-<pre><code class="language-python">f u := 6, v := 5, w:= 4, x := 1, y := 2, z := 3
+<pre><code class="language-python checker_ignore">f u := 6, v := 5, w:= 4, x := 1, y := 2, z := 3
 </code></pre>
 <h2 id="default-parameters"><a class="header" href="#default-parameters">Default parameters</a></h2>
 <p>Default parameters are used when some parameters are mostly fixed and you want to be able to omit them.</p>
@@ -549,10 +554,10 @@ p!(None) # None
 f [x, y] := [1, 2] = ...
 </code></pre>
 <p>However, within the default arguments, it is not possible to call the procedures (described later) or assign mutable objects.</p>
-<pre><code class="language-python">f x := p! 1 = ... # NG
+<pre><code class="language-python compile_fail">f x := p! 1 = ... # NG
 </code></pre>
 <p>Also, the argument just defined cannot be used as the value passed to the default argument.</p>
-<pre><code class="language-python">f x := 1, y := x = ... # NG
+<pre><code class="language-python compile_fail">f x := 1, y := x = ... # NG
 </code></pre>
 <h2 id="variable-length-arguments"><a class="header" href="#variable-length-arguments">Variable-length arguments</a></h2>
 <p>The <code>log</code> function, which outputs a log (record) of its arguments, can take any number of arguments.</p>
@@ -630,8 +635,8 @@ assert Add(1, 2) == 3
 Factorial 0 = 1
 Factorial(X: Nat): Nat = X * Factorial(X - 1)
 assert Factorial(10) == 3628800
-
-math = import &quot;math&quot;
+</code></pre>
+<pre><code class="language-python compile_fail">math = import &quot;math&quot;
 Sin X = math.sin X # ConstantError: this function is not computable at compile time
 </code></pre>
 <p>Compile-time functions are also used in polymorphic type definitions.</p>
@@ -640,20 +645,20 @@ Option: Type -&gt; Type
 </code></pre>
 <h2 id="appendix-function-comparison"><a class="header" href="#appendix-function-comparison">Appendix: Function Comparison</a></h2>
 <p>Erg does not define <code>==</code> for functions. This is because there is no structural equivalence algorithm for functions in general.</p>
-<pre><code class="language-python">f = x: Int -&gt; (x + 1)**2
+<pre><code class="language-python compile_fail">f = x: Int -&gt; (x + 1)**2
 g = x: Int -&gt; x**2 + 2x + 1
 
 assert f == g # TypeError: cannot compare functions
 </code></pre>
 <p>Although <code>f</code> and <code>g</code> always return the same result, it is extremely difficult to make that determination. We have to teach algebra to the compiler.
 So Erg gives up on function comparisons entirely, and <code>(x -&gt; x) == (x -&gt; x)</code> also results in a compile error. This is a different specification from Python and should be noted.</p>
-<pre><code class="language-python"># Python, weird example
+<pre><code class="language-python checker_ignore"># Python, weird example
 f = lambda x: x
 assert f == f
 assert (lambda x: x) ! = (lambda x: x)
 </code></pre>
 <h2 id="appendix2--completion"><a class="header" href="#appendix2--completion">Appendix2: ()-completion</a></h2>
-<pre><code class="language-python">f x: Object = ...
+<pre><code class="language-python checker_ignore">f x: Object = ...
 # will be completed to
 f(x: Object) = ...
 
@@ -703,13 +708,14 @@ print! result # 1 (or 0)
 <p>Operators are symbols that represent operations. Operands are things to the (left) right of an operator.</p>
 <p>Operators are a kind of function, and thus are themselves first-class objects that can be bound to variables. When binding, it is necessary to enclose it with ``.
 For <code>+</code> (and <code>-</code>), there are both unary and binary operators, so <code>_+_</code>(binary operation)/<code>+_</code>(unary operation ) must be specified.</p>
-<pre><code class="language-python">add = `+` # SyntaxError: specify `_+_` or `+_`
-add=`_+_`
-assert f(1, 2) == 3
-assert f(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
+<pre><code class="language-python compile_fail">add = `+` # SyntaxError: specify `_+_` or `+_`
+</code></pre>
+<pre><code class="language-python">add = `_+_`
+assert add(1, 2) == 3
+assert add(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
 
-g = `*` # OK, this is binary only
-assert g(1, 2) == 2
+mul = `*` # OK, this is binary only
+assert mul(1, 2) == 2
 </code></pre>
 <p>Some fundamental operators, called special forms, cannot be bound.</p>
 <pre><code class="language-python compile_fail">def = `=` # SyntaxError: cannot bind `=` operator, this is a special form
@@ -743,7 +749,7 @@ n # ValueError: n was moved by .into (line 2)
 </code></pre>
 <p>Only one procedural methods can have a mutable reference at any given time. In addition, while a mutable reference is taken, no more mutable reference can be taken from the original object. In this sense, <code>ref!</code> causes a side-effect on <code>self</code>.</p>
 <p>Note, however, that it is possible to create (immutable/mutable) references from mutable references. This allows recursion and <code>print!</code> of <code>self</code> in procedural methods.</p>
-<pre><code class="language-python">T -&gt; T # OK (move)
+<pre><code class="language-python checker_ignore">T -&gt; T # OK (move)
 T -&gt; Ref T # OK (move)
 T =&gt; Ref! T # OK (only once)
 Ref T -&gt; T # NG
@@ -764,7 +770,7 @@ There are procedures that for any given <code>x</code> will result in <code>p!(x
 assert nan(1) ! = nan(1)
 </code></pre>
 <p>There are also objects, such as classes, for which equivalence determination itself is not possible.</p>
-<pre><code class="language-python">T = Structural {i = Int}
+<pre><code class="language-python checker_ignore">T = Structural {i = Int}
 U = Structural {i = Int}
 assert T == U
 
@@ -864,9 +870,10 @@ assert t.2 == &quot;a&quot;
 i, b, s = t
 </code></pre>
 <p>Tuples can hold objects of different types, so they cannot be iterated like arrays.</p>
-<pre><code class="language-python">t: ({1}, {2}, {3}) = (1, 2, 3)
+<pre><code class="language-python compile_fail">t: ({1}, {2}, {3}) = (1, 2, 3)
 (1, 2, 3).iter().map(x -&gt; x + 1) # TypeError: type ({1}, {2}, {3}) has no method `.iter()`
-# If all types are the same, they can be represented by `(T; n)` like arrays, but this still does not allow iteration
+</code></pre>
+<pre><code class="language-python"># If all types are the same, they can be represented by `(T; n)` like arrays, but this still does not allow iteration
 t: (Int; 3) = (1, 2, 3)
 assert (Int; 3) == (Int, Int, Int)
 </code></pre>
@@ -964,15 +971,15 @@ This is because access to the value is determined at compile-time, and because d
 So how should we use dictionaries and records?
 In general, we recommend using records. Records have the advantages of being checked at compile-time for the existence of elements and of being able to specify _<em>visibility</em>.
 Specifying visibility is equivalent to specifying public/private in Java and other languages. For details, see <a href="./19_visibility.html">visibility</a> for details.</p>
-<pre><code class="language-python">a = {x = 1; .y = x + 1}
+<pre><code class="language-python compile_fail">a = {x = 1; .y = x + 1}
+assert a.y == 2
 a.x # AttributeError: x is private
 # Hint: declare as `.x`.
-assert a.y == 2
 </code></pre>
 <p>The above example may seem strange to someone familiar with JavaScript, but simply declaring <code>x</code> makes it inaccessible from the outside. <code>. </code>. `.</p>
 <p>You can also explicitly specify the type of an attribute.</p>
 <pre><code class="language-python">anonymous = {
-    .name: Option! Str = !
+    .name: Option! Str = !&quot;&quot;
     .age = 20
 }
 anonymous.name.set! &quot;John&quot;
@@ -1077,24 +1084,24 @@ y =
 <h2 id="data-class"><a class="header" href="#data-class">Data Class</a></h2>
 <p>A bare record (a record generated by a record literal) must be defined directly in the instance if you try to implement a method on its own.
 This is inefficient, and as the number of attributes increases, error messages and the like become difficult to see and use.</p>
-<pre><code class="language-python">john = {
+<pre><code class="language-python compile_fail">john = {
     name = &quot;John Smith&quot;
     age = !20
     .greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     .inc_age! ref! self = self::age.update! x -&gt; x + 1
 }
-john + 1
+print! john + 1
 # TypeError: + is not implemented for {name = Str; age = Int; .greet! = Ref(Self). () =&gt; None; inc_age! = Ref! () =&gt; None}, Int
 </code></pre>
 <p>So, in such a case, you can inherit a record class. Such a class is called a data class.
 This is described in <a href="./type/04_class.html">class</a>.</p>
-<pre><code class="language-python">Person = Inherit {name = Str; age = Nat}
+<pre><code class="language-python checker_ignore">Person = Inherit {name = Str; age = Nat}
 Person.
     greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     inc_age! ref! self = self::age.update! x -&gt; x + 1
 
 john = Person.new {name = &quot;John Smith&quot;; age = 20}
-john + 1
+print! john + 1
 # TypeError: + is not implemented for Person, Int
 </code></pre>
 
@@ -1144,6 +1151,7 @@ mut_set.insert!(4)
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">types</a></h1>
 <p>Types are a very important feature in Erg, so we have a <a href="./type/01_type_system.html">dedicated section</a>. Please see there.</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ergs-type-system"><a class="header" href="#ergs-type-system">Erg's Type System</a></h1>
 <p>The following is a brief description of Erg's type system. Details are explained in other sections.</p>
 <h2 id="how-to-define"><a class="header" href="#how-to-define">How to define</a></h2>
@@ -3328,7 +3336,7 @@ $normal_area.push!(VIPMember.new()) # OK
     print! i
 </code></pre>
 <p>This code prints the numbers 0 through 9.
-Each number (=Int object) is assigned to <code>i</code> and the following operation (=`print! i``) is executed. This kind of repetitive execution is called <strong>iteration</strong>.</p>
+Each number (=Int object) is assigned to <code>i</code> and the following operation (=<code>print! i</code>) is executed. This kind of repetitive execution is called <strong>iteration</strong>.</p>
 <p>Now let's look at the type signature of the <code>for!</code> procedure.</p>
 <pre><code class="language-python">for!: |T: Type, I &lt;: Iterable T| (I, T =&gt; None) =&gt; None
 </code></pre>
@@ -3503,9 +3511,7 @@ sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 
 x = [1, 2, 3].into [Int; !3]
 x.push!(4)
-i = x.iter() # TypeError: [Int; !4] has no method `iter`
-y = x.freeze()
-i = y.iter()
+i = x.iter()
 assert sum(i) == 10
 y # y can still be touched
 </code></pre>
@@ -3537,6 +3543,7 @@ This means that you cannot stuff references into arrays or create classes with r
 <p>However, such restrictions are a natural specification in languages ​​without references in the first place, and they are not so inconvenient.</p>
 <h2 id="circular-references"><a class="header" href="#circular-references">circular references</a></h2>
 <p>Erg is designed to prevent unintentional memory leaks, and will issue an error if the memory checker detects a circular reference. In most cases, this error can be resolved with a weak reference <code>Weak</code>. However, since it is not possible to generate objects with circular structures such as cyclic graphs, we plan to implement an API that can generate circular references as unsafe operations.</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="visibility"><a class="header" href="#visibility">Visibility</a></h1>
 <p>Erg variables have the concept of <strong>visibility</strong>.
 All the variables we've seen so far are called <strong>private variables</strong>. This is an externally invisible variable.
@@ -3553,7 +3560,7 @@ Public variables are defined with <code>.</code>.</p>
 <pre><code class="language-python"># foo.er
 .x = &quot;this is a visible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 assert foo.x == &quot;this is a visible variable&quot;
 </code></pre>
@@ -3604,14 +3611,14 @@ C.
 .Foo = Class()
 </code></pre>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 Foo::
     private self = pass
 Foo.
     public self = self::private()
-
-.f() =
+</code></pre>
+<pre><code class="language-python compile_fail">.f() =
     foo = Foo.new()
     foo.public()
     foo::private() # AttributeError
@@ -3619,8 +3626,8 @@ Foo.
 <p>However, both of those methods are only available within that module.
 Private methods defined externally are visible to methods of the <code>Foo</code> class only within the defining module.
 Public methods are exposed outside the class, but not outside the module.</p>
-<pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
+<pre><code class="language-python compile_fail"># baz.er
+{Foo;} = import &quot;foo&quot;
 
 foo = Foo.new()
 foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defined in module 'bar')
@@ -3628,7 +3635,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 <p>Also, methods cannot be defined in the type to be re-exported.
 This is to avoid confusion about methods being found or not found depending on the module they are imported from.</p>
 <pre><code class="language-python compile_fail"># bar.er
-{.Foo; ...} = import &quot;foo&quot;
+{.Foo;} = import &quot;foo&quot;
 
 .Foo::
     private self = pass # Error
@@ -3637,7 +3644,7 @@ Foo.
 </code></pre>
 <p>If you want to do something like this, define a <a href="./type/07_patch.html">patch</a>.</p>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 FooImpl = Patch Foo
 FooImpl :=:
@@ -3646,8 +3653,8 @@ Foo Impl.
     public self = self::private()
 </code></pre>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
-{FooImpl; ...} = import &quot;bar&quot;
+{Foo;} = import &quot;foo&quot;
+{FooImpl;} = import &quot;bar&quot;
 
 foo = Foo.new()
 foo.public()
@@ -3655,7 +3662,7 @@ foo.public()
 <h2 id="restricted-public-variables"><a class="header" href="#restricted-public-variables">restricted public variables</a></h2>
 <p>Variable visibility is not limited to complete public/private.
 You can also publish with restrictions.</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 .record = {
     .a = {
         .(.record)x = 0
@@ -3671,11 +3678,12 @@ _ = .record.a.x # VisibilityError
 _ = .record.a.y # OK
 _ = .record.a.z # OK
 </code></pre>
-<pre><code class="language-python">foo = import &quot;foo&quot;
+<pre><code class="language-python checker_ignore">foo = import &quot;foo&quot;
 _ = foo.record.a.x # VisibilityError
 _ = foo.record.a.y # VisibilityError
 _ = foo.record.a.z # OK
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="naming-convention"><a class="header" href="#naming-convention">Naming convention</a></h1>
 <p>If you want to use a variable as a constant expression, make sure it starts with a capital letter. Two or more letters may be lowercase.</p>
 <pre><code class="language-python">i: Option Type = Int
@@ -3769,28 +3777,29 @@ match res2:
 <pre><code class="language-python"># same as id|T| x: T = x
 id = |T| x: T -&gt; x
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subroutine-signatures"><a class="header" href="#subroutine-signatures">Subroutine Signatures</a></h1>
 <h2 id="func"><a class="header" href="#func">Func</a></h2>
-<pre><code class="language-python">some_func(x: T, y: U) -&gt; V
+<pre><code class="language-python checker_ignore">some_func(x: T, y: U) -&gt; V
 some_func: (T, U) -&gt; V
 </code></pre>
 <h2 id="proc"><a class="header" href="#proc">Proc</a></h2>
-<pre><code class="language-python">some_proc!(x: T, y: U) =&gt; V
+<pre><code class="language-python checker_ignore">some_proc!(x: T, y: U) =&gt; V
 some_proc!: (T, U) =&gt; V
 </code></pre>
 <h2 id="func-method"><a class="header" href="#func-method">Func Method</a></h2>
 <p>The method type cannot be specified externally with <code>Self</code>.</p>
-<pre><code class="language-python">.some_method(self, x: T, y: U) =&gt; ()
+<pre><code class="language-python checker_ignore">.some_method(self, x: T, y: U) =&gt; ()
 # Self.(T, U) =&gt; () takes ownership of self
 .some_method: (Ref(Self), T, U) =&gt; ()
 </code></pre>
 <h2 id="proc-method-dependent"><a class="header" href="#proc-method-dependent">Proc Method (dependent)</a></h2>
 <p>In the following, assume that the type <code>T!</code> takes the type argument <code>N: Nat</code>. To specify it externally, use a type variable.</p>
-<pre><code class="language-python">T!: Nat -&gt; Type
+<pre><code class="language-python checker_ignore">K!: Nat -&gt; Type
 # ~&gt; indicates the state of the type argument before and after application (in this case, self must be a variable reference)
-T!(N).some_method!: (Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
+K!(N).some_method!: (Ref!(K! N ~&gt; N+X), X: Nat) =&gt; ()
 </code></pre>
-<p>As a note, the type of <code>.some_method</code> is <code>|N, X: Nat| (Ref!(T N ~&gt; N+X), {X}) =&gt; ()</code>.
+<p>As a note, the type of <code>.some_method</code> is <code>|N, X: Nat| (Ref!(K! N ~&gt; N+X), {X}) =&gt; ()</code>.
 For methods that do not have <code>ref!</code>, i.e., are deprived of ownership after application, the type argument transition (<code>~&gt;</code>) cannot be used.</p>
 <p>If ownership is taken, it is as follows.</p>
 <pre><code class="language-python"># If you don't use N, you can omit it with _.
@@ -3849,7 +3858,7 @@ for! 1..10, i =&gt;
 assert sum == 45
 </code></pre>
 <p>The equivalent program above can be written in Python as follows:</p>
-<pre><code class="language-python"># Python
+<pre><code class="language-python checker_ignore"># Python
 sum = 0
 for i in range(1, 10):
     sum += i
@@ -3870,6 +3879,7 @@ sum = (1..10).fold(init: 0, f: (acc, i) -&gt; acc + i)
 assert sum == 45
 </code></pre>
 <p>Erg is designed to be a natural succinct description of programming with immutable objects.</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="module"><a class="header" href="#module">module</a></h1>
 <p>Erg allows you to think of the file itself as a single record. This is called a module.</p>
 <pre><code class="language-python:foo.er"># foo.er
@@ -3878,13 +3888,15 @@ assert sum == 45
 <pre><code class="language-python"># Defining the foo module is almost the same as defining this record
 foo = {.i = 1}
 </code></pre>
-<pre><code class="language-python:bar.er"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 print! foo # &lt;module 'foo'&gt;
 assert foo.i == 1
 </code></pre>
-<p>Since module types are also record types, deconstruction assignment is possible.</p>
-<pre><code class="language-python">{sin; cos; ...} = import &quot;math&quot;
+<p>Since module types are also record types, deconstruction assignment is possible.
+For modules, you can omit the trailing <code>...</code>.</p>
+<pre><code class="language-python"># same as {sin; cos; ...} = import &quot;math&quot;
+{sin; cos} = import &quot;math&quot;
 </code></pre>
 <h2 id="module-visibility"><a class="header" href="#module-visibility">Module Visibility</a></h2>
 <p>Directories as well as files can be modules.
@@ -3934,7 +3946,7 @@ print! foo.f 1
 </code></pre>
 <p>However, variables created by procedure calls cannot be defined in circular reference modules.
 This is because Erg rearranges the order of definitions according to dependencies.</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python compile_fail"># foo.er
 bar = import &quot;bar&quot;
 
 print! bar.x
@@ -4054,7 +4066,7 @@ name = match num:
     _ -&gt; &quot;unnamed&quot;
 </code></pre>
 <h3 id="refinement-pattern-1"><a class="header" href="#refinement-pattern-1">Refinement pattern</a></h3>
-<pre><code class="language-python"># these two are the same
+<pre><code class="language-python checker_ignore"># these two are the same
 Array(T, N: {N | N &gt;= 3})
 Array(T, N | N &gt;= 3)
 
@@ -4214,15 +4226,16 @@ assert y == (2, 3)
 {*} = records
 assert x == 1 and y == 2
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="decorator-modifier"><a class="header" href="#decorator-modifier">decorator (modifier)</a></h1>
 <p>Decorators are used to add or demonstrate a particular state or behavior to a type or function.
 The syntax of the decorator is as follows.</p>
 <pre><code class="language-python">@deco
-X=...
+X = ...
 </code></pre>
 <p>You can have multiple decorators as long as they don't conflict.</p>
 <p>A decorator is not a special object, it's just a one-argument function. The decorator is equivalent to the following pseudocode.</p>
-<pre><code class="language-python">X=...
+<pre><code class="language-python">X = ...
 X = deco(X)
 </code></pre>
 <p>Erg doesn't allow reassignment of variables, so code like the one above won't work.
@@ -4285,7 +4298,7 @@ assert Odd.AddO == Even
 </code></pre>
 <p>Internally it's just attached using the trait's <code>.attach</code> method. Conflicts can be removed with the trait's <code>.detach</code> method.</p>
 <pre><code class="language-python">@Attach X
-T = Trait...
+T = Trait ...
 assert X in T. attaches
 U = T.detach(X).attach(Y)
 assert X not in U. attaches
@@ -4295,6 +4308,7 @@ assert Y in U. attaches
 <p>Indicates that the variable specification is obsolete and deprecated.</p>
 <h2 id="test"><a class="header" href="#test">Test</a></h2>
 <p>Indicates that this is a test subroutine. Test subroutines are run with the <code>erg test</code> command.</p>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="error-handling-system"><a class="header" href="#error-handling-system">error handling system</a></h1>
 <p>Mainly use Result type.
 In Erg, an error occurs if you throw away an Error type object (not supported at the top level).</p>
@@ -4309,7 +4323,7 @@ Specify <code>Error</code> in <code>pyimport</code> <code>exception_type</code> 
 <h2 id="exceptions-and-result-types"><a class="header" href="#exceptions-and-result-types">Exceptions and Result types</a></h2>
 <p>The <code>Result</code> type represents values ​​that may be errors. Error handling with <code>Result</code> is superior to the exception mechanism in several ways.
 First of all, it's obvious from the type definition that the subroutine might throw an error, and it's also obvious when you actually use it.</p>
-<pre><code class="language-python"># Python
+<pre><code class="language-python checker_ignore"># Python
 try:
     x = foo().bar()
     y = baz()
@@ -4332,7 +4346,7 @@ Precisely <code>y</code> could also be of type <code>Result</code>, but you'll h
 <p>The benefits of using the <code>Result</code> type don't stop there. The <code>Result</code> type is also thread-safe. This means that error information can be (easily) passed between parallel executions.</p>
 <h2 id="context"><a class="header" href="#context">Context</a></h2>
 <p>Since the <code>Error</code>/<code>Result</code> type alone does not cause side effects, unlike exceptions, it cannot have information such as the sending location (Context), but if you use the <code>.context</code> method, you can put information in the <code>Error</code> object. can be added. The <code>.context</code> method is a type of method that consumes the <code>Error</code> object itself and creates a new <code>Error</code> object. They are chainable and can hold multiple contexts.</p>
-<pre><code class="language-python">f() =
+<pre><code class="language-python chekcer_ignore">f() =
     todo() \
         .context &quot;to be implemented in ver 1.2&quot; \
         .context &quot;and more hints ...&quot;
@@ -4348,7 +4362,7 @@ f()
 Therefore, in Erg, the <code>Error</code> object has an attribute called <code>.stack</code>, and reproduces a pseudo-exception mechanism-like stack trace.
 <code>.stack</code> is an array of caller objects. Each time an Error object is <code>returned</code> (including by <code>?</code>) it pushes its calling subroutine onto the <code>.stack</code>.
 And if it is <code>?</code>ed or <code>.unwrap</code>ed in a context where <code>return</code> is not possible, it will panic with a traceback.</p>
-<pre><code class="language-python">f x =
+<pre><code class="language-python checker_ignore">f x =
     ...
     y = foo.try_some(x)?
     ...
@@ -4372,8 +4386,9 @@ i = g(1)?
 <p>Erg also has a mechanism for dealing with unrecoverable errors called <strong>panicing</strong>.
 An unrecoverable error is an error caused by an external factor such as a software/hardware malfunction, an error so fatal that it makes no sense to continue executing the code, or an error unexpected by the programmer. Etc. If this happens, the program will be terminated immediately, because the programmer's efforts cannot restore normal operation. This is called &quot;panicing&quot;.</p>
 <p>Panic is done with the <code>panic</code> function.</p>
-<pre><code class="language-python">panic &quot;something went wrong!&quot;
+<pre><code class="language-python checker_ignore">panic &quot;something went wrong!&quot;
 </code></pre>
+
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pipeline-operator"><a class="header" href="#pipeline-operator">pipeline operator</a></h1>
 <p>Pipeline operators are used like this:</p>
 <pre><code class="language-python">assert f(g(x)) == (x |&gt; g |&gt; f())
@@ -4407,7 +4422,7 @@ private = &quot;this is a private variable&quot;
 </code></pre>
 <pre><code class="language-console">erg --compile foo.er
 </code></pre>
-<pre><code class="language-python">import foo
+<pre><code class="language-python checker_ignore">import foo
 
 print(foo.public)
 print(foo.private) # AttributeError:
@@ -4506,7 +4521,7 @@ main args =
 <pre><code class="language-python"># __init__.py
 .qux = import &quot;qux&quot; # this is public
 </code></pre>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 bar = import &quot;bar&quot;
 bar.qux
 bar.baz # AttributeError: module 'baz' is private

@@ -188,7 +188,7 @@ for! 1..10, i =&gt;
 assert sum == 45
 </code></pre>
 <p>The equivalent program above can be written in Python as follows:</p>
-<pre><code class="language-python"># Python
+<pre><code class="language-python checker_ignore"># Python
 sum = 0
 for i in range(1, 10):
     sum += i
@@ -209,6 +209,7 @@ sum = (1..10).fold(init: 0, f: (acc, i) -&gt; acc + i)
 assert sum == 45
 </code></pre>
 <p>Erg is designed to be a natural succinct description of programming with immutable objects.</p>
+
 
                     </main>
 

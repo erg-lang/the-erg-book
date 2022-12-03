@@ -148,13 +148,14 @@
 <p>Operators are symbols that represent operations. Operands are things to the (left) right of an operator.</p>
 <p>Operators are a kind of function, and thus are themselves first-class objects that can be bound to variables. When binding, it is necessary to enclose it with ``.
 For <code>+</code> (and <code>-</code>), there are both unary and binary operators, so <code>_+_</code>(binary operation)/<code>+_</code>(unary operation ) must be specified.</p>
-<pre><code class="language-python">add = `+` # SyntaxError: specify `_+_` or `+_`
-add=`_+_`
-assert f(1, 2) == 3
-assert f(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
+<pre><code class="language-python compile_fail">add = `+` # SyntaxError: specify `_+_` or `+_`
+</code></pre>
+<pre><code class="language-python">add = `_+_`
+assert add(1, 2) == 3
+assert add(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
 
-g = `*` # OK, this is binary only
-assert g(1, 2) == 2
+mul = `*` # OK, this is binary only
+assert mul(1, 2) == 2
 </code></pre>
 <p>Some fundamental operators, called special forms, cannot be bound.</p>
 <pre><code class="language-python compile_fail">def = `=` # SyntaxError: cannot bind `=` operator, this is a special form

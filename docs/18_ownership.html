@@ -188,9 +188,7 @@ sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 
 x = [1, 2, 3].into [Int; !3]
 x.push!(4)
-i = x.iter() # TypeError: [Int; !4] has no method `iter`
-y = x.freeze()
-i = y.iter()
+i = x.iter()
 assert sum(i) == 10
 y # y can still be touched
 </code></pre>
@@ -222,6 +220,7 @@ This means that you cannot stuff references into arrays or create classes with r
 <p>However, such restrictions are a natural specification in languages ​​without references in the first place, and they are not so inconvenient.</p>
 <h2 id="circular-references"><a class="header" href="#circular-references">circular references</a></h2>
 <p>Erg is designed to prevent unintentional memory leaks, and will issue an error if the memory checker detects a circular reference. In most cases, this error can be resolved with a weak reference <code>Weak</code>. However, since it is not possible to generate objects with circular structures such as cyclic graphs, we plan to implement an API that can generate circular references as unsafe operations.</p>
+
 
                     </main>
 

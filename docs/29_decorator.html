@@ -148,11 +148,11 @@
 <p>Decorators are used to add or demonstrate a particular state or behavior to a type or function.
 The syntax of the decorator is as follows.</p>
 <pre><code class="language-python">@deco
-X=...
+X = ...
 </code></pre>
 <p>You can have multiple decorators as long as they don't conflict.</p>
 <p>A decorator is not a special object, it's just a one-argument function. The decorator is equivalent to the following pseudocode.</p>
-<pre><code class="language-python">X=...
+<pre><code class="language-python">X = ...
 X = deco(X)
 </code></pre>
 <p>Erg doesn't allow reassignment of variables, so code like the one above won't work.
@@ -215,7 +215,7 @@ assert Odd.AddO == Even
 </code></pre>
 <p>Internally it's just attached using the trait's <code>.attach</code> method. Conflicts can be removed with the trait's <code>.detach</code> method.</p>
 <pre><code class="language-python">@Attach X
-T = Trait...
+T = Trait ...
 assert X in T. attaches
 U = T.detach(X).attach(Y)
 assert X not in U. attaches
@@ -225,6 +225,7 @@ assert Y in U. attaches
 <p>Indicates that the variable specification is obsolete and deprecated.</p>
 <h2 id="test"><a class="header" href="#test">Test</a></h2>
 <p>Indicates that this is a test subroutine. Test subroutines are run with the <code>erg test</code> command.</p>
+
 
                     </main>
 

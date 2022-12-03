@@ -160,7 +160,7 @@ Public variables are defined with <code>.</code>.</p>
 <pre><code class="language-python"># foo.er
 .x = &quot;this is a visible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 assert foo.x == &quot;this is a visible variable&quot;
 </code></pre>
@@ -211,14 +211,14 @@ C.
 .Foo = Class()
 </code></pre>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 Foo::
     private self = pass
 Foo.
     public self = self::private()
-
-.f() =
+</code></pre>
+<pre><code class="language-python compile_fail">.f() =
     foo = Foo.new()
     foo.public()
     foo::private() # AttributeError
@@ -226,8 +226,8 @@ Foo.
 <p>However, both of those methods are only available within that module.
 Private methods defined externally are visible to methods of the <code>Foo</code> class only within the defining module.
 Public methods are exposed outside the class, but not outside the module.</p>
-<pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
+<pre><code class="language-python compile_fail"># baz.er
+{Foo;} = import &quot;foo&quot;
 
 foo = Foo.new()
 foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defined in module 'bar')
@@ -235,7 +235,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 <p>Also, methods cannot be defined in the type to be re-exported.
 This is to avoid confusion about methods being found or not found depending on the module they are imported from.</p>
 <pre><code class="language-python compile_fail"># bar.er
-{.Foo; ...} = import &quot;foo&quot;
+{.Foo;} = import &quot;foo&quot;
 
 .Foo::
     private self = pass # Error
@@ -244,7 +244,7 @@ Foo.
 </code></pre>
 <p>If you want to do something like this, define a <a href="./type/07_patch.html">patch</a>.</p>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 FooImpl = Patch Foo
 FooImpl :=:
@@ -253,8 +253,8 @@ Foo Impl.
     public self = self::private()
 </code></pre>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
-{FooImpl; ...} = import &quot;bar&quot;
+{Foo;} = import &quot;foo&quot;
+{FooImpl;} = import &quot;bar&quot;
 
 foo = Foo.new()
 foo.public()
@@ -262,7 +262,7 @@ foo.public()
 <h2 id="restricted-public-variables"><a class="header" href="#restricted-public-variables">restricted public variables</a></h2>
 <p>Variable visibility is not limited to complete public/private.
 You can also publish with restrictions.</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 .record = {
     .a = {
         .(.record)x = 0
@@ -278,11 +278,12 @@ _ = .record.a.x # VisibilityError
 _ = .record.a.y # OK
 _ = .record.a.z # OK
 </code></pre>
-<pre><code class="language-python">foo = import &quot;foo&quot;
+<pre><code class="language-python checker_ignore">foo = import &quot;foo&quot;
 _ = foo.record.a.x # VisibilityError
 _ = foo.record.a.y # VisibilityError
 _ = foo.record.a.z # OK
 </code></pre>
+
 
                     </main>
 

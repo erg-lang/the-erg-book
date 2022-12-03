@@ -146,26 +146,26 @@
                     <main>
                         <h1 id="subroutine-signatures"><a class="header" href="#subroutine-signatures">Subroutine Signatures</a></h1>
 <h2 id="func"><a class="header" href="#func">Func</a></h2>
-<pre><code class="language-python">some_func(x: T, y: U) -&gt; V
+<pre><code class="language-python checker_ignore">some_func(x: T, y: U) -&gt; V
 some_func: (T, U) -&gt; V
 </code></pre>
 <h2 id="proc"><a class="header" href="#proc">Proc</a></h2>
-<pre><code class="language-python">some_proc!(x: T, y: U) =&gt; V
+<pre><code class="language-python checker_ignore">some_proc!(x: T, y: U) =&gt; V
 some_proc!: (T, U) =&gt; V
 </code></pre>
 <h2 id="func-method"><a class="header" href="#func-method">Func Method</a></h2>
 <p>The method type cannot be specified externally with <code>Self</code>.</p>
-<pre><code class="language-python">.some_method(self, x: T, y: U) =&gt; ()
+<pre><code class="language-python checker_ignore">.some_method(self, x: T, y: U) =&gt; ()
 # Self.(T, U) =&gt; () takes ownership of self
 .some_method: (Ref(Self), T, U) =&gt; ()
 </code></pre>
 <h2 id="proc-method-dependent"><a class="header" href="#proc-method-dependent">Proc Method (dependent)</a></h2>
 <p>In the following, assume that the type <code>T!</code> takes the type argument <code>N: Nat</code>. To specify it externally, use a type variable.</p>
-<pre><code class="language-python">T!: Nat -&gt; Type
+<pre><code class="language-python checker_ignore">K!: Nat -&gt; Type
 # ~&gt; indicates the state of the type argument before and after application (in this case, self must be a variable reference)
-T!(N).some_method!: (Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
+K!(N).some_method!: (Ref!(K! N ~&gt; N+X), X: Nat) =&gt; ()
 </code></pre>
-<p>As a note, the type of <code>.some_method</code> is <code>|N, X: Nat| (Ref!(T N ~&gt; N+X), {X}) =&gt; ()</code>.
+<p>As a note, the type of <code>.some_method</code> is <code>|N, X: Nat| (Ref!(K! N ~&gt; N+X), {X}) =&gt; ()</code>.
 For methods that do not have <code>ref!</code>, i.e., are deprived of ownership after application, the type argument transition (<code>~&gt;</code>) cannot be used.</p>
 <p>If ownership is taken, it is as follows.</p>
 <pre><code class="language-python"># If you don't use N, you can omit it with _.

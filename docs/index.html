@@ -162,7 +162,7 @@ There is also a separate <a href="../API/index.html">Standard API</a> and <a hre
 <p>This is almost identical to Python and other languages in the same family. The most striking feature is the <code>!</code>, the meaning of which will be explained later.
 In Erg, parentheses <code>()</code> can be omitted unless there is some confusion in interpretation.
 The omission of parentheses is similar to Ruby, but it is not possible to omit parentheses that can be interpreted in more than one way.</p>
-<pre><code class="language-python">print! &quot;Hello, World!&quot; # OK
+<pre><code class="language-python checker_ignore">print! &quot;Hello, World!&quot; # OK
 print! &quot;Hello,&quot;, &quot;World!&quot; # OK
 print!() # OK
 print! # OK, but this does not mean to call, simply to get `print!` as a callable object
@@ -201,7 +201,7 @@ hello, world!
 # `#` and after are ignored until a new line is inserted
 #[
 Multi-line comment
-Treated as a comment all the way up to the corresponding `]#`
+Everything from `#[` to `]#` is a comment.
 ]#
 </code></pre>
 <h2 id="expressions-separators"><a class="header" href="#expressions-separators">Expressions, separators</a></h2>
@@ -209,6 +209,7 @@ Treated as a comment all the way up to the corresponding `]#`
 Each expression is separated by a separator - either a new line or a semicolon <code>;</code>-.
 Erg scripts are basically evaluated from left to right, top to bottom.</p>
 <pre><code class="language-python">n = 1 # assignment expression
+f x, y = x + y # function definition
 f(1, 2) # function-call expression
 1 + 1 # operator-call expression
 f(1, 2); 1 + 1
