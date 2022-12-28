@@ -145,9 +145,57 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="プロシージャ"><a class="header" href="#プロシージャ">プロシージャ</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/08_procedure.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/08_procedure.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>プロシージャは可変オブジェクトを取り扱う際に必要となりますが、可変オブジェクトを引数に持てばプロシージャであるとは限りません。</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/08_procedure.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/08_procedure.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
+<p>プロシージャは<a href="/07_side_effect.html">副作用</a>を許容する関数を意味します。
+基本的な定義や利用方法は<a href="/04_function.html">関数</a>を参照してください。
+関数名に対して<code>!</code>をつけることで定義することができます。</p>
+<pre><code class="language-python">proc!(x: Int!, y: Int!) =
+    for! 0..x, i =&gt;
+        for 0..y, j =&gt;
+            print! i, j
+</code></pre>
+<p>プロシージャは可変オブジェクトを取り扱う際に必要となります。
+ですが、可変オブジェクトを引数に持つときやプロシージャの定義するだけの場合はプロシージャであるとは限りません。</p>
 <pre><code class="language-python">peek_str s: Str! = log s
+
+make_proc(x!: (Int =&gt; Int)): (Int =&gt; Int) = y =&gt; x! y
+p! = make_proc(x =&gt; x)
+print! p! 1 # 1
+</code></pre>
+<p>またプロシージャと関数は<code>proc :&gt; func</code>の関係にあります。
+そのため、プロシージャ内で関数ブロックを定義することもできます。
+しかし、逆はできないので注意をしてください。</p>
+<pre><code class="language-python">proc!(x: Int!) = y -&gt; log x, y # OK
+func(x: Int) = y =&gt; print! x, y # NG
+</code></pre>
+<h2 id="バインド"><a class="header" href="#バインド">バインド</a></h2>
+<p>プロシージャはスコープ外の可変変数を操作することができます。</p>
+<pre><code class="language-python">x = !0
+proc!() =
+    x.inc!()
+
+proc!()
+assert x == 1
+</code></pre>
+<p>このとき、<code>proc!</code>は以下のような型を持ちます。</p>
+<pre><code class="language-python">proc!: {|x: Int!|}() =&gt; ()
+</code></pre>
+<p><code>{|x: Int!|}</code>の部分はバインド列と呼ばれ、そのプロシージャが操作する変数とその型を表します。
+バインド列は自動で導出されるため、明示的に書く必要はありません。</p>
+<p>注意として、通常のプロシージャは予め決められた外部変数のみを操作することができます。これはつまり、引数に渡された変数を書き換えることはできないということです。
+そのようなことがしたい場合は、プロシージャルメソッドを使う必要があります。プロシージャルメソッドは、<code>self</code>を書き換えることができます。</p>
+<pre><code class="language-python">C! N = Class {arr = [Int; N]!}
+C!.
+    new() = Self!(0)::__new__ {arr = ![]}
+C!(N).
+    # push!: {|self: C!(N) ~&gt; C!(N+1)|}(self: RefMut(C!(N)), x: Int) =&gt; NoneType
+    push! ref! self, x = self.arr.push!(x)
+    # pop!: {|self: C!(N) ~&gt; C!(N-1)|}(self: RefMut(C!(N))) =&gt; Int
+    pop! ref! self = self.arr.pop!()
+
+c = C!.new()
+c.push!(1)
+assert c.pop!() == 1
 </code></pre>
 
 

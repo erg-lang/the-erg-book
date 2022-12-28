@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="エラーハンドリングシステム"><a class="header" href="#エラーハンドリングシステム">エラーハンドリングシステム</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/30_error_handling.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/30_error_handling.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/30_error_handling.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/30_error_handling.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>主にResult型を使用します。
 ErgではError型オブジェクトを捨てる(トップレベルで対応しない)とエラーが発生します。</p>
 <h2 id="例外pythonとの相互運用"><a class="header" href="#例外pythonとの相互運用">例外、Pythonとの相互運用</a></h2>
@@ -159,7 +159,7 @@ ErgではError型オブジェクトを捨てる(トップレベルで対応し�
 <h2 id="例外とresult型"><a class="header" href="#例外とresult型">例外とResult型</a></h2>
 <p><code>Result</code>型はエラーかもしれない値を表現します。<code>Result</code>によるエラーハンドリングはいくつかの点で例外機構よりも優れています。
 まず第一に、サブルーチンがエラーを出すかもしれないと型定義から分かり、実際に使用するときも一目瞭然です。</p>
-<pre><code class="language-python"># Python
+<pre><code class="language-python checker_ignore"># Python
 try:
     x = foo().bar()
     y = baz()
@@ -182,7 +182,7 @@ try!:
 <p><code>Result</code>型を使用するメリットはそれだけではありません。<code>Result</code>型はスレッドセーフでもあります。これは、エラー情報を並列実行中に(容易に)受け渡しできるということを意味します。</p>
 <h2 id="context"><a class="header" href="#context">Context</a></h2>
 <p><code>Error</code>/<code>Result</code>型単体では副作用が発生しないので、例外と違い送出場所などの情報(Context、文脈)を持てませんが、<code>.context</code>メソッドを使えば<code>Error</code>オブジェクトに情報を付加できます。<code>.context</code>メソッドは<code>Error</code>オブジェクト自身を消費して新しい<code>Error</code>オブジェクトを作るタイプのメソッドです。チェイン可能であり、複数のコンテクストを保持できます。</p>
-<pre><code class="language-python">f() =
+<pre><code class="language-python checker_ignore">f() =
     todo() \
         .context &quot;to be implemented in ver 1.2&quot; \
         .context &quot;and more hints ...&quot;
@@ -198,7 +198,7 @@ f()
 そこで、Ergでは<code>Error</code>オブジェクトに<code>.stack</code>という属性を持たせており、擬似的に例外機構のようなスタックトレースを再現しています。
 <code>.stack</code>は呼び出し元オブジェクトの配列です。Errorオブジェクトは<code>return</code>(<code>?</code>によるものも含む)されるたびにその呼出元サブルーチンを<code>.stack</code>に積んでいきます。
 そして<code>return</code>ができないコンテクストで<code>?</code>されるなり<code>.unwrap</code>されるなりすると、トレースバックを表示しながらパニックします。</p>
-<pre><code class="language-python">f x =
+<pre><code class="language-python checker_ignore">f x =
     ...
     y = foo.try_some(x)?
     ...
@@ -222,7 +222,7 @@ i = g(1)?
 <p>Ergには回復不能なエラーへの対処として <strong>パニッキング</strong> という機構も存在します。
 回復不能なエラーとは、例えばソフト/ハードウェアの不具合など外的要因によるエラーや、それ以上コードを実行し続けても意味がないほど致命的なエラー、あるいはプログラム作成者の想定だにしないエラーなどです。これが発生した場合、プログラマの努力によって正常系に復帰させることができないため、その場でプログラムを終了させます。これを「パニックさせる」といいます。</p>
 <p>パニックは<code>panic</code>関数で行います。</p>
-<pre><code class="language-python">panic &quot;something went wrong!&quot;
+<pre><code class="language-python checker_ignore">panic &quot;something went wrong!&quot;
 </code></pre>
 
 

@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="セット"><a class="header" href="#セット">セット</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=e86a0987ed14a4de5da770372d4f3729c7691503"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3De86a0987ed14a4de5da770372d4f3729c7691503" alt="badge" /></a></p>
 <p>セットは集合を表し、データ構造的には重複、順序のない配列です。</p>
 <pre><code class="language-python">assert Set.from([1, 2, 3, 2, 1]) == {1, 2, 3}
 assert {1, 2} == {1, 1, 2} # 重複は自動で削除される
@@ -161,12 +161,15 @@ b: {Int; 3} = {0, 0, 0} # NG、重複が削除されて長さが変わる
 <p>また、<code>Eq</code>トレイトが実装されているオブジェクトのみが集合の要素になれます。</p>
 <p>そのため、Floatなどを集合の要素として使用することはできません。</p>
 <pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
+# Error[#1366]: File &lt;stdin&gt;, line 1, &lt;module&gt;::d
 #
-# 1│ d = {0.0, 1.0}
-#         ^^^^^^^^
-# TypeError: the type of _ is mismatched:
-# expected:  Eq(Float)
-# but found: {0.0, 1.0, }
+# 1 | d = {0.0, 1.0}
+#   :      --------
+#   :             |- expected: Eq
+#   :             |- but found: {0.0f, 1.0f, }
+#   :             `- Float has no equivalence relation defined. you should use l == R instead of l - r &lt;= Float.EPSILON
+#
+# TypeError: the type of _ is mismatched
 </code></pre>
 <p>セットは集合演算を行えます。</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}

@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="array"><a class="header" href="#array">Array</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/10_array.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/10_array.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/10_array.md&amp;commit_hash=603abbd5fa3f8baffe0d614758e1a554705e6732"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/10_array.md%26commit_hash%3D603abbd5fa3f8baffe0d614758e1a554705e6732" alt="badge" /></a></p>
 <p>数组是最基本的__collection(聚合)__
 集合是一个可以在其中包含多个对象的对象</p>
 <pre><code class="language-python">a = [1, 2, 3]
@@ -161,7 +161,7 @@ assert mut_a == [2, 2, 3]
 <pre><code class="language-python.">[1, &quot;a&quot;] # 类型错误: 第一个元素是 Int，但第二个元素是 Str
 </code></pre>
 <p>但是，您可以通过像这样显式指定类型来绕过限制</p>
-<pre><code class="language-python">[1: Int or Str, &quot;a&quot;]
+<pre><code class="language-python compile_fail">[1: Int or Str, &quot;a&quot;]
 </code></pre>
 <h2 id="切片"><a class="header" href="#切片">切片</a></h2>
 <p>一个数组也可以同时取出多个值。这称为切片</p>

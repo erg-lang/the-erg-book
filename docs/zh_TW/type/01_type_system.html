@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="erg-的類型系統"><a class="header" href="#erg-的類型系統">Erg 的類型系統</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/01_type_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/01_type_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/01_type_system.md&amp;commit_hash=f4fb25b4004bdfa96d2149fac8c4e40b84e8a45f"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/01_type_system.md%26commit_hash%3Df4fb25b4004bdfa96d2149fac8c4e40b84e8a45f" alt="badge" /></a></p>
 <p>下面簡單介紹一下 Erg 的類型系統。詳細信息在其他部分進行說明</p>
 <h2 id="如何定義"><a class="header" href="#如何定義">如何定義</a></h2>
 <p>Erg 的獨特功能之一是(普通)變量、函數(子例程)和類型(Kind)定義之間的語法沒有太大區別。所有都是根據普通變量和函數定義的語法定義的</p>
@@ -180,17 +180,17 @@ Erg 的類型系統包含結構子類型 (SST)。該系統類型化的類型稱�
 <tr><td>SST</td><td>StructuralType</td><td>Structural Trait</td><td>(Implicit)</td></tr>
 </tbody></table>
 <p>整個名義類型的類型(<code>NominalType</code>)和整個結構類型的類型(<code>StructuralType</code>)是整個類型(<code>Type</code>)的類型的子類型</p>
-<p>Erg 可以將參數(類型參數)傳遞給類型定義。帶有類型參數的 <code>Option</code>、<code>Array</code> 等稱為多項式類型。這些本身不是類型，但它們通過應用參數成為類型。諸如 <code>Int</code>、<code>Str</code> 等沒有參數的類型稱為簡單類型(標量類型)</p>
+<p>Erg 可以將參數(類型參數)傳遞給類型定義。帶有類型參數的<code>Option</code>、<code>Array</code>等稱為多項式類型。這些本身不是類型，但它們通過應用參數成為類型。諸如<code>Int</code>、<code>Str</code>等沒有參數的類型稱為簡單類型(標量類型)</p>
 <p>一個類型可以看成一個集合，并且存在包含關系。例如，&quot;Num&quot;包含&quot;Add&quot;、&quot;Sub&quot;等，&quot;Int&quot;包含&quot;Nat&quot;
 所有類的上類是<code>Object == Class {:}</code>，所有類型的下類是<code>Never == Class {}</code>。這在下面描述</p>
 <h2 id="類型"><a class="header" href="#類型">類型</a></h2>
-<p>像 <code>Array T</code> 這樣的類型可以看作是 <code>Type -&gt; Type</code> 類型的函數，它以 <code>T</code> 類型為參數并返回 <code>Array T</code> 類型(在類型論中也稱為 Kind)。像 <code>Array T</code> 這樣的類型專門稱為多態類型，而 <code>Array</code> 本身稱為一元 Kind</p>
-<p>已知參數和返回類型的函數的類型表示為<code>(T, U) -&gt; V</code>。如果要指定同一類型的整個雙參數函數，可以使用 <code>|T| (T, T) -&gt; T</code>，如果要指定整個 N 參數函數，可以使用 <code>Func N</code>。但是，<code>Func N</code> 類型沒有關于參數數量或其類型的信息，因此所有返回值在調用時都是<code>Obj</code> 類型</p>
-<p><code>Proc</code> 類型表示為 <code>() =&gt; Int</code> 等等。此外，<code>Proc</code> 類型實例的名稱必須以 <code>!</code> 結尾</p>
-<p><code>Method</code> 類型是一個函數/過程，其第一個參數是它所屬的對象 <code>self</code>(通過引用)。對于依賴類型，也可以在應用方法后指定自己的類型。這是 <code>T!(!N)</code> 類型和 <code>T!(N ~&gt; N-1)。() =&gt; Int</code> 等等</p>
+<p>像<code>Array T</code>這樣的類型可以看作是<code>Type -&gt; Type</code>類型的函數，它以<code>T</code>類型為參數并返回<code>Array T</code>類型(在類型論中也稱為 Kind)。像<code>Array T</code>這樣的類型專門稱為多態類型，而<code>Array</code>本身稱為一元 Kind</p>
+<p>已知參數和返回類型的函數的類型表示為<code>(T, U) -&gt; V</code>。如果要指定同一類型的整個雙參數函數，可以使用<code>|T| (T, T) -&gt; T</code>，如果要指定整個 N 參數函數，可以使用<code>Func N</code>。但是，<code>Func N</code>類型沒有關于參數數量或其類型的信息，因此所有返回值在調用時都是<code>Obj</code>類型</p>
+<p><code>Proc</code>類型表示為<code>() =&gt; Int</code>等等。此外，<code>Proc</code>類型實例的名稱必須以<code>!</code>結尾</p>
+<p><code>Method</code>類型是一個函數/過程，其第一個參數是它所屬的對象<code>self</code>(通過引用)。對于依賴類型，也可以在應用方法后指定自己的類型。這是<code>T!(!N)</code>類型和<code>T!(N ~&gt; N-1)。() =&gt; Int</code>等等</p>
 <p>Erg 的數組(Array)就是 Python 所說的列表。<code>[詮釋; 3]</code>是一個數組類，包含三個<code>Int</code>類型的對象</p>
 <blockquote>
-<p><strong>Note</strong>: <code>(Type; N)</code> 既是類型又是值，所以可以這樣使用</p>
+<p><strong>Note</strong>:<code>(Type; N)</code>既是類型又是值，所以可以這樣使用</p>
 <pre><code class="language-python.">Types = (Int, Str, Bool)
 
 for! Types, T =&gt;
@@ -207,7 +207,7 @@ lpop|T, N|(l: [T; N]): (T, [T; N-1]) =
     [first, ...l] = l
     (first, l)
 </code></pre>
-<p>以 <code>!</code> 結尾的類型可以重寫內部結構。例如，<code>[T; !N]</code> 類是一個動態數組
+<p>以<code>!</code>結尾的類型可以重寫內部結構。例如，<code>[T; !N]</code>類是一個動態數組
 要從&quot;T&quot;類型的對象創建&quot;T!&quot;類型的對象，請使用一元運算符&quot;!&quot;</p>
 <pre><code class="language-python">i: Int! = !1
 i.update! i -&gt; i + 1
@@ -222,47 +222,47 @@ assert mut_arr == [1, 2, 3, 4].
 <p>類型定義如下</p>
 <pre><code class="language-python">Point2D = {.x = Int; .y = Int}
 </code></pre>
-<p>請注意，如果從變量中省略 <code>.</code>，它將成為類型中使用的私有變量。但是，這也是必需的屬性
+<p>請注意，如果從變量中省略<code>.</code>，它將成為類型中使用的私有變量。但是，這也是必需的屬性
 由于類型也是對象，因此類型本身也有屬性。這樣的屬性稱為類型屬性。在類的情況下，它們也稱為類屬性</p>
 <h2 id="數據類型"><a class="header" href="#數據類型">數據類型</a></h2>
 <p>如前所述，Erg 中的&quot;類型&quot;大致表示一組對象</p>
-<p>下面是 <code>Add</code> 類型的定義，需要 <code>+</code>(中間運算符)。<code>R, O</code> 是所謂的類型參數，可以是真正的類型(類)，例如 <code>Int</code> 或 <code>Str</code>。在其他語言中，類型參數被賦予特殊的符號(泛型、模板等)，但在 Erg 中，它們可以像普通參數一樣定義
-類型參數也可以用于類型對象以外的類型。例如數組類型<code>[Int; 3]</code> 是 <code>Array Int, 3</code> 的語法糖。如果類型實現重疊，用戶必須明確選擇一個</p>
+<p>下面是<code>Add</code>類型的定義，需要<code>+</code>(中間運算符)。<code>R, O</code>是所謂的類型參數，可以是真正的類型(類)，例如<code>Int</code>或<code>Str</code>。在其他語言中，類型參數被賦予特殊的符號(泛型、模板等)，但在 Erg 中，它們可以像普通參數一樣定義
+類型參數也可以用于類型對象以外的類型。例如數組類型<code>[Int; 3]</code>是<code>Array Int, 3</code>的語法糖。如果類型實現重疊，用戶必須明確選擇一個</p>
 <pre><code class="language-python">Add R = Trait {
     .AddO = Type
-    . `_+_` = Self.(R) -&gt; Self.AddO
+    .`_+_`= Self.(R) -&gt; Self.AddO
 }
 </code></pre>
-<p>.<code>_+_</code>是Add.<code>_+_</code>的縮寫。前綴運算符 .<code>+_</code> 是 <code>Num</code> 類型的方法</p>
+<p>.<code>_+_</code>是Add.<code>_+_</code>的縮寫。前綴運算符 .<code>+_</code>是<code>Num</code>類型的方法</p>
 <pre><code class="language-python">Num = Add and Sub and Mul and Eq
 NumImpl = Patch Num
 NumImpl.
-    `+_`(self): Self = self
+   `+_`(self): Self = self
     ...
 </code></pre>
-<p>多態類型可以像函數一樣對待。通過將它們指定為 <code>Mul Int、Str</code> 等，它們可以是單態的(在許多情況下，它們是用實際參數推斷出來的，而沒有指定它們)</p>
+<p>多態類型可以像函數一樣對待。通過將它們指定為<code>Mul Int、Str</code>等，它們可以是單態的(在許多情況下，它們是用實際參數推斷出來的，而沒有指定它們)</p>
 <pre><code class="language-python">1 + 1
-`_+_` 1, 1
-Nat.`_+_` 1, 1
-Int.`_+_` 1, 1
+`_+_`1, 1
+Nat.`_+_`1, 1
+Int.`_+_`1, 1
 </code></pre>
-<p>前四行返回相同的結果(準確地說，底部的返回 <code>Int</code>)，但通常使用頂部的
-<code>Ratio.</code><em>+</em><code>(1, 1)</code> 將返回 <code>2.0</code> 而不會出錯
-這是因為 <code>Int &lt;: Ratio</code>，所以 <code>1</code> 向下轉換為 <code>Ratio</code>
+<p>前四行返回相同的結果(準確地說，底部的返回<code>Int</code>)，但通常使用頂部的
+<code>Ratio.</code><em>+</em><code>(1, 1)</code>將返回<code>2.0</code>而不會出錯
+這是因為<code>Int &lt;: Ratio</code>，所以<code>1</code>向下轉換為<code>Ratio</code>
 但這不是演員</p>
 <pre><code class="language-python">i = 1
 if i: # 類型錯誤: i: Int 不能轉換為 Bool，請改用 Int.is_zero()
     log &quot;a&quot;
     log &quot;b&quot;
 </code></pre>
-<p>這是因為 <code>Bool &lt;: Int</code> (<code>True == 1</code>, <code>False == 0</code>)。轉換為子類型通常需要驗證</p>
+<p>這是因為<code>Bool &lt;: Int</code>(<code>True == 1</code>,<code>False == 0</code>)。轉換為子類型通常需要驗證</p>
 <h2 id="類型推理系統"><a class="header" href="#類型推理系統">類型推理系統</a></h2>
 <p>Erg 使用靜態鴨子類型，因此幾乎不需要顯式指定類型</p>
 <pre><code class="language-python">f x, y = x + y
 </code></pre>
-<p>在上面的代碼中，帶有 <code>+</code> 的類型，即 <code>Add</code> 是自動推斷的； Erg 首先推斷出最小的類型。如果<code>f 0, 1</code>，它將推斷<code>f x: {0}，y: {1}</code>，如果<code>n: Nat; f n, 1</code>，它會推斷<code>f x: Nat, y: {1}</code>。最小化之后，增加類型直到找到實現。在 <code>{0}, {1}</code> 的情況下，<code>Nat</code> 與 <code>Nat</code> 是單態的，因為 <code>Nat</code> 是具有 <code>+</code> 實現的最小類型
-如果是 <code>{0}, {-1}</code>，它與 <code>Int</code> 是單態的，因為它不匹配 <code>Nat</code>。如果子類型和超類型之間沒有關系，則首先嘗試具有最低濃度(實例數)(或者在多態類型的情況下參數更少)的那個
-<code>{0}</code> 和 <code>{1}</code> 是枚舉類型，它們是部分類型，例如 <code>Int</code> 和 <code>Nat</code>
+<p>在上面的代碼中，帶有<code>+</code>的類型，即<code>Add</code>是自動推斷的； Erg 首先推斷出最小的類型。如果<code>f 0, 1</code>，它將推斷<code>f x: {0}，y: {1}</code>，如果<code>n: Nat; f n, 1</code>，它會推斷<code>f x: Nat, y: {1}</code>。最小化之后，增加類型直到找到實現。在<code>{0}, {1}</code>的情況下，<code>Nat</code>與<code>Nat</code>是單態的，因為<code>Nat</code>是具有<code>+</code>實現的最小類型
+如果是<code>{0}, {-1}</code>，它與<code>Int</code>是單態的，因為它不匹配<code>Nat</code>。如果子類型和超類型之間沒有關系，則首先嘗試具有最低濃度(實例數)(或者在多態類型的情況下參數更少)的那個
+<code>{0}</code>和<code>{1}</code>是枚舉類型，它們是部分類型，例如<code>Int</code>和<code>Nat</code>
 例如，可以為枚舉類型指定名稱和請求/實現方法。在有權訪問該類型的命名空間中，滿足請求的對象可以使用實現方法</p>
 <pre><code class="language-python">Binary = Patch {0, 1}
 Binary.
@@ -277,7 +277,7 @@ Binary.
         1 -&gt; True
 </code></pre>
 <p>此后，代碼&quot;0.to_bool()&quot;是可能的(盡管&quot;0 as Bool == False&quot;是內置定義的)
-這是一個實際上可以重寫 <code>self</code> 的類型的示例，如代碼所示</p>
+這是一個實際上可以重寫<code>self</code>的類型的示例，如代碼所示</p>
 <pre><code class="language-python">Binary! = Patch {0, 1}!
 Binary!
     switch! ref! self = match! self:
@@ -291,17 +291,17 @@ print! b # =&gt; 0
 <h2 id="結構類型匿名類型"><a class="header" href="#結構類型匿名類型">結構類型(匿名類型)</a></h2>
 <pre><code class="language-python">Binary = {0, 1}
 </code></pre>
-<p>上面代碼中的 <code>Binary</code> 是一個類型，其元素是 <code>0</code> 和 <code>1</code>。它也是 <code>Int</code> 類型的子類型，它同時具有 <code>0</code> 和 <code>1</code>
-像 <code>{}</code> 這樣的對象本身就是一種類型，可以在分配或不分配給上述變量的情況下使用
+<p>上面代碼中的<code>Binary</code>是一個類型，其元素是<code>0</code>和<code>1</code>。它也是<code>Int</code>類型的子類型，它同時具有<code>0</code>和<code>1</code>
+像<code>{}</code>這樣的對象本身就是一種類型，可以在分配或不分配給上述變量的情況下使用
 這樣的類型稱為結構類型。當我們想強調它作為后者而不是類(命名類型)的用途時，它也被稱為未命名類型。<code>{0, 1}</code>這樣的結構類型稱為枚舉類型，還有區間類型、記錄類型等</p>
 <h3 id="類型標識"><a class="header" href="#類型標識">類型標識</a></h3>
-<p>無法指定以下內容。例如，您不能指定 <code>Int</code> 和 <code>Int</code> 和 <code>Int</code> 和 <code>Int</code> 和 <code>Int</code> 和 <code>Int</code>
+<p>無法指定以下內容。例如，您不能指定<code>Int</code>和<code>Int</code>和<code>Int</code>和<code>Int</code>和<code>Int</code>和<code>Int</code>
 例如，<code>Int</code>和<code>Str</code>都是<code>Add</code>，但是<code>Int</code>和<code>Str</code>不能相加</p>
 <pre><code class="language-python">add l: Add, r: Add =
-    l + r # 類型錯誤: `_+_` 沒有實現: |T, U &lt;: Add| (T, U) -&gt; &lt;失敗&gt;
+    l + r # 類型錯誤:`_+_`沒有實現: |T, U &lt;: Add| (T, U) -&gt; &lt;失敗&gt;
 </code></pre>
-<p>此外，下面的類型 <code>A</code> 和 <code>B</code> 不被認為是同一類型。但是，類型&quot;O&quot;被認為是匹配的</p>
-<pre><code class="language-python">... |R1; R2; O; A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
+<p>此外，下面的類型<code>A</code>和<code>B</code>不被認為是同一類型。但是，類型&quot;O&quot;被認為是匹配的</p>
+<pre><code class="language-python">... |R1, R2, O, A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
 </code></pre>
 
 

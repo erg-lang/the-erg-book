@@ -145,10 +145,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="パターンマッチ論駁可能性"><a class="header" href="#パターンマッチ論駁可能性">パターンマッチ、論駁可能性</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="ergで使用可能なパターン"><a class="header" href="#ergで使用可能なパターン">Ergで使用可能なパターン</a></h2>
 <h3 id="変数パターン"><a class="header" href="#変数パターン">変数パターン</a></h3>
-<pre><code class="language-python"># 基本的な代入
+<pre><code class="language-python check_ignore"># 基本的な代入
 i = 1
 
 # function
@@ -162,7 +162,7 @@ j: {1, 2, 3} = 2
 (k: Int, s: Str) = 1, &quot;a&quot;
 </code></pre>
 <h3 id="リテラルパターン"><a class="header" href="#リテラルパターン">リテラルパターン</a></h3>
-<pre><code class="language-python"># もし`i`がコンパイル時に1と判断できない場合は、TypeErrorが発生する。
+<pre><code class="language-python check_ignore"># もし`i`がコンパイル時に1と判断できない場合は、TypeErrorが発生する。
 # `_: {1} = i`を省略したもの
 1 = i
 
@@ -178,7 +178,7 @@ fib 1 = 1
 fib n: Nat = fib n-1 + fib n-2
 </code></pre>
 <h3 id="定数パターン"><a class="header" href="#定数パターン">定数パターン</a></h3>
-<pre><code class="language-python">cond = False
+<pre><code class="language-python check_ignore">cond = False
 match! cond:
     True =&gt; print! &quot;cond is True&quot;
     _ =&gt; print! &quot;cond is False&quot;
@@ -192,7 +192,7 @@ name = match num:
     _ -&gt; &quot;unnamed&quot;
 </code></pre>
 <h3 id="篩パターン"><a class="header" href="#篩パターン">篩パターン</a></h3>
-<pre><code class="language-python"># この２つは同じ
+<pre><code class="language-python check_ignore"># この２つは同じ
 Array(T, N: {N | N &gt;= 3})
 Array(T, N | N &gt;= 3)
 
@@ -200,7 +200,7 @@ f M, N | M &gt;= 0, N &gt;= 1 = ...
 f(1, 0) # TypeError: N (2nd parameter) must be 1 or more
 </code></pre>
 <h3 id="破棄ワイルドカードパターン"><a class="header" href="#破棄ワイルドカードパターン">破棄(ワイルドカード)パターン</a></h3>
-<pre><code class="language-python">_ = 1
+<pre><code class="language-python check_ignore">_ = 1
 _: Int = 1
 zero _ = 0
 right(_, r) = r
@@ -208,13 +208,13 @@ right(_, r) = r
 <p>文脈によって制約付けられていない場合、<code>_</code>は<code>Obj</code>型となる。</p>
 <h3 id="可変長パターン"><a class="header" href="#可変長パターン">可変長パターン</a></h3>
 <p>後述するタプル/配列/レコードパターンと組み合わせて使います。</p>
-<pre><code class="language-python">[i, ...j] = [1, 2, 3, 4]
+<pre><code class="language-python check_ignore">[i, ...j] = [1, 2, 3, 4]
 assert j == [2, 3, 4]
 first|T|(fst: T, ...rest: T) = fst
 assert first(1, 2, 3) == 1
 </code></pre>
 <h3 id="タプルパターン"><a class="header" href="#タプルパターン">タプルパターン</a></h3>
-<pre><code class="language-python">(i, j) = (1, 2)
+<pre><code class="language-python check_ignore">(i, j) = (1, 2)
 ((k, l), _) = ((1, 2), (3, 4))
 # ネストしていないなら()を省略可能(1, 2は(1, 2)として扱われる)
 m, n = 1, 2
@@ -222,14 +222,14 @@ m, n = 1, 2
 f(x, y) = ...
 </code></pre>
 <h3 id="配列パターン"><a class="header" href="#配列パターン">配列パターン</a></h3>
-<pre><code class="language-python">[i, j] = [1, 2]
+<pre><code class="language-python check_ignore">[i, j] = [1, 2]
 [[k, l], _] = [[1, 2], [3, 4]]
 
 length [] = 0
 length [_, ...rest] = 1 + length rest
 </code></pre>
 <h4 id="レコードパターン"><a class="header" href="#レコードパターン">レコードパターン</a></h4>
-<pre><code class="language-python">record = {i = 1; j = 2; k = 3}
+<pre><code class="language-python check_ignore">record = {i = 1; j = 2; k = 3}
 {j; ...} = record # i, kが解放される
 
 {sin; cos; tan; ...} = import &quot;math&quot;
@@ -243,7 +243,7 @@ age = match person:
 f {x: Int; y: Int} = ...
 </code></pre>
 <h3 id="データクラスパターン"><a class="header" href="#データクラスパターン">データクラスパターン</a></h3>
-<pre><code class="language-python">Point = Inherit {x = Int; y = Int}
+<pre><code class="language-python check_ignore">Point = Inherit {x = Int; y = Int}
 p = Point::{x = 1; y = 2}
 Point::{x; y} = p
 
@@ -262,13 +262,13 @@ List T.
 </code></pre>
 <h3 id="列挙パターン"><a class="header" href="#列挙パターン">列挙パターン</a></h3>
 <p>※実際には単なる列挙型</p>
-<pre><code class="language-python">match x:
+<pre><code class="language-python check_ignore">match x:
     i: {1, 2} -&gt; &quot;one or two: \{i}&quot;
     _ -&gt; &quot;other&quot;
 </code></pre>
 <h3 id="範囲パターン"><a class="header" href="#範囲パターン">範囲パターン</a></h3>
 <p>※実際には単なる区間型</p>
-<pre><code class="language-python"># 0 &lt; i &lt; 1
+<pre><code class="language-python check_ignore"># 0 &lt; i &lt; 1
 i: 0&lt;..&lt;1 = 0.5
 # 1 &lt; j &lt;= 2
 _: {[I, J] | I, J: 1&lt;..2} = [1, 2]

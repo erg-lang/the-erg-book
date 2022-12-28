@@ -147,7 +147,7 @@
                         <h1 id="可変構造型"><a class="header" href="#可変構造型">可変構造型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/mut_struct.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/mut_struct.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p><code>T!</code>型は任意の<code>T</code>型オブジェクトを入れられて差し替え可能なボックス型であると説明した。</p>
-<pre><code class="language-python">Particle! State: {&quot;base&quot;, &quot;excited&quot;}! = Class(..., Impl := Phantom State)
+<pre><code class="language-python">Particle! State: {&quot;base&quot;, &quot;excited&quot;} = Class(..., Impl := Phantom State)
 Particle!.
     # このメソッドはStateを&quot;base&quot;から&quot;excited&quot;に遷移させる
     apply_electric_field!(ref! self(&quot;base&quot; ~&gt; &quot;excited&quot;), field: Vector) = ...
@@ -158,17 +158,17 @@ Particle!.
 例えば、可変長配列である。<code>[T; N]!</code>型は任意の<code>[T; N]</code>であるオブジェクトを入れることができるが、<code>[T; N+1]</code>型オブジェクトなどに差し替えることはできない。</p>
 <p>すなわち、長さを変えられないのである。長さを変えるためには、型自体の構造を変化させなくてはならない。</p>
 <p>それを実現するのが可変構造(可変)型である。</p>
-<pre><code class="language-python">v = [Str; !0].new()
+<pre><code class="language-python">v = [Str; 0]!.new()
 v.push! &quot;Hello&quot;
-v: [Str; !1]
+v: [Str; 1]!
 </code></pre>
-<p>可変構造型では可変化する型引数に<code>!</code>を付ける。上の場合は、<code>[Str; !0]</code>型を<code>[Str; !1]</code>型などに変更することができる。すなわち、長さを変更できる。
-因みに、<code>[T; !N]</code>型は<code>ArrayWithLength!(T, !N)</code>型の糖衣構文である。</p>
+<p>可変構造型では可変化する型引数に<code>!</code>を付ける。上の場合は、<code>[Str; 0]!</code>型を<code>[Str; 1]!</code>型などに変更することができる。すなわち、長さを変更できる。
+因みに、<code>[T; N]!</code>型は<code>Array!(T, N)</code>型の糖衣構文である。</p>
 <p>可変構造型はもちろんユーザー定義も可能である。ただし、不変構造型とは構成法に関していくつか違いがあるので注意が必要である。</p>
 <pre><code class="language-python">Nil T = Class(Impl := Phantom T)
-List T, !0 = Inherit Nil T
-List T, N: Nat! = Class {head = T; rest = List(T, !N-1)}
-List(T, !N).
+List! T, 0 = Inherit Nil T
+List! T, N: Nat = Class {head = T; rest = List!(T, N-1)}
+List!(T, N).
     push! ref! self(N ~&gt; N+1, ...), head: T =
         self.update! old -&gt; Self.new {head; old}
 </code></pre>

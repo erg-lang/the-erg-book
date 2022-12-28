@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="変数"><a class="header" href="#変数">変数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/02_name.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/02_name.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/02_name.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/02_name.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>変数は代数の一種です。Ergにおける代数―紛れがなければ単に変数と呼ばれることもあります―とは、オブジェクトを名前付けしてコード中の別の場所から利用できるようにする機能を指します。</p>
 <p>変数は以下のように定義します。
 <code>n</code>の部分を変数名(または、識別子)、<code>=</code>を代入演算子、<code>1</code>の部分を代入値と呼びます。</p>
@@ -158,9 +158,10 @@
 <pre><code class="language-python">n: Nat = 1
 </code></pre>
 <p>他の言語とは違い、多重代入はできないので注意してください。</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 l1 = l2 = [1, 2, 3] # SyntaxError: multiple assignment not allowed
-# OK
+</code></pre>
+<pre><code class="language-python"># OK
 l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
@@ -179,7 +180,7 @@ if x.is_zero(), do:
 assert x == 0
 </code></pre>
 <p>以下は一見すると可能なように思えますが、やはりできません。これは技術的な制約ではなく、設計判断です。</p>
-<pre><code class="language-python">x = 0
+<pre><code class="language-python compile_fail">x = 0
 if x.is_zero(), do:
     x = x + 1 # NameError: cannot define variables refer to variables with the same name
     assert x == 1
@@ -188,7 +189,7 @@ assert x == 0
 <h2 id="定数"><a class="header" href="#定数">定数</a></h2>
 <p>定数も代数の一種です。識別子を大文字で始めると定数として扱われます。一度定義したら変わらないので、定数と呼ばれます。
 <code>N</code>の部分を定数名(または、識別子)と呼びます。その他は変数と同じです。</p>
-<pre><code class="language-python">N = 0
+<pre><code class="language-python compile_fail">N = 0
 if True, do:
     N = 1 # AssignError: constants cannot be shadowed
     pass()
@@ -210,13 +211,14 @@ match! x:
 <p>定数には代入できないものがあります。可変オブジェクトなどです。詳しくは後述しますが、可変オブジェクトは内容を変更することができるオブジェクトです。
 これは定数には定数式のみを代入できるという規則があるためです。定数式についても後述することとします。</p>
 <pre><code class="language-python">X = 1 # OK
-X = !1 # TypeError: cannot define Int! object as a constant
+</code></pre>
+<pre><code class="language-python compile_fail">X = !1 # TypeError: cannot define Int! object as a constant
 </code></pre>
 <h2 id="代数の削除"><a class="header" href="#代数の削除">代数の削除</a></h2>
 <p><code>Del</code>関数を使うことで、代数を削除することが出来ます。その代数に依存している(その代数の値を直接参照している)他の代数もまとめて削除されます。</p>
 <pre><code class="language-python">x = 1
 y = 2
-Z = 3
+z = 3
 f a = x + a
 
 assert f(2) == 3

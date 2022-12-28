@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="可視性"><a class="header" href="#可視性">可視性</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Ergの変数には <strong>可視性</strong> という概念が存在します。
 今まで見てきた変数は全て <strong>プライベート変数(非公開変数)</strong> と呼ばれます。これは、外部から不可視の変数です。
 例えば<code>foo</code>モジュールで定義したプライベート変数は、別のモジュールから参照できないのです。</p>
@@ -161,7 +161,7 @@ foo.x # AttributeError: Module 'foo' has no attribute 'x' ('x' is private)
 <pre><code class="language-python"># foo.er
 .x = &quot;this is a visible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 assert foo.x == &quot;this is a visible variable&quot;
 </code></pre>
@@ -210,16 +210,17 @@ C.
 <p>あるモジュールで定義されたクラスは、実は外部モジュールからでもメソッドを定義できます。</p>
 <pre><code class="language-python"># foo.er
 .Foo = Class()
+.Bar = Class()
 </code></pre>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 Foo::
     private self = pass
 Foo.
     public self = self::private()
-
-.f() =
+</code></pre>
+<pre><code class="language-python compile_fail">.f() =
     foo = Foo.new()
     foo.public()
     foo::private() # AttributeError
@@ -228,7 +229,7 @@ Foo.
 外部で定義された非公開メソッドは、定義モジュール内でのみ<code>Foo</code>クラスのメソッドから参照できます。
 公開メソッドはクラスの外には公開されますが、モジュール外までは公開されません。</p>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 foo = Foo.new()
 foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defined in module 'bar')
@@ -236,7 +237,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 <p>また、Re-exportする型にメソッドを定義することはできません。
 インポート元のモジュールによってメソッドが見つかったり見つからなかったりといった混乱を防ぐためです。</p>
 <pre><code class="language-python compile_fail"># bar.er
-{.Foo; ...} = import &quot;foo&quot;
+{.Foo;} = import &quot;foo&quot;
 
 .Foo::
     private self = pass # Error
@@ -245,7 +246,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 </code></pre>
 <p>このようなことを行いたい場合は<a href="./type/07_patch.html">パッチ</a>を定義します。</p>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 FooImpl = Patch Foo
 FooImpl :=:
@@ -254,8 +255,8 @@ FooImpl.
     public self = self::private()
 </code></pre>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
-{FooImpl; ...} = import &quot;bar&quot;
+{Foo;} = import &quot;foo&quot;
+{FooImpl;} = import &quot;bar&quot;
 
 foo = Foo.new()
 foo.public()

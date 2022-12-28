@@ -145,9 +145,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="類型的基本語法"><a class="header" href="#類型的基本語法">類型的基本語法</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=a0c1380a6fa5236518ac4ff455edbd3af50b0560"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3Da0c1380a6fa5236518ac4ff455edbd3af50b0560" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=f4fb25b4004bdfa96d2149fac8c4e40b84e8a45f"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3Df4fb25b4004bdfa96d2149fac8c4e40b84e8a45f" alt="badge" /></a></p>
 <h2 id="類型規范"><a class="header" href="#類型規范">類型規范</a></h2>
-<p>在 Erg 中，可以在 <code>:</code> 之后指定變量的類型，如下所示。這可以與作業同時完成</p>
+<p>在Erg中，可以在<code>:</code>之后指定變量的類型，如下所示。這可以與作業同時完成</p>
 <pre><code class="language-python">i: Int # 將變量 i 聲明為 Int 類型
 i: Int = 1
 j = 1 # 類型說明可以省略
@@ -162,7 +162,7 @@ f([1, &quot;a&quot;]: [Int or Str])
 f x, y: Array Int = ...
 T X, Y: Array Int = ...
 </code></pre>
-<p>請注意，在上述情況下，<code>x, y</code> 都是 <code>Array Int</code></p>
+<p>請注意，在上述情況下，<code>x, y</code>都是<code>Array Int</code></p>
 <pre><code class="language-python"># 大寫變量的值必須是常量表達式
 f X: Int = X
 </code></pre>
@@ -240,7 +240,7 @@ Vector = Array Int
 <p>但是，每個模塊只允許一個相同類型的別名，多個別名將導致警告
 這意味著應將具有不同用途的類型定義為單獨的類型
 目的還在于防止在已經具有別名的類型之上添加別名</p>
-<pre><code class="language-python">Id = Int
+<pre><code class="language-python compile_warn">Id = Int
 UserId = Int # 類型警告: 重復別名: Id 和 UserId
 
 Ids = Array Id

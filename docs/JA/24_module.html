@@ -145,15 +145,15 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="モジュール"><a class="header" href="#モジュール">モジュール</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=48107a2d1719892be50588de764991cba6db39b4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D48107a2d1719892be50588de764991cba6db39b4" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Ergでは、ファイル自体を1つのレコードとみなすことができます。これをモジュールと呼びます。</p>
-<pre><code class="language-python:foo.er"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 .i = 1
 </code></pre>
 <pre><code class="language-python"># fooモジュールを定義するのはこのレコードを定義するのとほとんど同じ
 foo = {.i = 1}
 </code></pre>
-<pre><code class="language-python:bar.er"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 print! foo # &lt;module 'foo'&gt;
 assert foo.i == 1
@@ -177,13 +177,13 @@ assert foo.i == 1
   └─ qux.er
 </code></pre>
 <p><code>bar</code>ディレクトリの外側からは以下のようにして使用できます。</p>
-<pre><code class="language-erg">bar = import &quot;bar&quot;
+<pre><code class="language-python">bar = import &quot;bar&quot;
 
 bar.baz.p!()
 bar.qux.p!()
 </code></pre>
 <p><code>__init__.er</code>は単にディレクトリをモジュールとして機能させるだけのマーカーではなく、モジュールの可視性を制御する役割も持ちます。</p>
-<pre><code class="language-erg"># __init__.er
+<pre><code class="language-python"># __init__.er
 
 # `./`はカレントディレクトリを指す。なくても良い
 .baz = import &quot;./baz&quot;
@@ -211,7 +211,7 @@ print! foo.f 1
 </code></pre>
 <p>しかし、手続き呼び出しによって作られた変数は、循環参照モジュールで定義することはできません。
 これは、Ergが依存関係に従って定義の順番を並べ替えるからです。</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python compile_fail"># foo.er
 bar = import &quot;bar&quot;
 
 print! bar.x

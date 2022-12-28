@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="関数"><a class="header" href="#関数">関数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=00c05ab6686062ea6707a326c840d910a55e6dc4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D00c05ab6686062ea6707a326c840d910a55e6dc4" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>関数は「引数」を受け取ってそれを加工し、「戻り値」として返すブロックです。以下のように定義します。</p>
 <pre><code class="language-python">add x, y = x + y
 # or
@@ -161,9 +161,9 @@ add(1, 2)
 </code></pre>
 <h2 id="コロン適用スタイル"><a class="header" href="#コロン適用スタイル">コロン適用スタイル</a></h2>
 <p>関数は<code>f x, y, ...</code>のように呼び出しますが、<strong>実引数</strong> が多く一行では長くなりすぎる場合は<code>:</code>(コロン)を使った適用も可能です。</p>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2:
     some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <p>上の2つのコードは同じ意味です。このスタイルは<code>if</code>関数などを使用するときにも便利です。</p>
@@ -177,12 +177,12 @@ add(1, 2)
 </code></pre>
 <p>この場合、<code>:</code>の後はコメント以外のコードを書いてはならず、必ず改行しなくてはなりません。
 また、関数の直後に<code>:</code>を使うことはできません。これができるのは<code>do</code>と<code>do!</code>のみです。</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 f:
     x
     y
-
-# Ok
+</code></pre>
+<pre><code class="language-python checker_ignore"># Ok
 f(
     x,
     y
@@ -191,7 +191,7 @@ f(
 <h2 id="キーワード引数"><a class="header" href="#キーワード引数">キーワード引数</a></h2>
 <p>引数の数が多い関数を定義されていると、引数を渡す順番を間違える危険性があります。
 そのような場合はキーワード引数を使用して呼び出すと安全です。</p>
-<pre><code class="language-python">f x, y, z, w, v, u: Int = ...
+<pre><code class="language-python checker_ignore">f x, y, z, w, v, u: Int = ...
 </code></pre>
 <p>上に定義された関数は、引数が多く、分かりにくい並びをしています。
 このような関数は作るべきではありませんが、他人の書いたコードを使うときにこのようなコードにあたってしまうかもしれません。
@@ -217,10 +217,10 @@ p!(None) # None
 f [x, y] := [1, 2] = ...
 </code></pre>
 <p>しかしデフォルト引数内では、後述するプロシージャを呼び出したり、可変オブジェクトを代入したりすることができません。</p>
-<pre><code class="language-python">f x := p! 1 = ... # NG
+<pre><code class="language-python compile_fail">f x := p! 1 = ... # NG
 </code></pre>
 <p>また、定義したばかりの引数はデフォルト引数に渡す値として使えません。</p>
-<pre><code class="language-python">f x := 1, y := x = ... # NG
+<pre><code class="language-python compile_fail">f x := 1, y := x = ... # NG
 </code></pre>
 <h2 id="可変長引数"><a class="header" href="#可変長引数">可変長引数</a></h2>
 <p>引数をログ(記録)として出力する<code>log</code>関数は、任意の個数の引数を受け取ることができます。</p>
@@ -288,6 +288,21 @@ factorial n = n * factorial(n - 1)
 </code></pre>
 <p>となって、この計算は停止しません。再帰関数は慎重に値の範囲を定義しないと無限ループに陥ってしまう可能性があります。
 型指定は想定しない値の受け入れを防ぐのにも役立つというわけです。</p>
+<h2 id="高階関数"><a class="header" href="#高階関数">高階関数</a></h2>
+<p>高階関数は引数や返り値に関数を取る関数のことを指します。
+例えば引数に関数を取る高階関数は以下のように記述できます。</p>
+<pre><code class="language-python">arg_f = i -&gt; log i
+higher_f(x: (Int -&gt; NoneType)) = x 10
+higher_f arg_f # 10
+</code></pre>
+<p>もちろん、関数を返り値にすることもできます。</p>
+<pre><code class="language-python">add(x): (Int -&gt; Int) = y -&gt; x + y
+add_ten = add(10) # y -&gt; 10 + y
+add_hundred = add(100) # y -&gt; 100 + y
+assert add_ten(1) == 11
+assert add_hundred(1) == 101
+</code></pre>
+<p>このようにして関数を引数や返り値にとることで、より柔軟な表現を関数で定義することができます。</p>
 <h2 id="コンパイル時関数"><a class="header" href="#コンパイル時関数">コンパイル時関数</a></h2>
 <p>関数名を大文字で始めるとコンパイル時関数となります。ユーザー定義のコンパイル時関数は、引数がすべて定数で、かつ型を明示する必要があります。
 コンパイル関数ができることは限られています。コンパイル時関数内で使えるのは定数式のみ、すなわち、いくつかの演算子(四則演算や比較演算、型構築演算など)とコンパイル時関数のみです。代入する引数も定数式である必要があります。

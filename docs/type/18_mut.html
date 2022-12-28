@@ -177,91 +177,28 @@ x = a.freeze_map a: [Nat; 3] -&gt; a.iter().map(i -&gt; i + 1).filter(i -&gt; i 
 KT: ImmutType = Class ...
 K!T: Type = Class ...
 </code></pre>
-<p>In the standard library, variable <code>(...)!</code> types are often based on immutable <code>(...)</code> types. However, <code>T!</code> and <code>T</code> types have no special linguistic relationship, and may not be constructed as such <a href="#1"><sup id="f1">1</sup></a> .</p>
-<p>Note that there are several types of object mutability.
-Below we will review the immutable/mutable semantics of the built-in collection types.</p>
-<pre><code class="language-python"># array type
-## immutable types
-[T; N] # Cannot perform mutable operations
-## mutable types
-[T!; N] # can change contents one by one
-[T; !N] # variable length, content is immutable but can be modified by adding/deleting elements
-[!T; N] # The content is an immutable object, but it can be replaced by a different type (actually replaceable by not changing the type)
-[!T; !N] # type and length can be changed
-[T!; !N] # content and length can be changed
-[!T!; N] # content and type can be changed
-[!T!; !N] # Can perform all sorts of mutable operations
-</code></pre>
-<p>Of course, you don't have to memorize and use all of them.
-For variable array types, just add <code>!</code> to the part you want to be variable, and practically <code>[T; N]</code>, <code>[T!; N]</code>, <code>[T; !N]</code>, <code> [T!; !N]</code> can cover most cases.</p>
-<p>These array types are syntactic sugar, the actual types are:</p>
-<pre><code class="language-python"># actually 4 types
-[T; N] = Array(T, N)
-[T; !N] = Array!(T, !N)
-[!T; N] = ArrayWithMutType!(!T, N)
-[!T; !N] = ArrayWithMutTypeAndLength!(!T, !N)
-[T!; !N] = Array!(T!, !N)
-[!T!; N] = ArrayWithMutType!(!T!, N)
-[!T!; !N] = ArrayWithMutTypeAndLength!(!T!, !N)
-</code></pre>
-<p>This is what it means to be able to change the type.</p>
-<pre><code class="language-python">a = [1, 2, 3].into [!Nat; 3]
-a.map!(_ -&gt; &quot;a&quot;)
-a: [!Str; 3]
-</code></pre>
-<p>The same is true for other collection types.</p>
-<pre><code class="language-python"># tuple type
-## immutable types
-(T, U) # No change in number of elements, contents cannot be changed
-## mutable types
-(T!, U) # constant number of elements, first element can be changed
-(T, U)! # No change in number of elements, content can be replaced
-...
-</code></pre>
-<pre><code class="language-python"># Set type
-## immutable types
-{T; N} # number of immutable elements, contents cannot be changed
-## mutable types
-{T!; N} # number of immutable elements, content can be changed (one by one)
-{T; N}! # Number of variable elements, content cannot be changed
-{T!; N}! # Number of variable elements, content can be changed
-...
-</code></pre>
-<pre><code class="language-python"># Dictionary type
-## immutable types
-{K: V} # immutable length, contents cannot be changed
-## mutable types
-{K: V!} # constant length, values ​​can be changed (one by one)
-{K: V}! # Variable length, content cannot be changed, but can be added or deleted by adding or removing elements, content type can also be changed
-...
-</code></pre>
-<pre><code class="language-python"># Record type
-## immutable types
-{x = Int; y = Str} # content cannot be changed
-## mutable types
-{x = Int!; y = Str} # can change the value of x
-{x = Int; y = Str}! # replace any instance of {x = Int; y = Str}
-...
-</code></pre>
-<p>A type <code>(...)</code> that simply becomes <code>T! = (...)!</code> when <code>T = (...)</code> is called a simple structured type. A simple structured type can also be said (semantically) to be a type that has no internal structure.
-Arrays, tuples, sets, dictionaries, and record types are all non-simple structured types, but Int and Refinement types are.</p>
-<pre><code class="language-python"># Refinement type
-## Enums
-{1, 2, 3} # one of 1, 2, 3, cannot be changed
-{1, 2, 3}! # 1, 2, 3, you can change
-## interval type
-1..12 # 1 to 12, cannot be changed
-1..12! # Any of 1-12, you can change
-## Refinement type (general type)
-{I: Int | I % 2 == 0} # even type, immutable
-{I: Int! | I % 2 == 0} # even type, can be changed
-{I: Int | I % 2 == 0}! # Exactly the same type as above, but the above notation is preferred
-</code></pre>
+<p>In the standard library, mutable <code>(...)!</code> types are often based on immutable <code>(...)</code> types. However, <code>T!</code> and <code>T</code> types have no special linguistic relationship, and may not be constructed as such <a href="#1"><sup id="f1">1</sup></a> .</p>
 <p>From the above explanation, mutable types include not only those that are themselves mutable, but also those whose internal types are mutable.
 Types such as <code>{x: Int!}</code> and <code>[Int!; 3]</code> are internal mutable types where the object inside is mutable and the instance itself is not mutable.</p>
-<p>For a type <code>K!(T, U)</code> that has internal structure and has a <code>!</code> on the type constructor itself, <code>*self</code> can change the whole object. Local changes are also possible.
-However, it is desirable to keep the change authority as local as possible, so if only <code>T</code> can be changed, it is better to use <code>K(T!, U)</code>.
-And for the type <code>T!</code> which has no internal structure, this instance is simply a box of <code>T</code> which can be swapped. A method cannot change the type.</p>
+<h2 id="cell-t"><a class="header" href="#cell-t">Cell! T</a></h2>
+<p>Mutable types are already available for <code>Int</code> and arrays, but how can we create mutable types for general immutable types? For example, in the case of <code>{x = Int; y = Int}</code>, corresponding mutable type is <code>{x = Int!; y = Int!}</code>, etc. But how did <code>Int!</code> made from <code>Int</code>?</p>
+<p>Erg provides <code>Cell!</code> type for such cases.
+This type is like a box for storing immutable types. This corresponds to what is called a reference (ref) in ML and other languages.</p>
+<pre><code class="language-python">IntOrStr = Inr or Str
+IntOrStr! = Cell! IntOrStr
+x = IntOrStr!.new 1
+assert x is! 1 # `Int or Str` cannot compare with `Int` directly, so use `is!` (this compares object IDs) instead of `==`.
+x.set! &quot;a&quot;
+assert x is! &quot;a&quot;
+</code></pre>
+<p>An important property is that <code>Cell! T</code> is a subtype of <code>T</code>. Therefore, an object of type <code>Cell! T</code> can use all the methods of type <code>T</code>.</p>
+<pre><code class="language-python"># definition of `Int!`
+Int! = Cell! Int
+...
+
+i = !1
+assert i == 1 # `i` is casted to `Int`
+</code></pre>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> It is intentional that <code>T!</code> and <code>T</code> types have no special linguistic relationship. It's a design. If there is a relationship, for example, if the <code>T</code>/<code>T!</code> type exists in the namespace, it will not be possible to introduce the <code>T!</code>/<code>T</code> type from another module. Also, the mutable type is not uniquely defined for the immutable type. Given the definition <code>T = (U, V)</code>, the possible variable subtypes of <code>T!</code> are <code>(U!, V)</code> and <code>(U, V!)</code>. <a href="#f1">↩</a></span></p>
 

@@ -198,7 +198,7 @@ In such cases, it is safe to call the function using keyword arguments.</p>
 </code></pre>
 <h2 id="default-parameters"><a class="header" href="#default-parameters">Default parameters</a></h2>
 <p>Default parameters are used when some parameters are mostly fixed and you want to be able to omit them.</p>
-<p>Default parameters are specified by <code>:=</code>(walrus operator). If <code>base</code> is not specified, assign <code>math.E</code> to <code>base</code>.</p>
+<p>Default parameters are specified by <code>:=</code>(default-assign operator). If <code>base</code> is not specified, assign <code>math.E</code> to <code>base</code>.</p>
 <pre><code class="language-python">math_log x: Ratio, base := math.E = ...
 
 assert math_log(100, 10) == 2
@@ -286,6 +286,21 @@ factorial n = n * factorial(n - 1)
 </code></pre>
 <p>and this computation does not stop. Recursive functions must carefully define the range of values or you may end up in an infinite loop.
 So the type specification also helps to avoid accepting unexpected values.</p>
+<h2 id="high-order-functions"><a class="header" href="#high-order-functions">High-order functions</a></h2>
+<p>A higher-order function is a function that takes a function as its parameter or return value.
+For example, a higher-order function that takes a function as its parameter can be written as follows</p>
+<pre><code class="language-python">arg_f = i -&gt; log i
+higher_f(x: (Int -&gt; NoneType)) = x 10
+higher_f arg_f # 10
+</code></pre>
+<p>Of coursers, it is possible to take return value  as a function.</p>
+<pre><code class="language-python">add(x): (Int -&gt; Int) = y -&gt; x + y
+add_ten = add(10) # y -&gt; 10 + y
+add_hundred = add(100) # y -&gt; 100 + y
+assert add_ten(1) == 11
+assert add_hundred(1) == 101
+</code></pre>
+<p>By taking functions as parameters and return values in this way, more flexible expressions can be defined with functions.</p>
 <h2 id="compile-time-functions"><a class="header" href="#compile-time-functions">Compile-time functions</a></h2>
 <p>A function name begins with an uppercase letter to indicate a compile-time function. User-defined compile-time functions must have all arguments as constants and must specify their types.
 Compile-time functions are limited in what they can do. Only constant expressions can be used in compile-time functions, i.e., only some operators (such as quadrature, comparison, and type construction operations) and compile-time functions. Arguments to be passed must also be constant expressions.

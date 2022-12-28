@@ -145,9 +145,27 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="procedures"><a class="header" href="#procedures">Procedures</a></h1>
+<p>Procedures mean the functions that allow <a href="/07_side_effect.html">side-effect</a>.
+Please refer to <a href="/04_function.html">Function</a> basically usage or definition.
+Add <code>!</code> to a function name to define it.</p>
+<pre><code class="language-python">proc!(x: Int!, y: Int!) =
+    for! 0..x, i =&gt;
+        for 0..y, j =&gt;
+            print! i, j
+</code></pre>
 <p>Procedures are necessary when dealing with mutable objects, but having a mutable object as an argument does not necessarily make it a procedure.
 Here is a function takes a mutable object (not procedure).</p>
 <pre><code class="language-python">peek_str s: Str! = log s
+
+make_proc(x!: (Int =&gt; Int)): (Int =&gt; Int) = y =&gt; x! y
+p! = make_proc(x =&gt; x)
+print! p! 1 # 1
+</code></pre>
+<p>Also, procedures and functions are related by <code>proc :&gt; func</code>.
+Therefore, it is possible to define functions in procedure.
+However, note that the reverse is not possible.</p>
+<pre><code class="language-python">proc!(x: Int!) = y -&gt; log x, y # OK
+func(x: Int) = y =&gt; print! x, y # NG
 </code></pre>
 
 

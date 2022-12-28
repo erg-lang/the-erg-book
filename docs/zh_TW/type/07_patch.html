@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="修補"><a class="header" href="#修補">修補</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=bade70ef91c040f40cb181399ad7056527d9a1c5"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3Dbade70ef91c040f40cb181399ad7056527d9a1c5" alt="badge" /></a></p>
 <p>Erg 不允許修改現有類型和類
 這意味著，不可能在類中定義額外的方法，也不能執行特化(一種語言特性，單態化多態聲明的類型并定義專用方法，如在 C++ 中)
 但是，在許多情況下，您可能希望向現有類型或類添加功能，并且有一個稱為&quot;修補&quot;的功能允許您執行此操作</p>
@@ -171,7 +171,7 @@ StrangeInt.
 # 覆蓋方法必須被賦予覆蓋裝飾器
     # 另外，你需要覆蓋所有依賴于 Int.`_+_` 的 Int 方法
     @Override
-    `_+_` = Super.`_-_` # OverrideError: Int.`_+_` 被 ... ````` 引用，所以這些方法也必須被覆蓋
+    `_+_` = Super.`_-_` # OverrideError: Int.`_+_` 被 ... 引用，所以這些方法也必須被覆蓋
 </code></pre>
 <h2 id="選擇修補程序"><a class="header" href="#選擇修補程序">選擇修補程序</a></h2>
 <p>可以為單一類型定義修復程序，并且可以組合在一起</p>

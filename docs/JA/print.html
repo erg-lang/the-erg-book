@@ -146,7 +146,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="基本事項"><a class="header" href="#基本事項">基本事項</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/00_basic.md&amp;commit_hash=13f2d31aee9012f60b7a40d4b764921f1419cdfe"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/00_basic.md%26commit_hash%3D13f2d31aee9012f60b7a40d4b764921f1419cdfe" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/00_basic.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/00_basic.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <blockquote>
 <p><strong>Warning</strong>: 本ドキュメントは未完成です。校正(文体、正しいリンクが張られているか、など)がなされていません。また、Ergの文法はバージョン0.*の間に破壊的変更が加えられる可能性があり、それに伴うドキュメントの更新が追いついていない可能性があります。予めご了承ください。
 また、本ドキュメントの誤りを見つけた場合は、<a href="https://forms.gle/HtLYRfYzWCAaeTGb6">こちらのフォーム</a>または<a href="https://github.com/erg-lang/erg/issues/new?assignees=&amp;labels=bug&amp;template=bug_report.yaml">GitHubリポジトリ</a>から修正の提案をしていただけると幸いです。</p>
@@ -161,7 +161,7 @@
 <p>Pythonや同系統の言語とほぼ同じです。目を引くのは<code>print</code>の後に付く<code>!</code>ですが、これの意味はおいおい説明します。
 また、Ergでは解釈に紛れのない限り括弧<code>()</code>を省略することが出来ます。
 括弧の省略ができるのはRubyと似ていますが、複数の解釈ができる括弧省略はできませんし、また引数が0個のときもPythonと同じく<code>()</code>の省略が出来ません。</p>
-<pre><code class="language-python">print! &quot;Hello, World!&quot; # OK
+<pre><code class="language-python.checker_ignore">print! &quot;Hello, World!&quot; # OK
 print! &quot;Hello,&quot;, &quot;World!&quot; # OK
 print!() # OK
 print! # OKだが呼び出しという意味ではなく、単に`print!`を呼び出し可能なオブジェクトとして取得するという意味となる
@@ -197,6 +197,7 @@ hello, world
 各式はセパレータ―改行かセミコロン<code>;</code>―で区切ります。
 Ergのスクリプトは基本的に左から右へ、上から下へ評価されます。</p>
 <pre><code class="language-python">n = 1 # 代入式
+f x, y = x + y # 関数定義
 f(1, 2) # 関数適用式
 1 + 1 # 演算子適用式
 f(1, 2); 1 + 1
@@ -241,7 +242,7 @@ x \
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="リテラル"><a class="header" href="#リテラル">リテラル</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/01_literal.md&amp;commit_hash=00350f64a40b12f763a605bc16748d09379ab182"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/01_literal.md%26commit_hash%3D00350f64a40b12f763a605bc16748d09379ab182" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/01_literal.md&amp;commit_hash=7078f95cecc961a65befb15929af06ae2331c934"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/01_literal.md%26commit_hash%3D7078f95cecc961a65befb15929af06ae2331c934" alt="badge" /></a></p>
 <h2 id="基本的なリテラル"><a class="header" href="#基本的なリテラル">基本的なリテラル</a></h2>
 <h3 id="整数リテラルint-literal"><a class="header" href="#整数リテラルint-literal">整数リテラル(Int Literal)</a></h3>
 <pre><code class="language-python">0, -0, 1, -1, 2, -2, 3, -3, ...
@@ -338,7 +339,7 @@ assert 1m / 1s == 1 (m/s)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="変数"><a class="header" href="#変数">変数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/02_name.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/02_name.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/02_name.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/02_name.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>変数は代数の一種です。Ergにおける代数―紛れがなければ単に変数と呼ばれることもあります―とは、オブジェクトを名前付けしてコード中の別の場所から利用できるようにする機能を指します。</p>
 <p>変数は以下のように定義します。
 <code>n</code>の部分を変数名(または、識別子)、<code>=</code>を代入演算子、<code>1</code>の部分を代入値と呼びます。</p>
@@ -351,9 +352,10 @@ assert 1m / 1s == 1 (m/s)
 <pre><code class="language-python">n: Nat = 1
 </code></pre>
 <p>他の言語とは違い、多重代入はできないので注意してください。</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 l1 = l2 = [1, 2, 3] # SyntaxError: multiple assignment not allowed
-# OK
+</code></pre>
+<pre><code class="language-python"># OK
 l1 = [1, 2, 3]
 l2 = l1.clone()
 </code></pre>
@@ -372,7 +374,7 @@ if x.is_zero(), do:
 assert x == 0
 </code></pre>
 <p>以下は一見すると可能なように思えますが、やはりできません。これは技術的な制約ではなく、設計判断です。</p>
-<pre><code class="language-python">x = 0
+<pre><code class="language-python compile_fail">x = 0
 if x.is_zero(), do:
     x = x + 1 # NameError: cannot define variables refer to variables with the same name
     assert x == 1
@@ -381,7 +383,7 @@ assert x == 0
 <h2 id="定数"><a class="header" href="#定数">定数</a></h2>
 <p>定数も代数の一種です。識別子を大文字で始めると定数として扱われます。一度定義したら変わらないので、定数と呼ばれます。
 <code>N</code>の部分を定数名(または、識別子)と呼びます。その他は変数と同じです。</p>
-<pre><code class="language-python">N = 0
+<pre><code class="language-python compile_fail">N = 0
 if True, do:
     N = 1 # AssignError: constants cannot be shadowed
     pass()
@@ -403,13 +405,14 @@ match! x:
 <p>定数には代入できないものがあります。可変オブジェクトなどです。詳しくは後述しますが、可変オブジェクトは内容を変更することができるオブジェクトです。
 これは定数には定数式のみを代入できるという規則があるためです。定数式についても後述することとします。</p>
 <pre><code class="language-python">X = 1 # OK
-X = !1 # TypeError: cannot define Int! object as a constant
+</code></pre>
+<pre><code class="language-python compile_fail">X = !1 # TypeError: cannot define Int! object as a constant
 </code></pre>
 <h2 id="代数の削除"><a class="header" href="#代数の削除">代数の削除</a></h2>
 <p><code>Del</code>関数を使うことで、代数を削除することが出来ます。その代数に依存している(その代数の値を直接参照している)他の代数もまとめて削除されます。</p>
 <pre><code class="language-python">x = 1
 y = 2
-Z = 3
+z = 3
 f a = x + a
 
 assert f(2) == 3
@@ -450,7 +453,7 @@ print! C # &lt;class C&gt;
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="宣言"><a class="header" href="#宣言">宣言</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/03_declaration.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/03_declaration.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/03_declaration.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/03_declaration.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>宣言は、使用する変数の型を指定する構文です。
 宣言はコード中のどこでも可能ですが、宣言しただけでその変数を参照することはできません。必ず初期化する必要があります。
 代入後の宣言では、代入されたオブジェクトと型が適合するかをチェック可能です。</p>
@@ -471,20 +474,21 @@ i: Int # これは通る
 i: Nat # これは通らない(-1はNatの要素ではないため)
 </code></pre>
 <p>関数は以下の2種類の方法で宣言が可能です。</p>
-<pre><code class="language-python">f: (x: Int, y: Int) -&gt; Int
+<pre><code class="language-python checker_ignore">f: (x: Int, y: Int) -&gt; Int
 f: (Int, Int) -&gt; Int
 </code></pre>
 <p>引数名を明示して宣言した場合、定義時に名前が違うと型エラーとなります。引数名の任意性を与えたい場合は2番目の方法で宣言すると良いでしょう。その場合、型検査で見られるのはメソッド名とその型のみです。キーワード指定による呼び出しはできなくなります。</p>
-<pre><code class="language-python">T = Trait {
+<pre><code class="language-python compile_fail">T = Trait {
     .f = (x: Int, y: Int): Int
 }
 
-C = Class(U, Impl := T)
-C.f(a: Int, b: Int): Int = ... # TypeError: `.f` must be type of `(x: Int, y: Int) -&gt; Int`, not `(a: Int, b: Int) -&gt; Int`
+C = Class()
+C|&lt;: T|.
+    f(a: Int, b: Int): Int = ... # TypeError: `.f` must be type of `(x: Int, y: Int) -&gt; Int`, not `(a: Int, b: Int) -&gt; Int`
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="関数"><a class="header" href="#関数">関数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=00c05ab6686062ea6707a326c840d910a55e6dc4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D00c05ab6686062ea6707a326c840d910a55e6dc4" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>関数は「引数」を受け取ってそれを加工し、「戻り値」として返すブロックです。以下のように定義します。</p>
 <pre><code class="language-python">add x, y = x + y
 # or
@@ -500,9 +504,9 @@ add(1, 2)
 </code></pre>
 <h2 id="コロン適用スタイル"><a class="header" href="#コロン適用スタイル">コロン適用スタイル</a></h2>
 <p>関数は<code>f x, y, ...</code>のように呼び出しますが、<strong>実引数</strong> が多く一行では長くなりすぎる場合は<code>:</code>(コロン)を使った適用も可能です。</p>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2:
     some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <p>上の2つのコードは同じ意味です。このスタイルは<code>if</code>関数などを使用するときにも便利です。</p>
@@ -516,12 +520,12 @@ add(1, 2)
 </code></pre>
 <p>この場合、<code>:</code>の後はコメント以外のコードを書いてはならず、必ず改行しなくてはなりません。
 また、関数の直後に<code>:</code>を使うことはできません。これができるのは<code>do</code>と<code>do!</code>のみです。</p>
-<pre><code class="language-python"># NG
+<pre><code class="language-python compile_fail"># NG
 f:
     x
     y
-
-# Ok
+</code></pre>
+<pre><code class="language-python checker_ignore"># Ok
 f(
     x,
     y
@@ -530,7 +534,7 @@ f(
 <h2 id="キーワード引数"><a class="header" href="#キーワード引数">キーワード引数</a></h2>
 <p>引数の数が多い関数を定義されていると、引数を渡す順番を間違える危険性があります。
 そのような場合はキーワード引数を使用して呼び出すと安全です。</p>
-<pre><code class="language-python">f x, y, z, w, v, u: Int = ...
+<pre><code class="language-python checker_ignore">f x, y, z, w, v, u: Int = ...
 </code></pre>
 <p>上に定義された関数は、引数が多く、分かりにくい並びをしています。
 このような関数は作るべきではありませんが、他人の書いたコードを使うときにこのようなコードにあたってしまうかもしれません。
@@ -556,10 +560,10 @@ p!(None) # None
 f [x, y] := [1, 2] = ...
 </code></pre>
 <p>しかしデフォルト引数内では、後述するプロシージャを呼び出したり、可変オブジェクトを代入したりすることができません。</p>
-<pre><code class="language-python">f x := p! 1 = ... # NG
+<pre><code class="language-python compile_fail">f x := p! 1 = ... # NG
 </code></pre>
 <p>また、定義したばかりの引数はデフォルト引数に渡す値として使えません。</p>
-<pre><code class="language-python">f x := 1, y := x = ... # NG
+<pre><code class="language-python compile_fail">f x := 1, y := x = ... # NG
 </code></pre>
 <h2 id="可変長引数"><a class="header" href="#可変長引数">可変長引数</a></h2>
 <p>引数をログ(記録)として出力する<code>log</code>関数は、任意の個数の引数を受け取ることができます。</p>
@@ -627,6 +631,21 @@ factorial n = n * factorial(n - 1)
 </code></pre>
 <p>となって、この計算は停止しません。再帰関数は慎重に値の範囲を定義しないと無限ループに陥ってしまう可能性があります。
 型指定は想定しない値の受け入れを防ぐのにも役立つというわけです。</p>
+<h2 id="高階関数"><a class="header" href="#高階関数">高階関数</a></h2>
+<p>高階関数は引数や返り値に関数を取る関数のことを指します。
+例えば引数に関数を取る高階関数は以下のように記述できます。</p>
+<pre><code class="language-python">arg_f = i -&gt; log i
+higher_f(x: (Int -&gt; NoneType)) = x 10
+higher_f arg_f # 10
+</code></pre>
+<p>もちろん、関数を返り値にすることもできます。</p>
+<pre><code class="language-python">add(x): (Int -&gt; Int) = y -&gt; x + y
+add_ten = add(10) # y -&gt; 10 + y
+add_hundred = add(100) # y -&gt; 100 + y
+assert add_ten(1) == 11
+assert add_hundred(1) == 101
+</code></pre>
+<p>このようにして関数を引数や返り値にとることで、より柔軟な表現を関数で定義することができます。</p>
 <h2 id="コンパイル時関数"><a class="header" href="#コンパイル時関数">コンパイル時関数</a></h2>
 <p>関数名を大文字で始めるとコンパイル時関数となります。ユーザー定義のコンパイル時関数は、引数がすべて定数で、かつ型を明示する必要があります。
 コンパイル関数ができることは限られています。コンパイル時関数内で使えるのは定数式のみ、すなわち、いくつかの演算子(四則演算や比較演算、型構築演算など)とコンパイル時関数のみです。代入する引数も定数式である必要があります。
@@ -708,17 +727,18 @@ print! result # 1 (または0)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="演算子"><a class="header" href="#演算子">演算子</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/06_operator.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/06_operator.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/06_operator.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/06_operator.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>演算子(オペレーター)は、演算を表す記号です。被演算子(オペランド)は演算子の(左)右にあるもので、Ergでは専らオブジェクトです。</p>
 <p>演算子は関数の一種であり、したがってそれ自体も第一級オブジェクトで変数に束縛できます。束縛の際は``で囲む必要があります。
 <code>+</code>(と<code>-</code>)については、単項演算子と二項演算子の両方が存在するため、一意化するために<code>_+_</code>(二項演算)/<code>+_</code>(単項演算)のどちらかを指定する必要があります。</p>
-<pre><code class="language-python">add = `+` # SyntaxError: specify `_+_` or `+_`
-add = `_+_`
+<pre><code class="language-python compile_fail">add = `+` # SyntaxError: specify `_+_` or `+_`
+</code></pre>
+<pre><code class="language-python">add = `_+_`
 assert f(1, 2) == 3
 assert f(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
 
-g = `*` # OK, this is binary only
-assert g(1, 2) == 2
+mul = `*` # OK, this is binary only
+assert mul(1, 2) == 2
 </code></pre>
 <p>ただし、特殊形式と呼ばれる一部の演算子は束縛できないことに注意してください。</p>
 <pre><code class="language-python compile_fail">def = `=` # SyntaxError: cannot bind `=` operator, this is a special form
@@ -728,7 +748,7 @@ function = `-&gt;` # SyntaxError: cannot bind `-&gt;` operator, this is a specia
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="副作用とプロシージャ"><a class="header" href="#副作用とプロシージャ">副作用とプロシージャ</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>これまで<code>print!</code>の<code>!</code>の意味を説明せずにいましたが、いよいよその意味が明かされます。この!は、ズバリこのオブジェクトが「副作用」のある「プロシージャ」であることを示しています。プロシージャは関数に「副作用」という効果を与えたものです。</p>
 <pre><code class="language-python compile_fail">f x = print! x # EffectError: functions cannot be assigned objects with side effects
 # hint: change the name to 'f!'
@@ -811,9 +831,57 @@ print! &quot;これはすぐにプリントされます&quot;
 <p>つまり、プログラムへのフィードバックがない、言い換えればいかなる外部オブジェクトもその情報を使うことが出来ないならば、情報の「漏洩」自体は許される場合があります。「伝搬」されなければよいのです。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="プロシージャ"><a class="header" href="#プロシージャ">プロシージャ</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/08_procedure.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/08_procedure.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>プロシージャは可変オブジェクトを取り扱う際に必要となりますが、可変オブジェクトを引数に持てばプロシージャであるとは限りません。</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/08_procedure.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/08_procedure.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
+<p>プロシージャは<a href="/07_side_effect.html">副作用</a>を許容する関数を意味します。
+基本的な定義や利用方法は<a href="/04_function.html">関数</a>を参照してください。
+関数名に対して<code>!</code>をつけることで定義することができます。</p>
+<pre><code class="language-python">proc!(x: Int!, y: Int!) =
+    for! 0..x, i =&gt;
+        for 0..y, j =&gt;
+            print! i, j
+</code></pre>
+<p>プロシージャは可変オブジェクトを取り扱う際に必要となります。
+ですが、可変オブジェクトを引数に持つときやプロシージャの定義するだけの場合はプロシージャであるとは限りません。</p>
 <pre><code class="language-python">peek_str s: Str! = log s
+
+make_proc(x!: (Int =&gt; Int)): (Int =&gt; Int) = y =&gt; x! y
+p! = make_proc(x =&gt; x)
+print! p! 1 # 1
+</code></pre>
+<p>またプロシージャと関数は<code>proc :&gt; func</code>の関係にあります。
+そのため、プロシージャ内で関数ブロックを定義することもできます。
+しかし、逆はできないので注意をしてください。</p>
+<pre><code class="language-python">proc!(x: Int!) = y -&gt; log x, y # OK
+func(x: Int) = y =&gt; print! x, y # NG
+</code></pre>
+<h2 id="バインド"><a class="header" href="#バインド">バインド</a></h2>
+<p>プロシージャはスコープ外の可変変数を操作することができます。</p>
+<pre><code class="language-python">x = !0
+proc!() =
+    x.inc!()
+
+proc!()
+assert x == 1
+</code></pre>
+<p>このとき、<code>proc!</code>は以下のような型を持ちます。</p>
+<pre><code class="language-python">proc!: {|x: Int!|}() =&gt; ()
+</code></pre>
+<p><code>{|x: Int!|}</code>の部分はバインド列と呼ばれ、そのプロシージャが操作する変数とその型を表します。
+バインド列は自動で導出されるため、明示的に書く必要はありません。</p>
+<p>注意として、通常のプロシージャは予め決められた外部変数のみを操作することができます。これはつまり、引数に渡された変数を書き換えることはできないということです。
+そのようなことがしたい場合は、プロシージャルメソッドを使う必要があります。プロシージャルメソッドは、<code>self</code>を書き換えることができます。</p>
+<pre><code class="language-python">C! N = Class {arr = [Int; N]!}
+C!.
+    new() = Self!(0)::__new__ {arr = ![]}
+C!(N).
+    # push!: {|self: C!(N) ~&gt; C!(N+1)|}(self: RefMut(C!(N)), x: Int) =&gt; NoneType
+    push! ref! self, x = self.arr.push!(x)
+    # pop!: {|self: C!(N) ~&gt; C!(N-1)|}(self: RefMut(C!(N))) =&gt; Int
+    pop! ref! self = self.arr.pop!()
+
+c = C!.new()
+c.push!(1)
+assert c.pop!() == 1
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="組み込みプロシージャ"><a class="header" href="#組み込みプロシージャ">組み込みプロシージャ</a></h1>
@@ -824,7 +892,7 @@ print! &quot;これはすぐにプリントされます&quot;
 <pre><code class="language-python"></code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="配列"><a class="header" href="#配列">配列</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/10_array.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/10_array.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/10_array.md&amp;commit_hash=603abbd5fa3f8baffe0d614758e1a554705e6732"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/10_array.md%26commit_hash%3D603abbd5fa3f8baffe0d614758e1a554705e6732" alt="badge" /></a></p>
 <p>配列はもっとも基本的な <strong>コレクション(集約)</strong> です。
 コレクションとは、内部にオブジェクトを複数保持できるオブジェクトのことです。</p>
 <pre><code class="language-python">a = [1, 2, 3]
@@ -863,7 +931,7 @@ assert l[..].step(2) == [2, 4]
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="タプル"><a class="header" href="#タプル">タプル</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/11_tuple.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/11_tuple.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/11_tuple.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/11_tuple.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>タプルは配列と似ていますが、違う型のオブジェクトを保持できます。
 このようなコレクションを非等質なコレクションと呼びます。対して等質なコレクションには配列、セットなどがあります。</p>
 <pre><code class="language-python">t = (1, True, &quot;a&quot;)
@@ -881,9 +949,10 @@ assert t.2 == &quot;a&quot;
 i, b, s = t
 </code></pre>
 <p>タプルは違う型のオブジェクトを保持できますが、そのかわり配列のようなイテレーションができなくなります。</p>
-<pre><code class="language-python">t: ({1}, {2}, {3}) = (1, 2, 3)
+<pre><code class="language-python compile_fail">t: ({1}, {2}, {3}) = (1, 2, 3)
 (1, 2, 3).iter().map(x -&gt; x + 1) # TypeError: type ({1}, {2}, {3}) has no method `.iter()`
-# すべて同じ型の場合配列と同じように`(T; n)`で表せるが、これでもイテレーションは出来ない
+</code></pre>
+<pre><code class="language-python"># すべて同じ型の場合配列と同じように`(T; n)`で表せるが、これでもイテレーションは出来ない
 t: (Int; 3) = (1, 2, 3)
 assert (Int; 3) == (Int, Int, Int)
 </code></pre>
@@ -920,7 +989,7 @@ p!: () =&gt; () # 引数部分は構文の一部でありタプルではない
 Ergでの使い分けとしては、プロシージャなどではじめから意味のある値を返さないことが確定しているときは<code>()</code>、要素の取得のように操作が失敗して何も得られなかったときは<code>None</code>を返してください。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="辞書"><a class="header" href="#辞書">辞書</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=a0c1380a6fa5236518ac4ff455edbd3af50b0560"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3Da0c1380a6fa5236518ac4ff455edbd3af50b0560" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=e86a0987ed14a4de5da770372d4f3729c7691503"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3De86a0987ed14a4de5da770372d4f3729c7691503" alt="badge" /></a></p>
 <p>Dictはキーと値のペアを持つコレクションです。</p>
 <pre><code class="language-python">ids = {&quot;Alice&quot;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301}
 assert ids[&quot;Alice&quot;] == 145
@@ -935,7 +1004,7 @@ l = {0.0: &quot;a&quot;, 1.0: &quot;b&quot;} # TypeError: Float is not Hashable
 </code></pre>
 <p>Dictに順番は関係ありません。また、重複する要素を持つことも出来ません。この点でDictは<a href="./14_set.html">Set</a>と似ています。
 Dictは値付きのSetと言うこともできるでしょう。</p>
-<pre><code class="language-python">{&quot;Alice&quot;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301} == {&quot;Alice&quot;: 145, &quot;Charlie&quot;: 301, &quot;Bob&quot;: 214}
+<pre><code class="language-python compile_fail">{&quot;Alice&quot;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301} == {&quot;Alice&quot;: 145, &quot;Charlie&quot;: 301, &quot;Bob&quot;: 214}
 </code></pre>
 <p>DictリテラルからDictを生成する場合、キーの重複がないかチェックされます。
 重複がある場合コンパイルエラーとなりますが、自明でない場合もあり、その場合は後に登録された方が残ります(左から順番に登録されます)。</p>
@@ -972,7 +1041,7 @@ valid2: {Int: Int or Str} = {1: &quot;a&quot;, 2: 2}
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="レコード"><a class="header" href="#レコード">レコード</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/13_record.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/13_record.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/13_record.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/13_record.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>レコードは、キーでアクセスするDictとコンパイル時にアクセスが検査されるタプルの性質を併せ持つコレクションです。
 JavaScriptをやったことがある方ならば、オブジェクトリテラル記法の(より強化された)ようなものと考えてください。</p>
 <pre><code class="language-python">john = {.name = &quot;John&quot;; .age = 21}
@@ -988,18 +1057,18 @@ john[&quot;name&quot;] # Error: john is not subscribable
 では、辞書とレコードはどう使い分ければいいのでしょうか。
 一般的にはレコードの使用を推奨します。レコードには、コンパイル時に要素が存在するかチェックされる、 <strong>可視性(visibility)</strong> を指定できるなどのメリットがあります。
 可視性の指定は、Java言語などでみられるpublic/privateの指定に相当します。詳しくは<a href="./19_visibility.html">可視性</a>を参照してください。</p>
-<pre><code class="language-python">a = {x = 1; .y = x + 1}
+<pre><code class="language-python compile_fail">a = {x = 1; .y = x + 1}
+assert a.y == 2
 a.x # AttributeError: x is private
 # Hint: declare as `.x`.
-assert a.y == 2
 </code></pre>
 <p>上の例はJavaScriptに習熟している人間からすると奇妙かもしれませんが、単に<code>x</code>と宣言すると外部からアクセスできず、<code>.</code>をつけると<code>.</code>でアクセスできるというわけです。</p>
 <p>属性に対する明示的な型指定もできます。</p>
 <pre><code class="language-python">anonymous = {
-    .name: Option! Str = !None
+    .name: Option! Str = &quot;Jane Doe&quot;
     .age = 20
 }
-anonymous.name.set! &quot;John&quot;
+anonymous.name.set! &quot;John Doe&quot;
 </code></pre>
 <p>レコードはメソッドも持てます。</p>
 <pre><code class="language-python">o = {
@@ -1101,29 +1170,29 @@ y =
 <h2 id="データクラス"><a class="header" href="#データクラス">データクラス</a></h2>
 <p>素のレコード(レコードリテラルで生成されたレコード)は、これ単体でメソッドを実装しようとすると、直接インスタンスに定義する必要があります。
 これは効率が悪く、さらに属性の数が増えていくとエラー表示などが見にくくなり使いにくいです。</p>
-<pre><code class="language-python">john = {
+<pre><code class="language-python compile_fail">john = {
     name = &quot;John Smith&quot;
     age = !20
     .greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     .inc_age! ref! self = self::age.update! x -&gt; x + 1
 }
-john + 1
+print! john + 1
 # TypeError: + is not implemented for {name = Str; age = Int; .greet! = Ref(Self).() =&gt; None; inc_age! = Ref!(Self).() =&gt; None}, Int
 </code></pre>
 <p>そこで、このような場合はレコードクラスを継承します。このようなクラスをデータクラスと呼びます。
 これについては<a href="./type/04_class.html">クラス</a>の項で詳しく説明します。</p>
-<pre><code class="language-python">Person = Inherit {name = Str; age = Nat}
+<pre><code class="language-python checker_ignore">Person = Inherit {name = Str; age = Nat}
 Person.
     greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     inc_age! ref! self = self::age.update! x -&gt; x + 1
 
 john = Person.new {name = &quot;John Smith&quot;; age = 20}
-john + 1
+print! john + 1
 # TypeError: + is not implemented for Person, Int
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="セット"><a class="header" href="#セット">セット</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=e86a0987ed14a4de5da770372d4f3729c7691503"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3De86a0987ed14a4de5da770372d4f3729c7691503" alt="badge" /></a></p>
 <p>セットは集合を表し、データ構造的には重複、順序のない配列です。</p>
 <pre><code class="language-python">assert Set.from([1, 2, 3, 2, 1]) == {1, 2, 3}
 assert {1, 2} == {1, 1, 2} # 重複は自動で削除される
@@ -1139,12 +1208,15 @@ b: {Int; 3} = {0, 0, 0} # NG、重複が削除されて長さが変わる
 <p>また、<code>Eq</code>トレイトが実装されているオブジェクトのみが集合の要素になれます。</p>
 <p>そのため、Floatなどを集合の要素として使用することはできません。</p>
 <pre><code class="language-python compile_fail">d = {0.0, 1.0} # NG
+# Error[#1366]: File &lt;stdin&gt;, line 1, &lt;module&gt;::d
 #
-# 1│ d = {0.0, 1.0}
-#         ^^^^^^^^
-# TypeError: the type of _ is mismatched:
-# expected:  Eq(Float)
-# but found: {0.0, 1.0, }
+# 1 | d = {0.0, 1.0}
+#   :      --------
+#   :             |- expected: Eq
+#   :             |- but found: {0.0f, 1.0f, }
+#   :             `- Float has no equivalence relation defined. you should use l == R instead of l - r &lt;= Float.EPSILON
+#
+# TypeError: the type of _ is mismatched
 </code></pre>
 <p>セットは集合演算を行えます。</p>
 <pre><code class="language-python">assert 1 in {1, 2, 3}
@@ -1168,11 +1240,11 @@ mut_set.insert!(4)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="型"><a class="header" href="#型">型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/15_type.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/15_type.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/15_type.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/15_type.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>型はErgにおいて非常に重要な機能ですので、<a href="./type/01_type_system.html">専用のセクション</a>を用意しています。そちらをご覧ください。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ergの型システム"><a class="header" href="#ergの型システム">Ergの型システム</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/01_type_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/01_type_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/01_type_system.md&amp;commit_hash=f4fb25b4004bdfa96d2149fac8c4e40b84e8a45f"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/01_type_system.md%26commit_hash%3Df4fb25b4004bdfa96d2149fac8c4e40b84e8a45f" alt="badge" /></a></p>
 <p>以下では、Ergの型システムを概略的に説明します。詳細については他の項で解説します。</p>
 <h2 id="定義方法"><a class="header" href="#定義方法">定義方法</a></h2>
 <p>Ergの特徴的な点として、(通常の)変数、関数(サブルーチン)、型(カインド)の定義にあまり大きな構文上の違いがないというところがあります。すべて、通常の変数・関数定義の文法に従って定義されます。</p>
@@ -1328,11 +1400,11 @@ print! b # =&gt; 0
     l + r # TypeError: there is no implementation of  `_+_`: |T, U &lt;: Add| (T, U) -&gt; &lt;Failure&gt;
 </code></pre>
 <p>また、下の<code>A</code>, <code>B</code>は同じ型とはみなされません。しかし、型<code>O</code>は一致するとみなされます。</p>
-<pre><code class="language-python">... |R1; R2; O; A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
+<pre><code class="language-python">... |R1; R2, O; A &lt;: Add(R1, O); B &lt;: Add(R2, O)|
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="型に関する基本的な文法"><a class="header" href="#型に関する基本的な文法">型に関する基本的な文法</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=a0c1380a6fa5236518ac4ff455edbd3af50b0560"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3Da0c1380a6fa5236518ac4ff455edbd3af50b0560" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=f4fb25b4004bdfa96d2149fac8c4e40b84e8a45f"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3Df4fb25b4004bdfa96d2149fac8c4e40b84e8a45f" alt="badge" /></a></p>
 <h2 id="型指定"><a class="header" href="#型指定">型指定</a></h2>
 <p>Ergでは以下のように<code>:</code>の後に変数の型を指定します。代入と同時に行うこともできます。</p>
 <pre><code class="language-python">i: Int # これから使う変数iはInt型であると宣言する
@@ -1450,7 +1522,7 @@ Point = {x = Int; y = Int; z = Int} # TypeWarning: duplicate aliases: Point3D an
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="トレイト"><a class="header" href="#トレイト">トレイト</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/03_trait.md&amp;commit_hash=14657486719a134f494e107774ac8f9d5a63f083"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/03_trait.md%26commit_hash%3D14657486719a134f494e107774ac8f9d5a63f083" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/03_trait.md&amp;commit_hash=a373185dec9bc0b1ca8e17d482336d502d714af9"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/03_trait.md%26commit_hash%3Da373185dec9bc0b1ca8e17d482336d502d714af9" alt="badge" /></a></p>
 <p>トレイトは、レコード型に型属性の要求を追加した記名型です。
 Pythonでいう抽象基底クラス(Abstract Base Class, ABC)に類似しますが、代数的演算を行えるという特徴があります。</p>
 <pre><code class="language-python">Norm = Trait {.x = Int; .y = Int; .norm = Self.() -&gt; Int}
@@ -1587,7 +1659,7 @@ print! P|&lt;: Mul(Int)|.Output # &lt;class 'P'&gt;
 代数演算を行えるようにするためトレイトは実装を持てないようにして、必要ならばパッチをあてる設計にしています。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="クラス"><a class="header" href="#クラス">クラス</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/04_class.md&amp;commit_hash=a9d45b743cc655543e0d7f586426499091cead3d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/04_class.md%26commit_hash%3Da9d45b743cc655543e0d7f586426499091cead3d" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/04_class.md&amp;commit_hash=7078f95cecc961a65befb15929af06ae2331c934"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/04_class.md%26commit_hash%3D7078f95cecc961a65befb15929af06ae2331c934" alt="badge" /></a></p>
 <p>Ergにおけるクラスは、大まかには自身の要素(インスタンス)を生成できる型と言えます。
 以下は単純なクラスの例です。</p>
 <pre><code class="language-python">Person = Class {.name = Str; .age = Nat}
@@ -1667,7 +1739,7 @@ C.
 オブジェクトからは、クラスメソッドの他にパッチメソッドも使用可能です。
 Ergではクラスメソッドを追加したりはできませんが、<a href="type/./07_patch.html">パッチ</a>で拡張可能です。</p>
 <p>既存のクラスを継承することも出来ます(<a href="type/../29_decorator.html#inheritable">Inheritable</a>クラスの場合)。
-<code>Inherit</code>は継承を意味します。左辺の型を派生クラス、右辺の<code>Inherit</code>の引数型を基底クラスと言います。</p>
+<code>Inherit</code>は継承を意味します。左辺の型をサブクラス、右辺の<code>Inherit</code>の引数型をスーパークラスと言います。</p>
 <pre><code class="language-python">MyStr = Inherit Str
 # other: StrとしておけばMyStrでもOK
 MyStr.
@@ -1687,7 +1759,7 @@ MyStr2 = Inherit MyStr # NG
 InheritableMyStr = Inherit Str
 MyStr3 = Inherit InheritableMyStr # OK
 </code></pre>
-<p><code>Inherit Object</code>と<code>Class()</code>は実用上ほぼ等価です。一般的には後者を使用します。</p>
+<p><code>Inherit Obj</code>と<code>Class()</code>は実用上ほぼ等価です。一般的には後者を使用します。</p>
 <p>クラスは型とは同値判定の仕組みが異なります。
 型は構造に基づいて同値性が判定されます。</p>
 <pre><code class="language-python">Person = {.name = Str; .age = Nat}
@@ -1808,7 +1880,7 @@ assert T.foo == Foo
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="継承"><a class="header" href="#継承">継承</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/05_inheritance.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/05_inheritance.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/05_inheritance.md&amp;commit_hash=7078f95cecc961a65befb15929af06ae2331c934"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/05_inheritance.md%26commit_hash%3D7078f95cecc961a65befb15929af06ae2331c934" alt="badge" /></a></p>
 <p>継承を使うと、既存のクラスに機能を加えたり特化したりした新しいクラスを定義できます。
 継承はトレイトにおける包摂に似ています。継承してできたクラスは、もとのクラスのサブタイプになります。</p>
 <pre><code class="language-python">NewInt = Inherit Int
@@ -2035,7 +2107,7 @@ assert MonthsClass.new(2).name() == &quot;february&quot;
 SSTはどんなユースケースでも破綻しないコードを書く抽象化能力が要求されます。よい抽象化を実現できれば高い生産性を発揮できますが、間違った抽象化(<strong>見かけによる共通化</strong>)を行うと逆効果となってしまいます。NSTは抽象性をあえて抑え、このリスクを減らすことができます。あなたがライブラリの実装者でないならば、NSTのみでコーディングを行っても悪くはないでしょう。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="パッチ"><a class="header" href="#パッチ">パッチ</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=95be9a51a2d95a0dd08dca1eb520c172aed2645c"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3D95be9a51a2d95a0dd08dca1eb520c172aed2645c" alt="badge" /></a></p>
 <p>Ergでは、既存の型・クラスに手を加えることはできません。
 クラスにメソッドを追加で定義することはできず、特殊化(specialization, 多相に宣言された型を単相化し専用のメソッドを定義する機能。C++などが持つ)も行えません。
 しかし、既存の型・クラスに機能を追加したいという状況は多々あり、これを実現するためにパッチという機能があります。</p>
@@ -2335,7 +2407,7 @@ OpaqueAbc = Class {inner = {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;}}.
 OpaqueAbc.new(&quot;A&quot;).is_uppercase() # TypeError
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="篩型"><a class="header" href="#篩型">篩型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=94015f61ed0018714a6271ecf60ff2ca38733ce6"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3D94015f61ed0018714a6271ecf60ff2ca38733ce6" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=c248056b7e0273027b3c86fb912430bbde711941"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3Dc248056b7e0273027b3c86fb912430bbde711941" alt="badge" /></a></p>
 <p>Refinement type(篩型、ふるいがた)は、述語式によって制約付けられた型です。列挙型や区間型は篩型の一種です。</p>
 <p>篩型の標準形は<code>{Elem: Type | (Pred)*}</code>です。これは、述語式<code>Pred</code>を満たす<code>Elem</code>を要素とする型である、という意味です。
 <code>Type</code>に使えるのは<a href="type/./08_value.html">Value型</a>のみです。</p>
@@ -2392,7 +2464,7 @@ Array(T, N | N &gt;= 3)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="代数演算型"><a class="header" href="#代数演算型">代数演算型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/13_algebraic.md&amp;commit_hash=b713e6f5cf9570255ccf44d14166cb2a9984f55a"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/13_algebraic.md%26commit_hash%3Db713e6f5cf9570255ccf44d14166cb2a9984f55a" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/13_algebraic.md&amp;commit_hash=d56549f5288d6c6b2bced57605ad547383963f85"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/13_algebraic.md%26commit_hash%3Dd56549f5288d6c6b2bced57605ad547383963f85" alt="badge" /></a></p>
 <p>代数演算型は、型を代数のようにみなして演算することで生成される型のことです。
 代数演算型が扱う演算は、Union, Intersection, Diff, Complementなどがあります。
 通常のクラスはUnionのみが行えて、他の演算は型エラーになります。</p>
@@ -2531,7 +2603,7 @@ match! arr:
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="型変数量化型"><a class="header" href="#型変数量化型">型変数、量化型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/15_quantified.md&amp;commit_hash=00682a94603fed2b531898200a79f2b4a64d5aae"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/15_quantified.md%26commit_hash%3D00682a94603fed2b531898200a79f2b4a64d5aae" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/15_quantified.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/15_quantified.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p>型変数はサブルーチン引数の型指定などに使用する変数で、その型が任意である(単相化しない)ことを示します。
 まず、型変数を導入するモチベーションとして、入力をそのまま返す<code>id</code>関数について考えましょう。</p>
 <pre><code class="language-python">id x: Int = x
@@ -2843,7 +2915,7 @@ IntTryFromFloat.
             else: Error &quot;conversion failed&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="可変型"><a class="header" href="#可変型">可変型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/18_mut.md&amp;commit_hash=00682a94603fed2b531898200a79f2b4a64d5aae"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/18_mut.md%26commit_hash%3D00682a94603fed2b531898200a79f2b4a64d5aae" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/18_mut.md&amp;commit_hash=60dfd8580acb1a06dec36895295f92e823931a59"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/18_mut.md%26commit_hash%3D60dfd8580acb1a06dec36895295f92e823931a59" alt="badge" /></a></p>
 <blockquote>
 <p><strong>Warning</strong>: この項の情報は古く、一部に間違いを含みます。</p>
 </blockquote>
@@ -2877,90 +2949,29 @@ K T: ImmutType = Class ...
 K! T: Type = Class ...
 </code></pre>
 <p>標準ライブラリでは、可変型<code>(...)!</code>型は不変型<code>(...)</code>型を基底としている場合が多いです。しかし<code>T!</code>型と<code>T</code>型に言語上特別な関連はなく、そのように構成しなくても構いません<a href="type/18_mut.html#1"><sup id="f1">1</sup></a>。</p>
-<p>注意として、オブジェクトの可変性にはいくつかの種類があります。
-以下では組み込みのコレクション型について、その不変/可変型の意味を確認します。</p>
-<pre><code class="language-python"># 配列型
-## 不変型(immutable types)
-[T; N]     # 可変操作は実行できない
-## 可変型(mutable types)
-[T!; N]    # 中身を1つずつ変更できる
-[T; !N]    # 可変長、中身は変更不能だが要素の追加・削除で実質変更できる
-[!T; N]    # 中身は不変オブジェクトだが、型を変えたものに差し替え可能できる(型を変えないという操作で実質差し替えできる)
-[!T; !N]   # 型、長さを変更できる
-[T!; !N]   # 中身、長さを変更でき
-[!T!; N]   # 中身、型を変更できる
-[!T!; !N]  # ありとあらゆる可変操作を実行できる
-</code></pre>
-<p>もちろんこれら全てを暗記し、使いこなす必要はありません。
-可変配列型については、可変にしたい部分に<code>!</code>を付けるだけであり、実用上は<code>[T; N]</code>, <code>[T!; N]</code>, <code>[T; !N]</code>, <code>[T!; !N]</code>の4つでほとんどのケースをカバーできます。</p>
-<p>これらの配列型は糖衣構文であり、実際の型は以下の通りです。</p>
-<pre><code class="language-python"># 実際は4種類の型
-[T; N] = Array(T, N)
-[T; !N] = Array!(T, !N)
-[!T; N] = ArrayWithMutType!(!T, N)
-[!T; !N] = ArrayWithMutTypeAndLength!(!T, !N)
-[T!; !N] = Array!(T!, !N)
-[!T!; N] = ArrayWithMutType!(!T!, N)
-[!T!; !N] = ArrayWithMutTypeAndLength!(!T!, !N)
-</code></pre>
-<p>なお、型を変更可能とはこのような意味です。</p>
-<pre><code class="language-python">a = [1, 2, 3].into [!Nat; 3]
-a.map!(_ -&gt; &quot;a&quot;)
-a: [!Str; 3]
-</code></pre>
-<p>他のコレクション型についても同様です。</p>
-<pre><code class="language-python"># タプル型
-## 不変型(immutable types)
-(T, U) # 要素数不変、中身を変更できない
-## 可変型(mutable types)
-(T!, U) # 要素数不変、最初の要素は変更できる
-(T, U)! # 要素数不変、中身を変更できる
-...
-</code></pre>
-<pre><code class="language-python"># セット型
-## 不変型(immutable types)
-{T; N}        # 不変要素数、中身を変更できない
-## 可変型(mutable types)
-{T!; N}       # 不変要素数、中身を(1つずつ)変更できる
-{T; N}!       # 可変要素数、中身は変更できないが、要素の追加削除で実質的に中の型を変更できる
-{T!; N}!      # 可変要素数、中身も変更できる
-...
-</code></pre>
-<pre><code class="language-python"># 辞書型
-## 不変型(immutable types)
-{K: V}          # 不変長、中身を変更できない
-## 可変型(mutable types)
-{K: V!}         # 不変長、値を(1つずつ)変更できる
-{K: V}!         # 可変長、中身を変更できないが、要素の追加削除で実質的に中の型も変更できる
-...
-</code></pre>
-<pre><code class="language-python"># レコード型
-## 不変型(immutable types)
-{x = Int; y = Str}           # 中身を変更できない
-## 可変型(mutable types)
-{x = Int!; y = Str}          # xの値を変更できる
-{x = Int; y = Str}!          # {x = Int; y = Str}のインスタンスならば何でも差し替えられる
-...
-</code></pre>
 <p><code>T = (...)</code>のとき単に<code>T! = (...)!</code>となる型<code>(...)</code>を単純構造型と呼びます。単純構造型は(意味論上)内部構造を持たない型ともいえます。
-配列、タプル、セット、辞書、レコード型は全て単純構造型ではありませんが、Int型や篩型は単純構造型です。</p>
-<pre><code class="language-python"># 篩型
-## 列挙型
-{1, 2, 3}    # 1, 2, 3のうちどれか、変更できない
-{1, 2, 3}!   # 1, 2, 3のうちどれか、変更できる
-## 区間型
-1..12  # 1~12のうちどれか、変更できない
-1..12! # 1~12のうちどれか、変更できる
-## 篩型(一般形)
-{I: Int | I % 2 == 0}  # 偶数型、変更できない
-{I: Int! | I % 2 == 0} # 偶数型、変更できる
-{I: Int | I % 2 == 0}! # 上と全く同じ型、だが上の記法が推奨される
-</code></pre>
+配列、タプル、セット、辞書、レコード型は単純構造型ではありませんが、Int型やStr型は単純構造型です。</p>
 <p>以上の説明から、可変型とは自身が可変であるものだけでなく、内部に持つ型が可変であるものも含まれるということになります。
 <code>{x: Int!}</code>や<code>[Int!; 3]</code>などの型は、内部のオブジェクトが可変であり、インスタンス自身が可変なわけではない内部可変型です。</p>
-<p>内部構造を持ち型構築子自体に<code>!</code>がついている型<code>K!(T, U)</code>の場合、<code>*self</code>はオブジェクト全体を変えうるものです。また、局所的な変更も可能です。
-ただし、変更権限はなるべく局所的に抑えることが望ましいので、変更されうるのが<code>T</code>のみの場合<code>K(T!, U)</code>とした方が良いでしょう。
-また内部構造を持たない型<code>T!</code>の場合、このインスタンスは単に入れ替え可能な<code>T</code>のボックスです。メソッドによって型を変更することはできません。</p>
+<h2 id="cell-t"><a class="header" href="#cell-t">Cell! T</a></h2>
+<p>Intや配列などの不変型に対しては、既に可変型が定義されています。しかし、このような可変型はどのようにして定義されたのでしょうか？例えば、<code>{x = Int; y = Int}</code>型に対しては<code>{x = Int!; y = Int!}</code>型などが対応する可変型です。
+しかし<code>Int!</code>型はどうやって<code>Int</code>型から作られたのでしょうか？あるいは<code>Int!</code>型はどのようにして<code>Int</code>型と関係付けられているのでしょうか？</p>
+<p>それらに対する答えが<code>Cell!</code>型です。<code>Cell! T</code>型は<code>T</code>型オブジェクトを格納する箱のような型です。</p>
+<pre><code class="language-python">IntOrStr = Inr or Str
+IntOrStr! = Cell! IntOrStr
+x = IntOrStr!.new 1
+assert x is! 1 # `Int or Str` cannot compare with `Int` directly, so use `is!` (this compares object IDs) instead of `==`.
+x.set! &quot;a&quot;
+assert x is! &quot;a&quot;
+</code></pre>
+<p><code>Cell! T</code>型の重要な性質として、<code>T</code>型の部分型になるというものがあります。これより、<code>Cell! T</code>型のオブジェクトは<code>T</code>型のメソッドを全て使うことができます。</p>
+<pre><code class="language-python"># definition of `Int!`
+Int! = Cell! Int
+...
+
+i = !1
+assert i == 1 # `i` is casted to `Int`
+</code></pre>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> <code>T!</code>型と<code>T</code>型に言語上の特別な関係がないのは意図的な設計です。関連があったとすると、例えば名前空間に<code>T</code>/<code>T!</code>型が存在するときに別のモジュールから<code>T!</code>/<code>T</code>型を導入できなくなるなどの不都合が生じます。また、不変型に対し可変型は一意に定まりません。<code>T = (U, V)</code>という定義があった際、<code>(U!, V)</code>と<code>(U, V!)</code>という可変サブタイプが<code>T!</code>としてあり得えます。<a href="type/18_mut.html#f1">↩</a></span></p>
 
@@ -3026,7 +3037,7 @@ hk = (1..5).iter().map(i -&gt; i * 2).collect(Array)
 hk: Array(Int)
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="存在型"><a class="header" href="#存在型">存在型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/existential.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/existential.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/existential.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/existential.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p>∀に対応する全称型があるならば、∃に対応する存在型があると考えるのが自然です。
 存在型は難しいものではありません。そうと意識していないだけで、既にあなたは存在型を知っています。</p>
 <pre><code class="language-python">T: Trait
@@ -3129,7 +3140,7 @@ Valid: (x: T, ys: (U,)) -&gt; V
 Invalid: (x: T, ys: (y: U,)) -&gt; V
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="カインド"><a class="header" href="#カインド">カインド</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/kind.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/kind.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/kind.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/kind.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p>Ergでは全てが型付けられている。型自体も例外ではない。「型の型」を表すのが <strong>カインド(種)</strong> である。例えば<code>1</code>が<code>Int</code>に属しているように、<code>Int</code>は<code>Type</code>に属している。<code>Type</code>は最もシンプルなカインドである <strong>原子カインド(Atomic kind)</strong> である。型理論的の記法では、<code>Type</code>は<code>*</code>に対応する。</p>
 <p>カインドという概念で実用上重要なのは1項以上のカインド(多項カインド)である。1項のカインドは、例えば<code>Option</code>などがそれに属する。1項カインドは<code>Type -&gt; Type</code>と表される<a href="type/advanced/kind.html#1"><sup id="f1">1</sup></a>。<code>Array</code>や<code>Option</code>などの <strong>コンテナ</strong> は特に型を引数に取る多項カインドのことなのである。
 <code>Type -&gt; Type</code>という表記が示す通り、実は<code>Option</code>は<code>T</code>という型を受け取って<code>Option T</code>という型を返す関数である。ただし、この関数は通常の意味での関数ではないため、1項カインド(unary kind)と普通は呼称される。</p>
@@ -3251,7 +3262,7 @@ assert i in M
 <div style="break-before: page; page-break-before: always;"></div><h1 id="可変構造型"><a class="header" href="#可変構造型">可変構造型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/mut_struct.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/mut_struct.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
 <p><code>T!</code>型は任意の<code>T</code>型オブジェクトを入れられて差し替え可能なボックス型であると説明した。</p>
-<pre><code class="language-python">Particle! State: {&quot;base&quot;, &quot;excited&quot;}! = Class(..., Impl := Phantom State)
+<pre><code class="language-python">Particle! State: {&quot;base&quot;, &quot;excited&quot;} = Class(..., Impl := Phantom State)
 Particle!.
     # このメソッドはStateを&quot;base&quot;から&quot;excited&quot;に遷移させる
     apply_electric_field!(ref! self(&quot;base&quot; ~&gt; &quot;excited&quot;), field: Vector) = ...
@@ -3262,17 +3273,17 @@ Particle!.
 例えば、可変長配列である。<code>[T; N]!</code>型は任意の<code>[T; N]</code>であるオブジェクトを入れることができるが、<code>[T; N+1]</code>型オブジェクトなどに差し替えることはできない。</p>
 <p>すなわち、長さを変えられないのである。長さを変えるためには、型自体の構造を変化させなくてはならない。</p>
 <p>それを実現するのが可変構造(可変)型である。</p>
-<pre><code class="language-python">v = [Str; !0].new()
+<pre><code class="language-python">v = [Str; 0]!.new()
 v.push! &quot;Hello&quot;
-v: [Str; !1]
+v: [Str; 1]!
 </code></pre>
-<p>可変構造型では可変化する型引数に<code>!</code>を付ける。上の場合は、<code>[Str; !0]</code>型を<code>[Str; !1]</code>型などに変更することができる。すなわち、長さを変更できる。
-因みに、<code>[T; !N]</code>型は<code>ArrayWithLength!(T, !N)</code>型の糖衣構文である。</p>
+<p>可変構造型では可変化する型引数に<code>!</code>を付ける。上の場合は、<code>[Str; 0]!</code>型を<code>[Str; 1]!</code>型などに変更することができる。すなわち、長さを変更できる。
+因みに、<code>[T; N]!</code>型は<code>Array!(T, N)</code>型の糖衣構文である。</p>
 <p>可変構造型はもちろんユーザー定義も可能である。ただし、不変構造型とは構成法に関していくつか違いがあるので注意が必要である。</p>
 <pre><code class="language-python">Nil T = Class(Impl := Phantom T)
-List T, !0 = Inherit Nil T
-List T, N: Nat! = Class {head = T; rest = List(T, !N-1)}
-List(T, !N).
+List! T, 0 = Inherit Nil T
+List! T, N: Nat = Class {head = T; rest = List!(T, N-1)}
+List!(T, N).
     push! ref! self(N ~&gt; N+1, ...), head: T =
         self.update! old -&gt; Self.new {head; old}
 </code></pre>
@@ -3409,7 +3420,7 @@ $normal_area.push!(NormalMember.new()) # OK
 $normal_area.push!(VIPMember.new()) # OK
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="イテレータ"><a class="header" href="#イテレータ">イテレータ</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/16_iterator.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/16_iterator.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/16_iterator.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/16_iterator.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>イテレータは、コンテナの要素を取り出すためのオブジェクトです。</p>
 <pre><code class="language-python">for! 0..9, i =&gt;
     print! i
@@ -3547,7 +3558,7 @@ match! x:
 しかし、Ergでは「全てがオブジェクト」です。関数や型は勿論、演算子でさえ変数に代入可能です。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="所有権システム"><a class="header" href="#所有権システム">所有権システム</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/18_ownership.md&amp;commit_hash=00350f64a40b12f763a605bc16748d09379ab182"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/18_ownership.md%26commit_hash%3D00350f64a40b12f763a605bc16748d09379ab182" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/18_ownership.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/18_ownership.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>ErgはPythonをホスト言語にした言語であるため、メモリ管理の方法はPythonの処理系に依存しています。
 しかし、意味論的にはErgのメモリ管理はPythonのそれとは別物です。顕著な違いは、所有権システムと循環参照の禁止に現れています。</p>
 <h2 id="所有権"><a class="header" href="#所有権">所有権</a></h2>
@@ -3591,9 +3602,7 @@ sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 
 x = [1, 2, 3].into [Int; !3]
 x.push!(4)
-i = x.iter() # TypeError: [Int; !4] has no method `iter`
-y = x.freeze()
-i = y.iter()
+i = x.iter()
 assert sum(i) == 10
 y # この後もyは触れられる
 </code></pre>
@@ -3627,7 +3636,7 @@ peek_str s
 <p>Ergでは意図せずメモリリークを起こせないように設計されており、メモリーチェッカーが循環参照を検知するとエラーを出します。ほとんどの場合、このエラーは弱参照<code>Weak</code>で解消できます。しかし、これでは巡回グラフなどの循環構造を持つオブジェクトを生成できないため、unsafe操作として循環参照を生成できるAPIを実装予定です。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="可視性"><a class="header" href="#可視性">可視性</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Ergの変数には <strong>可視性</strong> という概念が存在します。
 今まで見てきた変数は全て <strong>プライベート変数(非公開変数)</strong> と呼ばれます。これは、外部から不可視の変数です。
 例えば<code>foo</code>モジュールで定義したプライベート変数は、別のモジュールから参照できないのです。</p>
@@ -3643,7 +3652,7 @@ foo.x # AttributeError: Module 'foo' has no attribute 'x' ('x' is private)
 <pre><code class="language-python"># foo.er
 .x = &quot;this is a visible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 assert foo.x == &quot;this is a visible variable&quot;
 </code></pre>
@@ -3692,16 +3701,17 @@ C.
 <p>あるモジュールで定義されたクラスは、実は外部モジュールからでもメソッドを定義できます。</p>
 <pre><code class="language-python"># foo.er
 .Foo = Class()
+.Bar = Class()
 </code></pre>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 Foo::
     private self = pass
 Foo.
     public self = self::private()
-
-.f() =
+</code></pre>
+<pre><code class="language-python compile_fail">.f() =
     foo = Foo.new()
     foo.public()
     foo::private() # AttributeError
@@ -3710,7 +3720,7 @@ Foo.
 外部で定義された非公開メソッドは、定義モジュール内でのみ<code>Foo</code>クラスのメソッドから参照できます。
 公開メソッドはクラスの外には公開されますが、モジュール外までは公開されません。</p>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 foo = Foo.new()
 foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defined in module 'bar')
@@ -3718,7 +3728,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 <p>また、Re-exportする型にメソッドを定義することはできません。
 インポート元のモジュールによってメソッドが見つかったり見つからなかったりといった混乱を防ぐためです。</p>
 <pre><code class="language-python compile_fail"># bar.er
-{.Foo; ...} = import &quot;foo&quot;
+{.Foo;} = import &quot;foo&quot;
 
 .Foo::
     private self = pass # Error
@@ -3727,7 +3737,7 @@ foo.public() # AttributeError: 'Foo' has no attribute 'public' ('public' is defi
 </code></pre>
 <p>このようなことを行いたい場合は<a href="./type/07_patch.html">パッチ</a>を定義します。</p>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 FooImpl = Patch Foo
 FooImpl :=:
@@ -3736,8 +3746,8 @@ FooImpl.
     public self = self::private()
 </code></pre>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
-{FooImpl; ...} = import &quot;bar&quot;
+{Foo;} = import &quot;foo&quot;
+{FooImpl;} = import &quot;bar&quot;
 
 foo = Foo.new()
 foo.public()
@@ -3768,7 +3778,7 @@ _ = foo.record.a.z # OK
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="命名規則"><a class="header" href="#命名規則">命名規則</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/20_naming_rule.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/20_naming_rule.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/20_naming_rule.md&amp;commit_hash=603abbd5fa3f8baffe0d614758e1a554705e6732"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/20_naming_rule.md%26commit_hash%3D603abbd5fa3f8baffe0d614758e1a554705e6732" alt="badge" /></a></p>
 <p>変数を定数式として使いたい場合は、必ず大文字で始めます。二文字以降は小文字でもよいです。</p>
 <pre><code class="language-python">i: Option Type = Int
 match i:
@@ -3799,7 +3809,7 @@ match c:
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="無名関数"><a class="header" href="#無名関数">無名関数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/21_lambda.md&amp;commit_hash=304882f403ee8a6db8e19fae67b15ccf9747b6ff"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/21_lambda.md%26commit_hash%3D304882f403ee8a6db8e19fae67b15ccf9747b6ff" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/21_lambda.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/21_lambda.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>無名関数は、関数オブジェクトを名付けずその場で生成するための文法です。</p>
 <pre><code class="language-python"># `-&gt;`は無名関数演算子
 # same as `f x, y = x + y`
@@ -3865,28 +3875,28 @@ id = |T| x: T -&gt; x
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="サブルーチンシグネチャ"><a class="header" href="#サブルーチンシグネチャ">サブルーチンシグネチャ</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/22_subroutine.md&amp;commit_hash=ddcbe9859e56d63bb3dd001be216cd4343e1771e"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/22_subroutine.md%26commit_hash%3Dddcbe9859e56d63bb3dd001be216cd4343e1771e" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/22_subroutine.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/22_subroutine.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="関数-1"><a class="header" href="#関数-1">関数</a></h2>
-<pre><code class="language-python">some_func(x: T, y: U) -&gt; V
+<pre><code class="language-python checker_ignore">some_func(x: T, y: U) -&gt; V
 some_func: (T, U) -&gt; V
 </code></pre>
 <h2 id="プロシージャ-1"><a class="header" href="#プロシージャ-1">プロシージャ</a></h2>
-<pre><code class="language-python">some_proc!(x: T, y: U) =&gt; V
+<pre><code class="language-python checker_ignore">some_proc!(x: T, y: U) =&gt; V
 some_proc!: (T, U) =&gt; V
 </code></pre>
 <h2 id="関数メソッド"><a class="header" href="#関数メソッド">関数メソッド</a></h2>
 <p>メソッド型は、外部からは<code>Self</code>で指定できません。</p>
-<pre><code class="language-python">.some_method(self, x: T, y: U) =&gt; ()
+<pre><code class="language-python checker_ignore">.some_method(self, x: T, y: U) =&gt; ()
 # Self.(T, U) =&gt; ()はselfの所有権を奪う
 .some_method: (Ref Self, T, U) =&gt; ()
 </code></pre>
 <h2 id="プロシージャメソッド依存"><a class="header" href="#プロシージャメソッド依存">プロシージャメソッド(依存)</a></h2>
 <p>以下で、型<code>T!</code>は<code>N: Nat</code>という型引数を取るとします。外部から指定する場合は型変数を使用します。</p>
-<pre><code class="language-python">T!: Nat -&gt; Type
+<pre><code class="language-python checker_ignore">K!: Nat ~&gt; Type
 # ~&gt;は適用前後の型引数の状態を示す(このときselfは可変参照でなくてはならない)
-T!(N).some_method!: (self: Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
+K!(N).some_method!: (self: Ref!(K! N ~&gt; N+X), X: Nat) =&gt; ()
 </code></pre>
-<p>注意として、<code>.some_method</code>の型は<code>|N, X: Nat| (self: Ref!(T! N ~&gt; N+X), {X}) =&gt; ()</code>となります。
+<p>注意として、<code>.some_method</code>の型は<code>|N, X: Nat| (self: Ref!(K! N ~&gt; N+X), {X}) =&gt; ()</code>となります。
 <code>ref!</code>がついていない、すなわち適用後所有権が奪われるメソッドでは、型引数の遷移(<code>~&gt;</code>)を使用できません。</p>
 <p>所有権が奪われる場合は以下のようになります。</p>
 <pre><code class="language-python"># Nを使用しないならば_で省略できる
@@ -3902,7 +3912,7 @@ T!(N).some_method!: (self: Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="クロージャ"><a class="header" href="#クロージャ">クロージャ</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/23_closure.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/23_closure.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/23_closure.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/23_closure.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Ergのサブルーチンには、外部変数を捕捉する「クロージャ」という機能があります。</p>
 <pre><code class="language-python">outer = 1
 f x = outer + x
@@ -3946,7 +3956,7 @@ for! 1..10, i =&gt;
 assert sum == 45
 </code></pre>
 <p>上と同等のプログラムは、Pythonでは以下のように記述できます。</p>
-<pre><code class="language-python"># Python
+<pre><code class="language-python checker_ignore"># Python
 sum = 0
 # 手続き型スタイル
 for i in range(1, 10):
@@ -3970,15 +3980,15 @@ assert sum == 45
 <p>不変オブジェクトによるプログラミングで自然と簡潔な記述となるように、Ergは設計されています。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="モジュール"><a class="header" href="#モジュール">モジュール</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=48107a2d1719892be50588de764991cba6db39b4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D48107a2d1719892be50588de764991cba6db39b4" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Ergでは、ファイル自体を1つのレコードとみなすことができます。これをモジュールと呼びます。</p>
-<pre><code class="language-python:foo.er"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 .i = 1
 </code></pre>
 <pre><code class="language-python"># fooモジュールを定義するのはこのレコードを定義するのとほとんど同じ
 foo = {.i = 1}
 </code></pre>
-<pre><code class="language-python:bar.er"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 print! foo # &lt;module 'foo'&gt;
 assert foo.i == 1
@@ -4002,13 +4012,13 @@ assert foo.i == 1
   └─ qux.er
 </code></pre>
 <p><code>bar</code>ディレクトリの外側からは以下のようにして使用できます。</p>
-<pre><code class="language-erg">bar = import &quot;bar&quot;
+<pre><code class="language-python">bar = import &quot;bar&quot;
 
 bar.baz.p!()
 bar.qux.p!()
 </code></pre>
 <p><code>__init__.er</code>は単にディレクトリをモジュールとして機能させるだけのマーカーではなく、モジュールの可視性を制御する役割も持ちます。</p>
-<pre><code class="language-erg"># __init__.er
+<pre><code class="language-python"># __init__.er
 
 # `./`はカレントディレクトリを指す。なくても良い
 .baz = import &quot;./baz&quot;
@@ -4036,7 +4046,7 @@ print! foo.f 1
 </code></pre>
 <p>しかし、手続き呼び出しによって作られた変数は、循環参照モジュールで定義することはできません。
 これは、Ergが依存関係に従って定義の順番を並べ替えるからです。</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python compile_fail"># foo.er
 bar = import &quot;bar&quot;
 
 print! bar.x
@@ -4105,10 +4115,10 @@ Ergの関数(Function)は副作用を許さないので、Pythonのそれとは�
 単相型エンティティ(<code>1</code>, <code>&quot;a&quot;</code>など)は値オブジェクト、多相型エンティティ(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)はコンテナオブジェクトとも呼ばれます。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="パターンマッチ論駁可能性"><a class="header" href="#パターンマッチ論駁可能性">パターンマッチ、論駁可能性</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="ergで使用可能なパターン"><a class="header" href="#ergで使用可能なパターン">Ergで使用可能なパターン</a></h2>
 <h3 id="変数パターン"><a class="header" href="#変数パターン">変数パターン</a></h3>
-<pre><code class="language-python"># 基本的な代入
+<pre><code class="language-python check_ignore"># 基本的な代入
 i = 1
 
 # function
@@ -4122,7 +4132,7 @@ j: {1, 2, 3} = 2
 (k: Int, s: Str) = 1, &quot;a&quot;
 </code></pre>
 <h3 id="リテラルパターン"><a class="header" href="#リテラルパターン">リテラルパターン</a></h3>
-<pre><code class="language-python"># もし`i`がコンパイル時に1と判断できない場合は、TypeErrorが発生する。
+<pre><code class="language-python check_ignore"># もし`i`がコンパイル時に1と判断できない場合は、TypeErrorが発生する。
 # `_: {1} = i`を省略したもの
 1 = i
 
@@ -4138,7 +4148,7 @@ fib 1 = 1
 fib n: Nat = fib n-1 + fib n-2
 </code></pre>
 <h3 id="定数パターン"><a class="header" href="#定数パターン">定数パターン</a></h3>
-<pre><code class="language-python">cond = False
+<pre><code class="language-python check_ignore">cond = False
 match! cond:
     True =&gt; print! &quot;cond is True&quot;
     _ =&gt; print! &quot;cond is False&quot;
@@ -4152,7 +4162,7 @@ name = match num:
     _ -&gt; &quot;unnamed&quot;
 </code></pre>
 <h3 id="篩パターン-1"><a class="header" href="#篩パターン-1">篩パターン</a></h3>
-<pre><code class="language-python"># この２つは同じ
+<pre><code class="language-python check_ignore"># この２つは同じ
 Array(T, N: {N | N &gt;= 3})
 Array(T, N | N &gt;= 3)
 
@@ -4160,7 +4170,7 @@ f M, N | M &gt;= 0, N &gt;= 1 = ...
 f(1, 0) # TypeError: N (2nd parameter) must be 1 or more
 </code></pre>
 <h3 id="破棄ワイルドカードパターン"><a class="header" href="#破棄ワイルドカードパターン">破棄(ワイルドカード)パターン</a></h3>
-<pre><code class="language-python">_ = 1
+<pre><code class="language-python check_ignore">_ = 1
 _: Int = 1
 zero _ = 0
 right(_, r) = r
@@ -4168,13 +4178,13 @@ right(_, r) = r
 <p>文脈によって制約付けられていない場合、<code>_</code>は<code>Obj</code>型となる。</p>
 <h3 id="可変長パターン"><a class="header" href="#可変長パターン">可変長パターン</a></h3>
 <p>後述するタプル/配列/レコードパターンと組み合わせて使います。</p>
-<pre><code class="language-python">[i, ...j] = [1, 2, 3, 4]
+<pre><code class="language-python check_ignore">[i, ...j] = [1, 2, 3, 4]
 assert j == [2, 3, 4]
 first|T|(fst: T, ...rest: T) = fst
 assert first(1, 2, 3) == 1
 </code></pre>
 <h3 id="タプルパターン"><a class="header" href="#タプルパターン">タプルパターン</a></h3>
-<pre><code class="language-python">(i, j) = (1, 2)
+<pre><code class="language-python check_ignore">(i, j) = (1, 2)
 ((k, l), _) = ((1, 2), (3, 4))
 # ネストしていないなら()を省略可能(1, 2は(1, 2)として扱われる)
 m, n = 1, 2
@@ -4182,14 +4192,14 @@ m, n = 1, 2
 f(x, y) = ...
 </code></pre>
 <h3 id="配列パターン"><a class="header" href="#配列パターン">配列パターン</a></h3>
-<pre><code class="language-python">[i, j] = [1, 2]
+<pre><code class="language-python check_ignore">[i, j] = [1, 2]
 [[k, l], _] = [[1, 2], [3, 4]]
 
 length [] = 0
 length [_, ...rest] = 1 + length rest
 </code></pre>
 <h4 id="レコードパターン"><a class="header" href="#レコードパターン">レコードパターン</a></h4>
-<pre><code class="language-python">record = {i = 1; j = 2; k = 3}
+<pre><code class="language-python check_ignore">record = {i = 1; j = 2; k = 3}
 {j; ...} = record # i, kが解放される
 
 {sin; cos; tan; ...} = import &quot;math&quot;
@@ -4203,7 +4213,7 @@ age = match person:
 f {x: Int; y: Int} = ...
 </code></pre>
 <h3 id="データクラスパターン"><a class="header" href="#データクラスパターン">データクラスパターン</a></h3>
-<pre><code class="language-python">Point = Inherit {x = Int; y = Int}
+<pre><code class="language-python check_ignore">Point = Inherit {x = Int; y = Int}
 p = Point::{x = 1; y = 2}
 Point::{x; y} = p
 
@@ -4222,13 +4232,13 @@ List T.
 </code></pre>
 <h3 id="列挙パターン"><a class="header" href="#列挙パターン">列挙パターン</a></h3>
 <p>※実際には単なる列挙型</p>
-<pre><code class="language-python">match x:
+<pre><code class="language-python check_ignore">match x:
     i: {1, 2} -&gt; &quot;one or two: \{i}&quot;
     _ -&gt; &quot;other&quot;
 </code></pre>
 <h3 id="範囲パターン"><a class="header" href="#範囲パターン">範囲パターン</a></h3>
 <p>※実際には単なる区間型</p>
-<pre><code class="language-python"># 0 &lt; i &lt; 1
+<pre><code class="language-python check_ignore"># 0 &lt; i &lt; 1
 i: 0&lt;..&lt;1 = 0.5
 # 1 &lt; j &lt;= 2
 _: {[I, J] | I, J: 1&lt;..2} = [1, 2]
@@ -4245,7 +4255,7 @@ match i
 イテレータで取り出すことはできますが、順番は保証されません。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="内包表記"><a class="header" href="#内包表記">内包表記</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/27_comprehension.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/27_comprehension.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/27_comprehension.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/27_comprehension.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p><code>[expr | (name &lt;- iterable)+ (predicate)*]</code>で配列、
 <code>{expr | (name &lt;- iterable)+ (predicate)*}</code>でセット、
 <code>{key: value | (name &lt;- iterable)+ (predicate)*}</code>でDictが作れます。</p>
@@ -4268,7 +4278,7 @@ assert [(i, j) | i &lt;- 0..2; j &lt;- 0..2; (i + j) % 2 == 0] == [(0, 0), (0, 2
 assert {i % 2 | i &lt;- 0..9} == {0, 1}
 assert {k: v | k &lt;- [&quot;a&quot;, &quot;b&quot;]; v &lt;- [1, 2]} == {&quot;a&quot;: 1, &quot;b&quot;: 2}
 </code></pre>
-<p>Ergの内包表記はHaskellに影響を受けているが、若干の違いがあります。
+<p>Ergの内包表記はHaskellに影響を受けていますが、若干の違いがあります。
 Haskellのリスト内包表記の場合、変数の順番は結果に違いをもたらしますが、Ergでは関係がありません。</p>
 <pre><code class="language-haskell">-- Haskell
 [(i, j) | i &lt;- [1..3], j &lt;- [3..5]] == [(1,3),(1,4),(1,5),(2,3),(2,4),(2,5),(3,3),(3,4),(3,5)]
@@ -4291,7 +4301,7 @@ Nat2D = {(I, J): (Int, Int) | I &gt;= 0 and J &gt;= 0}
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="展開代入"><a class="header" href="#展開代入">展開代入</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/28_spread_syntax.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/28_spread_syntax.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/28_spread_syntax.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/28_spread_syntax.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>分解代入において、変数の前に<code>...</code>を置くと残りの要素を全てその変数に展開できます。これを展開代入と呼びます。</p>
 <pre><code class="language-python">[x, ...y] = [1, 2, 3]
 assert x == 1
@@ -4316,7 +4326,7 @@ assert x == 1 and y == 2
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="デコレータ修飾子"><a class="header" href="#デコレータ修飾子">デコレータ(修飾子)</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/29_decorator.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/29_decorator.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/29_decorator.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/29_decorator.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>デコレータは型や関数に特定の状態や振る舞いを追加したり明示するために使われます。
 デコレータの文法は以下の通りです。</p>
 <pre><code class="language-python">@deco
@@ -4399,7 +4409,7 @@ assert Y in U.attaches
 <p>テスト用サブルーチンであることを示します。テスト用サブルーチンは<code>erg test</code>コマンドで実行されます。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="エラーハンドリングシステム"><a class="header" href="#エラーハンドリングシステム">エラーハンドリングシステム</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/30_error_handling.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/30_error_handling.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/30_error_handling.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/30_error_handling.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>主にResult型を使用します。
 ErgではError型オブジェクトを捨てる(トップレベルで対応しない)とエラーが発生します。</p>
 <h2 id="例外pythonとの相互運用"><a class="header" href="#例外pythonとの相互運用">例外、Pythonとの相互運用</a></h2>
@@ -4413,7 +4423,7 @@ ErgではError型オブジェクトを捨てる(トップレベルで対応し�
 <h2 id="例外とresult型"><a class="header" href="#例外とresult型">例外とResult型</a></h2>
 <p><code>Result</code>型はエラーかもしれない値を表現します。<code>Result</code>によるエラーハンドリングはいくつかの点で例外機構よりも優れています。
 まず第一に、サブルーチンがエラーを出すかもしれないと型定義から分かり、実際に使用するときも一目瞭然です。</p>
-<pre><code class="language-python"># Python
+<pre><code class="language-python checker_ignore"># Python
 try:
     x = foo().bar()
     y = baz()
@@ -4436,7 +4446,7 @@ try!:
 <p><code>Result</code>型を使用するメリットはそれだけではありません。<code>Result</code>型はスレッドセーフでもあります。これは、エラー情報を並列実行中に(容易に)受け渡しできるということを意味します。</p>
 <h2 id="context"><a class="header" href="#context">Context</a></h2>
 <p><code>Error</code>/<code>Result</code>型単体では副作用が発生しないので、例外と違い送出場所などの情報(Context、文脈)を持てませんが、<code>.context</code>メソッドを使えば<code>Error</code>オブジェクトに情報を付加できます。<code>.context</code>メソッドは<code>Error</code>オブジェクト自身を消費して新しい<code>Error</code>オブジェクトを作るタイプのメソッドです。チェイン可能であり、複数のコンテクストを保持できます。</p>
-<pre><code class="language-python">f() =
+<pre><code class="language-python checker_ignore">f() =
     todo() \
         .context &quot;to be implemented in ver 1.2&quot; \
         .context &quot;and more hints ...&quot;
@@ -4452,7 +4462,7 @@ f()
 そこで、Ergでは<code>Error</code>オブジェクトに<code>.stack</code>という属性を持たせており、擬似的に例外機構のようなスタックトレースを再現しています。
 <code>.stack</code>は呼び出し元オブジェクトの配列です。Errorオブジェクトは<code>return</code>(<code>?</code>によるものも含む)されるたびにその呼出元サブルーチンを<code>.stack</code>に積んでいきます。
 そして<code>return</code>ができないコンテクストで<code>?</code>されるなり<code>.unwrap</code>されるなりすると、トレースバックを表示しながらパニックします。</p>
-<pre><code class="language-python">f x =
+<pre><code class="language-python checker_ignore">f x =
     ...
     y = foo.try_some(x)?
     ...
@@ -4476,11 +4486,11 @@ i = g(1)?
 <p>Ergには回復不能なエラーへの対処として <strong>パニッキング</strong> という機構も存在します。
 回復不能なエラーとは、例えばソフト/ハードウェアの不具合など外的要因によるエラーや、それ以上コードを実行し続けても意味がないほど致命的なエラー、あるいはプログラム作成者の想定だにしないエラーなどです。これが発生した場合、プログラマの努力によって正常系に復帰させることができないため、その場でプログラムを終了させます。これを「パニックさせる」といいます。</p>
 <p>パニックは<code>panic</code>関数で行います。</p>
-<pre><code class="language-python">panic &quot;something went wrong!&quot;
+<pre><code class="language-python checker_ignore">panic &quot;something went wrong!&quot;
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="パイプライン演算子"><a class="header" href="#パイプライン演算子">パイプライン演算子</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/31_pipeline.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/31_pipeline.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/31_pipeline.md&amp;commit_hash=5d4a2ebc57e34f3c679eb3dfe140dd4229dca7f6"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/31_pipeline.md%26commit_hash%3D5d4a2ebc57e34f3c679eb3dfe140dd4229dca7f6" alt="badge" /></a></p>
 <p>パイプライン演算子は、次のように使います。</p>
 <pre><code class="language-python">assert f(g(x)) == (x |&gt; g() |&gt; f())
 assert f(g(x, y)) == (x |&gt; g(y) |&gt; f())
@@ -4504,7 +4514,7 @@ __evens = 1..100 \
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pythonとの連携"><a class="header" href="#pythonとの連携">Pythonとの連携</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/32_integration_with_Python.md&amp;commit_hash=0d05a715f8e9d5f70d64fbd5b35b4651eb6aa1d6"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/32_integration_with_Python.md%26commit_hash%3D0d05a715f8e9d5f70d64fbd5b35b4651eb6aa1d6" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/32_integration_with_Python.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/32_integration_with_Python.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="pythonへのexport"><a class="header" href="#pythonへのexport">Pythonへのexport</a></h2>
 <p>Ergスクリプトをコンパイルすると.pycファイルが生成されますが、これは単純にPythonのモジュールとして読み込むことができます。
 ただし、Erg側で非公開に設定した変数はPythonからもアクセスできません。</p>
@@ -4514,7 +4524,7 @@ private = &quot;this is a private variable&quot;
 </code></pre>
 <pre><code class="language-console">erg --compile foo.er
 </code></pre>
-<pre><code class="language-python">import foo
+<pre><code class="language-python checker_ignore">import foo
 
 print(foo.public)
 print(foo.private) # AttributeError:
@@ -4560,7 +4570,7 @@ assert foo.bar!(1) in Int
 <p>これは実行時オーバーヘッドとなるので、PythonスクリプトをErgの型システムで静的に型解析するプロジェクトが計画されています。</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="パッケージシステム"><a class="header" href="#パッケージシステム">パッケージシステム</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/33_package_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/33_package_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/33_package_system.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/33_package_system.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Ergのパッケージはアプリケーションであるappパッケージとライブラリであるlibパッケージに大別できます。
 appパッケージのエントリポイントは<code>src/app.er</code>です。<code>app.er</code>内に定義された<code>main</code>関数が実行されます。
 libパッケージのエントリポイントは<code>src/lib.er</code>です。パッケージをインポートすることは<code>lib.er</code>をインポートすることと等価になります。</p>
@@ -4613,7 +4623,7 @@ main args =
 <pre><code class="language-python"># __init__.py
 .qux = import &quot;qux&quot; # this is public
 </code></pre>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 bar = import &quot;bar&quot;
 bar.qux
 bar.baz # AttributeError: module 'baz' is private
@@ -4648,7 +4658,7 @@ make_g: () =&gt; Generator!((), Int)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="クイックツアー"><a class="header" href="#クイックツアー">クイックツアー</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/quick_tour.md&amp;commit_hash=2ecd249a2a99dc93dde2660b8d50bfa4fa0b03b9"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/quick_tour.md%26commit_hash%3D2ecd249a2a99dc93dde2660b8d50bfa4fa0b03b9" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/quick_tour.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/quick_tour.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p><code>syntax</code>以下のドキュメントは、概ねプログラミング初心者でも理解できることを目指して書かれています。
 すでにPythonやRust, Haskellなどの言語を習得されている方にとっては、少し冗長であるかもしれません。</p>
 <p>そこで以下では概説的にErgの文法を紹介します。
@@ -4856,7 +4866,7 @@ b: [Int; 4]
 a + b: [Int; 7]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="索引"><a class="header" href="#索引">索引</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/indexes.md&amp;commit_hash=d8472ec748aac5371571da81a161255fe60679b7"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/indexes.md%26commit_hash%3Dd8472ec748aac5371571da81a161255fe60679b7" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/indexes.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/indexes.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>この索引にないAPIについては<a href="../API/index.html">こちら</a>を参照してください。</p>
 <p>用語の意味については<a href="../terms.html">こちら</a>を参照。</p>
 <h2 id="記号"><a class="header" href="#記号">記号</a></h2>
@@ -4979,7 +4989,6 @@ a + b: [Int; 7]
 <li>[Add]</li>
 <li><a href="type/02_basic.html">alias</a></li>
 <li><a href="./type/02_basic.html">Aliasing</a></li>
-<li><a href="./type/15_quantified.html">For all types</a></li>
 <li><a href="./type/13_algebraic.html">algebraic type</a></li>
 <li>[And]</li>
 <li>[and]</li>
@@ -5052,6 +5061,7 @@ a + b: [Int; 7]
 <li><a href="./01_literal.html">Float&amp;sbsp;Object</a></li>
 <li><a href="./05_builtin_funcs.html">for</a></li>
 <li><a href="./type/07_patch.html">For-All Patch</a></li>
+<li><a href="./type/15_quantified.html">For all types</a></li>
 <li><a href="./18_ownership.html">freeze</a></li>
 <li><a href="./04_function.html">Function</a></li>
 <li><a href="./04_function.html">Function definition with multiple patterns</a></li>
@@ -5063,6 +5073,9 @@ a + b: [Int; 7]
 <li><a href="./type/07_patch.html">Glue Patch</a></li>
 </ul>
 <h3 id="h"><a class="header" href="#h">H</a></h3>
+<ul>
+<li><a href="/04_function.html">High-order function</a></li>
+</ul>
 <h3 id="i"><a class="header" href="#i">I</a></h3>
 <ul>
 <li><a href="./09_builtin_procs.html">id</a></li>

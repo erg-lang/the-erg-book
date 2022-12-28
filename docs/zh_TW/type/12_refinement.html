@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="細化類型"><a class="header" href="#細化類型">細化類型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=94015f61ed0018714a6271ecf60ff2ca38733ce6"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3D94015f61ed0018714a6271ecf60ff2ca38733ce6" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=c248056b7e0273027b3c86fb912430bbde711941"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3Dc248056b7e0273027b3c86fb912430bbde711941" alt="badge" /></a></p>
 <p>細化類型是受謂詞表達式約束的類型。枚舉類型和區間類型是細化類型的語法糖</p>
 <p>細化類型的標準形式是<code>{Elem: Type | (Pred)*}</code>。這意味著該類型是其元素為滿足 <code>Pred</code> 的 <code>Elem</code> 的類型
 可用于篩選類型的類型僅為 <a href="./08_value.html">數值類型</a></p>
@@ -165,11 +165,17 @@ Array3OrMore == {A: Array _, N | N &gt;= 3}
 </code></pre>
 <p>如果你知道如何解二次方程，你會期望上面的細化形式等價于<code>{2, 3}</code>
 但是，Erg 編譯器對代數的了解很少，因此無法解決右邊的謂詞</p>
+<h2 id="細化類型的子類型化規則"><a class="header" href="#細化類型的子類型化規則">細化類型的子類型化規則</a></h2>
+<p>所有細化類型都是<code>類型</code>部分中指定類型的子類型。</p>
+<pre><code class="language-erg">{I: Int | I &lt;= 0} &lt;: Int
+</code></pre>
+<p>否則，當前的Erg有一個用於整數比較的子類型規則。</p>
+<pre><code class="language-erg">{I: Int | I &lt;= 5} &lt;: {I: Int | I &lt;= 0}
+</code></pre>
 <h2 id="智能投射"><a class="header" href="#智能投射">智能投射</a></h2>
 <p>很高興您定義了 <code>Odd</code>，但事實上，它看起來不能在文字之外使用太多。要將普通 <code>Int</code> 對象中的奇數提升為 <code>Odd</code>，即將 <code>Int</code> 向下轉換為 <code>Odd</code>，您需要傳遞 <code>Odd</code> 的構造函數
 對于細化類型，普通構造函數 <code>.new</code> 可能會出現恐慌，并且有一個名為 <code>.try_new</code> 的輔助構造函數返回一個 <code>Result</code> 類型</p>
-<pre><code class="language-python">i = Odd.new (0..10).sample!()
-i: Odd # or Panic
+<pre><code class="language-python">i = Odd.new (0..10).sample!() # or Panic
 </code></pre>
 <p>它也可以用作 <code>match</code> 中的類型說明</p>
 <pre><code class="language-python"># i: 0..10

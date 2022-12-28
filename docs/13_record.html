@@ -168,10 +168,10 @@ a.x # AttributeError: x is private
 <p>The above example may seem strange to someone familiar with JavaScript, but simply declaring <code>x</code> makes it inaccessible from the outside. <code>. </code>. `.</p>
 <p>You can also explicitly specify the type of an attribute.</p>
 <pre><code class="language-python">anonymous = {
-    .name: Option! Str = !&quot;&quot;
+    .name: Option! Str = &quot;Jane Doe&quot;
     .age = 20
 }
-anonymous.name.set! &quot;John&quot;
+anonymous.name.set! &quot;John Doe&quot;
 </code></pre>
 <p>A record can also have the method.</p>
 <pre><code class="language-python">o = {

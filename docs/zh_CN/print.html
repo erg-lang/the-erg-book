@@ -146,7 +146,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="基本"><a class="header" href="#基本">基本</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/00_basic.md&amp;commit_hash=13f2d31aee9012f60b7a40d4b764921f1419cdfe"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/00_basic.md%26commit_hash%3D13f2d31aee9012f60b7a40d4b764921f1419cdfe" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/00_basic.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/00_basic.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <blockquote>
 <p><strong>Warning</strong>: 本文档不完整。它未经校对(样式、正确链接、误译等)。此外，Erg 的语法可能在版本 0.* 期间发生破坏性更改，并且文档可能没有相应更新。请事先了解这一点
 如果您在本文档中发现任何错误，请报告至 <a href="https://forms.gle/HtLYRfYzWCAaeTGb6">此处的表单</a> 或 <a href="https://github.com/erg-lang/erg/issues/new?assignees=&amp;labels=bug&amp;template=bug_report.yaml">GitHub repo</a>。我们将不胜感激您的建议</p>
@@ -252,7 +252,7 @@ x \
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="字面量"><a class="header" href="#字面量">字面量</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/01_literal.md&amp;commit_hash=00350f64a40b12f763a605bc16748d09379ab182"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/01_literal.md%26commit_hash%3D00350f64a40b12f763a605bc16748d09379ab182" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/01_literal.md&amp;commit_hash=7078f95cecc961a65befb15929af06ae2331c934"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/01_literal.md%26commit_hash%3D7078f95cecc961a65befb15929af06ae2331c934" alt="badge" /></a></p>
 <h2 id="基本字面量"><a class="header" href="#基本字面量">基本字面量</a></h2>
 <h3 id="整数字面量"><a class="header" href="#整数字面量">整数字面量</a></h3>
 <pre><code class="language-python">0, -0, 1, -1, 2, -2, 3, -3, ...
@@ -273,8 +273,8 @@ assert 0.5 == .5
 与 Python 不同，引号不能包含在 <code>'</code> 中。如果要在字符串中使用 <code>&quot;</code>，请使用 <code>\&quot;</code></p>
 <pre><code class="language-python">&quot;&quot;, &quot;a&quot;, &quot;abc&quot;, &quot;111&quot;, &quot;1# 3f2-3*8$&quot;, &quot;こんにちは&quot;, &quot;السَّلَامُ عَلَيْكُمْ&quot;, ...
 </code></pre>
-<p><code>\{..}</code> 允许您在字符串中嵌入表达式。这称为字符串插值
-如果要输出 <code>\{..}</code> 本身，请使用 <code>\\{..}</code></p>
+<p><code>\{..}</code>允许您在字符串中嵌入表达式。这称为字符串插值
+如果要输出<code>\{..}</code>本身，请使用<code>\\{..}</code></p>
 <pre><code class="language-python">assert &quot;1 + 1 is 2&quot; == &quot;\{1} + \{1} is \{1+1}&quot;
 </code></pre>
 <h3 id="指数字面量"><a class="header" href="#指数字面量">指数字面量</a></h3>
@@ -333,7 +333,7 @@ assert 1m / 1s == 1 (m/s)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="变量和常量"><a class="header" href="#变量和常量">变量和常量</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/02_name.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/02_name.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/02_name.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/02_name.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="变量"><a class="header" href="#变量">变量</a></h2>
 <p>变量是一种代数； Erg 中的代数 - 如果没有混淆，有时简称为变量 - 指的是命名对象并使它们可从代码的其他地方引用的功能</p>
 <p>变量定义如下
@@ -444,7 +444,7 @@ print! C # &lt;类 C&gt;
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="宣言declaration"><a class="header" href="#宣言declaration">宣言(Declaration)</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/03_declaration.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/03_declaration.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/03_declaration.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/03_declaration.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>声明是用于指定要使用的变量类型的语法
 可以在代码中的任何地方进行声明，但单独的声明并不引用变量。它们必须被初始化
 分配后，可以检查声明以确保类型与分配它的对象兼容</p>
@@ -464,23 +464,25 @@ i: Int # 这会通过
 i: Nat # 这不会通过(-1 不是 Nat 的元素)
 </code></pre>
 <p>函数可以用两种不同的方式声明</p>
-<pre><code class="language-python">f: (x: Int, y: Int) -&gt; Int
+<pre><code class="language-python check_ignore">f: (x: Int, y: Int) -&gt; Int
 f: (Int, Int) -&gt; Int
 </code></pre>
 <p>如果显式声明参数名称，如果在定义时名称不同，则会导致类型错误。如果你想给参数名称任意命名，你可以用第二种方式声明它们。在这种情况下，类型检查只会看到方法名称及其类型</p>
-<pre><code class="language-python">T = Trait {
+<pre><code class="language-python compile_fail">T = Trait {
     .f = (x: Int, y: Int): Int
 }
 
-C = Class(U, Impl := T)
-C.f(a: Int, b: Int): Int = ... # 类型错误: `.f` 必须是 `(x: Int, y: Int) -&gt; Int` 的类型，而不是 `(a: Int, b: Int) -&gt; Int`
+C = Class()
+C|&lt;: T|.
+    f(a: Int, b: Int): Int = ... # TypeError: `.f` must be type of `(x: Int, y: Int) -&gt; Int`, not `(a: Int, b: Int) -&gt; Int`
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="功能"><a class="header" href="#功能">功能</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>函数是一个块，它接受一个&quot;参数&quot;，对其进行处理，并将其作为&quot;返回值&quot;返回。定义如下</p>
 <pre><code class="language-python">add x, y = x + y
-# 或者
+</code></pre>
+<pre><code class="language-python"># 或者
 add(x, y) = x + y
 </code></pre>
 <p>在函数名之后指定的名称称为参数
@@ -493,9 +495,9 @@ add(1, 2)
 </code></pre>
 <h2 id="冒号应用风格"><a class="header" href="#冒号应用风格">冒号应用风格</a></h2>
 <p>函数像<code>f x, y, ...</code>一样被调用，但是如果单行参数太多，可以使用<code>:</code>(冒号)来应用它们</p>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
+<pre><code class="language-python check_ignore">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
+<pre><code class="language-python check_ignore">f some_long_name_variable_1 + some_long_name_variable_2:
     some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <pre><code class="language-python">f:
@@ -511,7 +513,19 @@ add(1, 2)
         log &quot;False was chosen&quot;
         0
 </code></pre>
-<p>在 <code>:</code> 之后，除了注释之外，不得编写任何代码，并且必须始终在新行上</p>
+<p>在 <code>:</code> 之后，除了注释之外，不得编写任何代码，并且必须始终在新行上
+此外，您不能在函数后立即使用 <code>:</code>。只有 <code>do</code>和<code>do!</code> 可以做到这一点</p>
+<pre><code class="language-python compile_fail"># NG
+f:
+    x
+    y
+</code></pre>
+<pre><code class="language-python checker_ignore"># Ok
+f(
+    x,
+    y
+)
+</code></pre>
 <h2 id="关键字参数"><a class="header" href="#关键字参数">关键字参数</a></h2>
 <p>如果使用大量参数定义函数，则存在以错误顺序传递参数的危险
 在这种情况下，使用关键字参数调用函数是安全的</p>
@@ -610,6 +624,21 @@ factorial n = n * factorial(n - 1)
 </code></pre>
 <p>并且这种计算不会停止。递归函数必须仔细定义值的范围，否则您可能会陷入无限循环
 所以类型规范也有助于避免接受意外的值</p>
+<h2 id="high-order-functions"><a class="header" href="#high-order-functions">High-order functions</a></h2>
+<p>高阶函数是将函数作为参数或返回值的函数
+例如，一个以函数为参数的高阶函数可以写成如下</p>
+<pre><code class="language-python">arg_f = i -&gt; log i
+higher_f(x: (Int -&gt; NoneType)) = x 10
+higher_f arg_f # 10
+</code></pre>
+<p>当然，也可以将返回值作为一个函数。</p>
+<pre><code class="language-python">add(x): (Int -&gt; Int) = y -&gt; x + y
+add_ten = add(10) # y -&gt; 10 + y
+add_hundred = add(100) # y -&gt; 100 + y
+assert add_ten(1) == 11
+assert add_hundred(1) == 101
+</code></pre>
+<p>通过这种方式将函数作为参数和返回值，可以用函数定义更灵活的表达式</p>
 <h2 id="编译时函数"><a class="header" href="#编译时函数">编译时函数</a></h2>
 <p>函数名以大写字母开头，表示编译时函数。用户定义的编译时函数必须将所有参数作为常量，并且必须指定它们的类型
 编译时函数的功能有限。在编译时函数中只能使用常量表达式，即只有一些运算符(例如求积、比较和类型构造操作)和编译时函数。要传递的参数也必须是常量表达式
@@ -691,17 +720,18 @@ print! result # 1 (or 0)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="运算符"><a class="header" href="#运算符">运算符</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/06_operator.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/06_operator.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/06_operator.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/06_operator.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>运算符是表示操作的符号。操作数是运算符(左)右侧的东西</p>
 <p>运算符是一种函数，因此它们本身就是可以绑定到变量的一流对象。绑定时，需要用```括起来
 对于<code>+</code>(和<code>-</code>)，有一元和二元运算符，所以必须指定<code>_+_</code>(二元运算)/<code>+_</code>(一元运算)</p>
-<pre><code class="language-python">add = `+` # 语法错误: 指定 `_+_` 或 `+_`
-add=`_+_`
+<pre><code class="language-python compile_fail">add = `+` # 语法错误: 指定 `_+_` 或 `+_`
+</code></pre>
+<pre><code class="language-python">add=`_+_`
 assert f(1, 2) == 3
 assert f(&quot;a&quot;, &quot;b&quot;) == &quot;ab&quot;
 
-g = `*` # OK, 这只是二进制
-assert g(1, 2) == 2
+mul = `*` # OK, 这只是二进制
+assert mul(1, 2) == 2
 </code></pre>
 <p>一些称为特殊形式的基本运算符不能被绑定</p>
 <pre><code class="language-python compile_fail">def = `=` # 语法错误: 无法绑定 `=` 运算符，这是一种特殊形式
@@ -711,7 +741,7 @@ function = `-&gt;` # 语法错误: 无法绑定 `-&gt;` 运算符，这是一种
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="副作用和程序"><a class="header" href="#副作用和程序">副作用和程序</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/07_side_effect.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/07_side_effect.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>我们一直忽略了解释&quot;！&quot;的含义，但现在它的含义终于要揭晓了。这个 <code>!</code> 表示这个对象是一个带有&quot;副作用&quot;的&quot;过程&quot;。过程是具有副作用的函数</p>
 <pre><code class="language-python compile_fail">f x = print! x # EffectError: 不能为函数分配有副作用的对象
 # 提示: 将名称更改为 'f!'
@@ -794,10 +824,28 @@ print! &quot;this will be printed immediately&quot;
 <p>如果没有反馈给程序，或者换句话说，如果没有外部对象可以使用内部信息，那么信息的&quot;泄漏&quot;是可以允许的。只需要不&quot;传播&quot;信息</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="程序"><a class="header" href="#程序">程序</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/08_procedure.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/08_procedure.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
-<p>处理可变对象时需要过程，但将可变对象作为参数并不一定使其成为过程
-这是一个函数接受一个可变对象(不是过程)</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/08_procedure.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/08_procedure.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
+<p>程序是指允许<a href="/07_side_effect.html">副作用</a>的函数
+基本用法或定义请参考<a href="/04_function.html">Function</a>
+添加 <code>!</code> 到函数名来定义它</p>
+<pre><code class="language-python">proc!(x: Int!, y: Int!) =
+    for! 0..x, i =&gt;
+        for 0..y, j =&gt;
+            print! i, j
+</code></pre>
+<p>在处理可变对象时过程是必需的，但是将可变对象作为参数并不一定使它成为过程
+这是一个函数接受一个可变对象（不是过程）</p>
 <pre><code class="language-python">peek_str s: Str! = log s
+
+make_proc(x!: (Int =&gt; Int)): (Int =&gt; Int) = y =&gt; x! y
+p! = make_proc(x =&gt; x)
+print! p! 1 # 1
+</code></pre>
+<p>此外，过程和函数通过<code>proc :&gt; func</code>关联
+因此，可以在过程中定义函数
+但是，请注意，反过来是不可能的</p>
+<pre><code class="language-python">proc!(x: Int!) = y -&gt; log x, y # OK
+func(x: Int) = y =&gt; print! x, y # NG
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="内置程序"><a class="header" href="#内置程序">内置程序</a></h1>
@@ -809,7 +857,7 @@ print! &quot;this will be printed immediately&quot;
 <pre><code class="language-python"></code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="array"><a class="header" href="#array">Array</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/10_array.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/10_array.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/10_array.md&amp;commit_hash=603abbd5fa3f8baffe0d614758e1a554705e6732"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/10_array.md%26commit_hash%3D603abbd5fa3f8baffe0d614758e1a554705e6732" alt="badge" /></a></p>
 <p>数组是最基本的__collection(聚合)__
 集合是一个可以在其中包含多个对象的对象</p>
 <pre><code class="language-python">a = [1, 2, 3]
@@ -825,7 +873,7 @@ assert mut_a == [2, 2, 3]
 <pre><code class="language-python.">[1, &quot;a&quot;] # 类型错误: 第一个元素是 Int，但第二个元素是 Str
 </code></pre>
 <p>但是，您可以通过像这样显式指定类型来绕过限制</p>
-<pre><code class="language-python">[1: Int or Str, &quot;a&quot;]
+<pre><code class="language-python compile_fail">[1: Int or Str, &quot;a&quot;]
 </code></pre>
 <h2 id="切片"><a class="header" href="#切片">切片</a></h2>
 <p>一个数组也可以同时取出多个值。这称为切片</p>
@@ -843,7 +891,7 @@ assert l[..].step(2) == [2, 4]
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="元组"><a class="header" href="#元组">元组</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/11_tuple.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/11_tuple.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/11_tuple.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/11_tuple.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>元组类似于数组，但可以保存不同类型的对象
 这样的集合称为不等集合。相比之下，同构集合包括数组、集合等</p>
 <pre><code class="language-python">t = (1, True, &quot;a&quot;)
@@ -861,9 +909,10 @@ assert t.2 == &quot;a&quot;
 i, b, s = t
 </code></pre>
 <p>元组可以保存不同类型的对象，因此它们不能像数组一样被迭代</p>
-<pre><code class="language-python">t: ({1}, {2}, {3}) = (1, 2, 3)
+<pre><code class="language-python compile_fail">t: ({1}, {2}, {3}) = (1, 2, 3)
 (1, 2, 3).iter().map(x -&gt; x + 1) # 类型错误: 类型 ({1}, {2}, {3}) 没有方法 `.iter()`
-# 如果所有类型都相同，则可以像数组一样用`(T; n)`表示，但这仍然不允许迭代
+</code></pre>
+<pre><code class="language-python"># 如果所有类型都相同，则可以像数组一样用`(T; n)`表示，但这仍然不允许迭代
 t: (Int; 3) = (1, 2, 3)
 assert (Int; 3) == (Int, Int, Int)
 </code></pre>
@@ -898,7 +947,7 @@ p!: () =&gt; () # The parameter part is part of the syntax, not a tuple
 在 Erg 中，当您从一开始就确定操作不会返回有意义的值(例如在过程中)时，您应该使用 <code>()</code>，并且当操作可能失败并且您可能会返回 <code>None</code> 将一无所获，例如在检索元素时</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="字典"><a class="header" href="#字典">字典</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/12_dict.md&amp;commit_hash=e86a0987ed14a4de5da770372d4f3729c7691503"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/12_dict.md%26commit_hash%3De86a0987ed14a4de5da770372d4f3729c7691503" alt="badge" /></a></p>
 <p>Dict 是键/值对的集合</p>
 <pre><code class="language-python">ids = {&quot;Alice&quot;: 145, &quot;Bob&quot;: 214, &quot;Charlie&quot;: 301}
 assert ids[&quot;Alice&quot;] == 145
@@ -941,7 +990,7 @@ valid2: {Int: Int or Str} = {1: &quot;a&quot;, 2: 2}
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="记录record"><a class="header" href="#记录record">记录(Record)</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/13_record.md&amp;commit_hash=00350f64a40b12f763a605bc16748d09379ab182"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/13_record.md%26commit_hash%3D00350f64a40b12f763a605bc16748d09379ab182" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/13_record.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/13_record.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>记录是一个集合，它结合了通过键访问的 Dict 和在编译时检查其访问的元组的属性
 如果您了解 JavaScript，请将其视为一种(更增强的)对象字面量表示法</p>
 <pre><code class="language-python">john = {.name = &quot;John&quot;; .age = 21}
@@ -957,7 +1006,7 @@ john[&quot;name&quot;] # 错误: john 不可订阅
 那么我们应该如何使用字典和记录呢?
 一般来说，我们建议使用记录。记录具有在编译时检查元素是否存在以及能够指定 _<em>visibility</em> 的优点
 指定可见性等同于在 Java 和其他语言中指定公共/私有。有关详细信息，请参阅 <a href="./19_visibility.html">可见性</a> 了解详细信息</p>
-<pre><code class="language-python">a = {x = 1; .y = x + 1}
+<pre><code class="language-python compile_fail">a = {x = 1; .y = x + 1}
 a.x # 属性错误: x 是私有的
 # 提示: 声明为 `.x`
 assert a.y == 2
@@ -965,10 +1014,10 @@ assert a.y == 2
 <p>对于熟悉 JavaScript 的人来说，上面的示例可能看起来很奇怪，但简单地声明 <code>x</code> 会使其无法从外部访问</p>
 <p>您还可以显式指定属性的类型</p>
 <pre><code class="language-python">anonymous = {
-    .name: Option! Str = !
+    .name: Option! Str = &quot;Jane Doe&quot;
     .age = 20
 }
-anonymous.name.set! &quot;John&quot;
+anonymous.name.set! &quot;John Doe&quot;
 </code></pre>
 <p>一个记录也可以有方法</p>
 <pre><code class="language-python">o = {
@@ -1070,29 +1119,29 @@ y =
 <h2 id="数据类"><a class="header" href="#数据类">数据类</a></h2>
 <p>如果您尝试自己实现方法，则必须直接在实例中定义裸记录(由记录文字生成的记录)
 这是低效的，并且随着属性数量的增加，错误消息等变得难以查看和使用</p>
-<pre><code class="language-python">john = {
+<pre><code class="language-python checker_ignore">john = {
     name = &quot;John Smith&quot;
     age = !20
     .greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     .inc_age! ref! self = self::age.update! x -&gt; x + 1
 }
-john + 1
+print! john + 1
 # 类型错误: {name = Str; 没有实现 + 年龄=诠释； 。迎接！ =参考(自我)。() =&gt; 无； inc_age！ =参考！ () =&gt; 无}, 整数
 </code></pre>
 <p>因此，在这种情况下，您可以继承一个记录类。这样的类称为数据类
 这在 <a href="./type/04_class.html">class</a> 中有描述</p>
-<pre><code class="language-python">Person = Inherit {name = Str; age = Nat}
+<pre><code class="language-python checker_ignore">Person = Inherit {name = Str; age = Nat}
 Person.
     greet! ref self = print! &quot;Hello, my name is \{self::name} and I am \{self::age} years old.&quot;
     inc_age! ref! self = self::age.update! x -&gt; x + 1
 
 john = Person.new {name = &quot;John Smith&quot;; age = 20}
-john + 1
+print! john + 1
 # 类型错误: Person、Int 没有实现 +
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="set"><a class="header" href="#set">Set</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/14_set.md&amp;commit_hash=e86a0987ed14a4de5da770372d4f3729c7691503"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/14_set.md%26commit_hash%3De86a0987ed14a4de5da770372d4f3729c7691503" alt="badge" /></a></p>
 <p>一个Set代表一个集合，它在结构上是一个重复的无序数组</p>
 <pre><code class="language-python">assert Set.from([1, 2, 3, 2, 1]) == {1, 2, 3}
 assert {1, 2} == {1, 1, 2} # 重复的被自动删除
@@ -1137,10 +1186,10 @@ mut_set.insert!(4)
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="类型"><a class="header" href="#类型">类型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/15_type.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/15_type.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/15_type.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/15_type.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>类型是 Erg 中一个非常重要的特性，所以我们有一个 <a href="./type/01_type_system.html">dedicated section</a>。请看那里</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="erg-的类型系统"><a class="header" href="#erg-的类型系统">Erg 的类型系统</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/01_type_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/01_type_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/01_type_system.md&amp;commit_hash=f4fb25b4004bdfa96d2149fac8c4e40b84e8a45f"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/01_type_system.md%26commit_hash%3Df4fb25b4004bdfa96d2149fac8c4e40b84e8a45f" alt="badge" /></a></p>
 <p>下面简单介绍一下 Erg 的类型系统。详细信息在其他部分进行说明</p>
 <h2 id="如何定义"><a class="header" href="#如何定义">如何定义</a></h2>
 <p>Erg 的独特功能之一是(普通)变量、函数(子例程)和类型(Kind)定义之间的语法没有太大区别。所有都是根据普通变量和函数定义的语法定义的</p>
@@ -1300,7 +1349,7 @@ print! b # =&gt; 0
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="类型的基本语法"><a class="header" href="#类型的基本语法">类型的基本语法</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=a0c1380a6fa5236518ac4ff455edbd3af50b0560"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3Da0c1380a6fa5236518ac4ff455edbd3af50b0560" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/02_basic.md&amp;commit_hash=f4fb25b4004bdfa96d2149fac8c4e40b84e8a45f"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/02_basic.md%26commit_hash%3Df4fb25b4004bdfa96d2149fac8c4e40b84e8a45f" alt="badge" /></a></p>
 <h2 id="类型规范"><a class="header" href="#类型规范">类型规范</a></h2>
 <p>在 Erg 中，可以在 <code>:</code> 之后指定变量的类型，如下所示。这可以与作业同时完成</p>
 <pre><code class="language-python">i: Int # 将变量 i 声明为 Int 类型
@@ -1395,7 +1444,7 @@ Vector = Array Int
 <p>但是，每个模块只允许一个相同类型的别名，多个别名将导致警告
 这意味着应将具有不同用途的类型定义为单独的类型
 目的还在于防止在已经具有别名的类型之上添加别名</p>
-<pre><code class="language-python">Id = Int
+<pre><code class="language-python compile_warn">Id = Int
 UserId = Int # 类型警告: 重复别名: Id 和 UserId
 
 Ids = Array Id
@@ -1411,7 +1460,7 @@ Point = {x = Int; y = Int; z = Int} # 类型警告: 重复别名: Point3D 和 Po
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="trait"><a class="header" href="#trait">trait</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/03_trait.md&amp;commit_hash=14657486719a134f494e107774ac8f9d5a63f083"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/03_trait.md%26commit_hash%3D14657486719a134f494e107774ac8f9d5a63f083" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/03_trait.md&amp;commit_hash=7078f95cecc961a65befb15929af06ae2331c934"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/03_trait.md%26commit_hash%3D7078f95cecc961a65befb15929af06ae2331c934" alt="badge" /></a></p>
 <p>Trait 是一种名义类型，它将类型属性要求添加到记录类型
 它类似于 Python 中的抽象基类 (ABC)，但区别在于能够执行代数运算</p>
 <pre><code class="language-python">Norm = Trait {.x = Int; .y = Int; .norm = Self.() -&gt; Int}
@@ -1550,7 +1599,7 @@ print! P|&lt;: Mul(Int)|.Output # &lt;class 'P'&gt;
      <a href='./02_basic.md'>上一页</a> | <a href='./04_class.md'>下一步</a>
 </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="class"><a class="header" href="#class">Class</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/04_class.md&amp;commit_hash=a9d45b743cc655543e0d7f586426499091cead3d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/04_class.md%26commit_hash%3Da9d45b743cc655543e0d7f586426499091cead3d" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/04_class.md&amp;commit_hash=7078f95cecc961a65befb15929af06ae2331c934"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/04_class.md%26commit_hash%3D7078f95cecc961a65befb15929af06ae2331c934" alt="badge" /></a></p>
 <p>Erg 中的类大致是一种可以创建自己的元素(实例)的类型
 这是一个简单类的示例</p>
 <pre><code class="language-python">Person = Class {.name = Str; .age = Nat}
@@ -1767,7 +1816,7 @@ assert T.foo == Foo
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="继承"><a class="header" href="#继承">继承</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/05_inheritance.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/05_inheritance.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/05_inheritance.md&amp;commit_hash=7078f95cecc961a65befb15929af06ae2331c934"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/05_inheritance.md%26commit_hash%3D7078f95cecc961a65befb15929af06ae2331c934" alt="badge" /></a></p>
 <p>继承允许您定义一个新类，为现有类添加功能或专业化
 继承类似于包含在Trait中。继承的类成为原始类的子类型</p>
 <pre><code class="language-python">NewInt = Inherit Int
@@ -1993,7 +2042,7 @@ assert MonthsClass.new(2).name() == &quot;february&quot;
 SST 需要抽象技能来编写在任何用例中都不会崩溃的代码。好的抽象可以带来高生产力，但错误的抽象(外观上的共性)会导致适得其反的结果。(NST 可以通过故意将抽象保持在最低限度来降低这种风险。如果您不是库实现者，那么仅使用 NST 进行编码并不是一个坏主意</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="修补"><a class="header" href="#修补">修补</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/07_patch.md&amp;commit_hash=bade70ef91c040f40cb181399ad7056527d9a1c5"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/07_patch.md%26commit_hash%3Dbade70ef91c040f40cb181399ad7056527d9a1c5" alt="badge" /></a></p>
 <p>Erg 不允许修改现有类型和类
 这意味着，不可能在类中定义额外的方法，也不能执行特化(一种语言特性，单态化多态声明的类型并定义专用方法，如在 C++ 中)
 但是，在许多情况下，您可能希望向现有类型或类添加功能，并且有一个称为&quot;修补&quot;的功能允许您执行此操作</p>
@@ -2019,7 +2068,7 @@ StrangeInt.
 # 覆盖方法必须被赋予覆盖装饰器
     # 另外，你需要覆盖所有依赖于 Int.`_+_` 的 Int 方法
     @Override
-    `_+_` = Super.`_-_` # OverrideError: Int.`_+_` 被 ... ````` 引用，所以这些方法也必须被覆盖
+    `_+_` = Super.`_-_` # OverrideError: Int.`_+_` 被 ... 引用，所以这些方法也必须被覆盖
 </code></pre>
 <h2 id="选择修补程序"><a class="header" href="#选择修补程序">选择修补程序</a></h2>
 <p>可以为单一类型定义修复程序，并且可以组合在一起</p>
@@ -2294,7 +2343,7 @@ OpaqueAbc = Class {inner = {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;}}.
 OpaqueAbc.new(&quot;A&quot;).is_uppercase() # 类型错误
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="细化类型"><a class="header" href="#细化类型">细化类型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=94015f61ed0018714a6271ecf60ff2ca38733ce6"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3D94015f61ed0018714a6271ecf60ff2ca38733ce6" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/12_refinement.md&amp;commit_hash=c248056b7e0273027b3c86fb912430bbde711941"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/12_refinement.md%26commit_hash%3Dc248056b7e0273027b3c86fb912430bbde711941" alt="badge" /></a></p>
 <p>细化类型是受谓词表达式约束的类型。枚举类型和区间类型是细化类型的语法糖</p>
 <p>细化类型的标准形式是<code>{Elem: Type | (Pred)*}</code>。这意味着该类型是其元素为满足 <code>Pred</code> 的 <code>Elem</code> 的类型
 可用于筛选类型的类型仅为 <a href="type/./08_value.html">数值类型</a></p>
@@ -2344,7 +2393,7 @@ Array(T, N | N &gt;= 3)
     .m(&amp;self) = ...
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="代数类型"><a class="header" href="#代数类型">代数类型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/13_algebraic.md&amp;commit_hash=b713e6f5cf9570255ccf44d14166cb2a9984f55a"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/13_algebraic.md%26commit_hash%3Db713e6f5cf9570255ccf44d14166cb2a9984f55a" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/13_algebraic.md&amp;commit_hash=d56549f5288d6c6b2bced57605ad547383963f85"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/13_algebraic.md%26commit_hash%3Dd56549f5288d6c6b2bced57605ad547383963f85" alt="badge" /></a></p>
 <p>代数类型是通过将类型视为代数来操作类型而生成的类型
 它们处理的操作包括Union、Intersection、Diff、Complement等
 普通类只能进行Union，其他操作会导致类型错误</p>
@@ -2354,9 +2403,10 @@ Array(T, N | N &gt;= 3)
 <pre><code class="language-python">IntOrStr = Int or Str
 assert dict.get(&quot;some key&quot;) in (Int or NoneType)
 
-# 隐式变为 `T != NoneType`
 Option T = T or NoneType
 </code></pre>
+<p>请注意，联合类型是可交换的，但不是关联的。也就是说，<code>X or Y or Z</code>是<code>(X or Y) or Z</code>，而不是<code>X or (Y or Z)</code>
+允许这样做会导致，例如，<code>Int 或 Option(Str)</code>、<code>Option(Int) 或 Str</code>和<code>Option(Int or Str)</code> 属于同一类型</p>
 <h2 id="路口"><a class="header" href="#路口">路口</a></h2>
 <p>交集类型是通过将类型与 <code>and</code> 操作组合得到的</p>
 <pre><code class="language-python">Num = Add and Sub and Mul and Eq
@@ -2461,7 +2511,7 @@ vm.stop!() # 类型错误: VM!(!&quot;stopped&quot;, 1) 没有 .stop!()
 MyStruct!(T, N: Nat!) = Class {.array: [T; !N]}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="类型变量量化类型"><a class="header" href="#类型变量量化类型">类型变量，量化类型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/15_quantified.md&amp;commit_hash=00682a94603fed2b531898200a79f2b4a64d5aae"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/15_quantified.md%26commit_hash%3D00682a94603fed2b531898200a79f2b4a64d5aae" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/15_quantified.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/15_quantified.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p>类型变量是用于例如指定子程序参数类型的变量，它的类型是任意的(不是单态的)
 首先，作为引入类型变量的动机，考虑 <code>id</code> 函数，它按原样返回输入</p>
 <pre><code class="language-python">id x: Int = x
@@ -2598,7 +2648,7 @@ K.
 K(0).
     foo(self, x): Nat = ...
 </code></pre>
-<h2 id="所有对称类型"><a class="header" href="#所有对称类型">所有对称类型</a></h2>
+<h2 id="for-all类型"><a class="header" href="#for-all类型">For-all类型</a></h2>
 <p>上一节中定义的 <code>id</code> 函数是一个可以是任何类型的函数。那么 <code>id</code> 函数本身的类型是什么?</p>
 <pre><code class="language-python">print! classof(id) # |T: Type| T -&gt; T
 </code></pre>
@@ -2772,7 +2822,7 @@ IntTryFromFloat.
             else: Error &quot;conversion failed&quot;.
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="可变类型"><a class="header" href="#可变类型">可变类型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/18_mut.md&amp;commit_hash=00682a94603fed2b531898200a79f2b4a64d5aae"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/18_mut.md%26commit_hash%3D00682a94603fed2b531898200a79f2b4a64d5aae" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/18_mut.md&amp;commit_hash=60dfd8580acb1a06dec36895295f92e823931a59"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/18_mut.md%26commit_hash%3D60dfd8580acb1a06dec36895295f92e823931a59" alt="badge" /></a></p>
 <blockquote>
 <p><strong>Warning</strong>: 本节中的信息是旧的并且包含一些错误</p>
 </blockquote>
@@ -2893,7 +2943,8 @@ a: [!Str; 3]
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> <code>T!</code> 和 <code>T</code> 类型没有特殊的语言关系是有意的。这是一个设计。如果存在关系，例如命名空间中存在<code>T</code>/<code>T!</code>类型，则无法从其他模块引入<code>T!</code>/<code>T</code>类型。此外，可变类型不是为不可变类型唯一定义的。给定定义 <code>T = (U, V)</code>，<code>T!</code> 的可能变量子类型是 <code>(U!, V)</code> 和 <code>(U, V!)</code>。<a href="type/18_mut.html#f1">↩</a></span></p>
 
-<div style="break-before: page; page-break-before: always;"></div><p>下面，我们将讨论更高级的类型系统。初学者不必阅读所有部分。<a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
+<div style="break-before: page; page-break-before: always;"></div><p>下面，我们将讨论更高级的类型系统。初学者不必阅读所有部分。</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced.md&amp;commit_hash=d15cbbf7b33df0f78a575cff9679d84c36ea3ab1"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced.md%26commit_hash%3Dd15cbbf7b33df0f78a575cff9679d84c36ea3ab1" alt="badge" /></a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="带默认参数的函数类型"><a class="header" href="#带默认参数的函数类型">带默认参数的函数类型</a></h1>
 <p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/default_param.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/default_param.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
 <p>首先，让我们看一个使用默认参数的示例</p>
@@ -2949,7 +3000,7 @@ hk = (1..5).iter().map(i -&gt; i * 2).collect(Array)
 hk: Array(Int)
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="存在类型"><a class="header" href="#存在类型">存在类型</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/existential.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/existential.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/existential.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/existential.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p>如果存在对应于∀的for-all类型，那么很自然地假设存在对应于∃的存在类型
 存在类型并不难。你已经知道存在类型，只是没有意识到它本身</p>
 <pre><code class="language-python">T: Trait
@@ -3052,7 +3103,7 @@ Valid: (x: T, ys: (U,)) -&gt; V
 Invalid: (x: T, ys: (y: U,)) -&gt; V
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kind"><a class="header" href="#kind">Kind</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/kind.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/kind.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/type/advanced/kind.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/type/advanced/kind.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p>一切都在 Erg 中输入。类型本身也不例外。<strong>kind</strong> 表示&quot;类型的类型&quot;。例如，<code>Int</code> 属于 <code>Type</code>，就像 <code>1</code> 属于 <code>Int</code>。<code>Type</code> 是最简单的一种，<strong>atomic kind</strong>。在类型论符号中，<code>Type</code> 对应于 <code>*</code></p>
 <p>在Kind的概念中，实际上重要的是一种或多种Kind(多项式Kind)。单项类型，例如<code>Option</code>，属于它。一元Kind表示为 <code>Type -&gt; Type</code> <a href="type/advanced/kind.html#1"><sup id="f1">1</sup></a>。诸如 <code>Array</code> 或 <code>Option</code> 之类的 <strong>container</strong> 特别是一种以类型作为参数的多项式类型
 正如符号 <code>Type -&gt; Type</code> 所表明的，<code>Option</code> 实际上是一个接收类型 <code>T</code> 并返回类型 <code>Option T</code> 的函数。但是，由于这个函数不是通常意义上的函数，所以通常称为一元类</p>
@@ -3331,7 +3382,7 @@ $normal_area.push!(NormalMember.new()) # OK
 $normal_area.push!(VIPMember.new()) # OK
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="迭代器"><a class="header" href="#迭代器">迭代器</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/16_iterator.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/16_iterator.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/16_iterator.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/16_iterator.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>迭代器是用于检索容器元素的对象</p>
 <pre><code class="language-python">for! 0..9, i =&gt;
     print! i
@@ -3470,7 +3521,7 @@ match! x:
 然而，在Erg语中，&quot;一切都是对象&quot;。不仅函数和类型，甚至运算符都可以分配给变量</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="所有权制度"><a class="header" href="#所有权制度">所有权制度</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/18_ownership.md&amp;commit_hash=00350f64a40b12f763a605bc16748d09379ab182"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/18_ownership.md%26commit_hash%3D00350f64a40b12f763a605bc16748d09379ab182" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/18_ownership.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/18_ownership.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>由于 Erg 是一种使用 Python 作为宿主语言的语言，因此内存管理的方法取决于 Python 的实现
 但语义上 Erg 的内存管理与 Python 的不同。一个显着的区别在于所有权制度和禁止循环引用</p>
 <h2 id="所有权"><a class="header" href="#所有权">所有权</a></h2>
@@ -3514,9 +3565,7 @@ sum|T &lt;: Add + HasUnit| i: Iterator T = ...
 
 x = [1, 2, 3].into [Int; !3]
 x.push!(4)
-i = x.iter() # 类型错误: [Int; !4] 没有方法 `iter`
-y = x.freeze()
-i = y.iter()
+i = x.iter()
 assert sum(i) == 10
 y # y 仍然可以被触摸
 </code></pre>
@@ -3550,7 +3599,7 @@ peek_str s
 <p>Erg 旨在防止无意的内存泄漏，如果内存检查器检测到循环引用，则会发出错误。在大多数情况下，这个错误可以通过弱引用 <code>Weak</code> 来解决。但是，由于无法生成循环图等具有循环结构的对象，因此我们计划实现一个 API，可以将循环引用作为不安全操作生成</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="可见性"><a class="header" href="#可见性">可见性</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Erg 变量具有 <strong>visibility</strong> 的概念
 到目前为止，我们看到的所有变量都称为 <strong>private variables</strong>。这是一个外部不可见的变量
 例如，<code>foo</code> 模块中定义的私有变量不能被另一个模块引用</p>
@@ -3613,11 +3662,11 @@ C.
 </code></pre>
 <h2 id="外部模块中的可见性"><a class="header" href="#外部模块中的可见性">外部模块中的可见性</a></h2>
 <p>在一个模块中定义的类实际上可以定义来自外部模块的方法</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python compile_fail"># foo.er
 .Foo = Class()
 </code></pre>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 Foo::
     private self = pass
@@ -3633,7 +3682,7 @@ Foo.
 外部定义的私有方法对 Foo 类的方法仅在定义模块内可见
 公共方法暴露在类之外，但不在模块之外</p>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 foo = Foo.new()
 foo.public() # 属性错误: &quot;Foo&quot;没有属性&quot;public&quot;(&quot;public&quot;在模块&quot;bar&quot;中定义)
@@ -3641,7 +3690,7 @@ foo.public() # 属性错误: &quot;Foo&quot;没有属性&quot;public&quot;(&quot
 <p>此外，方法不能在要重新导出的类型中定义
 这是为了避免混淆方法是否找到，具体取决于导入方法的模块</p>
 <pre><code class="language-python compile_fail"># bar.er
-{.Foo; ...} = import &quot;foo&quot;
+{.Foo;} = import &quot;foo&quot;
 
 .Foo::
     private self = pass # 错误
@@ -3650,7 +3699,7 @@ Foo.
 </code></pre>
 <p>如果你想做这样的事情，定义一个 <a href="./type/07_patch.html">patch</a></p>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 FooImpl = Patch Foo
 FooImpl :=:
@@ -3659,8 +3708,8 @@ Foo Impl.
     public self = self::private()
 </code></pre>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
-{FooImpl; ...} = import &quot;bar&quot;
+{Foo;} = import &quot;foo&quot;
+{FooImpl;} = import &quot;bar&quot;
 
 foo = Foo.new()
 foo.public()
@@ -3668,7 +3717,7 @@ foo.public()
 <h2 id="受限公共变量"><a class="header" href="#受限公共变量">受限公共变量</a></h2>
 <p>可变可见性不限于完全公共/私有
 您也可以有限制地发布</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 .record = {
     .a = {
         .(.record)x = 0
@@ -3684,13 +3733,13 @@ _ = .record.a.x # 可见性错误
 _ = .record.a.y # OK
 _ = .record.a.z # OK
 </code></pre>
-<pre><code class="language-python">foo = import &quot;foo&quot;
+<pre><code class="language-python checker_ignore">foo = import &quot;foo&quot;
 _ = foo.record.a.x # 可见性错误
 _ = foo.record.a.y # 可见性错误
 _ = foo.record.a.z # OK
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="命名约定"><a class="header" href="#命名约定">命名约定</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/20_naming_rule.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/20_naming_rule.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/20_naming_rule.md&amp;commit_hash=603abbd5fa3f8baffe0d614758e1a554705e6732"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/20_naming_rule.md%26commit_hash%3D603abbd5fa3f8baffe0d614758e1a554705e6732" alt="badge" /></a></p>
 <p>如果要将变量用作常量表达式，请确保它以大写字母开头。两个或多个字母可能是小写的</p>
 <pre><code class="language-python">i: Option Type = Int
 match i:
@@ -3720,7 +3769,7 @@ match c:
 'test 1: pass x to y'()
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="匿名函数"><a class="header" href="#匿名函数">匿名函数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/21_lambda.md&amp;commit_hash=304882f403ee8a6db8e19fae67b15ccf9747b6ff"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/21_lambda.md%26commit_hash%3D304882f403ee8a6db8e19fae67b15ccf9747b6ff" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/21_lambda.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/21_lambda.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>匿名函数是一种无需命名即可动态创建函数对象的语法</p>
 <pre><code class="language-python"># `-&gt;` 是匿名函数操作符
 # 同 `f x, y = x + y`
@@ -3785,28 +3834,28 @@ match res2:
 id = |T| x: T -&gt; x
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="子程序签名"><a class="header" href="#子程序签名">子程序签名</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/22_subroutine.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/22_subroutine.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/22_subroutine.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/22_subroutine.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="函数"><a class="header" href="#函数">函数</a></h2>
-<pre><code class="language-python">some_func(x: T, y: U) -&gt; V
+<pre><code class="language-python checker_ignore">some_func(x: T, y: U) -&gt; V
 some_func: (T, U) -&gt; V
 </code></pre>
 <h2 id="过程"><a class="header" href="#过程">过程</a></h2>
-<pre><code class="language-python">some_proc!(x: T, y: U) =&gt; V
+<pre><code class="language-python checker_ignore">some_proc!(x: T, y: U) =&gt; V
 some_proc!: (T, U) =&gt; V
 </code></pre>
 <h2 id="函数方法"><a class="header" href="#函数方法">函数方法</a></h2>
 <p>方法类型不能用<code>Self</code>在外部指定</p>
-<pre><code class="language-python">.some_method(self, x: T, y: U) =&gt; ()
+<pre><code class="language-python checker_ignore">.some_method(self, x: T, y: U) =&gt; ()
 # (Self, T, U) =&gt; () 拥有 self 的所有权
 .some_method: (Ref(Self), T, U) =&gt; ()
 </code></pre>
 <h2 id="过程方法依赖"><a class="header" href="#过程方法依赖">过程方法(依赖)</a></h2>
 <p>在下文中，假设类型 <code>T!</code> 采用类型参数 <code>N: Nat</code>。要在外部指定它，请使用类型变量</p>
-<pre><code class="language-python">T!: Nat -&gt; Type
+<pre><code class="language-python">K!: Nat -&gt; Type
 # ~&gt; 表示应用前后类型参数的状态(此时self必须是变量引用)
-T!(N).some_method!: (Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
+K!(N).some_method!: (Ref!(K! N ~&gt; N+X), X: Nat) =&gt; ()
 </code></pre>
-<p>注意，<code>.some_method</code> 的类型是 <code>| N，X: Nat| (Ref!(T! N ~&gt; N+X), {X}) =&gt; ()</code>
+<p>注意，<code>.some_method</code> 的类型是 <code>| N，X: Nat| (Ref!(K! N ~&gt; N+X), {X}) =&gt; ()</code>
 对于没有 <code>ref!</code> 的方法，即在应用后被剥夺所有权，不能使用类型参数转换(<code>~&gt;</code>)</p>
 <p>如果取得所有权，则如下所示</p>
 <pre><code class="language-python"># 如果不使用N，可以用_省略
@@ -3822,8 +3871,8 @@ T!(N).some_method!: (Ref!(T! N ~&gt; N+X), X: Nat) =&gt; ()
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="闭包"><a class="header" href="#闭包">闭包</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/23_closure.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/23_closure.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>Erg 子例程有一个称为&quot;闭包&quot;的功能，可以捕获外部变量</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/23_closure.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/23_closure.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
+<p>Erg子例程有一个称为&quot;闭包&quot;的功能，可以捕获外部变量</p>
 <pre><code class="language-python">outer = 1
 f x = outer + x
 assert f(1) == 2
@@ -3849,7 +3898,7 @@ i.add! 1
 assert f 1 == 2
 </code></pre>
 <p>该函数应该为相同的参数返回相同的值，但假设被打破了
-请注意，<code>i</code> 仅在调用时进行评估</p>
+请注意，<code>i</code>仅在调用时进行评估</p>
 <p>如果您想在定义函数时获取可变对象的内容，请调用<code>.clone</code></p>
 <pre><code class="language-python">i = !0
 immut_i = i.clone().freeze()
@@ -3865,8 +3914,8 @@ for! 1..10, i =&gt;
     sum.add!i
 assert sum == 45
 </code></pre>
-<p>上面的等效程序可以用 Python 编写如下: </p>
-<pre><code class="language-python"># Python
+<p>上面的等效程序可以用Python编写如下:</p>
+<pre><code class="language-python checker_ignore"># Python
 sum = 0
 for i in range(1, 10):
     sum += i
@@ -3879,18 +3928,18 @@ sum = (1..10).sum()
 assert sum == 45
 </code></pre>
 <p>上面的代码给出了与之前完全相同的结果，但是您可以看到这个代码要简单得多</p>
-<p><code>fold</code> 函数可以用来做比 sum 更多的事情
-<code>fold</code> 是一个迭代器方法，它为每次迭代执行参数 <code>f</code>
-累加结果的计数器的初始值在 <code>init</code> 中指定，并在 <code>acc</code> 中累加</p>
+<p><code>fold</code>函数可以用来做比sum更多的事情
+<code>fold</code>是一个迭代器方法，它为每次迭代执行参数<code>f</code>
+累加结果的计数器的初始值在<code>init</code>中指定，并在<code>acc</code>中累加</p>
 <pre><code class="language-python"># 从0开始，结果会
 sum = (1..10).fold(init: 0, f: (acc, i) -&gt; acc + i)
 assert sum == 45
 </code></pre>
-<p>Erg 被设计为对使用不可变对象进行编程的自然简洁描述</p>
+<p>Erg被设计为对使用不可变对象进行编程的自然简洁描述</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="模块"><a class="header" href="#模块">模块</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=48107a2d1719892be50588de764991cba6db39b4"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D48107a2d1719892be50588de764991cba6db39b4" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/24_module.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/24_module.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Erg允许您将文件本身视为单个记录(Record)。这称为模块</p>
-<pre><code class="language-python:foo.er"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 .i = 1
 </code></pre>
 <pre><code class="language-python"># 定义 foo 模块与定义这条记录几乎相同
@@ -3902,7 +3951,7 @@ print! foo # &lt;module 'foo'&gt;
 assert foo.i == 1
 </code></pre>
 <p>由于模块类型也是记录类型，因此可以进行解构赋值</p>
-<pre><code class="language-python">{sin; cos; ...} = import &quot;math&quot;
+<pre><code class="language-python">{sin; cos;} = import &quot;math&quot;
 </code></pre>
 <h2 id="模块可见性"><a class="header" href="#模块可见性">模块可见性</a></h2>
 <p>目录和文件都可以是模块
@@ -3911,18 +3960,18 @@ assert foo.i == 1
 <pre><code class="language-console">└─┬ bar
   └─ __init__.er
 </code></pre>
-<p>现在 <code>bar</code> 目录被识别为一个模块。如果 <code>bar</code> 中的唯一文件是 <code>__init__.er</code>，则目录结构没有多大意义，但如果您想将多个模块捆绑到一个模块中，它会很有用。例如: </p>
+<p>现在<code>bar</code>目录被识别为一个模块。如果<code>bar</code>中的唯一文件是<code>__init__.er</code>，则目录结构没有多大意义，但如果您想将多个模块捆绑到一个模块中，它会很有用。例如: </p>
 <pre><code class="language-console">└─┬ bar
   ├─ __init__.er
   ├─ baz.er
   └─ qux.er
 </code></pre>
-<p>在 <code>bar</code> 目录之外，您可以像下面这样使用</p>
+<p>在<code>bar</code>目录之外，您可以像下面这样使用</p>
 <pre><code class="language-erg">bar = import &quot;bar&quot;
 bar.baz.p!()
 bar.qux.p!()
 </code></pre>
-<p><code>__init__.er</code> 不仅仅是一个将目录作为模块的标记，它还控制模块的可见性</p>
+<p><code>__init__.er</code>不仅仅是一个将目录作为模块的标记，它还控制模块的可见性</p>
 <pre><code class="language-erg"># __init__.er
 # `. /` 指向当前目录。可以省略
 .baz = import &quot;. /baz&quot;
@@ -3952,7 +4001,7 @@ bar = import &quot;bar&quot;
 print! bar.x
 .x = g!(1) # 模块错误：由过程调用创建的变量不能在循环引用模块中定义
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 print! foo.x
 .x = 0
@@ -4012,7 +4061,7 @@ Erg 函数的定义与 Python 的不同，因为它们不允许副作用</p>
 <p>不是子例程和类型的对象
 单态实体(<code>1</code>、<code>&quot;a&quot;</code> 等)也称为值对象，多态实体(<code>[1, 2, 3], {&quot;a&quot;: 1}</code>)也称为容器对象</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="模式匹配"><a class="header" href="#模式匹配">模式匹配</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/26_pattern_matching.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/26_pattern_matching.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="erg-中可用的模式"><a class="header" href="#erg-中可用的模式">Erg 中可用的模式</a></h2>
 <h3 id="变量模式"><a class="header" href="#变量模式">变量模式</a></h3>
 <pre><code class="language-python"># 基本任务
@@ -4036,7 +4085,7 @@ a: [Int; 4] = [0, 1, 2, 3]
 a: Array Int, 4 = [0, 1, 2, 3]
 </code></pre>
 <h3 id="文字字面量"><a class="header" href="#文字字面量">文字字面量</a></h3>
-<pre><code class="language-python"># 如果在编译时无法确定 `i` 为 1，则引发 TypeError
+<pre><code class="language-python"># 如果在编译时无法确定`i`为 1，则引发TypeError
 # 省略 `_: {1} = i`
 1 = i
 
@@ -4066,7 +4115,7 @@ name = match num:
     _ -&gt; &quot;unnamed&quot;
 </code></pre>
 <h3 id="筛子图案"><a class="header" href="#筛子图案">筛子图案</a></h3>
-<pre><code class="language-python"># 这两个是一样的
+<pre><code class="language-python checker_ignore"># 这两个是一样的
 Array(T, N: {N | N &gt;= 3})
 Array(T, N | N &gt;= 3)
 
@@ -4162,10 +4211,10 @@ match i
 您可以通过迭代器检索它们，但不能保证顺序</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="推导式"><a class="header" href="#推导式">推导式</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/27_comprehension.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/27_comprehension.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
-<p>Array 和 <code>[expr | (name &lt;- iterable)+ (predicate)*]</code>,
-set 和 <code>{expr | (name &lt;- iterable)+ (predicate)*}</code>,
-你可以创建一个字典 <code>{key: value | (name &lt;- iterable)+ (predicate)*}</code>.</p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/27_comprehension.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/27_comprehension.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
+<p>Array和<code>[expr | (name &lt;- iterable)+ (predicate)*]</code>,
+set和<code>{expr | (name &lt;- iterable)+ (predicate)*}</code>,
+你可以创建一个字典<code>{key: value | (name &lt;- iterable)+ (predicate)*}</code>.</p>
 <p>由<code>|</code>分隔的子句的第一部分称为布局子句(位置子句)，第二部分称为绑定子句(绑定子句)，第三部分称为保护子句(条件子句)
 保护子句可以省略，但绑定子句不能省略，保护子句不能在绑定子句之前</p>
 <p>理解示例</p>
@@ -4185,8 +4234,8 @@ assert [(i, j) | i &lt;- 0..2; j &lt;- 0..2; (i + j) % 2 == 0] == [(0, 0), (0, 2
 assert {i % 2 | i &lt;- 0..9} == {0, 1}
 assert {k: v | k &lt;- [&quot;a&quot;, &quot;b&quot;]; v &lt;- [1, 2]} == {&quot;a&quot;: 1, &quot;b&quot;: 2}
 </code></pre>
-<p>Erg推导式受到 Haskell 的启发，但有一些不同
-对于 Haskell 列表推导，变量的顺序会对结果产生影响，但在 Erg 中这并不重要</p>
+<p>Erg推导式受到Haskell的启发，但有一些不同
+对于Haskell列表推导，变量的顺序会对结果产生影响，但在Erg中这并不重要</p>
 <pre><code class="language-haskell">-- Haskell
 [(i, j) | i &lt;- [1..3], j &lt;- [3..5]] == [(1,3),(1,4),(1,5),(2 ,3),(2,4),(2,5),(3,3),(3,4),(3,5)]
 [(i, j) | j &lt;- [3..5], i &lt;- [1..3]] == [(1,3),(2,3),(3,3),(1 ,4),(2,4),(3,4),(1,5),(2,5),(3,5)]
@@ -4194,7 +4243,7 @@ assert {k: v | k &lt;- [&quot;a&quot;, &quot;b&quot;]; v &lt;- [1, 2]} == {&quot
 <pre><code class="language-python"># Erg
 assert [(i, j) | i &lt;- 1..&lt;3; j &lt;- 3..&lt;5] == [(i, j) | j &lt;- 3..&lt;5; i &lt;- 1.. &lt;3]
 </code></pre>
-<p>该规范与 Python 的规范相同</p>
+<p>该规范与Python的规范相同</p>
 <pre><code class="language-python"># Python
 assert [(i, j) for i in range(1, 3) for j in range(3, 5)] == [(i, j) for j in range(3, 5) for i in range(1, 3)]
 </code></pre>
@@ -4208,7 +4257,7 @@ Nat2D = {(I, J): (Int, Int) | I &gt;= 0 and J &gt;= 0}
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="扩展语法"><a class="header" href="#扩展语法">扩展语法</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/28_spread_syntax.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/28_spread_syntax.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/28_spread_syntax.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/28_spread_syntax.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>在分解赋值中，将 <code>...</code> 放在变量前面会将所有剩余元素展开到该变量中。这称为展开赋值</p>
 <pre><code class="language-python">[x,...y] = [1, 2, 3]
 assert x == 1
@@ -4232,19 +4281,19 @@ assert y == (2, 3)
 assert x == 1 and y == 2
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="装饰器修饰符"><a class="header" href="#装饰器修饰符">装饰器(修饰符)</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/29_decorator.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/29_decorator.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/29_decorator.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/29_decorator.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>装饰器用于向类型或函数添加或演示特定状态或行为
 装饰器的语法如下</p>
 <pre><code class="language-python">@deco
-X=...
+X = ...
 </code></pre>
 <p>你可以有多个装饰器，只要它们不冲突</p>
 <p>装饰器不是一个特殊的对象，它只是一个单参数函数。装饰器等价于下面的伪代码</p>
-<pre><code class="language-python">X=...
+<pre><code class="language-python">X = ...
 X = deco(X)
 </code></pre>
 <p>Erg 不允许重新分配变量，因此上面的代码不起作用
-对于简单的变量，它与<code>X = deco(...)</code> 相同，但对于即时块和子例程，你不能这样做，所以你需要一个装饰器</p>
+对于简单的变量，它与<code>X = deco(...)</code>相同，但对于即时块和子例程，你不能这样做，所以你需要一个装饰器</p>
 <pre><code class="language-python">@deco
 f x =
     y = ...
@@ -4253,7 +4302,7 @@ f x =
 # 还可以防止代码变成水平的
 @LongNameDeco1
 @LongNameDeco2
-C = Class...
+C = Class ...
 </code></pre>
 <p>下面是一些常用的内置装饰器</p>
 <h2 id="可继承"><a class="header" href="#可继承">可继承</a></h2>
@@ -4261,9 +4310,9 @@ C = Class...
 <h2 id="最后"><a class="header" href="#最后">最后</a></h2>
 <p>使该方法不可覆盖。将它添加到类中使其成为不可继承的类，但由于它是默认值，因此没有意义</p>
 <h2 id="覆盖-1"><a class="header" href="#覆盖-1">覆盖</a></h2>
-<p>覆盖属性时使用。默认情况下，如果您尝试定义与基类相同的属性，Erg 将抛出错误</p>
+<p>覆盖属性时使用。默认情况下，如果您尝试定义与基类相同的属性，Erg将抛出错误</p>
 <h2 id="实现"><a class="header" href="#实现">实现</a></h2>
-<p>表示参数 trait 已实现</p>
+<p>表示参数trait已实现</p>
 <pre><code class="language-python">Add = Trait {
     .`_+_` = Self.(Self) -&gt; Self
 }
@@ -4279,8 +4328,8 @@ C.
     `_-_` self, other = C.new {i = self::i - other::}
 </code></pre>
 <h2 id="附"><a class="header" href="#附">附</a></h2>
-<p>指定默认情况下随 trait 附带的附件补丁
-这允许您重现与 Rust Trait相同的行为</p>
+<p>指定默认情况下随trait附带的附件补丁
+这允许您重现与Rust Trait相同的行为</p>
 <pre><code class="language-python"># foo.er
 Add R = Trait {
     .AddO = Type
@@ -4301,7 +4350,7 @@ AddForOdd.AddO = Even
 assert Int. AddO == Int
 assert Odd.AddO == Even
 </code></pre>
-<p>在内部，它只是使用 trait 的 .attach 方法附加的。可以使用 trait 的 <code>.detach</code> 方法消除冲突</p>
+<p>在内部，它只是使用trait的.attach方法附加的。可以使用trait的<code>.detach</code>方法消除冲突</p>
 <pre><code class="language-python">@Attach X
 T = Trait...
 assert X in T. attaches
@@ -4312,21 +4361,21 @@ assert Y in U. attaches
 <h2 id="已弃用"><a class="header" href="#已弃用">已弃用</a></h2>
 <p>指示变量规范已过时且不推荐使用</p>
 <h2 id="测试"><a class="header" href="#测试">测试</a></h2>
-<p>表示这是一个测试子例程。测试子程序使用 <code>erg test</code> 命令运行</p>
+<p>表示这是一个测试子例程。测试子程序使用<code>erg test</code>命令运行</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="错误处理系统"><a class="header" href="#错误处理系统">错误处理系统</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/30_error_handling.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/30_error_handling.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/30_error_handling.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/30_error_handling.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>主要使用Result类型
-在 Erg 中，如果您丢弃 Error 类型的对象(顶层不支持)，则会发生错误</p>
+在Erg中，如果您丢弃Error类型的对象(顶层不支持)，则会发生错误</p>
 <h2 id="异常与-python-互操作"><a class="header" href="#异常与-python-互操作">异常，与 Python 互操作</a></h2>
-<p>Erg 没有异常机制(Exception)。导入 Python 函数时</p>
+<p>Erg没有异常机制(Exception)。导入Python函数时</p>
 <ul>
-<li>将返回值设置为 <code>T 或 Error</code> 类型</li>
-<li><code>T or Panic</code> 类型(可能导致运行时错误)</li>
+<li>将返回值设置为<code>T 或 Error</code>类型</li>
+<li><code>T or Panic</code>类型(可能导致运行时错误)</li>
 </ul>
-<p>有两个选项，<code>pyimport</code> 默认为后者。如果要作为前者导入，请使用
-在 <code>pyimport</code> <code>exception_type</code> 中指定 <code>Error</code> (<code>exception_type: {Error, Panic}</code>)</p>
+<p>有两个选项，<code>pyimport</code>默认为后者。如果要作为前者导入，请使用
+在<code>pyimport</code> <code>exception_type</code>中指定<code>Error</code>(<code>exception_type: {Error, Panic}</code>)</p>
 <h2 id="异常和结果类型"><a class="header" href="#异常和结果类型">异常和结果类型</a></h2>
-<p><code>Result</code> 类型表示可能是错误的值。<code>Result</code> 的错误处理在几个方面优于异常机制
+<p><code>Result</code>类型表示可能是错误的值。<code>Result</code>的错误处理在几个方面优于异常机制
 首先，从类型定义中可以看出子程序可能会报错，实际使用时也很明显</p>
 <pre><code class="language-python"># Python
 try:
@@ -4346,12 +4395,12 @@ try!:
     e =&gt;
         print! e
 </code></pre>
-<p>另一方面，在这个例子中，我们可以看到 <code>foo!</code> 和 <code>qux!</code> 会引发错误
-确切地说，<code>y</code> 也可能是 <code>Result</code> 类型，但您最终必须处理它才能使用里面的值</p>
+<p>另一方面，在这个例子中，我们可以看到<code>foo!</code>和<code>qux!</code>会引发错误
+确切地说，<code>y</code> 也可能是<code>Result</code>类型，但您最终必须处理它才能使用里面的值</p>
 <p>使用 <code>Result</code> 类型的好处不止于此。<code>Result</code> 类型也是线程安全的。这意味着错误信息可以(轻松)在并行执行之间传递</p>
 <h2 id="语境"><a class="header" href="#语境">语境</a></h2>
-<p>由于 <code>Error</code>/<code>Result</code> 类型本身不会产生副作用，不像异常，它不能有发送位置(Context)等信息，但是如果使用 <code>.context</code> 方法，可以将信息放在 <code>错误</code>对象。可以添加。<code>.context</code> 方法是一种使用 <code>Error</code> 对象本身并创建新的 <code>Error</code> 对象的方法。它们是可链接的，并且可以包含多个上下文</p>
-<pre><code class="language-python">f() =
+<p>由于<code>Error</code>/<code>Result</code>类型本身不会产生副作用，不像异常，它不能有发送位置(Context)等信息，但是如果使用<code>.context</code>方法，可以将信息放在<code>错误</code>对象。可以添加。<code>.context</code>方法是一种使用<code>Error</code>对象本身并创建新的 <code>Error</code> 对象的方法。它们是可链接的，并且可以包含多个上下文</p>
+<pre><code class="language-python checker_ignore">f() =
     todo() \
         .context &quot;to be implemented in ver 1.2&quot; \
         .context &quot;and more hints ...&quot;
@@ -4367,7 +4416,7 @@ f()
 因此，在 Erg 中，<code>Error</code> 对象具有名为 <code>.stack</code> 的属性，并再现了类似伪异常机制的堆栈跟踪
 <code>.stack</code> 是调用者对象的数组。每次 Error 对象被<code>return</code>(包括通过<code>?</code>)时，它都会将它的调用子例程推送到<code>.stack</code>
 如果它是 <code>?</code>ed 或 <code>.unwrap</code>ed 在一个不可能 <code>return</code> 的上下文中，它会因为回溯而恐慌</p>
-<pre><code class="language-python">f x =
+<pre><code class="language-python checker_ignore">f x =
     ...
     y = foo.try_some(x)?
     ...
@@ -4391,16 +4440,16 @@ i = g(1)?
 <p>Erg 还有一种处理不可恢复错误的机制，称为 <strong>panicing</strong>
 不可恢复的错误是由外部因素引起的错误，例如软件/硬件故障、严重到无法继续执行代码的错误或程序员未预料到的错误。等如果发生这种情况，程序将立即终止，因为程序员的努力无法恢复正常运行。这被称为&quot;恐慌&quot;</p>
 <p>恐慌是通过 <code>panic</code> 功能完成的</p>
-<pre><code class="language-python">panic &quot;something went wrong!&quot;
+<pre><code class="language-python checker_ignore">panic &quot;something went wrong!&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="管道运算符"><a class="header" href="#管道运算符">管道运算符</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/31_pipeline.md&amp;commit_hash=06f8edc9e2c0cee34f6396fd7c64ec834ffb5352"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/31_pipeline.md%26commit_hash%3D06f8edc9e2c0cee34f6396fd7c64ec834ffb5352" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/31_pipeline.md&amp;commit_hash=5d4a2ebc57e34f3c679eb3dfe140dd4229dca7f6"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/31_pipeline.md%26commit_hash%3D5d4a2ebc57e34f3c679eb3dfe140dd4229dca7f6" alt="badge" /></a></p>
 <p>管道运算符的使用方式如下:</p>
 <pre><code class="language-python">assert f(g(x)) == (x |&gt; g() |&gt; f())
 assert f(g(x, y)) == (x |&gt; g(y) |&gt; f())
 </code></pre>
-<p>换句话说，<code>Callable(object)</code> 的顺序可以更改为 <code>object |&gt; Callable()</code>
-管道运算符也可用于方法。对于方法，<code>object.method(args)</code> 更改为 <code>object |&gt;.method(args)</code>
+<p>换句话说，<code>Callable(object)</code>的顺序可以更改为<code>object |&gt; Callable()</code>
+管道运算符也可用于方法。对于方法，<code>object.method(args)</code>更改为<code>object |&gt;.method(args)</code>
 它看起来只是更多的<code>|&gt;</code>，但由于粘合强度较低，您可以减少<code>()</code>的数量</p>
 <pre><code class="language-python">rand = -1.0..1.0 |&gt;.sample!()
 log rand # 0.2597...
@@ -4418,7 +4467,7 @@ __evens = 1..100 \
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="与-python-集成"><a class="header" href="#与-python-集成">与 Python 集成</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/32_integration_with_Python.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/32_integration_with_Python.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/32_integration_with_Python.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/32_integration_with_Python.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="导出到-python"><a class="header" href="#导出到-python">导出到 Python</a></h2>
 <p>编译 Erg 脚本时，会生成一个 .pyc 文件，可以简单地将其作为 Python 模块导入
 但是，无法从 Python 访问在 Erg 端设置为私有的变量</p>
@@ -4428,7 +4477,7 @@ private = &quot;this is a private variable&quot;
 </code></pre>
 <pre><code class="language-console">erg --compile foo.er
 </code></pre>
-<pre><code class="language-python">import foo
+<pre><code class="language-python checker_ignore">import foo
 
 print(foo.public)
 print(foo.private) # 属性错误:
@@ -4472,7 +4521,7 @@ assert foo.bar(1) in Int
 <p>由于这是运行时开销，因此计划使用 Erg 的类型系统对 Python 脚本进行静态类型分析</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="包系统"><a class="header" href="#包系统">包系统</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/33_package_system.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/33_package_system.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/33_package_system.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/33_package_system.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Erg包大致可以分为app包，即应用程序，以及lib包，即库
 应用包的入口点是<code>src/app.er</code>。<code>app.er</code> 中定义的<code>main</code> 函数被执行
 lib 包的入口点是<code>src/lib.er</code>。导入包相当于导入 <code>lib.er</code></p>
@@ -4524,7 +4573,7 @@ main args =
     ├─ baz.private.er
     └─ qux.er
 </code></pre>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 bar = import &quot;bar&quot;
 bar.qux
 bar.baz # AttributeError: module 'baz' is private
@@ -4558,7 +4607,7 @@ make_g: () =&gt; Generator!
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="快速浏览"><a class="header" href="#快速浏览">快速浏览</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/quick_tour.md&amp;commit_hash=2ecd249a2a99dc93dde2660b8d50bfa4fa0b03b9"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/quick_tour.md%26commit_hash%3D2ecd249a2a99dc93dde2660b8d50bfa4fa0b03b9" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/quick_tour.md&amp;commit_hash=44d7784aac3550ba97c8a1eaf20b9264b13d4134"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/quick_tour.md%26commit_hash%3D44d7784aac3550ba97c8a1eaf20b9264b13d4134" alt="badge" /></a></p>
 <p><code>syntax</code> 下面的文档是为了让编程初学者也能理解而编写的
 对于已经掌握 Python、Rust、Haskell 等语言的人来说，可能有点啰嗦</p>
 <p>所以，这里是 Erg 语法的概述
@@ -4762,7 +4811,7 @@ b: [Int; 4]
 a + b: [Int; 7]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="指数"><a class="header" href="#指数">指数</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/indexes.md&amp;commit_hash=d8472ec748aac5371571da81a161255fe60679b7"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/indexes.md%26commit_hash%3Dd8472ec748aac5371571da81a161255fe60679b7" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/indexes.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/indexes.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>有关不在此索引中的 API，请参阅 <a href="../API/index.html">此处</a></p>
 <p>有关术语，请参见 <a href="../terms.html">此处</a></p>
 <h2 id="符号"><a class="header" href="#符号">符号</a></h2>
@@ -4885,7 +4934,6 @@ a + b: [Int; 7]
 <li>[Add]</li>
 <li><a href="type/02_basic.html">alias</a></li>
 <li><a href="./type/02_basic.html">Aliasing</a></li>
-<li><a href="./type/15_quantified.html">For all types</a></li>
 <li><a href="./type/13_algebraic.html">algebraic type</a></li>
 <li>[And]</li>
 <li>[and]</li>
@@ -4958,6 +5006,7 @@ a + b: [Int; 7]
 <li><a href="./01_literal.html">Float&amp;sbsp;Object</a></li>
 <li><a href="./05_builtin_funcs.html">for</a></li>
 <li><a href="./type/07_patch.html">For-All Patch</a></li>
+<li><a href="./type/15_quantified.html">For all types</a></li>
 <li><a href="./18_ownership.html">freeze</a></li>
 <li><a href="./04_function.html">Function</a></li>
 <li><a href="./04_function.html">Function definition with multiple patterns</a></li>

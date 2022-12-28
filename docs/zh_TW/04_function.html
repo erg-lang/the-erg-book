@@ -145,10 +145,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="功能"><a class="header" href="#功能">功能</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/04_function.md&amp;commit_hash=96b113c47ec6ca7ad91a6b486d55758de00d557d"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/04_function.md%26commit_hash%3D96b113c47ec6ca7ad91a6b486d55758de00d557d" alt="badge" /></a></p>
 <p>函數是一個塊，它接受一個&quot;參數&quot;，對其進行處理，并將其作為&quot;返回值&quot;返回。定義如下</p>
 <pre><code class="language-python">add x, y = x + y
-# 或者
+</code></pre>
+<pre><code class="language-python"># 或者
 add(x, y) = x + y
 </code></pre>
 <p>在函數名之后指定的名稱稱為參數
@@ -161,9 +162,9 @@ add(1, 2)
 </code></pre>
 <h2 id="冒號應用風格"><a class="header" href="#冒號應用風格">冒號應用風格</a></h2>
 <p>函數像<code>f x, y, ...</code>一樣被調用，但是如果單行參數太多，可以使用<code>:</code>(冒號)來應用它們</p>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2, some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
-<pre><code class="language-python">f some_long_name_variable_1 + some_long_name_variable_2:
+<pre><code class="language-python checker_ignore">f some_long_name_variable_1 + some_long_name_variable_2:
     some_long_name_variable_3 * some_long_name_variable_4
 </code></pre>
 <pre><code class="language-python">f:
@@ -179,7 +180,19 @@ add(1, 2)
         log &quot;False was chosen&quot;
         0
 </code></pre>
-<p>在 <code>:</code> 之后，除了注釋之外，不得編寫任何代碼，并且必須始終在新行上</p>
+<p><code>:</code>之後，除註釋外不得寫入任何代碼，並且必須始終換行
+此外，您不能在函數後立即使用<code>:</code>。只有<code>do</code>和<code>do!</code>可以做到這一點</p>
+<pre><code class="language-python compile_fail"># NG
+f:
+    x
+    y
+</code></pre>
+<pre><code class="language-python checker_ignore"># Ok
+f(
+    x,
+    y
+)
+</code></pre>
 <h2 id="關鍵字參數"><a class="header" href="#關鍵字參數">關鍵字參數</a></h2>
 <p>如果使用大量參數定義函數，則存在以錯誤順序傳遞參數的危險
 在這種情況下，使用關鍵字參數調用函數是安全的</p>
@@ -278,6 +291,21 @@ factorial n = n * factorial(n - 1)
 </code></pre>
 <p>并且這種計算不會停止。遞歸函數必須仔細定義值的范圍，否則您可能會陷入無限循環
 所以類型規范也有助于避免接受意外的值</p>
+<h2 id="高階函數"><a class="header" href="#高階函數">高階函數</a></h2>
+<p>高階函數是將函數作為參數或返回值的函
+例如，一個以函數為參數的高階函數可以寫成如下</p>
+<pre><code class="language-python">arg_f = i -&gt; log i
+higher_f(x: (Int -&gt; NoneType)) = x 10
+higher_f arg_f # 10
+</code></pre>
+<p>當然，也可以將返回值作為一個函數</p>
+<pre><code class="language-python">add(x): (Int -&gt; Int) = y -&gt; x + y
+add_ten = add(10) # y -&gt; 10 + y
+add_hundred = add(100) # y -&gt; 100 + y
+assert add_ten(1) == 11
+assert add_hundred(1) == 101
+</code></pre>
+<p>通過這種方式將函數作為參數和返回值，可以用函數定義更靈活的表達式</p>
 <h2 id="編譯時函數"><a class="header" href="#編譯時函數">編譯時函數</a></h2>
 <p>函數名以大寫字母開頭，表示編譯時函數。用戶定義的編譯時函數必須將所有參數作為常量，并且必須指定它們的類型
 編譯時函數的功能有限。在編譯時函數中只能使用常量表達式，即只有一些運算符(例如求積、比較和類型構造操作)和編譯時函數。要傳遞的參數也必須是常量表達式

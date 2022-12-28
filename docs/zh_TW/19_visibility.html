@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="可見性"><a class="header" href="#可見性">可見性</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=b07c17708b9141bbce788d2e5b3ad4f365d342fa"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3Db07c17708b9141bbce788d2e5b3ad4f365d342fa" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/19_visibility.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/19_visibility.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <p>Erg 變量具有 <strong>visibility</strong> 的概念
 到目前為止，我們看到的所有變量都稱為 <strong>private variables</strong>。這是一個外部不可見的變量
 例如，<code>foo</code> 模塊中定義的私有變量不能被另一個模塊引用</p>
@@ -161,7 +161,7 @@ foo.x # AttributeError: 模塊 'foo' 沒有屬性 'x' ('x' 是私有的)
 <pre><code class="language-python"># foo.er
 .x = &quot;this is a visible variable&quot;
 </code></pre>
-<pre><code class="language-python"># bar.er
+<pre><code class="language-python checker_ignore"># bar.er
 foo = import &quot;foo&quot;
 assert foo.x == &quot;this is a visible variable&quot;
 </code></pre>
@@ -212,14 +212,14 @@ C.
 .Foo = Class()
 </code></pre>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 Foo::
     private self = pass
 Foo.
     public self = self::private()
-
-.f() =
+</code></pre>
+<pre><code class="language-python compile_fail">.f() =
     foo = Foo.new()
     foo.public()
     foo::private() # 屬性錯誤
@@ -228,7 +228,7 @@ Foo.
 外部定義的私有方法對 Foo 類的方法僅在定義模塊內可見
 公共方法暴露在類之外，但不在模塊之外</p>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 foo = Foo.new()
 foo.public() # 屬性錯誤: &quot;Foo&quot;沒有屬性&quot;public&quot;(&quot;public&quot;在模塊&quot;bar&quot;中定義)
@@ -236,7 +236,7 @@ foo.public() # 屬性錯誤: &quot;Foo&quot;沒有屬性&quot;public&quot;(&quot
 <p>此外，方法不能在要重新導出的類型中定義
 這是為了避免混淆方法是否找到，具體取決于導入方法的模塊</p>
 <pre><code class="language-python compile_fail"># bar.er
-{.Foo; ...} = import &quot;foo&quot;
+{.Foo;} = import &quot;foo&quot;
 
 .Foo::
     private self = pass # 錯誤
@@ -245,7 +245,7 @@ Foo.
 </code></pre>
 <p>如果你想做這樣的事情，定義一個 <a href="./type/07_patch.html">patch</a></p>
 <pre><code class="language-python"># bar.er
-{Foo; ...} = import &quot;foo&quot;
+{Foo;} = import &quot;foo&quot;
 
 FooImpl = Patch Foo
 FooImpl :=:
@@ -254,8 +254,8 @@ Foo Impl.
     public self = self::private()
 </code></pre>
 <pre><code class="language-python"># baz.er
-{Foo; ...} = import &quot;foo&quot;
-{FooImpl; ...} = import &quot;bar&quot;
+{Foo;} = import &quot;foo&quot;
+{FooImpl;} = import &quot;bar&quot;
 
 foo = Foo.new()
 foo.public()
@@ -263,7 +263,7 @@ foo.public()
 <h2 id="受限公共變量"><a class="header" href="#受限公共變量">受限公共變量</a></h2>
 <p>可變可見性不限于完全公共/私有
 您也可以有限制地發布</p>
-<pre><code class="language-python"># foo.er
+<pre><code class="language-python checker_ignore"># foo.er
 .record = {
     .a = {
         .(.record)x = 0
@@ -279,7 +279,7 @@ _ = .record.a.x # 可見性錯誤
 _ = .record.a.y # OK
 _ = .record.a.z # OK
 </code></pre>
-<pre><code class="language-python">foo = import &quot;foo&quot;
+<pre><code class="language-python checker_ignore">foo = import &quot;foo&quot;
 _ = foo.record.a.x # 可見性錯誤
 _ = foo.record.a.y # 可見性錯誤
 _ = foo.record.a.z # OK

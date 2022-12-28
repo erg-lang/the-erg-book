@@ -537,7 +537,7 @@ In such cases, it is safe to call the function using keyword arguments.</p>
 </code></pre>
 <h2 id="default-parameters"><a class="header" href="#default-parameters">Default parameters</a></h2>
 <p>Default parameters are used when some parameters are mostly fixed and you want to be able to omit them.</p>
-<p>Default parameters are specified by <code>:=</code>(walrus operator). If <code>base</code> is not specified, assign <code>math.E</code> to <code>base</code>.</p>
+<p>Default parameters are specified by <code>:=</code>(default-assign operator). If <code>base</code> is not specified, assign <code>math.E</code> to <code>base</code>.</p>
 <pre><code class="language-python">math_log x: Ratio, base := math.E = ...
 
 assert math_log(100, 10) == 2
@@ -625,6 +625,21 @@ factorial n = n * factorial(n - 1)
 </code></pre>
 <p>and this computation does not stop. Recursive functions must carefully define the range of values or you may end up in an infinite loop.
 So the type specification also helps to avoid accepting unexpected values.</p>
+<h2 id="high-order-functions"><a class="header" href="#high-order-functions">High-order functions</a></h2>
+<p>A higher-order function is a function that takes a function as its parameter or return value.
+For example, a higher-order function that takes a function as its parameter can be written as follows</p>
+<pre><code class="language-python">arg_f = i -&gt; log i
+higher_f(x: (Int -&gt; NoneType)) = x 10
+higher_f arg_f # 10
+</code></pre>
+<p>Of coursers, it is possible to take return value  as a function.</p>
+<pre><code class="language-python">add(x): (Int -&gt; Int) = y -&gt; x + y
+add_ten = add(10) # y -&gt; 10 + y
+add_hundred = add(100) # y -&gt; 100 + y
+assert add_ten(1) == 11
+assert add_hundred(1) == 101
+</code></pre>
+<p>By taking functions as parameters and return values in this way, more flexible expressions can be defined with functions.</p>
 <h2 id="compile-time-functions"><a class="header" href="#compile-time-functions">Compile-time functions</a></h2>
 <p>A function name begins with an uppercase letter to indicate a compile-time function. User-defined compile-time functions must have all arguments as constants and must specify their types.
 Compile-time functions are limited in what they can do. Only constant expressions can be used in compile-time functions, i.e., only some operators (such as quadrature, comparison, and type construction operations) and compile-time functions. Arguments to be passed must also be constant expressions.
@@ -807,9 +822,27 @@ print! &quot;this will be printed immediately&quot;
 <p>If there is no feedback to the program, or in other words, if no external object can use the internal information, then the &quot;leakage&quot; of the information may be allowed. It is only necessary that the information not be &quot;propagated&quot;.</p>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="procedures"><a class="header" href="#procedures">Procedures</a></h1>
+<p>Procedures mean the functions that allow <a href="/07_side_effect.html">side-effect</a>.
+Please refer to <a href="/04_function.html">Function</a> basically usage or definition.
+Add <code>!</code> to a function name to define it.</p>
+<pre><code class="language-python">proc!(x: Int!, y: Int!) =
+    for! 0..x, i =&gt;
+        for 0..y, j =&gt;
+            print! i, j
+</code></pre>
 <p>Procedures are necessary when dealing with mutable objects, but having a mutable object as an argument does not necessarily make it a procedure.
 Here is a function takes a mutable object (not procedure).</p>
 <pre><code class="language-python">peek_str s: Str! = log s
+
+make_proc(x!: (Int =&gt; Int)): (Int =&gt; Int) = y =&gt; x! y
+p! = make_proc(x =&gt; x)
+print! p! 1 # 1
+</code></pre>
+<p>Also, procedures and functions are related by <code>proc :&gt; func</code>.
+Therefore, it is possible to define functions in procedure.
+However, note that the reverse is not possible.</p>
+<pre><code class="language-python">proc!(x: Int!) = y -&gt; log x, y # OK
+func(x: Int) = y =&gt; print! x, y # NG
 </code></pre>
 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="built-in-procedure"><a class="header" href="#built-in-procedure">Built-in procedure</a></h1>
@@ -979,10 +1012,10 @@ a.x # AttributeError: x is private
 <p>The above example may seem strange to someone familiar with JavaScript, but simply declaring <code>x</code> makes it inaccessible from the outside. <code>. </code>. `.</p>
 <p>You can also explicitly specify the type of an attribute.</p>
 <pre><code class="language-python">anonymous = {
-    .name: Option! Str = !&quot;&quot;
+    .name: Option! Str = &quot;Jane Doe&quot;
     .age = 20
 }
-anonymous.name.set! &quot;John&quot;
+anonymous.name.set! &quot;John Doe&quot;
 </code></pre>
 <p>A record can also have the method.</p>
 <pre><code class="language-python">o = {
@@ -2816,91 +2849,28 @@ x = a.freeze_map a: [Nat; 3] -&gt; a.iter().map(i -&gt; i + 1).filter(i -&gt; i 
 KT: ImmutType = Class ...
 K!T: Type = Class ...
 </code></pre>
-<p>In the standard library, variable <code>(...)!</code> types are often based on immutable <code>(...)</code> types. However, <code>T!</code> and <code>T</code> types have no special linguistic relationship, and may not be constructed as such <a href="type/18_mut.html#1"><sup id="f1">1</sup></a> .</p>
-<p>Note that there are several types of object mutability.
-Below we will review the immutable/mutable semantics of the built-in collection types.</p>
-<pre><code class="language-python"># array type
-## immutable types
-[T; N] # Cannot perform mutable operations
-## mutable types
-[T!; N] # can change contents one by one
-[T; !N] # variable length, content is immutable but can be modified by adding/deleting elements
-[!T; N] # The content is an immutable object, but it can be replaced by a different type (actually replaceable by not changing the type)
-[!T; !N] # type and length can be changed
-[T!; !N] # content and length can be changed
-[!T!; N] # content and type can be changed
-[!T!; !N] # Can perform all sorts of mutable operations
-</code></pre>
-<p>Of course, you don't have to memorize and use all of them.
-For variable array types, just add <code>!</code> to the part you want to be variable, and practically <code>[T; N]</code>, <code>[T!; N]</code>, <code>[T; !N]</code>, <code> [T!; !N]</code> can cover most cases.</p>
-<p>These array types are syntactic sugar, the actual types are:</p>
-<pre><code class="language-python"># actually 4 types
-[T; N] = Array(T, N)
-[T; !N] = Array!(T, !N)
-[!T; N] = ArrayWithMutType!(!T, N)
-[!T; !N] = ArrayWithMutTypeAndLength!(!T, !N)
-[T!; !N] = Array!(T!, !N)
-[!T!; N] = ArrayWithMutType!(!T!, N)
-[!T!; !N] = ArrayWithMutTypeAndLength!(!T!, !N)
-</code></pre>
-<p>This is what it means to be able to change the type.</p>
-<pre><code class="language-python">a = [1, 2, 3].into [!Nat; 3]
-a.map!(_ -&gt; &quot;a&quot;)
-a: [!Str; 3]
-</code></pre>
-<p>The same is true for other collection types.</p>
-<pre><code class="language-python"># tuple type
-## immutable types
-(T, U) # No change in number of elements, contents cannot be changed
-## mutable types
-(T!, U) # constant number of elements, first element can be changed
-(T, U)! # No change in number of elements, content can be replaced
-...
-</code></pre>
-<pre><code class="language-python"># Set type
-## immutable types
-{T; N} # number of immutable elements, contents cannot be changed
-## mutable types
-{T!; N} # number of immutable elements, content can be changed (one by one)
-{T; N}! # Number of variable elements, content cannot be changed
-{T!; N}! # Number of variable elements, content can be changed
-...
-</code></pre>
-<pre><code class="language-python"># Dictionary type
-## immutable types
-{K: V} # immutable length, contents cannot be changed
-## mutable types
-{K: V!} # constant length, values ​​can be changed (one by one)
-{K: V}! # Variable length, content cannot be changed, but can be added or deleted by adding or removing elements, content type can also be changed
-...
-</code></pre>
-<pre><code class="language-python"># Record type
-## immutable types
-{x = Int; y = Str} # content cannot be changed
-## mutable types
-{x = Int!; y = Str} # can change the value of x
-{x = Int; y = Str}! # replace any instance of {x = Int; y = Str}
-...
-</code></pre>
-<p>A type <code>(...)</code> that simply becomes <code>T! = (...)!</code> when <code>T = (...)</code> is called a simple structured type. A simple structured type can also be said (semantically) to be a type that has no internal structure.
-Arrays, tuples, sets, dictionaries, and record types are all non-simple structured types, but Int and Refinement types are.</p>
-<pre><code class="language-python"># Refinement type
-## Enums
-{1, 2, 3} # one of 1, 2, 3, cannot be changed
-{1, 2, 3}! # 1, 2, 3, you can change
-## interval type
-1..12 # 1 to 12, cannot be changed
-1..12! # Any of 1-12, you can change
-## Refinement type (general type)
-{I: Int | I % 2 == 0} # even type, immutable
-{I: Int! | I % 2 == 0} # even type, can be changed
-{I: Int | I % 2 == 0}! # Exactly the same type as above, but the above notation is preferred
-</code></pre>
+<p>In the standard library, mutable <code>(...)!</code> types are often based on immutable <code>(...)</code> types. However, <code>T!</code> and <code>T</code> types have no special linguistic relationship, and may not be constructed as such <a href="type/18_mut.html#1"><sup id="f1">1</sup></a> .</p>
 <p>From the above explanation, mutable types include not only those that are themselves mutable, but also those whose internal types are mutable.
 Types such as <code>{x: Int!}</code> and <code>[Int!; 3]</code> are internal mutable types where the object inside is mutable and the instance itself is not mutable.</p>
-<p>For a type <code>K!(T, U)</code> that has internal structure and has a <code>!</code> on the type constructor itself, <code>*self</code> can change the whole object. Local changes are also possible.
-However, it is desirable to keep the change authority as local as possible, so if only <code>T</code> can be changed, it is better to use <code>K(T!, U)</code>.
-And for the type <code>T!</code> which has no internal structure, this instance is simply a box of <code>T</code> which can be swapped. A method cannot change the type.</p>
+<h2 id="cell-t"><a class="header" href="#cell-t">Cell! T</a></h2>
+<p>Mutable types are already available for <code>Int</code> and arrays, but how can we create mutable types for general immutable types? For example, in the case of <code>{x = Int; y = Int}</code>, corresponding mutable type is <code>{x = Int!; y = Int!}</code>, etc. But how did <code>Int!</code> made from <code>Int</code>?</p>
+<p>Erg provides <code>Cell!</code> type for such cases.
+This type is like a box for storing immutable types. This corresponds to what is called a reference (ref) in ML and other languages.</p>
+<pre><code class="language-python">IntOrStr = Inr or Str
+IntOrStr! = Cell! IntOrStr
+x = IntOrStr!.new 1
+assert x is! 1 # `Int or Str` cannot compare with `Int` directly, so use `is!` (this compares object IDs) instead of `==`.
+x.set! &quot;a&quot;
+assert x is! &quot;a&quot;
+</code></pre>
+<p>An important property is that <code>Cell! T</code> is a subtype of <code>T</code>. Therefore, an object of type <code>Cell! T</code> can use all the methods of type <code>T</code>.</p>
+<pre><code class="language-python"># definition of `Int!`
+Int! = Cell! Int
+...
+
+i = !1
+assert i == 1 # `i` is casted to `Int`
+</code></pre>
 <hr />
 <p><span id="1" style="font-size:x-small"><sup>1</sup> It is intentional that <code>T!</code> and <code>T</code> types have no special linguistic relationship. It's a design. If there is a relationship, for example, if the <code>T</code>/<code>T!</code> type exists in the namespace, it will not be possible to introduce the <code>T!</code>/<code>T</code> type from another module. Also, the mutable type is not uniquely defined for the immutable type. Given the definition <code>T = (U, V)</code>, the possible variable subtypes of <code>T!</code> are <code>(U!, V)</code> and <code>(U, V!)</code>. <a href="type/18_mut.html#f1">↩</a></span></p>
 
@@ -4964,6 +4934,9 @@ a + b: [Int; 7]
 <li><a href="./type/07_patch.html#glue-patch">Glue Patch</a></li>
 </ul>
 <h3 id="h"><a class="header" href="#h">H</a></h3>
+<ul>
+<li><a href="04_function.html">Hight-order function</a></li>
+</ul>
 <h3 id="i"><a class="header" href="#i">I</a></h3>
 <ul>
 <li><a href="./09_builtin_procs.html#id">id</a></li>

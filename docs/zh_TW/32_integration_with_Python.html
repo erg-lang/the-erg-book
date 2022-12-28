@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="與-python-集成"><a class="header" href="#與-python-集成">與 Python 集成</a></h1>
-<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/32_integration_with_Python.md&amp;commit_hash=51de3c9d5a9074241f55c043b9951b384836b258"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/32_integration_with_Python.md%26commit_hash%3D51de3c9d5a9074241f55c043b9951b384836b258" alt="badge" /></a></p>
+<p><a href="https://gezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com/default/source_up_to_date?owner=erg-lang&amp;repos=erg&amp;ref=main&amp;path=doc/EN/syntax/32_integration_with_Python.md&amp;commit_hash=20aa4f02b994343ab9600317cebafa2b20676467"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgezf7g7pd5.execute-api.ap-northeast-1.amazonaws.com%2Fdefault%2Fsource_up_to_date%3Fowner%3Derg-lang%26repos%3Derg%26ref%3Dmain%26path%3Ddoc/EN/syntax/32_integration_with_Python.md%26commit_hash%3D20aa4f02b994343ab9600317cebafa2b20676467" alt="badge" /></a></p>
 <h2 id="導出到-python"><a class="header" href="#導出到-python">導出到 Python</a></h2>
 <p>編譯 Erg 腳本時，會生成一個 .pyc 文件，可以簡單地將其作為 Python 模塊導入
 但是，無法從 Python 訪問在 Erg 端設置為私有的變量</p>
@@ -155,7 +155,7 @@ private = &quot;this is a private variable&quot;
 </code></pre>
 <pre><code class="language-console">erg --compile foo.er
 </code></pre>
-<pre><code class="language-python">import foo
+<pre><code class="language-python checker_ignore">import foo
 
 print(foo.public)
 print(foo.private) # 屬性錯誤: 
