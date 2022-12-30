@@ -1,62 +1,67 @@
-name: the-erg-book-bot
+name: Deploy
 on:
   push:
+    branches: [main]
   schedule:
-    - cron: '0 22 * * *'
+    - cron: "0 22 * * *"
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
+    permissions: # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.10
         uses: actions/setup-python@v1
         with:
-          python-version: '3.10'
+          python-version: "3.10"
       - name: Set up Erg
         uses: erg-lang/setup-erg@v2
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: '0.4.10'
+          mdbook-version: "0.4.10"
       - name: Run script
         run: |
-          rm -rf docs/*
+          mkdir dist
 
           svn export https://github.com/erg-lang/erg/trunk/doc/JA/syntax/
           mdbook build --dest-dir tmp
           erg replace_links.er
-          mv tmp docs/JA
+          mv tmp dist/JA
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/zh_CN/syntax/
           mdbook build --dest-dir tmp
           erg replace_links.er
-          mv tmp docs/zh_CN
+          mv tmp dist/zh_CN
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/zh_TW/syntax/
           mdbook build --dest-dir tmp
           erg replace_links.er
-          mv tmp docs/zh_TW
+          mv tmp dist/zh_TW
           sleep 1
           rm -rf syntax
 
           svn export https://github.com/erg-lang/erg/trunk/doc/EN/syntax/
           mdbook build --dest-dir tmp
           erg replace_links.er
-          mv tmp/* docs
+          mv tmp/* dist
           sleep 1
           rm -rf syntax
-          rm -rf tmp
-
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git diff-index --quiet HEAD || git commit -m "generated"
-          git push
-
-          echo done
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
