@@ -12,3 +12,6 @@ title = "The Erg Book"
 additional-css = [
     "theme/css/error.css",
 ]
+additional-js = [
+    "theme/js/lz-string.min.js",
+]

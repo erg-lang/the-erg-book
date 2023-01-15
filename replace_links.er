@@ -8,15 +8,19 @@ open_file!(path) =
 
 save_file!(path, data) =
     with! open!(path, mode:="w", encoding:="utf_8"), f =>
-        f.write! data
-    None
+        discard f.write! data
 
-PTN = "<p align='center'>\n.*\n</p>"
 remove_links html =
+    PTN = "<p align='center'>\n.*\n</p>"
     re.sub PTN, "", html
 
 replace_links html =
     html.replace ".md", ".html"
+
+replace_pg_class html =
+    FROM = "<pre><code class=\"language-python\">"
+    TO = "<pre class=\"playground\"><code class=\"language-python\">"
+    re.sub(FROM, TO, html)
 
 main!() =
     pth = glob.glob! "tmp/*.html"
@@ -27,7 +31,8 @@ main!() =
         print! path
         html = open_file! path
         _html = remove_links html
-        save_file! path, _html
+        __html = replace_pg_class _html
+        save_file! path, __html
 
 if! __name__ == "__main__", do!:
     main!()

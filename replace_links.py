@@ -17,6 +17,11 @@ def remove_links(html):
 def replace_links(html):
     return html.replace('.md', '.html')
 
+def replace_pg_class(html):
+    FROM = "<pre><code class=\"language-python\">"
+    TO = "<pre class=\"playground\"><code class=\"language-python\">"
+    return re.sub(FROM, TO, html)
+
 def main():
     pth = glob('tmp/*.html')
     typ_pth = glob('tmp/type/*.html')
@@ -26,6 +31,7 @@ def main():
         print(path)
         html = open_file(path)
         html = remove_links(html)
+        html = replace_pg_class(html)
         save_file(path, html)
 
 if __name__ == '__main__':
